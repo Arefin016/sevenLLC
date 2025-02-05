@@ -18,6 +18,7 @@ export default {
     extend: {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        raleway: ["Raleway", "sans-serif"],
       },
       screens: {
         xs: "390px",
@@ -29,6 +30,10 @@ export default {
         xlg: "1200px",
         xl: "1560px",
         xxl: "1920px",
+      },
+      colors: {
+        navbarColor: "#616161",
+        buttonColor: "#07A0EC",
       },
     },
   },
