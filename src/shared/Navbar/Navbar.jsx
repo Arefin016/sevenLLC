@@ -75,8 +75,8 @@ const Divider = () => (
 
 const Navbar = () => {
   return (
-    <div className="border-b border-gray-300">
-      <nav className="container mx-auto">
+    <nav className=" border-b border-gray-300">
+      <div className="container mx-auto">
         <div className="flex justify-between items-center mt-4">
           {/* logo */}
           <div className="max-w-[113px] h-[86px]">
@@ -189,7 +189,7 @@ const Navbar = () => {
                 }}
               >
                 <a>
-                  <Space className="font-raleway text-navbarColor text-base font-bold">
+                  <Space className="font-raleway text-navbarColor text-base font-bold mt-1">
                     EN
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -264,8 +264,8 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 
