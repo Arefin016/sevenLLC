@@ -233,7 +233,7 @@ const Navbar = () => {
             </div>
             <div>
               <Link to={"/"}>
-                <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px] hover:bg-transparent hover:border-buttonColor hover:bg-buttonColor hover:text-[#FFF] ease-in-out duration-150">
+                <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                   Sign up
                 </button>
               </Link>

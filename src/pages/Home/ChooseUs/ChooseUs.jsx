@@ -11,10 +11,14 @@ const ChooseUs = () => {
           <h1 className="text-headingColor text-5xl font-bold max-w-[721px]">
             Why Choose Us?
           </h1>
-          <ul className="mt-7">
-            <li>Innovative designs to enhance your branding</li>
-            <li>Eco-friendly and sustainable materials</li>
-            <li>Competitive pricing for bulk orders</li>
+          <ul className="mt-7 unorderList">
+            <li className="bulletPoint">
+              Innovative designs to enhance your branding
+            </li>
+            <li className="bulletPoint">
+              Eco-friendly and sustainable materials
+            </li>
+            <li className="bulletPoint">Competitive pricing for bulk orders</li>
           </ul>
           <p className="text-xl text-navbarColor">
             <span className="text-headingColor font-semibold leading-9 tracking-[-0.4px]">
