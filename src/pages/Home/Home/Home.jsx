@@ -1,3 +1,4 @@
+import StepSection from "../../../components/StepSection/StepSection";
 import Banner from "../Banner/Banner";
 import ChooseUs from "../ChooseUs/ChooseUs";
 import Packaging from "../Packaging/Packaging";
@@ -10,6 +11,10 @@ const Home = () => {
       {/* <Request /> */}
       <ChooseUs />
       <Packaging />
+      <StepSection
+        title={"How It Works"}
+        subtitle={"Your Packaging, Simplified"}
+      />
     </div>
   );
 };
