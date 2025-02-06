@@ -122,7 +122,10 @@ const StepSection = ({ title, subtitle }) => {
         </div>
         <div className="flex justify-center">
           {/* This is button section */}
-          <Button text={"Learn More About Our Process"} />
+          <Button
+            text={"Learn More About Our Process"}
+            color={"bg-buttonColor"}
+          />
         </div>
       </div>
     </section>

@@ -89,7 +89,7 @@ const Packaging = () => {
             ability and we’ll get you a quote!
           </div>
           <div className="mt-12">
-            <Button text={"Explore All Products"} />
+            <Button text={"Explore All Products"} color={"bg-buttonColor"} />
           </div>
         </div>
       </div>

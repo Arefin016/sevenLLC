@@ -19,7 +19,7 @@ const Banner = () => {
               printed boxes, we have options tailored to your needs.
             </p>
             <div className="mt-12">
-              <Button text="Request a Quote" />
+              <Button text="Request a Quote" color="bg-buttonColor" />
             </div>
           </div>
           {/* This is the second div */}

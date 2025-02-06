@@ -34,7 +34,10 @@ const ChooseUs = () => {
           </p>
           {/* This is the button section */}
           <div className="mt-12">
-            <Button text={"Learn More About 777Bags"} />
+            <Button
+              text={"Learn More About 777Bags"}
+              color={"bg-buttonColor"}
+            />
           </div>
         </div>
         {/* This is the second div */}
