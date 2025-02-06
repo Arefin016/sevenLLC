@@ -1,4 +1,5 @@
 import bannerPic from "../../../assets/images/bannerpic.png";
+import Button from "../../../components/Button/Button";
 
 const Banner = () => {
   return (
@@ -11,12 +12,15 @@ const Banner = () => {
               Premium Custom Packaging Solutions |{" "}
               <span className="text-buttonColor">777bags.com</span>
             </h2>
-            <p className="max-w-[713px] text-">
+            <p className="max-w-[700px] text-2xl text-navbarColor mt-5">
               At 777bags, we specialize in delivering exceptional custom
               packaging solutions for businesses across industries. Whether
               you're looking for eco-friendly bags, Mylar pouches, or custom
               printed boxes, we have options tailored to your needs.
             </p>
+            <div className="mt-12">
+              <Button text="Request a Quote" />
+            </div>
           </div>
           {/* This is the second div */}
           <div className="max-w-[703px h-[650px]">
