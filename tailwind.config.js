@@ -34,6 +34,7 @@ export default {
       colors: {
         navbarColor: "#616161",
         buttonColor: "#07A0EC",
+        headingColor: "#000B1C",
       },
     },
   },
