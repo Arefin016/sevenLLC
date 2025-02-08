@@ -3,6 +3,8 @@ import choosePic from "../../assets/images/chooseUsPic.png";
 import StepSection from "../../components/StepSection/StepSection";
 import OurStory from "./OurStory/OurStory";
 import MissionAndVision from "./MissionAndVision/MissionAndVision";
+import BetterPlanet from "../Home/BetterPlanet/BetterPlanet";
+import commitmentPic from "../../assets/images/commitmentPic.png";
 
 const AboutUs = () => {
   const bulletPoints = [
@@ -13,6 +15,16 @@ const AboutUs = () => {
   const description = `
     Whether you’re in cannabis, retail, food service, or luxury goods, we deliver high-quality custom and stock packaging solutions that enhance your products and elevate your brand.
   `;
+
+  const data = {
+    title: "Our Commitment",
+    description:
+      "At 777Bags, we don’t just deliver products—we deliver an experience! From initial interaction to the final delivery, we focus on communication, reliability, and building lasting relationships. When you work with us, you’re not just another client—you’re a valued partner.",
+    buttonText: "Request a Quote",
+    backgroundImage: commitmentPic,
+    gradient:
+      "linear-gradient(0deg, rgba(7, 160, 236, 0.90) 0%, rgba(7, 160, 236, 0.90) 100%)",
+  };
 
   return (
     <section className="mt-[148px]">
@@ -31,6 +43,7 @@ const AboutUs = () => {
           subtitle={"Your Packaging, Simplified"}
           btnText={"Request a Quote"}
         />
+        <BetterPlanet {...data} />
       </div>
     </section>
   );
