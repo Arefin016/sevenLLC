@@ -30,3 +30,10 @@
 :where(.css-dev-only-do-not-override-cdzvx5).ant-space-gap-col-small {
   column-gap: 0;
 }
+
+/* Footer email input */
+.email-border:focus {
+  outline: none;
+}
+
+/* Footer social link css */
