@@ -36,6 +36,9 @@ export default {
         buttonColor: "#07A0EC",
         headingColor: "#000B1C",
       },
+      boxShadow: {
+        custom: "0px 4px 13px 0px rgba(0, 0, 0, 0.07)",
+      },
     },
   },
   plugins: [],

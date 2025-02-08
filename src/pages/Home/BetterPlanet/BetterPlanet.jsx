@@ -1,5 +1,4 @@
 import betterPlanetPic from "../../../assets/images/betterPlanetPic.png";
-import Button from "../../../components/Button/Button";
 import ButtonTwo from "../../../components/ButtonTwo/ButtonTwo";
 
 const BetterPlanet = () => {

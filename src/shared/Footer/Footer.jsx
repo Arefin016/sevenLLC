@@ -7,6 +7,7 @@ import {
   LinkedInSvg,
   TwitterSvg,
 } from "../../components/SvgContainer/SvgConainer";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const links = [
@@ -29,7 +30,9 @@ const Footer = () => {
         <div className="flex gap-[320px] items-center">
           {/* This is first div */}
           <div className="">
-            <img src={footerLogo} alt="" />
+            <Link to={"/"}>
+              <img src={footerLogo} alt="" />
+            </Link>
             <p className="max-w-[351px] mt-6 text-headingColor">
               Turning your ideas into reality with precision and speed, exactly
               when you need them.

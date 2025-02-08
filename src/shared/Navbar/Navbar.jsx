@@ -53,7 +53,7 @@ const items = [
 ];
 
 const menuItems = [
-  { name: "About Us", link: "/about" },
+  { name: "About Us", link: "/aboutUs" },
   { name: "Products & Services", link: "/products" },
   { name: "Quote Request", link: "/quote" },
   { name: "Order Requests", link: "/orders" },
