@@ -5,6 +5,7 @@ import OurStory from "./OurStory/OurStory";
 import MissionAndVision from "./MissionAndVision/MissionAndVision";
 import BetterPlanet from "../Home/BetterPlanet/BetterPlanet";
 import commitmentPic from "../../assets/images/commitmentPic.png";
+import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
 
 const AboutUs = () => {
   const bulletPoints = [
@@ -38,6 +39,7 @@ const AboutUs = () => {
         />
         <OurStory />
         <MissionAndVision />
+        <WhyChooseUs />
         <StepSection
           title={"How It Works"}
           subtitle={"Your Packaging, Simplified"}

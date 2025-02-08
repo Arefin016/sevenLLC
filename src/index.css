@@ -13,6 +13,12 @@
 }
 
 @layer components {
+  .headingStyle {
+    @apply text-headingColor text-5xl font-bold;
+  }
+  .subHeadingStyle {
+    @apply text-navbarColor text-[22px];
+  }
 }
 
 /* Navbar arrow down */
