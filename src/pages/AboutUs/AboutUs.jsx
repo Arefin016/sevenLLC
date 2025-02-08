@@ -13,6 +13,7 @@ const AboutUs = () => {
   const description = `
     Whether you’re in cannabis, retail, food service, or luxury goods, we deliver high-quality custom and stock packaging solutions that enhance your products and elevate your brand.
   `;
+
   return (
     <section className="mt-[148px]">
       <div>
@@ -28,6 +29,7 @@ const AboutUs = () => {
         <StepSection
           title={"How It Works"}
           subtitle={"Your Packaging, Simplified"}
+          btnText={"Request a Quote"}
         />
       </div>
     </section>

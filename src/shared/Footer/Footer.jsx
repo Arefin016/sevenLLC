@@ -1,6 +1,5 @@
 import footerLogo from "../../assets/images/logo.png";
 import Button from "../../components/Button/Button";
-import socialLogo from "../../assets/images/Social Media.png";
 import {
   FacebookSvg,
   InstagramSvg,

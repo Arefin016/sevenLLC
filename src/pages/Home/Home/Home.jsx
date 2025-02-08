@@ -36,6 +36,7 @@ const Home = () => {
       <StepSection
         title={"How It Works"}
         subtitle={"Your Packaging, Simplified"}
+        btnText={"Learn More About Our Process"}
       />
       <BetterPlanet />
     </div>
