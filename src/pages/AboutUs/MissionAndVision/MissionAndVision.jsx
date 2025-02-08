@@ -8,13 +8,15 @@ const MissionAndVision = () => {
       image: missionCardPic,
       title: "Our Mission",
       content:
-        "To empower businesses with high-quality, personalized packaging solutions that build brands and foster lasting relationships.",
+        "“To empower businesses with high-quality, personalized packaging solutions that build brands and foster lasting relationships, all delivered with exceptional customer service and unmatched professionalism.”",
+      textColor: "#07A0EC",
     },
     {
       image: visionCardPic,
       title: "Our Vision",
       content:
-        "To be the leading provider of innovative packaging solutions that empower businesses and elevate brands.",
+        "“To become the go-to packaging partner for businesses across industries, known for our unwavering commitment to quality, fast turnaround times, and unparalleled customer experiences.”",
+      textColor: "#FFAB99",
     },
   ];
   return (
@@ -27,6 +29,7 @@ const MissionAndVision = () => {
               image={card.image}
               title={card.title}
               content={card.content}
+              textColor={card.textColor}
             />
           ))}
         </div>
