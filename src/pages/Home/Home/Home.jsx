@@ -43,11 +43,13 @@ const Home = () => {
         buttonText="Learn More About 777Bags"
       />
       <Packaging />
-      <StepSection
-        title={"How It Works"}
-        subtitle={"Your Packaging, Simplified"}
-        btnText={"Learn More About Our Process"}
-      />
+      <div className="mt-[137px]">
+        <StepSection
+          title={"How It Works"}
+          subtitle={"Your Packaging, Simplified"}
+          btnText={"Learn More About Our Process"}
+        />
+      </div>
       <BetterPlanet {...data} />
     </div>
   );

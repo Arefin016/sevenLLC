@@ -19,6 +19,9 @@
   .subHeadingStyle {
     @apply text-navbarColor text-[22px];
   }
+  .custom-gradient {
+    background: linear-gradient(107deg, #f8feff 0%, #fff9f8 100%);
+  }
 }
 
 /* Navbar arrow down */

@@ -52,7 +52,7 @@ const Packaging = () => {
   const fullRowsCount = Math.floor(cardData.length / 4) * 4;
   return (
     <section>
-      <div className="container mx-auto">
+      <div className="custom-gradient py-[150px] px-[220px]">
         {/* This is the title section */}
         <div className="flex flex-col items-center">
           <h1 className="text-headingColor text-5xl font-bold max-w-[952px]">

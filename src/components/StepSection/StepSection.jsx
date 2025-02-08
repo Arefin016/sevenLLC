@@ -11,7 +11,7 @@ import {
 
 const StepSection = ({ title, subtitle, btnText }) => {
   return (
-    <section className="mt-[135px]">
+    <section className="">
       <div className="container mx-auto">
         {/* This is title section */}
         <div className="text-center ">
@@ -19,7 +19,7 @@ const StepSection = ({ title, subtitle, btnText }) => {
           <p className="mt-6 text-navbarColor text-[22px]">{subtitle}</p>
         </div>
         {/* This is the step section */}
-        <div className="flex flex-row gap-6 mt-16 mb-12">
+        <div className="flex flex-row gap-6 mt-16 mb-12 ">
           {/* Step 1  */}
           <div className="max-w-[348px] bg-[#FAFBFC] h-auto py-[50px] px-[37px] rounded-[20px]">
             <div className="flex relative">
