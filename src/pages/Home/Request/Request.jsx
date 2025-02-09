@@ -1,6 +1,4 @@
 import requestSectionPic from "../../../assets/images/requestSectionPic.png";
-import Button from "../../../components/Button/Button";
-import ButtonThree from "../../../components/ButtonThree/ButtonThree";
 import ButtonTwo from "../../../components/ButtonTwo/ButtonTwo";
 
 const Request = () => {

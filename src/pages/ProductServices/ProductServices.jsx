@@ -1,7 +1,9 @@
+import ProductBanner from "./ProductBanner/ProductBanner";
+
 const ProductServices = () => {
   return (
     <div>
-      <h2>This is Product & Services Page</h2>
+      <ProductBanner showBreadcrumb={true} />
     </div>
   );
 };

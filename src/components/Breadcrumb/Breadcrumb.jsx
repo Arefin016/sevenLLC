@@ -1,20 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
 
-const Breadcrumb = () => {
+const Breadcrumb = ({ textColor = "text-headingColor" }) => {
+  // Default color is text-headingColor
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   return (
-    <nav className="text-lg text-gray-600 py-4">
+    <nav className="text-lg py-4">
       <ul className="flex items-center space-x-2">
         {/* Home Link */}
         <li>
           <Link
             to="/"
             className={`text-lg font-medium ${
-              location.pathname === "/"
-                ? "text-buttonColor"
-                : "text-headingColor"
+              location.pathname === "/" ? "text-buttonColor" : textColor // Use dynamic color here
             }`}
           >
             Home
@@ -28,9 +27,16 @@ const Breadcrumb = () => {
 
           return (
             <li key={routeTo} className="flex gap-1 items-center">
-              <span>/</span>
+              {/* Separator with dynamic color */}
+              <span
+                className={`text-lg ${
+                  location.pathname === routeTo ? "text-buttonColor" : textColor
+                }`}
+              >
+                /
+              </span>
               {isLast ? (
-                <span className="text-buttonColor capitalize">
+                <span className={`text-buttonColor capitalize`}>
                   {value.replace("-", " ")}
                 </span>
               ) : (
@@ -39,8 +45,8 @@ const Breadcrumb = () => {
                   className={`text-lg font-normal ${
                     location.pathname === routeTo
                       ? "text-buttonColor"
-                      : "text-headingColor"
-                  }  `}
+                      : textColor // Use dynamic color here
+                  }`}
                 >
                   {value.replace("-", " ")}
                 </Link>
