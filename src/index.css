@@ -45,4 +45,30 @@
   outline: none;
 }
 
-/* Footer social link css */
+/* This is the bullet point style */
+.product-list-container {
+  max-width: 500px;
+  padding: 20px;
+}
+
+.product-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.product-list li {
+  position: relative;
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #616161;
+  line-height: 1.6;
+}
+
+.product-list li::before {
+  content: "•";
+  color: #616161;
+  font-size: 24px;
+  position: absolute;
+  left: -17px;
+  top: -2px;
+}
