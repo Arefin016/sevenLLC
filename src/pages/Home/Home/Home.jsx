@@ -51,7 +51,9 @@ const Home = () => {
           btnText={"Learn More About Our Process"}
         />
       </div>
-      <BetterPlanet {...data} />
+      <div className="mt-[150px]">
+        <BetterPlanet {...data} />
+      </div>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const BetterPlanet = ({
   gradient,
 }) => {
   return (
-    <section className=" mb-16">
+    <section className="mb-16">
       <div
         className=""
         style={{

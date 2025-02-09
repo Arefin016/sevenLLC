@@ -19,6 +19,7 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         raleway: ["Raleway", "sans-serif"],
+        bricolage: ["Bricolage Grotesque", "sans-serif"],
       },
       screens: {
         xs: "390px",

@@ -144,3 +144,40 @@ export const StepFormLogoThree = () => {
     </svg>
   );
 };
+
+// This is the card SVG logo
+export const BlogCardSVG = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M16.0054 9.414L7.39838 18.021L5.98438 16.607L14.5904 8H7.00538V6H18.0054V17H16.0054V9.414Z"
+        fill="#07A0EC"
+      />
+    </svg>
+  );
+};
+
+// This is the view all
+export const ViewAllSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="25"
+      viewBox="0 0 24 25"
+      fill="white"
+      className=" hover:fill-blue-500"
+    >
+      <path
+        d="M16.0054 9.914L7.39838 18.521L5.98438 17.107L14.5904 8.5H7.00538V6.5H18.0054V17.5H16.0054V9.914Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};

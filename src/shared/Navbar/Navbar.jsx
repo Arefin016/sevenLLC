@@ -57,7 +57,7 @@ const menuItems = [
   { name: "Products & Services", link: "/productServices" },
   { name: "Quote Request", link: "/quote" },
   { name: "Order Requests", link: "/orders" },
-  { name: "Blog", link: "/blog" },
+  { name: "Blog", link: "/blogArticles" },
   { name: "Contact Us", link: "/contact" },
 ];
 

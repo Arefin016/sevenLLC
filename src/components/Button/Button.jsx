@@ -1,8 +1,7 @@
-const Button = ({ text, color, onClick }) => {
+const Button = ({ text, color }) => {
   return (
     <button
-      onClick={onClick}
-      className={`${color} rounded-[60px] px-8 flex gap-2 justify-center items-center py-4 text-[#FFF] text-base font-semibold hover:bg-transparent border border-buttonColor hover:border-buttonColor hover:text-buttonColor ease-in-out duration-150 group min-w[262px]`}
+      className={`${color} rounded-[60px] px-8 flex gap-2 justify-center items-center py-4 text-[#FFF] text-base font-semibold hover:bg-transparent border border-buttonColor hover:border-buttonColor hover:text-buttonColor ease-in-out duration-150 group`}
     >
       {text}
       <svg
