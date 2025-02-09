@@ -9,7 +9,7 @@ import {
   StepFormLogoTwo,
 } from "../SvgContainer/SvgConainer";
 
-const StepSection = ({ title, subtitle, btnText }) => {
+const StepSection = ({ title, subtitle, btnText, isAbout }) => {
   return (
     <section className="">
       <div className="container mx-auto">
@@ -21,7 +21,11 @@ const StepSection = ({ title, subtitle, btnText }) => {
         {/* This is the step section */}
         <div className="flex flex-row gap-6 mt-16 mb-12 ">
           {/* Step 1  */}
-          <div className="max-w-[348px] bg-[#FAFBFC] h-auto py-[50px] px-[37px] rounded-[20px]">
+          <div
+            className={`max-w-[348px]  h-auto py-[50px] px-[37px] rounded-[20px] ${
+              isAbout ? "bg-white" : "bg-[#FAFBFC]"
+            }`}
+          >
             <div className="flex relative">
               <img src={steponePic1} alt="" />
               <StepFormLogoOne />
@@ -38,7 +42,11 @@ const StepSection = ({ title, subtitle, btnText }) => {
           </div>
           {/* Step 1  */}
           {/* Step 2 */}
-          <div className="max-w-[348px] bg-[#FAFBFC] h-auto py-[50px] px-[37px] rounded-[20px]">
+          <div
+            className={`max-w-[348px] h-auto py-[50px] px-[37px] rounded-[20px] ${
+              isAbout ? "bg-white" : "bg-[#FAFBFC]"
+            }`}
+          >
             <div className="flex relative">
               <img src={steponePic2} alt="" />
               <StepFormLogoTwo />
@@ -54,7 +62,11 @@ const StepSection = ({ title, subtitle, btnText }) => {
           </div>
           {/* Step 2 */}
           {/* Step 3 */}
-          <div className="max-w-[348px] bg-[#FAFBFC] h-auto py-[50px] px-[37px] rounded-[20px]">
+          <div
+            className={`max-w-[348px]  h-auto py-[50px] px-[37px] rounded-[20px] ${
+              isAbout ? "bg-white" : "bg-[#FAFBFC]"
+            }`}
+          >
             <div className="flex relative">
               <img src={steponePic3} alt="" />
               <StepFormLogoThree />
@@ -71,7 +83,11 @@ const StepSection = ({ title, subtitle, btnText }) => {
           </div>
           {/* Step 3 */}
           {/* Step 4 */}
-          <div className="max-w-[348px] bg-[#FAFBFC] h-auto py-[50px] px-[43px] rounded-[20px]">
+          <div
+            className={`max-w-[348px] h-auto py-[50px] px-[37px] rounded-[20px] ${
+              isAbout ? "bg-white" : "bg-[#FAFBFC]"
+            }`}
+          >
             <div className="flex relative">
               <img src={steponePic4} alt="" />
             </div>
@@ -87,7 +103,6 @@ const StepSection = ({ title, subtitle, btnText }) => {
           </div>
           {/* Step 4 */}
         </div>
-
         {/* */}
         <div className="flex justify-center">
           {/* This is button section */}

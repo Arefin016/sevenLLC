@@ -37,13 +37,15 @@ const AboutUs = () => {
           description={description}
           image={choosePic}
           buttonText="Learn More About 777Bags"
+          showBreadcrumb={true}
         />
         <OurStory />
         <MissionAndVision />
         <WhyChooseUs />
         <div className="bg-[#FAFBFC] pb-[150px] pt-[137px] mt-[150px]">
           <StepSection
-            title={"How It Works"}
+            isAbout={true}
+            title={"Our Process"}
             subtitle={"Your Packaging, Simplified"}
             btnText={"Request a Quote"}
           />

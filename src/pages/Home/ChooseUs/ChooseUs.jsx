@@ -1,4 +1,5 @@
-import "../../../styles/chooseUs.css";
+import { useLocation } from "react-router-dom";
+import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import Button from "../../../components/Button/Button";
 
 const ChooseUs = ({
@@ -8,12 +9,19 @@ const ChooseUs = ({
   image,
   buttonText,
   imageAlt = "Choose us image",
+  showBreadcrumb = true,
 }) => {
+  const location = useLocation();
+
   return (
     <section className="ml-[210px] mt-[150px]">
       <div className="flex gap-[150px] items-center">
         {/* First div: Title, Bullet Points, Description, and Button */}
+
         <div className="w-1/2">
+          {/* Conditionally render Breadcrumb */}
+          {showBreadcrumb && <Breadcrumb location={location} />}
+
           <h1 className="text-headingColor text-5xl font-bold max-w-[721px] leading-[67.2px]">
             {title}
           </h1>

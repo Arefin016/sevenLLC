@@ -30,9 +30,9 @@ const WhatWeOffer = () => {
       <div className="max-w-[1480px] mx-auto my-[150px]">
         {/* This is the first div */}
         <div className="flex flex-row gap-[162px]">
-          <div className="w-[50%]">
-            <h1 className="headingStyle">What We Offer</h1>
-            <p className="subHeadingStyle max-w-[396px] mt-6">
+          <div className="w-[60%]">
+            <h1 className="headingStyle mt-6">What We Offer</h1>
+            <p className="text-xl text-navbarColor max-w-[396px] mt-6">
               We provide a wide range of packaging solutions to suit businesses
               of all sizes:
             </p>
@@ -55,7 +55,7 @@ const WhatWeOffer = () => {
                     src={item.image}
                     alt={item.heading}
                   />
-                  <h1 className="text-headingColor text-xl font-semibold text-left">
+                  <h1 className="text-headingColor text-xl font-semibold text-left mt-8">
                     {item.heading}
                   </h1>
                   <p className="text-navbarColor text-base mt-4 text-left">

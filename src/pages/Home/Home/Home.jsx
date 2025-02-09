@@ -41,6 +41,7 @@ const Home = () => {
         description={description}
         image={choosePic}
         buttonText="Learn More About 777Bags"
+        showBreadcrumb={false}
       />
       <Packaging />
       <div className="mt-[137px]">
