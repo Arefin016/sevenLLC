@@ -43,13 +43,13 @@ const BlogDetailsPage = () => {
     <section className="px-[210px] py-[150px]">
       <div className="flex gap-[120px]">
         {/* This is the left side section */}
-        <div className="w-[70%]">
+        <div className="w-[70%] overflow-hidden">
           <img
-            className="w-[972px] h-[596px] rounded-2xl object-cover"
+            className="w-[972px] h-[596px] rounded-2xl object-cover block transition-all duration-300 hover:scale-105"
             src={blog?.imageSrc}
             alt=""
           />
-          <div className="flex gap-[90px] mt-7">
+          <div className="flex gap-[84px] mt-7">
             {/* This is the date div */}
             <div className="flex gap-3 items-center">
               <DateSvg />
@@ -112,7 +112,7 @@ const BlogDetailsPage = () => {
             {breakingNews?.map((news, index) => (
               <div key={index}>
                 {/* Card div */}
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-5 overflow-hidden transition-all duration-300 hover:scale-105">
                   <img src={news?.image} alt={news.title} />
                   <div>
                     <p className="text-navbarColor">{news?.date}</p>
