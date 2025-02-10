@@ -1,39 +1,9 @@
 import BlogCard from "../../components/BlogCard/BlogCard";
-import blogCardPic from "../../assets/images/blogCardPic/blogCardPic.png";
-import blogCardPic2 from "../../assets/images/blogCardPic/blogCardPic2.png";
-import blogCardPic3 from "../../assets/images/blogCardPic/blogCardPic3.png";
-import blogCardPic4 from "../../assets/images/blogCardPic/blogCardPic4.png";
-import Button from "../../components/Button/Button";
 import { ViewAllSvg } from "../../components/SvgContainer/SvgConainer";
 import { Link } from "react-router-dom";
+import { blogPosts } from "../../components/DummyData/DummyData";
 
 const BlogArticles = () => {
-  const blogPosts = [
-    {
-      imageSrc: blogCardPic,
-      date: "March 01, 2024",
-      title: "Discover the Latest in Packaging Innovation",
-      link: "/blog/packaging-innovation",
-    },
-    {
-      imageSrc: blogCardPic2,
-      date: "March 05, 2024",
-      title: "Trending Topics in Packaging",
-      link: "/blog/sustainable-packaging",
-    },
-    {
-      imageSrc: blogCardPic3,
-      date: "March 10, 2024",
-      title: "Our Packaging Solutions in Action",
-      link: "/blog/custom-packaging-trends",
-    },
-    {
-      imageSrc: blogCardPic4,
-      date: "March 10, 2024",
-      title: "Stay Updated with Packaging Insights",
-      link: "/blog/custom-packaging-trends",
-    },
-  ];
 
   return (
     <section className="mt-[165px]">
@@ -49,10 +19,11 @@ const BlogArticles = () => {
           {blogPosts?.map((post, index) => (
             <BlogCard
               key={index}
-              imageSrc={post.imageSrc}
-              date={post.date}
-              title={post.title}
-              link={post.link}
+              imageSrc={post?.imageSrc}
+              date={post?.date}
+              title={post?.title}
+              link={post?.link}
+              slug={post?.slug}
             />
           ))}
         </div>

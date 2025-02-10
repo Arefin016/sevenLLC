@@ -181,3 +181,170 @@ export const ViewAllSvg = () => {
     </svg>
   );
 };
+
+// This is the date svg
+export const DateSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="36"
+      height="37"
+      viewBox="0 0 36 37"
+      fill="none"
+    >
+      <path
+        d="M33 18.5C33 26.78 26.28 33.5 18 33.5C9.72 33.5 3 26.78 3 18.5C3 10.22 9.72 3.5 18 3.5C26.28 3.5 33 10.22 33 18.5Z"
+        stroke="#07A0EC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M23.5653 23.2706L18.9153 20.4956C18.1053 20.0156 17.4453 18.8606 17.4453 17.9156V11.7656"
+        stroke="#07A0EC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+// This is the human svg details page
+export const HumanSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="36"
+      height="37"
+      viewBox="0 0 36 37"
+      fill="none"
+    >
+      <path
+        d="M18 18.5C22.1421 18.5 25.5 15.1421 25.5 11C25.5 6.85786 22.1421 3.5 18 3.5C13.8579 3.5 10.5 6.85786 10.5 11C10.5 15.1421 13.8579 18.5 18 18.5Z"
+        stroke="#07A0EC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30.8833 33.5C30.8833 27.695 25.1083 23 17.9983 23C10.8883 23 5.11328 27.695 5.11328 33.5"
+        stroke="#07A0EC"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+// This is the subject svg details page
+export const SubjectSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="36"
+      height="37"
+      viewBox="0 0 36 37"
+      fill="none"
+    >
+      <path
+        d="M12 18.8008H22.5"
+        stroke="#07A0EC"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 24.8008H18.57"
+        stroke="#07A0EC"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15 9.5H21C24 9.5 24 8 24 6.5C24 3.5 22.5 3.5 21 3.5H15C13.5 3.5 12 3.5 12 6.5C12 9.5 13.5 9.5 15 9.5Z"
+        stroke="#07A0EC"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M24 6.53125C28.995 6.80125 31.5 8.64625 31.5 15.5013V24.5012C31.5 30.5012 30 33.5012 22.5 33.5012H13.5C6 33.5012 4.5 30.5012 4.5 24.5012V15.5013C4.5 8.66125 7.005 6.80125 12 6.53125"
+        stroke="#07A0EC"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+// This is the line svg details page
+export const LineSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="49"
+      viewBox="0 0 2 49"
+      fill="none"
+    >
+      <path d="M1 0L1 49" stroke="#555555" strokeWidth="0.8" />
+    </svg>
+  );
+};
+
+// This is border svg details page
+export const BorderSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="971"
+      height="2"
+      viewBox="0 0 971 2"
+      fill="none"
+    >
+      <path d="M971 1L5.34058e-05 1" stroke="#4A4A4A" strokeWidth="0.3" />
+    </svg>
+  );
+};
+
+// This is the review section details page
+export const ReviewSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="82"
+      height="82"
+      viewBox="0 0 41 32"
+      fill="#07A0EC"
+    >
+      <path
+        d="M7.79064 31H3.96305V26.2212H6.80542C8.47323 26.2212 9.90711 25.7982 10.9157 24.7777C11.9221 23.7594 12.3374 22.3153 12.3374 20.6355V17.4455C12.3374 16.8932 11.8897 16.4455 11.3374 16.4455H9.66256C7.25468 16.4455 5.34174 15.7223 3.84268 14.3221L3.82882 14.3094C2.27359 12.9107 1.5 11.1573 1.5 8.97196C1.5 6.56125 2.29235 4.67551 3.8438 3.22197L3.85743 3.20895C5.35851 1.74853 7.26653 1 9.66256 1C12.128 1 14.0639 1.75089 15.5591 3.20207C17.0451 4.70937 17.8251 6.73032 17.8251 9.37071V20.8349C17.8251 24.4054 16.9432 26.899 15.3552 28.5058C13.7694 30.1104 11.3117 31 7.79064 31ZM29.4655 31H25.6379V26.2212H28.4803C30.1481 26.2212 31.582 25.7982 32.5906 24.7777C33.597 23.7594 34.0123 22.3153 34.0123 20.6355V17.4455C34.0123 16.8932 33.5646 16.4455 33.0123 16.4455H31.3374C28.9296 16.4455 27.0166 15.7223 25.5176 14.3221L25.5037 14.3094C23.9485 12.9107 23.1749 11.1573 23.1749 8.97196C23.1749 6.56125 23.9672 4.67551 25.5187 3.22197L25.5323 3.20895C27.0334 1.74853 28.9414 1 31.3374 1C33.8029 1 35.7388 1.7509 37.234 3.20209C38.72 4.70938 39.5 6.73033 39.5 9.37071V20.8349C39.5 24.4054 38.6181 26.899 37.0301 28.5058C35.4443 30.1104 32.9865 31 29.4655 31Z"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+// This is the border detail page
+export const BottomBorderSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="370"
+      height="2"
+      viewBox="0 0 370 2"
+      fill="none"
+    >
+      <path d="M0 1H370" stroke="#9FA4B3" strokeWidth="0.3" />
+    </svg>
+  );
+};

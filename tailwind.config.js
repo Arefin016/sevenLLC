@@ -40,6 +40,9 @@ export default {
       boxShadow: {
         custom: "0px 4px 13px 0px rgba(0, 0, 0, 0.07)",
       },
+      boxShadow: {
+        customCard: "0px 10px 29px 2px rgba(0, 0, 0, 0.10)",
+      },
     },
   },
   plugins: [],
