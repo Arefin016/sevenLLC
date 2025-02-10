@@ -22,7 +22,7 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
         <div className="flex flex-row gap-6 mt-16 mb-12 ">
           {/* Step 1  */}
           <div
-            className={`max-w-[348px]  h-auto py-[50px] px-[37px] rounded-[20px] ${
+            className={`max-w-[348px]  h-auto py-[50px] px-[37px] rounded-[20px] o ${
               isAbout ? "bg-white" : "bg-[#FAFBFC]"
             }`}
           >

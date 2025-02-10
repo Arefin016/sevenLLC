@@ -36,7 +36,7 @@ const ProductCard = ({
           {/* Image Section */}
           <div className="bg-buttonColor rounded-[70px] w-[694px] h-[580px] relative">
             <img
-              className={`absolute w-[694px] h-[580px] top-[-25px]  object-cover rounded-[70px] ${
+              className={`absolute w-[694px] h-[580px] top-[-25px]  object-cover rounded-[70px] overflow-hidden transition-all duration-300 hover:scale-105 ${
                 reverse ? "right-[25px]" : "left-[25px]"
               } `}
               src={imgSrc}

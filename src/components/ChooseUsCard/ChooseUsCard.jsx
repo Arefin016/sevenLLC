@@ -1,6 +1,6 @@
 const ChooseUsCard = ({ imgSrc, title, description }) => {
   return (
-    <div className="max-w-[473px] rounded-[20px] bg-[#FAFBFC] pt-[71.5px] pb-16 px-[43px] text-center flex flex-col  items-center">
+    <div className="max-w-[473px] rounded-[20px] bg-[#FAFBFC] pt-[71.5px] pb-16 px-[43px] text-center flex flex-col items-center overflow-hidden transition-all duration-300 hover:scale-105">
       <img
         className="h-16 w-16 object-cover"
         src={imgSrc}

@@ -17,7 +17,6 @@ const ChooseUs = ({
     <section className="ml-[210px] mt-[150px]">
       <div className="flex gap-[150px] items-center">
         {/* First div: Title, Bullet Points, Description, and Button */}
-
         <div className="w-1/2">
           {/* Conditionally render Breadcrumb */}
           {showBreadcrumb && <Breadcrumb location={location} />}

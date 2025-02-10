@@ -53,7 +53,7 @@ const WhyChooseUs = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-[30px] mt-[52px]">
+        <div className="grid grid-cols-3 gap-[30px] mt-[52px] ">
           {chooseUsData.slice(0, fullRowsCount).map((card, index) => (
             <ChooseUsCard
               key={index}
