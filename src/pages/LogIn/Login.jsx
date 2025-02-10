@@ -32,7 +32,7 @@ const Login = () => {
           <div className="ml-[200px] mt-16 max-w-[560px]">
             {/* This is input field */}
             {/* Your Name Field */}
-            <form className="mt-12">
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-12">
               {/* This is the Email Address input field */}
               <div className="flex flex-col gap-2 mt-[28px]">
                 <label className="text-headingColor text-lg font-medium">

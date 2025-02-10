@@ -214,7 +214,7 @@ const SignUp = () => {
               <div className="flex justify-center mt-[23px]">
                 <p className="text-navbarColor text-lg">
                   Forgot your Password?{" "}
-                  <Link to={"/"}>
+                  <Link to={"/forgetPassword"}>
                     <span className="text-buttonColor text-lg font-bold underline">
                       Click Here
                     </span>{" "}
