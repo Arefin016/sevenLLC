@@ -232,7 +232,7 @@ const Navbar = () => {
               Log in
             </div>
             <div>
-              <Link to={"/"}>
+              <Link to={"/signUp"}>
                 <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                   Sign up
                 </button>

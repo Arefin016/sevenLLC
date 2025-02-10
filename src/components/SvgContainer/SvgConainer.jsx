@@ -348,3 +348,57 @@ export const BottomBorderSvg = () => {
     </svg>
   );
 };
+
+// This is the upload logo svg
+export const UploadPicSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="41"
+      height="41"
+      viewBox="0 0 41 41"
+      fill="none"
+    >
+      <path
+        d="M11.9796 37.1654H29.0203C33.5081 37.1654 35.2967 34.3487 35.5081 30.9154L36.3536 17.1487C36.5812 13.5487 33.7845 10.4987 30.256 10.4987C29.2642 10.4987 28.3536 9.91537 27.8983 9.01537L26.7276 6.5987C25.9796 5.08203 24.0284 3.83203 22.3699 3.83203H18.6463C16.9715 3.83203 15.0203 5.08203 14.2723 6.5987L13.1016 9.01537C12.6463 9.91537 11.7357 10.4987 10.7438 10.4987C7.21538 10.4987 4.41863 13.5487 4.64628 17.1487L5.49181 30.9154C5.68693 34.3487 7.49181 37.1654 11.9796 37.1654Z"
+        stroke="#616161"
+        strokeWidth="2.67737"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M18.0615 13.832H22.9396"
+        stroke="#616161"
+        strokeWidth="2.67737"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M20.5004 30.5013C23.4109 30.5013 25.7849 28.068 25.7849 25.0846C25.7849 22.1013 23.4109 19.668 20.5004 19.668C17.5898 19.668 15.2158 22.1013 15.2158 25.0846C15.2158 28.068 17.5898 30.5013 20.5004 30.5013Z"
+        stroke="#616161"
+        strokeWidth="2.67737"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+// Sign Up array svg
+export const SignUpSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="white"
+      className=" hover:fill-blue-500"
+    >
+      <path
+        d="M16.0054 9.414L7.39838 18.021L5.98438 16.607L14.5904 8H7.00538V6H18.0054V17H16.0054V9.414Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
