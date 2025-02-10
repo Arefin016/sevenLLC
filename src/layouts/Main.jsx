@@ -5,7 +5,10 @@ import Footer from "../shared/Footer/Footer";
 
 const Main = () => {
   const location = useLocation();
-  const isSignUpPage = location.pathname === "/signUp";
+  const isSignUpPage =
+    location.pathname === "/signUp" ||
+    location.pathname === "/login" ||
+    location.pathname === "/forgetPassword";
   return (
     <div>
       <ScrollRestoration />

@@ -8,7 +8,6 @@ import {
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import { FiArrowUpRight } from "react-icons/fi";
 
 const SignUp = () => {
   const [image, setImage] = useState(null);
@@ -236,7 +235,7 @@ const SignUp = () => {
               <p className="text-center mt-[113px] mb-[47px] text-navbarColor text-lg">
                 Already have an account?{" "}
                 <Link to={"/login"}>
-                  <span className="text-buttonColor text-lg font-bold">
+                  <span className="text-buttonColor text-lg font-bold ml-2">
                     Log In
                   </span>{" "}
                 </Link>
