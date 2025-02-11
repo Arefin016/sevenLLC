@@ -402,3 +402,18 @@ export const SignUpSvg = () => {
     </svg>
   );
 };
+
+// This is the terms and condition border Svg
+export const TermsBorderSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1384"
+      height="2"
+      viewBox="0 0 1384 2"
+      fill="none"
+    >
+      <path d="M0 1L1384 1.00012" stroke="#616161" strokeWidth="0.4" />
+    </svg>
+  );
+};
