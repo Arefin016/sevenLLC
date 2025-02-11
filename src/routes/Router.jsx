@@ -12,6 +12,7 @@ import CodePage from "../pages/CodePage/CodePage";
 import ProductGuidePage from "../pages/ProductGuidePage/ProductGuidePage";
 import TermsConditions from "../pages/TermsConditions/TermsConditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import OrderForms from "../pages/OrderForms/OrderForms";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: "/privacy",
         element: <PrivacyPolicy />,
+      },
+      {
+        path: "/orderForms",
+        element: <OrderForms />,
       },
     ],
   },

@@ -1,0 +1,108 @@
+const OrderForms = () => {
+  return (
+    <section className="mt-[115px]">
+      <div className="container mx-auto border border-[#000F2D33] rounded-[30px] py-[120px] px-[80px]">
+        {/* This is the title section */}
+        <div className="flex flex-col justify-center items-center">
+          <h1 className="text-headingColor text-5xl font-bold">Order Forms</h1>
+          <p className="max-w-[697px] text-center mt-6 text-navbarColor font-semibold italic">
+            "MOQs vary depending on product specifications and design
+            requirements. Accurate MOQs and pricing will be confirmed during the
+            quotation process. Thank you for your understanding!"
+          </p>
+        </div>
+
+        {/* This is the contact information */}
+        <div className="mt-12">
+          <h1 className="text-center text-buttonColor text-2xl">
+            Contact Information
+          </h1>
+          {/* First Input Column */}
+          <div className="flex gap-10 mt-[19px]">
+            <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <label className="text-lg text-headingColor font-medium">
+                Full Name*
+              </label>
+              <input
+                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+                type="text"
+                placeholder="Full Name"
+              />
+            </div>
+            {/*  */}
+            <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <label className="text-lg text-headingColor font-medium">
+                Email*
+              </label>
+              <input
+                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+                type="email"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+          {/* Second Input Column  */}
+          <div className="flex gap-10 mt-[19px]">
+            <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <label className="text-lg text-headingColor font-medium">
+                Phone*
+              </label>
+              <input
+                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+                type="number"
+                placeholder="Phone"
+              />
+            </div>
+            {/*  */}
+            <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <label className="text-lg text-headingColor font-medium">
+                Company Name
+              </label>
+              <input
+                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+                type="text"
+                placeholder="Company Name"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/*  */}
+        <div className="mt-12">
+          <h1 className="text-center text-buttonColor text-2xl">
+            Design Information
+          </h1>
+          <button className="bg-buttonColor w-full text-white text-base font-semibold py-[23px] rounded-[10px] mt-7">
+            Do You Have a Completed Design?
+          </button>
+        </div>
+        {/* This is the checkout  */}
+        <div className="flex gap-7 justify-center bg-[#FAFBFC] mt-5 py-7 rounded-[10px]">
+          <div className="flex gap-2 border border-[#7D7F85] py-[10px] px-[32px] rounded-lg items-center">
+            <input
+              className="h-4 w-4"
+              type="checkbox"
+              name="example"
+              value="Arefin"
+              id="checkboxArefin"
+            />
+            <p>I Have a Design</p>
+          </div>
+          {/*  */}
+          <div className="flex gap-2 border border-[#7D7F85] py-[10px] px-[32px] rounded-lg items-center">
+            <input
+              className="h-4 w-4"
+              type="checkbox"
+              name="example"
+              value="Arefin"
+              id="checkboxArefin"
+            />
+            <p>I Need a Design</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default OrderForms;
