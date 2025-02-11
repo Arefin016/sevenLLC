@@ -183,7 +183,7 @@ const Navbar = () => {
                   </a>
                 </Dropdown>
               */}
-              <Dropdown menu={{ language }}>
+              <Dropdown menu={{ items }}>
                 <a onClick={(e) => e.preventDefault()}>
                   <Space className="font-raleway text-navbarColor text-base font-bold mt-1">
                     EN

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { UploadFileSvg } from "../../SvgContainer/SvgConainer";
 import Button from "../../Button/Button";
+import React from "react";
+import { Space, Switch } from "antd";
 
 const NeedDesign = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -17,6 +19,29 @@ const NeedDesign = () => {
   const handleToggle = () => {
     setIsToggled((prevState) => !prevState);
   };
+
+  const options = [
+    {
+      label: <span>Yes</span>,
+      value: {
+        foo: true,
+      },
+      selectedBackgroundColor: "",
+    },
+    {
+      label: "No",
+      value: "bar",
+      selectedBackgroundColor: "",
+    },
+  ];
+
+  const onChange = (newValue) => {
+    console.log(newValue);
+  };
+
+  const initialSelectedIndex = options.findIndex(
+    ({ value }) => value === "bar"
+  );
 
   return (
     <section>
@@ -264,21 +289,13 @@ const NeedDesign = () => {
                     Label?
                   </label>
                   {/*  */}
-                  <label class="switch">
-                    <input
-                      type="checkbox"
-                      checked={isToggled}
-                      onChange={handleToggle}
+                  <Space direction="vertical">
+                    <Switch
+                      checkedChildren="OFF"
+                      unCheckedChildren="ON"
+                      defaultChecked
                     />
-                    <span className="slider round">
-                      {isToggled ? "YES" : "NO"}
-                    </span>
-                  </label>
-                  {/* <input
-                  className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
-                  type="email"
-                  placeholder="Email"
-                /> */}
+                  </Space>
                 </div>
               </div>
             </div>
