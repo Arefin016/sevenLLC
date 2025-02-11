@@ -11,6 +11,7 @@ import ForgetPasswordPage from "../pages/ForgetPasswordPage/ForgetPasswordPage";
 import CodePage from "../pages/CodePage/CodePage";
 import ProductGuidePage from "../pages/ProductGuidePage/ProductGuidePage";
 import TermsConditions from "../pages/TermsConditions/TermsConditions";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: "/terms",
         element: <TermsConditions />,
+      },
+      {
+        path: "/privacy",
+        element: <PrivacyPolicy />,
       },
     ],
   },
