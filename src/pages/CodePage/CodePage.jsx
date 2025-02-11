@@ -3,8 +3,11 @@ import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
 import logo from "../../assets/images/signUpImage/signUpLogo.png";
 import { Link } from "react-router-dom";
 import { SignUpSvg } from "../../components/SvgContainer/SvgConainer";
+import { useState } from "react";
+import OtpInput from "react-otp-input";
 
-const ForgetPasswordPage = () => {
+const CodePage = () => {
+  const [otp, setOtp] = useState("");
   const {
     register,
     reset,
@@ -13,7 +16,6 @@ const ForgetPasswordPage = () => {
   } = useForm();
 
   const onSubmit = (data) => console.log(data);
-
   return (
     <section>
       <div className="flex h-[100vh] overflow-hidden">
@@ -26,34 +28,26 @@ const ForgetPasswordPage = () => {
               alt=""
             />
             <h1 className="text-headingColor text-[32px] font-bold mt-[104px]">
-              Forgot Password?
+              Enter The Code
             </h1>
-            <p className="text-navbarColor mt-2">
-              Enter your email to get a verification code.
+            <p className="text-navbarColor mt-2 max-w-[379px] flex text-center">
+              Enter the code just sent your email to reset your password.
             </p>
           </div>
           {/* Input Field */}
-          <div className="ml-[200px] mt-16 max-w-[560px]">
+          <div className="ml-[200px] mt-12 max-w-[560px]">
             {/* This is input field */}
             {/* Your Name Field */}
-            <form className="mt-12">
+            <form className="">
               {/* This is the Email Address input field */}
-              <div className="flex flex-col gap-2 mt-[28px]">
-                <label className="text-headingColor text-lg font-medium">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  {...register("email", { required: true })}
-                  className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
-                  placeholder="Enter Email Address"
+              <div id="otp_container" className="">
+                <OtpInput
+                  value={otp}
+                  onChange={setOtp}
+                  numInputs={4}
+                  renderSeparator={false}
+                  renderInput={(props) => <input {...props} />}
                 />
-                {errors.email && (
-                  <span className="text-red-600 font-semibold">
-                    Email Address is required
-                  </span>
-                )}
               </div>
               {/* This is the submit button */}
               <div className="flex items-center gap-2">
@@ -105,4 +99,4 @@ const ForgetPasswordPage = () => {
   );
 };
 
-export default ForgetPasswordPage;
+export default CodePage;

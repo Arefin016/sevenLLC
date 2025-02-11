@@ -8,6 +8,7 @@ import BlogDetailsPage from "../pages/BlogArticles/BlogDetailsPage";
 import SignUp from "../pages/SignUp/SignUp";
 import Login from "../pages/LogIn/Login";
 import ForgetPasswordPage from "../pages/ForgetPasswordPage/ForgetPasswordPage";
+import CodePage from "../pages/CodePage/CodePage";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "/forgetPassword",
         element: <ForgetPasswordPage />,
+      },
+      {
+        path: "/enterCodePage",
+        element: <CodePage />,
       },
     ],
   },

@@ -72,3 +72,17 @@
   left: -17px;
   top: -2px;
 }
+
+/* This is the OIP Input Field css */
+#otp_container div {
+  gap: 30px;
+  justify-content: center;
+}
+
+#otp_container div input {
+  width: 123px !important;
+  height: 73px;
+  border-radius: 16px;
+  border: 1px solid #616161;
+  border-bottom: 1px solid #616161;
+}
