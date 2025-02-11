@@ -1,4 +1,14 @@
+import { useState } from "react";
+import HaveDesign from "../../components/DesignInformation/HaveDesign/HaveDesign";
+import NeedDesign from "../../components/DesignInformation/NeedDesign/NeedDesign";
+
 const OrderForms = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleCheckboxChange = (option) => {
+    setSelectedOption(option === selectedOption ? null : option);
+  };
+
   return (
     <section className="mt-[115px]">
       <div className="container mx-auto border border-[#000F2D33] rounded-[30px] py-[120px] px-[80px]">
@@ -84,21 +94,31 @@ const OrderForms = () => {
               type="checkbox"
               name="example"
               value="Arefin"
-              id="checkboxArefin"
+              id="checkboxArefin1"
+              checked={selectedOption === "I Have a Design"}
+              onChange={() => handleCheckboxChange("I Have a Design")}
             />
             <p>I Have a Design</p>
           </div>
-          {/*  */}
+
           <div className="flex gap-2 border border-[#7D7F85] py-[10px] px-[32px] rounded-lg items-center">
             <input
               className="h-4 w-4"
               type="checkbox"
               name="example"
               value="Arefin"
-              id="checkboxArefin"
+              id="checkboxArefin2"
+              checked={selectedOption === "I Need a Design"}
+              onChange={() => handleCheckboxChange("I Need a Design")}
             />
             <p>I Need a Design</p>
           </div>
+        </div>
+        <div>
+          {/* Content based on selected checkbox */}
+          {selectedOption === "I Have a Design" && <HaveDesign />}
+
+          {selectedOption === "I Need a Design" && <NeedDesign />}
         </div>
       </div>
     </section>
