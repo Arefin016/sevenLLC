@@ -1,5 +1,6 @@
 import Button from "../Button/Button";
 import productServicePic1 from "../../assets/images/productServicePic/productServicePic1.png";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({
   title,
@@ -30,7 +31,9 @@ const ProductCard = ({
               {description}
             </p>
             <div className="mt-12">
-              <Button text={buttonText} color={"bg-buttonColor"} />
+              <Link to={"/productGuidePage"}>
+                <Button text={buttonText} color={"bg-buttonColor"} />
+              </Link>
             </div>
           </div>
           {/* Image Section */}

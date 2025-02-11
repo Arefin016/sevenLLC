@@ -86,3 +86,14 @@
   border: 1px solid #616161;
   border-bottom: 1px solid #616161;
 }
+.black-circle {
+  font-weight: bold;
+  font-size: 18px;
+  list-style-type: disc;
+}
+
+.black-circle::marker {
+  font-size: 20px;
+  color: black;
+  padding-left: 20px;
+}
