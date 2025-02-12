@@ -670,3 +670,33 @@ export const SignOutSvg = () => {
     </svg>
   );
 };
+
+// This is the order summery border
+export const OrderSummerySvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1229"
+      height="2"
+      viewBox="0 0 1229 2"
+      fill="none"
+    >
+      <path d="M0 1L1229 0.999785" stroke="#616161" strokeWidth="0.5" />
+    </svg>
+  );
+};
+
+// This is the product summery line border
+export const ProductLineBorder = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="2"
+      height="65"
+      viewBox="0 0 2 65"
+      fill="none"
+    >
+      <path d="M1 65L1 7.45058e-07" stroke="#A5ADBA" strokeWidth="0.4" />
+    </svg>
+  );
+};

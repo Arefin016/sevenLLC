@@ -47,7 +47,7 @@ const Navbar = () => {
   return (
     <section>
       <div className="">
-        <div className="flex justify-between px-11 bg-[#FFF]">
+        <div className="flex justify-between px-10 bg-[#FFF]">
           <h1 className="text-headingColor text-4xl font-semibold py-[35px]">
             Dashboard
           </h1>

@@ -1,8 +1,12 @@
+import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
+
 const OrderHistory = () => {
   return (
-    <div>
-      <h1>This is the order history</h1>
-    </div>
+    <section>
+      <div className="px-5">
+        <DataTableDemo />
+      </div>
+    </section>
   );
 };
 
