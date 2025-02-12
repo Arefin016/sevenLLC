@@ -110,13 +110,17 @@ const HaveDesign = () => {
             <div className="flex gap-10 mt-[19px]">
               <div className="flex flex-col gap-y-[10.5px] w-[50%]">
                 <label className="text-lg text-headingColor font-medium">
-                  Phone*
+                  Logo Included?
                 </label>
-                <input
-                  className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
-                  type="number"
-                  placeholder="Phone"
-                />
+                <div className="bg-[#D9D9D91A] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                  <Space direction="vertical">
+                    <Switch
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                      defaultChecked
+                    />
+                  </Space>
+                </div>
               </div>
               {/* Brand Text  */}
               <div className="flex flex-col gap-y-[10.5px] w-[50%]">
@@ -266,18 +270,15 @@ const HaveDesign = () => {
                     Label?
                   </label>
                   {/*  */}
-                  <Space direction="vertical">
-                    <Switch
-                      checkedChildren="OFF"
-                      unCheckedChildren="ON"
-                      defaultChecked
-                    />
-                  </Space>
-                  {/* <input
-                    className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
-                    type="email"
-                    placeholder="Email"
-                  /> */}
+                  <div className="bg-[#D9D9D91A] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                    <Space direction="vertical">
+                      <Switch
+                        checkedChildren="Yes"
+                        unCheckedChildren="No"
+                        defaultChecked
+                      />
+                    </Space>
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,11 +308,15 @@ const HaveDesign = () => {
                   <label className="text-lg text-headingColor font-medium">
                     Reoccurring?
                   </label>
-                  <input
-                    className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
-                    type="email"
-                    placeholder="Email"
-                  />
+                  <div className="bg-[#D9D9D91A] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                    <Space direction="vertical">
+                      <Switch
+                        checkedChildren="Yes"
+                        unCheckedChildren="No"
+                        defaultChecked
+                      />
+                    </Space>
+                  </div>
                 </div>
               </div>
             </div>
