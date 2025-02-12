@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import dashboardLogo from "../../assets/images/DashboardLogo/dashboardLogo.png";
 import {
   DashboardSvg,
@@ -7,7 +7,32 @@ import {
   SettingsSvg,
   SignOutSvg,
 } from "../SvgContainer/SvgConainer";
+const dashboardSidebarNavLinks = [
+  {
+    path: "/dashboardLayout/mainDashboard",
+    svg: DashboardSvg,
+    title: "Dashboard",
+  },
+  {
+    path: "/dashboardLayout/orderHistory",
+    svg: OrderHistorySvg,
+    title: "Order History",
+  },
+  {
+    path: "/dashboardLayout/paymentHistory",
+    svg: DashboardSvg,
+    title: "Payment History",
+  },
+  {
+    path: "/dashboardLayout/settings",
+    svg: SettingsSvg,
+    title: "Settings",
+  },
+];
+
 const Sidebar = () => {
+  const currentLocation = useLocation()?.pathname;
+
   return (
     <section>
       <div className=" bg-[#FFF] shadow-sm h-[100vh]">
@@ -21,61 +46,26 @@ const Sidebar = () => {
         </div>
         <div className="px-12">
           {/* This is the dashboard */}
-          <NavLink
-            to="/dashboardLayout/mainDashboard"
-            className={({ isActive }) =>
-              `flex gap-4 items-center py-4 px-6 rounded-2xl text-[#FFF] ${
-                isActive
-                  ? "bg-buttonColor text-white text-lg"
-                  : "bg-white text-navbarColor text-lg"
-              }`
-            }
-          >
-            <DashboardSvg />
-            <span>Dashboard</span>
-          </NavLink>
-          {/* This is the order history */}
-          <NavLink
-            to="/dashboardLayout/orderHistory"
-            className={({ isActive }) =>
-              `flex gap-4 items-center py-4 px-6 rounded-2xl text-[#FFF] ${
-                isActive
-                  ? "bg-buttonColor text-white text-lg"
-                  : "bg-white text-navbarColor text-lg"
-              }`
-            }
-          >
-            <OrderHistorySvg />
-            <span>Order History</span>
-          </NavLink>
-          {/* This is the Payment History */}
-          <NavLink
-            to="/dashboardLayout/paymentHistory"
-            className={({ isActive }) =>
-              `flex gap-4 items-center py-4 px-6 rounded-2xl text-[#FFF] ${
-                isActive
-                  ? "bg-buttonColor text-white text-lg"
-                  : "bg-white text-navbarColor text-lg"
-              }`
-            }
-          >
-            <PaymentHistorySvg />
-            <span>Payment History</span>
-          </NavLink>
-          {/* This is the setting */}
-          <NavLink
-            to="/dashboardLayout/settings"
-            className={({ isActive }) =>
-              `flex gap-4 items-center py-4 px-6 rounded-2xl text-[#FFF] ${
-                isActive
-                  ? "bg-buttonColor text-white text-lg"
-                  : "bg-white text-navbarColor text-lg"
-              }`
-            }
-          >
-            <SettingsSvg />
-            <span>Settings</span>
-          </NavLink>
+          {dashboardSidebarNavLinks?.map((link) => (
+            <NavLink
+              key={link?.path}
+              to={link?.path}
+              className={({ isActive }) =>
+                `flex gap-4 items-center py-4 px-6 rounded-2xl text-[#FFF] ${
+                  isActive
+                    ? "bg-buttonColor text-white text-lg"
+                    : "bg-white text-navbarColor text-lg"
+                }`
+              }
+            >
+              <link.svg
+                isActive={currentLocation == link?.path ? true : false}
+              />
+
+              <span>{link?.title}</span>
+            </NavLink>
+          ))}
+
           {/* This is the Sign Out */}
           <NavLink
             to="/"

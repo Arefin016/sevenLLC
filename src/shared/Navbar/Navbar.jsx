@@ -81,7 +81,7 @@ const menuItems = [
   { name: "Dashboard", link: "/dashboardLayout" },
   { name: "Order Requests", link: "/orderForms" },
   { name: "Blog", link: "/blogArticles" },
-  { name: "Contact Us", link: "/contact" },
+  { name: "Contact Us", link: "/contactUs" },
 ];
 
 const Divider = () => (

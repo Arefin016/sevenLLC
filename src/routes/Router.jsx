@@ -18,6 +18,7 @@ import Dashboard from "../pages/Dashboard/pages/Dashboard/Dashboard";
 import OrderHistory from "../pages/Dashboard/pages/OrderHistory/OrderHistory";
 import PaymentHistory from "../pages/Dashboard/pages/PaymentHistory/PaymentHistory";
 import Settings from "../pages/Dashboard/pages/Settings/Settings";
+import ContactUs from "@/pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: "/orderForms",
         element: <OrderForms />,
+      },
+      {
+        path: "/contactUs",
+        element: <ContactUs />,
       },
     ],
   },
