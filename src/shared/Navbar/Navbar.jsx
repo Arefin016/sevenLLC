@@ -78,7 +78,7 @@ const language = [
 const menuItems = [
   { name: "About Us", link: "/aboutUs" },
   { name: "Products & Services", link: "/productServices" },
-  { name: "Quote Request", link: "/quote" },
+  { name: "Dashboard", link: "/dashboardLayout" },
   { name: "Order Requests", link: "/orderForms" },
   { name: "Blog", link: "/blogArticles" },
   { name: "Contact Us", link: "/contact" },
@@ -158,31 +158,6 @@ const Navbar = () => {
           <div className="flex items-center justify-center">
             <div className="flex justify-center gap-2 items-center mr-10">
               <WorldSvg />
-              {/* 
-              <Dropdown
-                  menu={{
-                    items,
-                  }}
-                >
-                  <a onClick={(e) => e.preventDefault()}>
-                    <Space className="text-sm text-navbarColor">
-                      All Categories
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="25"
-                        height="25"
-                        viewBox="0 0 25 25"
-                        fill="none"
-                      >
-                        <path
-                          d="M17.4958 9.47829C17.3084 9.29204 17.055 9.1875 16.7908 9.1875C16.5266 9.1875 16.2732 9.29204 16.0858 9.47829L12.4958 13.0183L8.9558 9.47829C8.76844 9.29204 8.51498 9.1875 8.2508 9.1875C7.98661 9.1875 7.73316 9.29204 7.5458 9.47829C7.45207 9.57126 7.37768 9.68186 7.32691 9.80372C7.27614 9.92557 7.25 10.0563 7.25 10.1883C7.25 10.3203 7.27614 10.451 7.32691 10.5729C7.37768 10.6947 7.45207 10.8053 7.5458 10.8983L11.7858 15.1383C11.8788 15.232 11.9894 15.3064 12.1112 15.3572C12.2331 15.408 12.3638 15.4341 12.4958 15.4341C12.6278 15.4341 12.7585 15.408 12.8804 15.3572C13.0022 15.3064 13.1128 15.232 13.2058 15.1383L17.4958 10.8983C17.5895 10.8053 17.6639 10.6947 17.7147 10.5729C17.7655 10.451 17.7916 10.3203 17.7916 10.1883C17.7916 10.0563 17.7655 9.92557 17.7147 9.80372C17.6639 9.68186 17.5895 9.57126 17.4958 9.47829Z"
-                          fill="#616161"
-                        />
-                      </svg>
-                    </Space>
-                  </a>
-                </Dropdown>
-              */}
               <Dropdown menu={{ items }}>
                 <a onClick={(e) => e.preventDefault()}>
                   <Space className="font-raleway text-navbarColor text-base font-bold mt-1">

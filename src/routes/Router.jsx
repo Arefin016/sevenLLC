@@ -13,6 +13,11 @@ import ProductGuidePage from "../pages/ProductGuidePage/ProductGuidePage";
 import TermsConditions from "../pages/TermsConditions/TermsConditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import OrderForms from "../pages/OrderForms/OrderForms";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Dashboard from "../pages/Dashboard/pages/Dashboard/Dashboard";
+import OrderHistory from "../pages/Dashboard/pages/OrderHistory/OrderHistory";
+import PaymentHistory from "../pages/Dashboard/pages/PaymentHistory/PaymentHistory";
+import Settings from "../pages/Dashboard/pages/Settings/Settings";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +76,16 @@ export const router = createBrowserRouter([
         path: "/orderForms",
         element: <OrderForms />,
       },
+    ],
+  },
+  {
+    path: "/dashboardLayout",
+    element: <DashboardLayout />,
+    children: [
+      { path: "/dashboardLayout/mainDashboard", element: <Dashboard /> },
+      { path: "/dashboardLayout/orderHistory", element: <OrderHistory /> },
+      { path: "/dashboardLayout/paymentHistory", element: <PaymentHistory /> },
+      { path: "/dashboardLayout/settings", element: <Settings /> },
     ],
   },
 ]);
