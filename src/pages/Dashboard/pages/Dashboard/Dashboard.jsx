@@ -83,9 +83,18 @@ const Dashboard = () => {
           </div>
         </div>
         {/* This is the product table div */}
-        <div className="pb-10">
-          <h1>This is the another div</h1>
+        <div className="pb-10 px-8 rounded-[10px] shadow-dashboardShadow bg-[#FFF] border border-[#F8F9FA] mt-8">
+          <div className="flex gap-[22px] items-center mt-[28px] mb-[39px]">
+            <p className="text-headingColor text-xl font-semibold">
+              Product (02)
+            </p>
+            <OrderSummerySvg />
+          </div>
           <DataTableDemo />
+        </div>
+        {/* This is thr third div */}
+        <div>
+          <h1>This is the third div</h1>
         </div>
       </div>
     </section>
