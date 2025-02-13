@@ -12,7 +12,7 @@ const DashboardLayout = () => {
         <div className="bg-[#FFF] h-[120px]">
           <Navbar />
         </div>
-        <div className="overflow-y-scroll">
+        <div className="overflow-y-auto h-[calc(100vh-110px)]">
           <Outlet />
         </div>
       </div>
