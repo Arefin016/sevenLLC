@@ -6,7 +6,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -17,7 +16,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { MoreHorizontal } from "lucide-react";
 import {
   getCoreRowModel,
   getFilteredRowModel,
@@ -226,7 +224,7 @@ const PaymentHistoryTable = ({ data }) => {
   });
   return (
     <div className="">
-      <div className="rounded-md border">
+      <div className="rounded-md">
         <Table className="min-w-full w-full table-auto">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -254,7 +252,7 @@ const PaymentHistoryTable = ({ data }) => {
                   className=""
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="px-4 py-2 text-left ">
+                    <TableCell key={cell.id} className="px-4 py-4 text-left ">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

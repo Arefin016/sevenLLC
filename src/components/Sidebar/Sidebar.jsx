@@ -3,7 +3,6 @@ import dashboardLogo from "../../assets/images/DashboardLogo/dashboardLogo.png";
 import {
   DashboardSvg,
   OrderHistorySvg,
-  PaymentHistorySvg,
   SettingsSvg,
   SignOutSvg,
 } from "../SvgContainer/SvgConainer";
@@ -44,7 +43,7 @@ const Sidebar = () => {
             alt=""
           />
         </div>
-        <div className="px-12">
+        <div className="px-12 space-y-4">
           {/* This is the dashboard */}
           {dashboardSidebarNavLinks?.map((link) => (
             <NavLink

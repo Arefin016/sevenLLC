@@ -13,7 +13,7 @@ const Footer = () => {
     { name: "Terms & Conditions", href: "/terms" },
     { name: "Returns & Refunds", href: "/returns" },
     { name: "Privacy Policy", href: "/privacy" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Contact Us", href: "/contactUs" },
   ];
 
   const socialMediaLinks = [
