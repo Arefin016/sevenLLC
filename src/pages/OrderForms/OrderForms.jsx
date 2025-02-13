@@ -3,7 +3,7 @@ import HaveDesign from "../../components/DesignInformation/HaveDesign/HaveDesign
 import NeedDesign from "../../components/DesignInformation/NeedDesign/NeedDesign";
 
 const OrderForms = () => {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("I Have a Design");
 
   const handleCheckboxChange = (option) => {
     setSelectedOption(option === selectedOption ? null : option);
