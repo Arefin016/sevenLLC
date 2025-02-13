@@ -26,31 +26,7 @@ import {
   useReactTable,
   flexRender,
 } from "@tanstack/react-table";
-
-const data = [
-  {
-    productName: "Laptop",
-    invoiceId: "inv12345",
-    invoiceDate: "2025-02-10", // New field
-    category: "Electronics",
-    quantity: 1,
-    amount: 799.99, // Renamed field
-    paymentMethod: "Credit Card", // New field
-    datePaid: "2025-02-10", // New field
-    status: "Paid", // New field
-  },
-  {
-    productName: "Headphones",
-    invoiceId: "inv12346",
-    invoiceDate: "2025-02-11", // New field
-    category: "Accessories",
-    quantity: 2,
-    amount: 99.98, // Renamed field
-    paymentMethod: "PayPal", // New field
-    datePaid: "2025-02-11", // New field
-    status: "Pending", // New field
-  },
-];
+import { DeleteSvg, DownloadSvg, PrintSvg } from "../SvgContainer/SvgConainer";
 
 export const columns = [
   {
@@ -88,10 +64,10 @@ export const columns = [
     cell: ({ row }) => <div>{row.getValue("invoiceDate")}</div>,
   },
   {
-    accessorKey: "productName",
+    accessorKey: "product",
     header: "Product",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("productName")}</div>
+      <div className="capitalize">{row.getValue("product")}</div>
     ),
   },
   {
@@ -144,11 +120,17 @@ export const columns = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(invoice.invoiceId)}
             >
+              <DownloadSvg className="mr-2" />
               Download
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Print</DropdownMenuItem>
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem>
+              <PrintSvg className="mr-2" />
+              Print
+            </DropdownMenuItem>
+            <DropdownMenuItem className="text-[#E84646]">
+              <DeleteSvg className="mr-2" />
+              Delete
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -156,7 +138,7 @@ export const columns = [
   },
 ];
 
-const PaymentHistoryTable = () => {
+const PaymentHistoryTable = ({ data }) => {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});

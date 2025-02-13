@@ -558,7 +558,7 @@ export const DashboardSvg = ({ isActive }) => {
 };
 
 // This is the order history SVG
-export const OrderHistorySvg = ({isActive}) => {
+export const OrderHistorySvg = ({ isActive }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -579,7 +579,7 @@ export const OrderHistorySvg = ({isActive}) => {
 };
 
 // This is the payment history SVG
-export const PaymentHistorySvg = ({isActive}) => {
+export const PaymentHistorySvg = ({ isActive }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -697,6 +697,129 @@ export const ProductLineBorder = () => {
       fill="none"
     >
       <path d="M1 65L1 7.45058e-07" stroke="#A5ADBA" strokeWidth="0.4" />
+    </svg>
+  );
+};
+
+// This is the download Svg
+export const DownloadSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M6.71875 8.59375L10 11.8741L13.2812 8.59375"
+        stroke="#616161"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 3.125V11.8727"
+        stroke="#616161"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.875 11.875V16.25C16.875 16.4158 16.8092 16.5747 16.6919 16.6919C16.5747 16.8092 16.4158 16.875 16.25 16.875H3.75C3.58424 16.875 3.42527 16.8092 3.30806 16.6919C3.19085 16.5747 3.125 16.4158 3.125 16.25V11.875"
+        stroke="#616161"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+// This is the print svg
+export const PrintSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M4.99951 6.25V3.125H14.9995V6.25"
+        stroke="#616161"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14.9995 11.875H4.99951V17.1875H14.9995V11.875Z"
+        stroke="#616161"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4.99951 13.75H2.18701V7.5C2.18701 6.80964 2.79329 6.25 3.54118 6.25H16.4578C17.2057 6.25 17.812 6.80964 17.812 7.5V13.75H14.9995"
+        stroke="#616161"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14.6875 10C15.2053 10 15.625 9.58027 15.625 9.0625C15.625 8.54473 15.2053 8.125 14.6875 8.125C14.1697 8.125 13.75 8.54473 13.75 9.0625C13.75 9.58027 14.1697 10 14.6875 10Z"
+        fill="#616161"
+      />
+    </svg>
+  );
+};
+
+// This is the delete svg
+export const DeleteSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M16.8745 4.375L3.12451 4.37501"
+        stroke="#E84646"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.125 8.125V13.125"
+        stroke="#E84646"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.875 8.125V13.125"
+        stroke="#E84646"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.625 4.375V16.25C15.625 16.4158 15.5592 16.5747 15.4419 16.6919C15.3247 16.8092 15.1658 16.875 15 16.875H5C4.83424 16.875 4.67527 16.8092 4.55806 16.6919C4.44085 16.5747 4.375 16.4158 4.375 16.25V4.375"
+        stroke="#E84646"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.125 4.375V3.125C13.125 2.79348 12.9933 2.47554 12.7589 2.24112C12.5245 2.0067 12.2065 1.875 11.875 1.875H8.125C7.79348 1.875 7.47554 2.0067 7.24112 2.24112C7.0067 2.47554 6.875 2.79348 6.875 3.125V4.375"
+        stroke="#E84646"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 };
