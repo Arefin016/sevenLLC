@@ -31,42 +31,24 @@ const data = [
   {
     productName: "Laptop",
     invoiceId: "inv12345",
+    invoiceDate: "2025-02-10", // New field
     category: "Electronics",
     quantity: 1,
-    price: 799.99,
-    total: 799.99,
+    amount: 799.99, // Renamed field
+    paymentMethod: "Credit Card", // New field
+    datePaid: "2025-02-10", // New field
+    status: "Paid", // New field
   },
   {
     productName: "Headphones",
     invoiceId: "inv12346",
+    invoiceDate: "2025-02-11", // New field
     category: "Accessories",
     quantity: 2,
-    price: 49.99,
-    total: 99.98,
-  },
-  {
-    productName: "Smartphone",
-    invoiceId: "inv12347",
-    category: "Electronics",
-    quantity: 1,
-    price: 599.99,
-    total: 599.99,
-  },
-  {
-    productName: "Mouse",
-    invoiceId: "inv12348",
-    category: "Accessories",
-    quantity: 3,
-    price: 19.99,
-    total: 59.97,
-  },
-  {
-    productName: "Keyboard",
-    invoiceId: "inv12349",
-    category: "Accessories",
-    quantity: 1,
-    price: 69.99,
-    total: 69.99,
+    amount: 99.98, // Renamed field
+    paymentMethod: "PayPal", // New field
+    datePaid: "2025-02-11", // New field
+    status: "Pending", // New field
   },
 ];
 
@@ -94,24 +76,22 @@ export const columns = [
     enableHiding: false,
   },
   {
-    accessorKey: "productName",
-    header: "Product Name",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("productName")}</div>
-    ),
-  },
-  {
     accessorKey: "invoiceId",
-    header: "Invoice ID",
+    header: () => <span className="">Invoice ID</span>,
     cell: ({ row }) => (
       <div className="text-buttonColor">{row.getValue("invoiceId")}</div>
     ),
   },
   {
-    accessorKey: "category",
-    header: "Category",
+    accessorKey: "invoiceDate",
+    header: "Invoice Date",
+    cell: ({ row }) => <div>{row.getValue("invoiceDate")}</div>,
+  },
+  {
+    accessorKey: "productName",
+    header: "Product",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("category")}</div>
+      <div className="capitalize">{row.getValue("productName")}</div>
     ),
   },
   {
@@ -120,32 +100,36 @@ export const columns = [
     cell: ({ row }) => <div>{row.getValue("quantity")}</div>,
   },
   {
-    accessorKey: "price",
-    header: "Price",
+    accessorKey: "amount",
+    header: "Amount",
     cell: ({ row }) => {
-      const price = parseFloat(row.getValue("price"));
+      const amount = parseFloat(row.getValue("amount"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
-      }).format(price);
+      }).format(amount);
       return <div>{formatted}</div>;
     },
   },
   {
-    accessorKey: "total",
-    header: "Total",
-    cell: ({ row }) => {
-      const total = parseFloat(row.getValue("total"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(total);
-      return <div>{formatted}</div>;
-    },
+    accessorKey: "paymentMethod",
+    header: "Payment Method",
+    cell: ({ row }) => <div>{row.getValue("paymentMethod")}</div>,
+  },
+  {
+    accessorKey: "datePaid",
+    header: "Date Paid",
+    cell: ({ row }) => <div>{row.getValue("datePaid")}</div>,
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => <div>{row.getValue("status")}</div>,
   },
   {
     id: "actions",
     enableHiding: false,
+    header: "Action", // Action header
     cell: ({ row }) => {
       const invoice = row.original;
       return (
@@ -172,7 +156,7 @@ export const columns = [
   },
 ];
 
-export function DataTableDemo() {
+const PaymentHistoryTable = () => {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
@@ -196,7 +180,6 @@ export function DataTableDemo() {
       rowSelection,
     },
   });
-
   return (
     <div className="">
       <div className="rounded-md border">
@@ -251,4 +234,6 @@ export function DataTableDemo() {
       </div>
     </div>
   );
-}
+};
+
+export default PaymentHistoryTable;
