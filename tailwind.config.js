@@ -20,6 +20,8 @@ export default {
         poppins: ["Poppins", "sans-serif"],
         raleway: ["Raleway", "sans-serif"],
         bricolage: ["Bricolage Grotesque", "sans-serif"],
+        publicSans: ["Public Sans", "serif"],
+        lato: ["Lato", "serif"],
       },
       screens: {
         xs: "390px",

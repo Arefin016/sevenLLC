@@ -8,6 +8,8 @@ import productSummeryPic1 from "../../../../assets/images/productSummery/product
 import productSummeryPic2 from "../../../../assets/images/productSummery/productSummeryPic2.png";
 import productSummeryPic3 from "../../../../assets/images/productSummery/productSummeryPic3.png";
 import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
+import PaymentHistory from "../PaymentHistory/PaymentHistory";
+import SecondTable from "./SecondTable";
 
 const Dashboard = () => {
   const productSummaries = [
@@ -94,7 +96,7 @@ const Dashboard = () => {
         </div>
         {/* This is thr third div */}
         <div className="my-8">
-          <h1>This is the third div</h1>
+          <SecondTable />
         </div>
       </div>
     </section>

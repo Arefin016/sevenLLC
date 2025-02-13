@@ -2,7 +2,7 @@ import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
 import PaymentHistoryTable from "@/components/PaymentHistoryTable/PaymentHistoryTable";
 import { useState } from "react";
 
-const PaymentHistory = () => {
+const SecondTable = () => {
   const tabs = [
     { label: "Payment History", dataTitle: "paymentHistoryData" },
     { label: "Last month", dataTitle: "lastMonthData" },
@@ -200,7 +200,7 @@ const PaymentHistory = () => {
   };
 
   return (
-    <section className="mt-8 ml-8 mr-11 border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow pl-[30px] pr-[61px] pt-6 pb-[62px]">
+    <section className="border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow pl-[30px] pr-[61px] pt-6 pb-[62px]">
       <div className="flex flex-col gap-11">
         <div className="flex gap-11 items-center">
           {/* Tabs Header */}
@@ -231,4 +231,4 @@ const PaymentHistory = () => {
   );
 };
 
-export default PaymentHistory;
+export default SecondTable;

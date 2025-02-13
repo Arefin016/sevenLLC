@@ -26,7 +26,12 @@ import {
   useReactTable,
   flexRender,
 } from "@tanstack/react-table";
-import { DeleteSvg, DownloadSvg, PrintSvg } from "../SvgContainer/SvgConainer";
+import {
+  DeleteSvg,
+  DownloadSvg,
+  MoreHorizontalSvg,
+  PrintSvg,
+} from "../SvgContainer/SvgConainer";
 
 export const columns = [
   {
@@ -53,77 +58,134 @@ export const columns = [
   },
   {
     accessorKey: "invoiceId",
-    header: () => <span className="">Invoice ID</span>,
+    header: () => (
+      <span className="font-lato text-headingColor font-semibold text-base">
+        Invoice ID
+      </span>
+    ),
     cell: ({ row }) => (
       <div className="text-buttonColor">{row.getValue("invoiceId")}</div>
     ),
   },
   {
     accessorKey: "invoiceDate",
-    header: "Invoice Date",
-    cell: ({ row }) => <div>{row.getValue("invoiceDate")}</div>,
+    header: () => (
+      <span className="font-lato text-headingColor font-semibold text-base">
+        Invoice Date
+      </span>
+    ),
+    cell: ({ row }) => (
+      <div className="text-navbarColor text-base">
+        {row.getValue("invoiceDate")}
+      </div>
+    ),
   },
   {
     accessorKey: "product",
-    header: "Product",
+    header: () => (
+      <span className="font-lato text-headingColor font-semibold text-base">
+        Product
+      </span>
+    ),
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("product")}</div>
+      <div className="capitalize text-navbarColor text-base">
+        {row.getValue("product")}
+      </div>
     ),
   },
   {
     accessorKey: "quantity",
-    header: "Quantity",
-    cell: ({ row }) => <div>{row.getValue("quantity")}</div>,
+    header: () => (
+      <span className="font-lato text-headingColor font-semibold text-base">
+        Quantity
+      </span>
+    ),
+    cell: ({ row }) => (
+      <div className="text-navbarColor text-base">
+        {row.getValue("quantity")}
+      </div>
+    ),
   },
   {
     accessorKey: "amount",
-    header: "Amount",
+    header: () => (
+      <span className="font-lato text-headingColor font-semibold text-base">
+        Amount
+      </span>
+    ),
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
       }).format(amount);
-      return <div>{formatted}</div>;
+      return <div className="text-navbarColor text-base">{formatted}</div>;
     },
   },
   {
     accessorKey: "paymentMethod",
-    header: "Payment Method",
-    cell: ({ row }) => <div>{row.getValue("paymentMethod")}</div>,
+    header: () => (
+      <span className="font-lato text-headingColor font-semibold text-base">
+        Payment Method
+      </span>
+    ),
+    cell: ({ row }) => (
+      <div className="text-navbarColor text-base">
+        {row.getValue("paymentMethod")}
+      </div>
+    ),
   },
   {
     accessorKey: "datePaid",
-    header: "Date Paid",
-    cell: ({ row }) => <div>{row.getValue("datePaid")}</div>,
+    header: () => (
+      <span className="font-lato text-headingColor font-semibold text-base">
+        Date Paid
+      </span>
+    ),
+    cell: ({ row }) => (
+      <div className="text-navbarColor text-base">
+        {row.getValue("datePaid")}
+      </div>
+    ),
   },
   {
     accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => <div>{row.getValue("status")}</div>,
+    header: () => (
+      <span className="font-lato text-headingColor font-semibold text-base">
+        Status
+      </span>
+    ),
+    cell: ({ row }) => (
+      <div className="font-publicSans text-[#005CE8] font-medium bg-[#F0F6FF] text-center py-[5px] px-4 rounded-[130px]">
+        {row.getValue("status")}
+      </div>
+    ),
   },
   {
     id: "actions",
     enableHiding: false,
-    header: "Action", // Action header
     cell: ({ row }) => {
       const invoice = row.original;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
+            <Button
+              variant="ghost"
+              className="h-8 w-8 p-0 bg-[#F0F0F0] rounded-[200px]"
+            >
               <span className="sr-only">Open menu</span>
-              <MoreHorizontal />
+              <MoreHorizontalSvg />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem
+              className="text-navbarColor"
               onClick={() => navigator.clipboard.writeText(invoice.invoiceId)}
             >
               <DownloadSvg className="mr-2" />
               Download
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="text-navbarColor">
               <PrintSvg className="mr-2" />
               Print
             </DropdownMenuItem>

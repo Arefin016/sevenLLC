@@ -1,6 +1,12 @@
 import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
-import { OrderSummerySvg } from "@/components/SvgContainer/SvgConainer";
-import progressPic from "../../../../assets/images/DashboardLogo/Progress.png";
+import {
+  DeliveredSvg,
+  OnTheRoadSvg,
+  OrderPlacedSvg,
+  OrderSummerySvg,
+  PackagingSvg,
+} from "@/components/SvgContainer/SvgConainer";
+import { MdCheck } from "react-icons/md";
 
 const OrderHistory = () => {
   return (
@@ -45,9 +51,66 @@ const OrderHistory = () => {
               </span>
             </h1>
           </div>
-          {/* Progress Pic */}
-          <div className="mt-7">
-            <img src={progressPic} alt="" />
+          {/* This is the progress style */}
+          <div className="grid grid-cols-4 max-w-[953px] mt-10 ml-[107px]">
+            {/* First Phase */}
+            <div className="bg-buttonColor relative h-2">
+              <span className="bg-buttonColor w-6 h-6 rounded-full text-white absolute -left-3 -top-2 grid place-items-center">
+                <MdCheck className="text-xl" />
+              </span>
+            </div>
+
+            {/* Second Phase */}
+            <div className="bg-[rgba(0,_15,_45,_0.20)] relative h-2">
+              <span className="bg-buttonColor w-6 h-6 rounded-full text-white absolute -left-3 -top-2 grid place-items-center">
+                {/* <MdCheck className="text-xl" /> */}
+              </span>
+            </div>
+
+            {/* Third Phase */}
+            <div className="bg-[rgba(0,_15,_45,_0.20)] relative h-2">
+              <span className="bg-white border border-buttonColor w-6 h-6 rounded-full text-white absolute -left-3 -top-2 grid place-items-center">
+                <MdCheck className="text-xl" />
+              </span>
+            </div>
+            {/* Final Check Icon (Fix) */}
+            <div className="relative h-2">
+              <span className="bg-white border border-buttonColor w-6 h-6 rounded-full text-white absolute -left-3 -top-2 grid place-items-center">
+                {/* <MdCheck className="text-xl" /> */}
+              </span>
+            </div>
+          </div>
+
+          {/* Progress text */}
+          <div className="mt-7 flex gap-[150px] ml-[60px]">
+            {/* This is the Order Placed */}
+            <div className="flex flex-col items-center gap-y-3">
+              <OrderPlacedSvg />
+              <h1 className="font-publicSans text-[#191C1F] font-medium">
+                Order Placed
+              </h1>
+            </div>
+            {/* This is the packaging */}
+            <div className="flex flex-col items-center gap-y-3">
+              <PackagingSvg />
+              <h1 className="font-publicSans text-[#191C1F] font-medium">
+                Packaging
+              </h1>
+            </div>
+            {/* This is the on the road */}
+            <div className="flex flex-col items-center gap-y-3">
+              <OnTheRoadSvg />
+              <h1 className="font-publicSans text-[#191C1F] font-medium">
+                On The Road
+              </h1>
+            </div>
+            {/* This is the Delivered */}
+            <div className="flex flex-col items-center gap-y-3">
+              <DeliveredSvg />
+              <h1 className="font-publicSans text-[#191C1F] font-medium">
+                Delivered
+              </h1>
+            </div>
           </div>
         </div>
       </div>
