@@ -3,13 +3,23 @@ import { UploadFileSvg } from "../../SvgContainer/SvgConainer";
 import Button from "../../Button/Button";
 import React from "react";
 import { Space, Switch } from "antd";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const HaveDesign = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isToggled, setIsToggled] = useState(false);
   // Handle file selection
   const handleFileChange = (event) => {
-    const file = event.target.files[0]; // Get the first selected file
+    const file = event.target.files[0];
     if (file) {
       setSelectedFile(file);
     }
@@ -71,21 +81,27 @@ const HaveDesign = () => {
           <div>
             {/* First Input Column */}
             <div className="flex gap-10 mt-[19px]">
+              {/* Preferred color */}
               <div className="flex flex-col gap-y-[10.5px] w-[50%]">
                 <label className="text-lg text-headingColor font-medium">
                   Preferred Colors*
                 </label>
-                <select
-                  className="py-[28px] pl-[20px] bg-[#D9D9D91A] rounded-[10px] border border-gray-400"
-                  defaultValue=""
-                >
-                  <option value="" disabled>
-                    Choose an option
-                  </option>
-                  <option value="White">White</option>
-                  <option value="Black">Black</option>
-                  <option value="Blue">Blue</option>
-                </select>
+                <Select>
+                  <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                    <SelectValue
+                      className="!text-navbarColor"
+                      placeholder="Preferred Colors"
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Choose an option</SelectLabel>
+                      <SelectItem value="White">White</SelectItem>
+                      <SelectItem value="Black">Black</SelectItem>
+                      <SelectItem value="Blue">Blue</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Preferred Finish (optional) */}
@@ -93,17 +109,22 @@ const HaveDesign = () => {
                 <label className="text-lg text-headingColor font-medium">
                   Preferred Finish (optional)
                 </label>
-                <select
-                  className="py-[28px] pl-[20px] bg-[#D9D9D91A] rounded-[10px] border border-gray-400"
-                  defaultValue=""
-                >
-                  <option value="" disabled>
-                    Choose an option
-                  </option>
-                  <option value="Matte">Matte</option>
-                  <option value="Glossy">Glossy</option>
-                  <option value="Satin">Satin</option>
-                </select>
+                <Select>
+                  <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                    <SelectValue
+                      className="!text-navbarColor"
+                      placeholder="Preferred Finish"
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Choose an option</SelectLabel>
+                      <SelectItem value="Matte">Matte</SelectItem>
+                      <SelectItem value="Glossy">Glossy</SelectItem>
+                      <SelectItem value="Satin">Satin</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             {/* Second Input Column  */}
@@ -112,7 +133,7 @@ const HaveDesign = () => {
                 <label className="text-lg text-headingColor font-medium">
                   Logo Included?
                 </label>
-                <div className="bg-[#D9D9D91A] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                <div className="bg-[#D9D9D91A] h-[97px] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px] flex items-center">
                   <Space direction="vertical">
                     <Switch
                       checkedChildren="Yes"
@@ -127,8 +148,8 @@ const HaveDesign = () => {
                 <label className="text-lg text-headingColor font-medium">
                   Brand Text
                 </label>
-                <input
-                  className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+                <Input
+                  className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                   type="text"
                   placeholder="Enter text for your packaging (e.g., brand name, tagline)"
                 />
@@ -158,8 +179,8 @@ const HaveDesign = () => {
               <label className="text-lg text-headingColor font-medium">
                 Design Placement:*
               </label>
-              <input
-                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+              <Input
+                className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                 type="number"
                 placeholder="Design Placement"
               />
@@ -177,45 +198,50 @@ const HaveDesign = () => {
                   <label className="text-lg text-headingColor font-medium">
                     Product Category*
                   </label>
-                  <select
-                    className="py-[28px] pl-[20px] bg-[#D9D9D91A] rounded-[10px] border border-gray-400"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Product Category
-                    </option>
-                    <option value="Cannabis & CBD Packaging">
-                      Cannabis & CBD Packaging
-                    </option>
-                    <option value="Retail & Shopping Packaging">
-                      Retail & Shopping Packaging
-                    </option>
-                    <option value="Food & Beverage Packaging">
-                      Food & Beverage Packaging
-                    </option>
-                  </select>
+                  <Select>
+                    <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                      <SelectValue
+                        className="!text-navbarColor"
+                        placeholder="Preferred Colors"
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Product Category</SelectLabel>
+                        <SelectItem value="Cannabis & CBD Packaging">
+                          Cannabis & CBD Packaging
+                        </SelectItem>
+                        <SelectItem value="Retail & Shopping Packaging">
+                          Retail & Shopping Packaging
+                        </SelectItem>
+                        <SelectItem value="Food & Beverage Packaging">
+                          Food & Beverage Packaging
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </div>
                 {/*  */}
                 <div className="flex flex-col gap-y-[10.5px] w-[50%]">
                   <label className="text-lg text-headingColor font-medium">
                     Item Type*
                   </label>
-                  <input
-                    className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
-                    type="email"
+                  <Input
+                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    type="text"
                     placeholder="I.e Perfume Bottle with Spray Top"
                   />
                 </div>
               </div>
               {/* Second Input Column  */}
-              <div className="flex gap-10 mt-[19px]">
+              <div className="flex gap-10 mt-7">
                 <div className="flex flex-col gap-y-[10.5px] w-[50%]">
                   <label className="text-lg text-headingColor font-medium">
                     Material(s) (optional)
                   </label>
-                  <input
-                    className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
-                    type="number"
+                  <Input
+                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    type="text"
                     placeholder="Material(s)"
                   />
                 </div>
@@ -224,8 +250,8 @@ const HaveDesign = () => {
                   <label className="text-lg text-headingColor font-medium">
                     Accessories (optional)
                   </label>
-                  <input
-                    className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+                  <Input
+                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                     type="text"
                     placeholder="Accessories"
                   />
@@ -236,31 +262,36 @@ const HaveDesign = () => {
             {/* This is the contact information */}
             <div className="">
               {/* First Input Column */}
-              <div className="flex gap-10 mt-[19px]">
+              <div className="flex gap-10 mt-7">
                 <div className="flex flex-col gap-y-[10.5px] w-[50%]">
                   <label className="text-lg text-headingColor font-medium">
                     Size*
                   </label>
-                  <select
-                    className="py-[28px] pl-[20px] bg-[#D9D9D91A] rounded-[10px] border border-gray-400"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Select Size
-                    </option>
-                    <option value="Small">Small</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Large">Large</option>
-                  </select>
+                  <Select>
+                    <SelectTrigger className="py-[28px] h-[97px] pl-5 bg-[#D9D9D91A] !text-xl text-headingColor">
+                      <SelectValue
+                        className="!text-navbarColor"
+                        placeholder="Preferred Colors"
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Product Category</SelectLabel>
+                        <SelectItem value="Small">Small</SelectItem>
+                        <SelectItem value="Medium">Medium</SelectItem>
+                        <SelectItem value="Large">Large</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </div>
                 {/*  */}
                 <div className="flex flex-col gap-y-[10.5px] w-[50%]">
                   <label className="text-lg text-headingColor font-medium">
                     Thickness in microns (optional)
                   </label>
-                  <input
-                    className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
-                    type="email"
+                  <Input
+                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    type="text"
                     placeholder="Thickness in microns"
                   />
                 </div>
@@ -270,7 +301,7 @@ const HaveDesign = () => {
                     Label?
                   </label>
                   {/*  */}
-                  <div className="bg-[#D9D9D91A] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                  <div className="bg-[#D9D9D91A] h-[97px] flex items-center pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
                     <Space direction="vertical">
                       <Switch
                         checkedChildren="Yes"
@@ -297,8 +328,8 @@ const HaveDesign = () => {
                       MOQ guide
                     </span>
                   </label>
-                  <input
-                    className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+                  <Input
+                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                     type="number"
                     placeholder="Enter the number of units (e.g., 1,000)"
                   />
@@ -308,7 +339,7 @@ const HaveDesign = () => {
                   <label className="text-lg text-headingColor font-medium">
                     Reoccurring?
                   </label>
-                  <div className="bg-[#D9D9D91A] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                  <div className="bg-[#D9D9D91A] h-[97px] flex items-center pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
                     <Space direction="vertical">
                       <Switch
                         checkedChildren="Yes"
@@ -332,8 +363,8 @@ const HaveDesign = () => {
                   <label className="text-lg text-headingColor font-medium">
                     Shipping Address (required)*
                   </label>
-                  <input
-                    className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+                  <Input
+                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                     type="text"
                     placeholder="Enter full delivery address.."
                   />

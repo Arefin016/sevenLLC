@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HaveDesign from "../../components/DesignInformation/HaveDesign/HaveDesign";
 import NeedDesign from "../../components/DesignInformation/NeedDesign/NeedDesign";
+import { Input } from "@/components/ui/input";
 
 const OrderForms = () => {
   const [selectedOption, setSelectedOption] = useState("I Have a Design");
@@ -29,23 +30,24 @@ const OrderForms = () => {
           </h1>
           {/* First Input Column */}
           <div className="flex gap-10 mt-[19px]">
+            {/* Full Name */}
             <div className="flex flex-col gap-y-[10.5px] w-[50%]">
               <label className="text-lg text-headingColor font-medium">
                 Full Name*
               </label>
-              <input
-                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+              <Input
+                className="py-[31px] h-[97px] pl-10 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                 type="text"
                 placeholder="Full Name"
               />
             </div>
-            {/*  */}
+            {/* Email */}
             <div className="flex flex-col gap-y-[10.5px] w-[50%]">
               <label className="text-lg text-headingColor font-medium">
                 Email*
               </label>
-              <input
-                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+              <Input
+                className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                 type="email"
                 placeholder="Email"
               />
@@ -57,8 +59,8 @@ const OrderForms = () => {
               <label className="text-lg text-headingColor font-medium">
                 Phone*
               </label>
-              <input
-                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+              <Input
+                className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                 type="number"
                 placeholder="Phone"
               />
@@ -68,8 +70,8 @@ const OrderForms = () => {
               <label className="text-lg text-headingColor font-medium">
                 Company Name
               </label>
-              <input
-                className="py-[31px] pl-[49px] bg-[#D9D9D91A] rounded-[10px]"
+              <Input
+                className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                 type="text"
                 placeholder="Company Name"
               />
