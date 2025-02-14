@@ -71,9 +71,9 @@ const Settings = () => {
           </div>
 
           {/* This is the Product Information */}
-          <div className="mt-12 px-[97px]">
+          <div className="mt-10 px-[97px]">
             {/* First Input Column */}
-            <div className="flex gap-10 mt-[19px]">
+            <div className="flex gap-10">
               {/* First Name */}
               <div className="flex flex-col gap-y-[10.5px] w-[50%]">
                 <label className="text-base text-headingColor font-medium">
@@ -98,7 +98,7 @@ const Settings = () => {
               </div>
             </div>
             {/* Second Input Column  */}
-            <div className="flex gap-10 mt-[19px]">
+            <div className="flex gap-10 mt-6">
               {/* phone */}
               <div className="flex flex-col gap-y-[10.5px] w-[50%]">
                 <label className="text-base text-headingColor font-medium">
@@ -127,9 +127,9 @@ const Settings = () => {
           {/* This is the contact information */}
           <div className="px-[97px]">
             {/* Country / Region */}
-            <div className="flex gap-8 mt-[19px]">
+            <div className="flex gap-8 mt-6">
               <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+                <label className="text-base text-headingColor font-medium">
                   Country/Region
                 </label>
                 <Select>
@@ -148,11 +148,11 @@ const Settings = () => {
               </div>
               {/* States */}
               <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+                <label className="text-base text-headingColor font-medium">
                   States
                 </label>
                 <Select>
-                  <SelectTrigger className=" py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor">
+                  <SelectTrigger className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor">
                     <SelectValue placeholder="Select Country" />
                   </SelectTrigger>
                   <SelectContent>
@@ -167,7 +167,7 @@ const Settings = () => {
               </div>
               {/* Postal Code */}
               <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+                <label className="text-base text-headingColor font-medium">
                   Postal Code
                 </label>
                 <Input
