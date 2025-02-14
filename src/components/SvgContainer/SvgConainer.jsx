@@ -1088,3 +1088,60 @@ export const DeliveredSvg = () => {
     </svg>
   );
 };
+
+// This is the Setting Upload Svg
+export const SettingUploadSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+    >
+      <path
+        d="M8.79502 29.3307H22.4275C26.0178 29.3307 27.4487 27.0774 27.6178 24.3307L28.2942 13.3174C28.4763 10.4374 26.2389 7.9974 23.4162 7.9974C22.6227 7.9974 21.8942 7.53073 21.53 6.81073L20.5934 4.8774C19.995 3.66406 18.434 2.66406 17.1072 2.66406H14.1284C12.7885 2.66406 11.2275 3.66406 10.6292 4.8774L9.69258 6.81073C9.32835 7.53073 8.5999 7.9974 7.8064 7.9974C4.98363 7.9974 2.74624 10.4374 2.92835 13.3174L3.60477 24.3307C3.76087 27.0774 5.20477 29.3307 8.79502 29.3307Z"
+        stroke="white"
+        strokeWidth="2.67737"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.6582 10.668H17.5606"
+        stroke="white"
+        strokeWidth="2.67737"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.6105 23.9987C17.9389 23.9987 19.8381 22.052 19.8381 19.6654C19.8381 17.2787 17.9389 15.332 15.6105 15.332C13.282 15.332 11.3828 17.2787 11.3828 19.6654C11.3828 22.052 13.282 23.9987 15.6105 23.9987Z"
+        stroke="white"
+        strokeWidth="2.67737"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+// This is the select Input Arrow Sign Svg
+export const ArrowInputSvg = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="25"
+      viewBox="0 0 24 25"
+      fill="none"
+    >
+      <path
+        d="M19.9201 9.44922L13.4001 15.9692C12.6301 16.7392 11.3701 16.7392 10.6001 15.9692L4.08008 9.44922"
+        stroke="#4A4A4A"
+        strokeWidth="1.5"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

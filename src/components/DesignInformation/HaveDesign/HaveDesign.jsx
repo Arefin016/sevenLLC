@@ -77,7 +77,7 @@ const HaveDesign = () => {
                 </label>
                 <select
                   className="py-[28px] pl-[20px] bg-[#D9D9D91A] rounded-[10px] border border-gray-400"
-                  defaultValue="" // ✅ Proper way to set default value
+                  defaultValue=""
                 >
                   <option value="" disabled>
                     Choose an option
