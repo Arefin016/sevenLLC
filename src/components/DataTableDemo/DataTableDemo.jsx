@@ -29,194 +29,233 @@ import { DeleteSvg, DownloadSvg, PrintSvg } from "../SvgContainer/SvgConainer";
 
 const data = [
   {
+    id: "1",
     productName: "Laptop",
     invoiceId: "inv12345",
     category: "Electronics",
     quantity: 1,
     price: 799.99,
     total: 799.99,
+    imageUrl: "https://i.postimg.cc/150K8Y0m/product-Summery-Pic3.png",
   },
   {
+    id: "2",
     productName: "Headphones",
     invoiceId: "inv12346",
     category: "Accessories",
     quantity: 2,
     price: 49.99,
     total: 99.98,
+    imageUrl: "https://i.postimg.cc/150K8Y0m/product-Summery-Pic3.png",
   },
   {
+    id: "3",
     productName: "Smartphone",
     invoiceId: "inv12347",
     category: "Electronics",
     quantity: 1,
     price: 599.99,
     total: 599.99,
+    imageUrl: "https://i.postimg.cc/150K8Y0m/product-Summery-Pic3.png",
   },
   {
+    id: "4",
     productName: "Mouse",
     invoiceId: "inv12348",
     category: "Accessories",
     quantity: 3,
     price: 19.99,
     total: 59.97,
+    imageUrl: "https://i.postimg.cc/150K8Y0m/product-Summery-Pic3.png",
   },
   {
+    id: "5",
     productName: "Keyboard",
     invoiceId: "inv12349",
     category: "Accessories",
     quantity: 1,
     price: 69.99,
     total: 69.99,
+    imageUrl: "https://i.postimg.cc/150K8Y0m/product-Summery-Pic3.png",
   },
 ];
 
-export const columns = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "productName",
-    header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
-        Product Name
-      </span>
-    ),
-    cell: ({ row }) => (
-      <div className="capitalize text-navbarColor text-base">
-        {row.getValue("productName")}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "invoiceId",
-    header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
-        Invoice ID
-      </span>
-    ),
-    cell: ({ row }) => (
-      <div className="text-buttonColor text-base">
-        {row.getValue("invoiceId")}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "category",
-    header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
-        Category
-      </span>
-    ),
-    cell: ({ row }) => (
-      <div className="capitalize text-navbarColor text-base">
-        {row.getValue("category")}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "quantity",
-    header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
-        Quantity
-      </span>
-    ),
-    cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
-        {row.getValue("quantity")}
-      </div>
-    ),
-  },
-  {
-    accessorKey: "price",
-    header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
-        Price
-      </span>
-    ),
-    cell: ({ row }) => {
-      const price = parseFloat(row.getValue("price"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(price);
-      return <div className="text-navbarColor text-base">{formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "total",
-    header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
-        Total
-      </span>
-    ),
-    cell: ({ row }) => {
-      const total = parseFloat(row.getValue("total"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(total);
-      return <div className="text-navbarColor text-base">{formatted}</div>;
-    },
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const invoice = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="h-8 w-8 p-0 bg-[#F0F0F0] rounded-[200px]"
-            >
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              className="text-navbarColor"
-              onClick={() => navigator.clipboard.writeText(invoice.invoiceId)}
-            >
-              <DownloadSvg className="mr-2" />
-              Download
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-navbarColor">
-              <PrintSvg className="mr-2" />
-              Print
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-[#E84646]">
-              <DeleteSvg className="mr-2" />
-              Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
-];
+export function DataTableDemo({ setCheckedData }) {
+  const columns = [
+    {
+      id: "select",
+      header: ({ table }) => (
+        <Checkbox
+          checked={
+            table.getIsAllPageRowsSelected() ||
+            (table.getIsSomePageRowsSelected() && "indeterminate")
+          }
+          onCheckedChange={(value) => {
+            table.toggleAllPageRowsSelected(!!value);
+            console.log("Select all checked:", value);
+          }}
+          aria-label="Select all"
+        />
+      ),
+      cell: ({ row, table }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={(value) => {
+            table.getRowModel().rows.forEach((r) => {
+              if (r.id !== row.id) {
+                r.toggleSelected(false);
+              }
+            });
 
-export function DataTableDemo() {
+            row.toggleSelected(!!value);
+            setCheckedData(value ? row.original : null);
+            // console.log(`Row ${row.id} selected:`, value ? row.original : null);
+          }}
+          aria-label="Select row"
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    },
+    {
+      accessorKey: "productName",
+      header: () => (
+        <span className="font-lato text-headingColor font-semibold text-base">
+          Product Name
+        </span>
+      ),
+      cell: ({ row }) => {
+        const productName = row.getValue("productName");
+
+        // Find the product object by matching productName
+        const product = data.find((p) => p.productName === productName);
+
+        return (
+          <div className="capitalize text-headingColor text-base flex items-center">
+            {/* Conditionally render the image */}
+            {product && product.imageUrl ? (
+              <img
+                src={product.imageUrl}
+                alt={productName}
+                className="w-11 h-11 mr-3 rounded"
+              />
+            ) : (
+              <div className="w-8 h-8 mr-2 rounded bg-gray-300" />
+            )}
+            {productName}
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "invoiceId",
+      header: () => (
+        <span className="font-lato text-headingColor font-semibold text-base">
+          Invoice ID
+        </span>
+      ),
+      cell: ({ row }) => (
+        <div className="text-buttonColor text-base">
+          {row.getValue("invoiceId")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "category",
+      header: () => (
+        <span className="font-lato text-headingColor font-semibold text-base">
+          Category
+        </span>
+      ),
+      cell: ({ row }) => (
+        <div className="capitalize text-navbarColor text-base">
+          {row.getValue("category")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "quantity",
+      header: () => (
+        <span className="font-lato text-headingColor font-semibold text-base">
+          Quantity
+        </span>
+      ),
+      cell: ({ row }) => (
+        <div className="text-navbarColor text-base">
+          {row.getValue("quantity")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "price",
+      header: () => (
+        <span className="font-lato text-headingColor font-semibold text-base">
+          Price
+        </span>
+      ),
+      cell: ({ row }) => {
+        const price = parseFloat(row.getValue("price"));
+        const formatted = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(price);
+        return <div className="text-navbarColor text-base">{formatted}</div>;
+      },
+    },
+    {
+      accessorKey: "total",
+      header: () => (
+        <span className="font-lato text-headingColor font-semibold text-base">
+          Total
+        </span>
+      ),
+      cell: ({ row }) => {
+        const total = parseFloat(row.getValue("total"));
+        const formatted = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(total);
+        return <div className="text-navbarColor text-base">{formatted}</div>;
+      },
+    },
+    {
+      id: "actions",
+      enableHiding: false,
+      cell: ({ row }) => {
+        const invoice = row.original;
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0 bg-[#F0F0F0] rounded-[200px]"
+              >
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem
+                className="text-navbarColor"
+                onClick={() => navigator.clipboard.writeText(invoice.invoiceId)}
+              >
+                <DownloadSvg className="mr-2" />
+                Download
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-navbarColor">
+                <PrintSvg className="mr-2" />
+                Print
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-[#E84646]">
+                <DeleteSvg className="mr-2" />
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
+    },
+  ];
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
