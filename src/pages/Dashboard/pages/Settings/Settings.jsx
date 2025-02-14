@@ -17,9 +17,12 @@ import {
 
 import uploadImage from "../../../../assets/images/settingsUploadLogo/photo.png";
 import Button from "@/components/Button/Button";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 const Settings = () => {
   const [image, setImage] = useState(uploadImage);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -30,6 +33,7 @@ const Settings = () => {
   };
   return (
     <section>
+      {/* Account Settings */}
       <div className="container mx-auto">
         <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
@@ -183,6 +187,96 @@ const Settings = () => {
           <div className="px-[97px] my-8">
             <Button text={"Save Changes"} color={"bg-buttonColor"} />
           </div>
+        </div>
+      </div>
+      {/* Password Setting */}
+      <div className="container mx-auto my-5 pb-10">
+        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
+          <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
+            <h1 className="text-headingColor text-xl font-semibold ">
+              Password Setting
+            </h1>
+            <OrderSummerySvg />
+          </div>
+          <section>
+            {/* This is the Password */}
+            <div className="mt-6 ml-[31px] border border-[#F0F0F0] rounded max-w-[984px] mb-[50px]">
+              <div className="">
+                <h1 className="text-headingColor text-base font-semibold border pl-5 py-[13px]">
+                  Change Password
+                </h1>
+              </div>
+
+              {/* Current Password Div */}
+              <div className="px-6 mt-6 relative">
+                <label className="text-sm text-headingColor">
+                  Current Password
+                </label>
+                <Input
+                  className="h-11 mt-2 border bg-[#D9D9D91A] rounded-[2px] !text-sm text-headingColor "
+                  type={showPassword ? "text" : "password"}
+                  placeholder=""
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute bottom-[14px] right-[35px]"
+                >
+                  {showPassword ? (
+                    <IoEyeOutline className="text-xl" />
+                  ) : (
+                    <IoEyeOffOutline className="text-xl text-black" />
+                  )}
+                </span>
+              </div>
+              {/* New Password Div */}
+              <div className="px-6 mt-4 relative">
+                <label className="text-sm text-headingColor">
+                  New Password
+                </label>
+                <Input
+                  className="h-11 mt-2 border bg-[#D9D9D91A] rounded-[2px] !text-sm text-headingColor"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="8+ characters"
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute bottom-[14px] right-[35px]"
+                >
+                  {showPassword ? (
+                    <IoEyeOutline className="text-xl" />
+                  ) : (
+                    <IoEyeOffOutline className="text-xl text-black" />
+                  )}
+                </span>
+              </div>
+              {/* Confirm Password Div */}
+              <div className="px-6 mt-4 mb-6 relative">
+                <label className="text-sm text-headingColor">
+                  Confirm Password
+                </label>
+                <Input
+                  className="h-11 mt-2 border bg-[#D9D9D91A] rounded-[2px] !text-sm text-headingColor"
+                  type={showPassword ? "text" : "password"}
+                  placeholder=""
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute bottom-[14px] right-[35px]"
+                >
+                  {showPassword ? (
+                    <IoEyeOutline className="text-xl" />
+                  ) : (
+                    <IoEyeOffOutline className="text-xl text-black" />
+                  )}
+                </span>
+              </div>
+
+              {/* This the button section */}
+              <div className="pl-6 my-8">
+                <Button text={"Change Password"} color={"bg-buttonColor"} />
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </section>

@@ -78,7 +78,7 @@ const language = [
 const menuItems = [
   { name: "About Us", link: "/aboutUs" },
   { name: "Products & Services", link: "/productServices" },
-  { name: "Dashboard", link: "/dashboardLayout" },
+  { name: "Dashboard", link: "/dashboardLayout/mainDashboard" },
   { name: "Order Requests", link: "/orderForms" },
   { name: "Blog", link: "/blogArticles" },
   { name: "Contact Us", link: "/contactUs" },

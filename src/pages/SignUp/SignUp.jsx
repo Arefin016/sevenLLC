@@ -25,7 +25,7 @@ const SignUp = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file && file.size <= 2 * 1024 * 1024) {
-      setImage(URL.createObjectURL(file)); // Preview the uploaded image
+      setImage(URL.createObjectURL(file)); 
     } else {
       alert("File must be less than 2MB.");
     }
