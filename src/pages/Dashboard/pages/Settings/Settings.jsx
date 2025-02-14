@@ -190,6 +190,123 @@ const Settings = () => {
           </div>
         </div>
       </div>
+
+      {/* Password Setting */}
+      <div className="container mx-auto my-5 pb-10">
+        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
+          <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
+            <h1 className="text-headingColor text-xl font-semibold ">
+              Address Setting
+            </h1>
+            <OrderSummerySvg />
+          </div>
+          <section>
+            {/* This is the Billing Address Section */}
+            <div className="grid grid-cols-3 gap-6 px-8 mb-[53px] mt-[25px] border-[#F0F0F0] rounded">
+              {/* This is the Billing Address */}
+              <div className="flex flex-col border rounded-b-2xl">
+                <div className="flex gap-[150px] justify-between border items-center px-6">
+                  <h1 className="text-headingColor text-base font-semibold py-[13px]">
+                    Billing Address
+                  </h1>
+                  <h1 className="text-buttonColor font-medium">
+                    + EDIT ADDRESS
+                  </h1>
+                </div>
+                {/* This is the Billing Address */}
+                <div className="my-6 space-y-4">
+                  <div className="px-6">
+                    <label className="text-headingColor">FULL NAME</label>
+                    <Input
+                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                      type="text"
+                      placeholder="Nasib Hasan"
+                    />
+                  </div>
+                  <div className="px-6">
+                    <label className="text-headingColor">Address</label>
+                    <Input
+                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                      type="text"
+                      placeholder="10/A, Land Road, LA, USA"
+                    />
+                  </div>
+                  <div className="px-6">
+                    <label className="text-headingColor">Email</label>
+                    <Input
+                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                      type="email"
+                      placeholder="mail@mail.com"
+                    />
+                  </div>
+                  <div className="px-6">
+                    <label className="text-headingColor">Phone Number</label>
+                    <Input
+                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                      type="number"
+                      placeholder="+123 4567 8900"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* This is the Address 2  */}
+              <div className="flex flex-col border rounded-b-2xl">
+                <div className="flex gap-[150px] justify-between border items-center px-6">
+                  <h1 className="text-headingColor text-base font-semibold py-[13px]">
+                    Address 2
+                  </h1>
+                  <h1 className="text-buttonColor font-medium">
+                    + EDIT ADDRESS
+                  </h1>
+                </div>
+                {/* This is the + Add new Address */}
+                <div className="my-6 space-y-4">
+                  <div className="px-6">
+                    <label className="text-headingColor">FULL NAME</label>
+                    <Input
+                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                      type="text"
+                      placeholder="Nasib Hasan"
+                    />
+                  </div>
+                  <div className="px-6">
+                    <label className="text-headingColor">Address</label>
+                    <Input
+                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                      type="text"
+                      placeholder="10/A, Land Road, LA, USA"
+                    />
+                  </div>
+                  <div className="px-6">
+                    <label className="text-headingColor">Email</label>
+                    <Input
+                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                      type="email"
+                      placeholder="mail@mail.com"
+                    />
+                  </div>
+                  <div className="px-6">
+                    <label className="text-headingColor">Phone Number</label>
+                    <Input
+                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                      type="number"
+                      placeholder="+123 4567 8900"
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* This is the Billing Address */}
+              <div className="border rounded-2xl flex justify-center items-center ">
+                <button className="text-center text-[#8993A4] font-medium">
+                  + Add new Address
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
       {/* Password Setting */}
       <div className="container mx-auto my-5 pb-10">
         <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
@@ -200,7 +317,7 @@ const Settings = () => {
             <OrderSummerySvg />
           </div>
           <section>
-            {/* This is the Password */}
+            {/* This is the Password Setting Section */}
             <div className="mt-6 ml-[31px] border border-[#F0F0F0] rounded max-w-[984px] mb-[50px]">
               <div className="">
                 <h1 className="text-headingColor text-base font-semibold border pl-5 py-[13px]">
