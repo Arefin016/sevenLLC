@@ -2,7 +2,7 @@ import {
   OrderSummerySvg,
   SettingUploadSvg,
 } from "@/components/SvgContainer/SvgConainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 
 import {
@@ -47,6 +47,17 @@ const Settings = () => {
     setAddNewAddress(false);
     reset();
   };
+
+  useEffect(() => {
+    if (addNewAddress) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "scroll";
+    }
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, [addNewAddress]);
 
   console.log(savedAddresses);
 

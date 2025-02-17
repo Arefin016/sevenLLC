@@ -109,7 +109,6 @@ export function DataTableDemo({ setCheckedData }) {
 
             row.toggleSelected(!!value);
             setCheckedData(value ? row.original : null);
-            // console.log(`Row ${row.id} selected:`, value ? row.original : null);
           }}
           aria-label="Select row"
         />
@@ -127,7 +126,6 @@ export function DataTableDemo({ setCheckedData }) {
       cell: ({ row }) => {
         const productName = row.getValue("productName");
 
-        // Find the product object by matching productName
         const product = data.find((p) => p.productName === productName);
 
         return (
