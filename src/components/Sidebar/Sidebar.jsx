@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import dashboardLogo from "../../assets/images/DashboardLogo/dashboardLogo.png";
 import {
   DashboardSvg,
@@ -37,11 +37,13 @@ const Sidebar = () => {
       <div className=" bg-[#FFF] shadow-sm h-[100vh]">
         {/* This is the dashboard logo */}
         <div className="flex justify-center mt-[47.8px] mb-[37.36px]">
-          <img
-            className="w-[118px] h-[89px] object-cover "
-            src={dashboardLogo}
-            alt=""
-          />
+          <Link to="/">
+            <img
+              className="w-[118px] h-[89px] object-cover "
+              src={dashboardLogo}
+              alt=""
+            />
+          </Link>
         </div>
         <div className="px-12 space-y-4">
           {/* This is the dashboard */}

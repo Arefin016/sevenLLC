@@ -22,7 +22,9 @@ import { Controller, useForm } from "react-hook-form";
 
 const Settings = () => {
   const [image, setImage] = useState(uploadImage);
-  const [isVisible, setIsVisible] = useState(true);
+
+  const [addNewAddress, setAddNewAddress] = useState(false);
+  const [savedAddresses, setSavedAddresses] = useState([]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -32,18 +34,24 @@ const Settings = () => {
     }
   };
 
-  // This is the react hook form
   const {
     register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
+    reset,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    setSavedAddresses([...savedAddresses, data]);
+    setAddNewAddress(false);
+    reset();
+  };
+
+  console.log(savedAddresses);
 
   return (
-    <section>
+    <section className="">
       {/* Account Settings */}
       <div className="container mx-auto">
         <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
@@ -201,7 +209,7 @@ const Settings = () => {
         </div>
       </div>
 
-      {/* Password Setting */}
+      {/* address Setting */}
       <div className="container mx-auto my-5 pb-10">
         <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
@@ -212,13 +220,70 @@ const Settings = () => {
           </div>
           <section>
             {/* This is the Billing Address Section */}
-            <div className="grid grid-cols-3 gap-6 px-8 mb-[53px] mt-[25px] border-[#F0F0F0] rounded">
-              {/* This is the Billing Address */}
-              <>
-                {isVisible ? (
+            <div className="px-8 mb-10 mt-6">
+              {/* Addresses Grid */}
+              <div className="flex flex-row gap-6 flex-wrap">
+                {/* Display saved addresses */}
+                {savedAddresses.map((address, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col border rounded-b-2xl"
+                  >
+                    <div className="flex gap-[145px] justify-between border items-center px-6">
+                      <h1 className="text-headingColor text-base font-semibold py-[13px]">
+                        Billing Address {index + 1}
+                      </h1>
+
+                      <h1 className="text-buttonColor font-medium cursor-pointer">
+                        + EDIT ADDRESS
+                      </h1>
+                    </div>
+                    {/* This is the Billing Address */}
+                    <div className="my-6 space-y-4">
+                      <div className="px-6">
+                        <label className="text-headingColor">FULL NAME</label>
+                        <p className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-[#8993A4]">
+                          {address.firstName}
+                        </p>
+                      </div>
+                      <div className="px-6">
+                        <label className="text-headingColor">Address</label>
+                        <p className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-[#8993A4]">
+                          {address.address}
+                        </p>
+                      </div>
+                      <div className="px-6">
+                        <label className="text-headingColor">Email</label>
+                        <p className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-[#8993A4]">
+                          {address.email}
+                        </p>
+                      </div>
+                      <div className="px-6">
+                        <label className="text-headingColor">
+                          Phone Number
+                        </label>
+                        <p className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-[#8993A4]">
+                          {address.phone}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* "Add New Address" Button - Always Last */}
+                {!addNewAddress ? (
+                  <div className="border rounded-2xl min-w-[444px] min-h-[550px] flex justify-center items-center p-4">
+                    <button
+                      onClick={() => setAddNewAddress(true)}
+                      className="text-center text-[#8993A4] font-medium"
+                    >
+                      + Add new Address
+                    </button>
+                  </div>
+                ) : (
                   <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col border rounded-b-2xl"
+                    className="flex flex-col border rounded-b-2xl w-[32%] mt-2"
                   >
                     <div className="flex gap-[150px] justify-between border items-center px-6">
                       <h1 className="text-headingColor text-base font-semibold py-[13px]">
@@ -424,6 +489,21 @@ const Settings = () => {
                           )}
                         </div>
                       </div>
+                      {/* Email */}
+                      <div className="px-6 mt-4">
+                        <label className="text-headingColor">Email</label>
+                        <Input
+                          className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
+                          type="email"
+                          {...register("email", { required: true })}
+                          placeholder="Your email here"
+                        />
+                        {errors.email && (
+                          <span className="text-red-500 text-sm">
+                            Email is required
+                          </span>
+                        )}
+                      </div>
                       {/* Phone Number */}
                       <div className="px-6 mt-4">
                         <label className="text-headingColor">
@@ -450,126 +530,15 @@ const Settings = () => {
                         color={"bg-buttonColor"}
                       />
                       <button
+                        onClick={() => setAddNewAddress(false)}
                         className="text-buttonColor text-base font-semibold"
-                        onClick={() => setIsVisible(false)}
                       >
                         Close
                       </button>
                     </div>
                   </form>
-                ) : (
-                  <div className="flex flex-col border rounded-b-2xl">
-                    <div className="flex gap-[150px] justify-between border items-center px-6">
-                      <h1 className="text-headingColor text-base font-semibold py-[13px]">
-                        Billing Address
-                      </h1>
-                      {!isVisible && (
-                        <h1
-                          onClick={() => setIsVisible((prev) => !prev)}
-                          className="text-buttonColor font-medium cursor-pointer"
-                        >
-                          + EDIT ADDRESS
-                        </h1>
-                      )}
-                    </div>
-                    {/* This is the Billing Address */}
-                    <div className="my-6 space-y-4">
-                      <div className="px-6">
-                        <label className="text-headingColor">FULL NAME</label>
-                        <Input
-                          className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                          type="text"
-                          placeholder="Nasib Hasan"
-                        />
-                      </div>
-                      <div className="px-6">
-                        <label className="text-headingColor">Address</label>
-                        <Input
-                          className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                          type="text"
-                          placeholder="10/A, Land Road, LA, USA"
-                        />
-                      </div>
-                      <div className="px-6">
-                        <label className="text-headingColor">Email</label>
-                        <Input
-                          className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                          type="email"
-                          placeholder="mail@mail.com"
-                        />
-                      </div>
-                      <div className="px-6">
-                        <label className="text-headingColor">
-                          Phone Number
-                        </label>
-                        <Input
-                          className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                          type="number"
-                          placeholder="+123 4567 8900"
-                        />
-                      </div>
-                    </div>
-                  </div>
                 )}
-              </>
-
-              {/* This is the Address 2  */}
-              <div className="flex flex-col border rounded-b-2xl">
-                <div className="flex gap-[150px] justify-between border items-center px-6">
-                  <h1 className="text-headingColor text-base font-semibold py-[13px]">
-                    Address 2
-                  </h1>
-                  <h1 className="text-buttonColor font-medium">
-                    + EDIT ADDRESS
-                  </h1>
-                </div>
-                {/* This is the + Add new Address */}
-                <div className="my-6 space-y-4">
-                  <div className="px-6">
-                    <label className="text-headingColor">FULL NAME</label>
-                    <Input
-                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                      type="text"
-                      placeholder="Nasib Hasan"
-                    />
-                  </div>
-                  <div className="px-6">
-                    <label className="text-headingColor">Address</label>
-                    <Input
-                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                      type="text"
-                      placeholder="10/A, Land Road, LA, USA"
-                    />
-                  </div>
-                  <div className="px-6">
-                    <label className="text-headingColor">Email</label>
-                    <Input
-                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                      type="email"
-                      placeholder="mail@mail.com"
-                    />
-                  </div>
-                  <div className="px-6">
-                    <label className="text-headingColor">Phone Number</label>
-                    <Input
-                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                      type="number"
-                      placeholder="+123 4567 8900"
-                    />
-                  </div>
-                </div>
               </div>
-              {/* This is the Billing Address */}
-              {!isVisible && (
-                <div className="border rounded-2xl flex justify-center items-center ">
-                  <button
-                    onClick={() => setIsVisible((prev) => !prev)}
-                    className="text-center text-[#8993A4] font-medium"
-                  >
-                    + Add new Address
-                  </button>
-                </div>
-              )}
             </div>
           </section>
         </div>
