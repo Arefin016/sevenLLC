@@ -26,7 +26,7 @@ const Footer = () => {
   return (
     <section className="mt-[60px] mb-[21px]">
       <div className="container">
-        <div className="flex gap-[320px] items-center">
+        <div className="flex flex-col md:flex-row gap-[50px] lg:gap-[100px] xlg:gap-[320px]  items-center">
           {/* This is first div */}
           <div className="">
             <Link to={"/"}>
@@ -37,7 +37,7 @@ const Footer = () => {
               when you need them.
             </p>
             {/* This is the dynamic page */}
-            <div className="flex gap-12 mt-[22px]">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-12 mt-[22px]">
               {links.map((link, index) => (
                 <a
                   key={index}
@@ -81,7 +81,7 @@ const Footer = () => {
           <p className="text-navbarColor">
             © Copyright 2024, All Rights Reserved
           </p>
-          <div className="flex gap-3">
+          <div className="flex flex-row gap-2 lg:gap-3">
             {socialMediaLinks.map((link) => {
               const IconComponent = link.icon;
               return (
@@ -90,7 +90,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   key={link.name}
-                  className="border border-buttonColor rounded-full p-[10px] transition-all duration-300 bg-white text-buttonColor hover:bg-buttonColor hover:text-white ease-in-out"
+                  className="border border-buttonColor rounded-full p-2 xmd:p-[10px] transition-all duration-300 bg-white text-buttonColor hover:bg-buttonColor hover:text-white ease-in-out"
                 >
                   <IconComponent />
                 </a>

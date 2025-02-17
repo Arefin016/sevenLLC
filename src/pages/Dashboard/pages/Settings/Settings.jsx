@@ -17,13 +17,12 @@ import {
 
 import uploadImage from "../../../../assets/images/settingsUploadLogo/photo.png";
 import Button from "@/components/Button/Button";
-import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import PasswordInput from "@/components/PasswordInput/PasswordInput";
+import { Controller, useForm } from "react-hook-form";
 
 const Settings = () => {
   const [image, setImage] = useState(uploadImage);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -32,6 +31,17 @@ const Settings = () => {
       alert("File must be less than 2MB.");
     }
   };
+
+  // This is the react hook form
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <section>
       {/* Account Settings */}
@@ -204,51 +214,304 @@ const Settings = () => {
             {/* This is the Billing Address Section */}
             <div className="grid grid-cols-3 gap-6 px-8 mb-[53px] mt-[25px] border-[#F0F0F0] rounded">
               {/* This is the Billing Address */}
-              <div className="flex flex-col border rounded-b-2xl">
-                <div className="flex gap-[150px] justify-between border items-center px-6">
-                  <h1 className="text-headingColor text-base font-semibold py-[13px]">
-                    Billing Address
-                  </h1>
-                  <h1 className="text-buttonColor font-medium">
-                    + EDIT ADDRESS
-                  </h1>
-                </div>
-                {/* This is the Billing Address */}
-                <div className="my-6 space-y-4">
-                  <div className="px-6">
-                    <label className="text-headingColor">FULL NAME</label>
-                    <Input
-                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                      type="text"
-                      placeholder="Nasib Hasan"
-                    />
+              <>
+                {isVisible ? (
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="flex flex-col border rounded-b-2xl"
+                  >
+                    <div className="flex gap-[150px] justify-between border items-center px-6">
+                      <h1 className="text-headingColor text-base font-semibold py-[13px]">
+                        Billing Address
+                      </h1>
+                    </div>
+                    {/* This is the Billing Address */}
+                    <div className="my-6 space-y-4">
+                      <div className="flex gap-4 justify-center">
+                        {/* First Name */}
+                        <div className="">
+                          <label className="text-headingColor">
+                            First Name
+                          </label>
+                          <Input
+                            className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
+                            type="text"
+                            {...register("firstName", { required: true })}
+                            placeholder="First Name"
+                          />
+                          {errors.firstName && (
+                            <span className="text-red-500 text-sm">
+                              First Name is required
+                            </span>
+                          )}
+                        </div>
+                        {/* Last Name */}
+                        <div className="">
+                          <label className="text-headingColor">Last Name</label>
+                          <Input
+                            className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
+                            type="text"
+                            {...register("lastName", { required: true })}
+                            placeholder="Last Name"
+                          />
+                          {errors.lastName && (
+                            <span className="text-red-500 text-sm">
+                              Last Name is required
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      {/* Company Name */}
+                      <div className="px-6 mt-4">
+                        <label className="text-headingColor">
+                          Company Name (Optional)
+                        </label>
+                        <Input
+                          className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
+                          type="text"
+                          {...register("companyName", { required: true })}
+                          placeholder="Company Name"
+                        />
+                        {errors.companyName && (
+                          <span className="text-red-500 text-sm">
+                            Company Name is required
+                          </span>
+                        )}
+                      </div>
+                      {/* Address */}
+                      <div className="px-6">
+                        <label className="text-headingColor">Address</label>
+                        <Input
+                          className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
+                          type="text"
+                          {...register("address", { required: true })}
+                          placeholder="Address"
+                        />
+                        {errors.address && (
+                          <span className="text-red-500 text-sm">
+                            Address is required
+                          </span>
+                        )}
+                      </div>
+                      {/* Country */}
+                      <div className="px-6">
+                        <label className="text-headingColor">Country</label>
+                        <Controller
+                          name="country"
+                          control={control}
+                          rules={{ required: "Country is required" }}
+                          render={({ field }) => (
+                            <Select
+                              {...field}
+                              onValueChange={(value) => field.onChange(value)}
+                            >
+                              <SelectTrigger className="py-4 h-11 px-5 bg-[#F8F8F8] text-sm text-headingColor mt-2">
+                                <SelectValue placeholder="Select" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectGroup>
+                                  <SelectLabel>Countries</SelectLabel>
+                                  <SelectItem value="America">
+                                    America
+                                  </SelectItem>
+                                  <SelectItem value="Uk">UK</SelectItem>
+                                  <SelectItem value="Canada">Canada</SelectItem>
+                                </SelectGroup>
+                              </SelectContent>
+                            </Select>
+                          )}
+                        />
+                        {errors.country && (
+                          <p className="text-red-500 text-sm">
+                            {errors.country.message}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Region/State */}
+                      <div className="px-6">
+                        <label className="text-headingColor">
+                          Region/State
+                        </label>
+                        <Controller
+                          name="region"
+                          control={control}
+                          rules={{ required: "Region is required" }}
+                          render={({ field }) => (
+                            <Select
+                              {...field}
+                              onValueChange={(value) => field.onChange(value)}
+                            >
+                              <SelectTrigger className="py-4 h-11 px-5 bg-[#F8F8F8] text-sm text-headingColor mt-2">
+                                <SelectValue placeholder="Select" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectGroup>
+                                  <SelectLabel>States</SelectLabel>
+                                  <SelectItem value="California">
+                                    California
+                                  </SelectItem>
+                                  <SelectItem value="Texas">Texas</SelectItem>
+                                  <SelectItem value="Florida">
+                                    Florida
+                                  </SelectItem>
+                                </SelectGroup>
+                              </SelectContent>
+                            </Select>
+                          )}
+                        />
+                        {errors.region && (
+                          <p className="text-red-500 text-sm">
+                            {errors.region.message}
+                          </p>
+                        )}
+                      </div>
+                      {/* City and Postal Code */}
+                      <div className="flex gap-4 justify-center">
+                        {/* City */}
+                        <div className="w-[197px]">
+                          <label className="text-headingColor">City</label>
+                          <Controller
+                            name="City" // Use the name "City" to match the field name
+                            control={control}
+                            rules={{ required: "City is required" }}
+                            render={({ field }) => (
+                              <Select
+                                {...field}
+                                onValueChange={(value) => field.onChange(value)}
+                              >
+                                <SelectTrigger className="py-4 h-11 bg-[#F8F8F8] text-sm text-headingColor mt-2">
+                                  <SelectValue placeholder="Select" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectGroup>
+                                    <SelectLabel>Cities</SelectLabel>
+                                    <SelectItem value="New York">
+                                      New York
+                                    </SelectItem>
+                                    <SelectItem value="Los Angeles">
+                                      Los Angeles
+                                    </SelectItem>
+                                    <SelectItem value="Chicago">
+                                      Chicago
+                                    </SelectItem>
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+                            )}
+                          />
+                          {errors.City && (
+                            <p className="text-red-500 text-sm">
+                              {errors.City.message}{" "}
+                            </p>
+                          )}
+                        </div>
+                        {/* Postal Code */}
+                        <div className="">
+                          <label className="text-headingColor">
+                            Postal Code
+                          </label>
+                          <Input
+                            className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
+                            type="number"
+                            {...register("postalCode", { required: true })}
+                            placeholder="Your code here"
+                          />
+                          {errors.postalCode && (
+                            <span className="text-red-500 text-sm">
+                              Postal Code is required
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      {/* Phone Number */}
+                      <div className="px-6 mt-4">
+                        <label className="text-headingColor">
+                          Phone Number
+                        </label>
+                        <Input
+                          className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
+                          type="number"
+                          {...register("phone", { required: true })}
+                          placeholder="Your phone here"
+                        />
+                        {errors.phone && (
+                          <span className="text-red-500 text-sm">
+                            Phone Number is required
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    {/* Close Button */}
+                    <div className="flex justify-between px-6 my-6">
+                      <Button
+                        type="submit"
+                        text={"Save Changes"}
+                        color={"bg-buttonColor"}
+                      />
+                      <button
+                        className="text-buttonColor text-base font-semibold"
+                        onClick={() => setIsVisible(false)}
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <div className="flex flex-col border rounded-b-2xl">
+                    <div className="flex gap-[150px] justify-between border items-center px-6">
+                      <h1 className="text-headingColor text-base font-semibold py-[13px]">
+                        Billing Address
+                      </h1>
+                      {!isVisible && (
+                        <h1
+                          onClick={() => setIsVisible((prev) => !prev)}
+                          className="text-buttonColor font-medium cursor-pointer"
+                        >
+                          + EDIT ADDRESS
+                        </h1>
+                      )}
+                    </div>
+                    {/* This is the Billing Address */}
+                    <div className="my-6 space-y-4">
+                      <div className="px-6">
+                        <label className="text-headingColor">FULL NAME</label>
+                        <Input
+                          className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                          type="text"
+                          placeholder="Nasib Hasan"
+                        />
+                      </div>
+                      <div className="px-6">
+                        <label className="text-headingColor">Address</label>
+                        <Input
+                          className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                          type="text"
+                          placeholder="10/A, Land Road, LA, USA"
+                        />
+                      </div>
+                      <div className="px-6">
+                        <label className="text-headingColor">Email</label>
+                        <Input
+                          className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                          type="email"
+                          placeholder="mail@mail.com"
+                        />
+                      </div>
+                      <div className="px-6">
+                        <label className="text-headingColor">
+                          Phone Number
+                        </label>
+                        <Input
+                          className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
+                          type="number"
+                          placeholder="+123 4567 8900"
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="px-6">
-                    <label className="text-headingColor">Address</label>
-                    <Input
-                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                      type="text"
-                      placeholder="10/A, Land Road, LA, USA"
-                    />
-                  </div>
-                  <div className="px-6">
-                    <label className="text-headingColor">Email</label>
-                    <Input
-                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                      type="email"
-                      placeholder="mail@mail.com"
-                    />
-                  </div>
-                  <div className="px-6">
-                    <label className="text-headingColor">Phone Number</label>
-                    <Input
-                      className="bg-[#FFF] border-none h-11 mt-2 !text-sm text-headingColor"
-                      type="number"
-                      placeholder="+123 4567 8900"
-                    />
-                  </div>
-                </div>
-              </div>
+                )}
+              </>
 
               {/* This is the Address 2  */}
               <div className="flex flex-col border rounded-b-2xl">
@@ -297,11 +560,16 @@ const Settings = () => {
                 </div>
               </div>
               {/* This is the Billing Address */}
-              <div className="border rounded-2xl flex justify-center items-center ">
-                <button className="text-center text-[#8993A4] font-medium">
-                  + Add new Address
-                </button>
-              </div>
+              {!isVisible && (
+                <div className="border rounded-2xl flex justify-center items-center ">
+                  <button
+                    onClick={() => setIsVisible((prev) => !prev)}
+                    className="text-center text-[#8993A4] font-medium"
+                  >
+                    + Add new Address
+                  </button>
+                </div>
+              )}
             </div>
           </section>
         </div>
