@@ -6,6 +6,8 @@ import Packaging from "../Packaging/Packaging";
 import Request from "../Request/Request";
 import choosePic from "../../../assets/images/chooseUsPic.png";
 import betterPlanetPic from "../../../assets/images/betterPlanetPic.png";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Home = () => {
   const bulletPoints = [
@@ -31,17 +33,56 @@ const Home = () => {
     gradient:
       "linear-gradient(0deg, rgba(7, 160, 236, 0.70) 0%, rgba(7, 160, 236, 0.70) 100%)",
   };
+
+  const axiosPublic = useAxiosPublic();
+
+  const stepFormData = async () => {
+    try {
+      const response = await axiosPublic.get("/api/home");
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching card data: ", error.message || error);
+      throw new Error("Failed to fetch card data");
+    }
+  };
+
+  const { isLoading, data: StepFormData } = useQuery({
+    queryKey: ["stepFormData"],
+    queryFn: stepFormData,
+  });
+
+  //
+  const chooseUsData = async () => {
+    try {
+      const response = await axiosPublic.get("/api/home");
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching card data: ", error.message || error);
+      throw new Error("Failed to fetch card data");
+    }
+  };
+
+  const { data: ChooseUsData } = useQuery({
+    queryKey: ["chooseUsData"],
+    queryFn: chooseUsData,
+  });
+
+  console.log(ChooseUsData?.data?.why_choose_us);
+
   return (
     <div>
       <Banner />
       <Request />
       <ChooseUs
-        title="Why Choose Us?"
+        title={"Why Choose Us?"}
         bulletPoints={bulletPoints}
-        description={description}
+        description={ChooseUsData?.data?.why_choose_us?.description}
         image={choosePic}
         buttonText="Learn More About 777Bags"
         showBreadcrumb={false}
+        img={`${import.meta.env.VITE_SITE_URL}/${
+          ChooseUsData?.data?.why_choose_us?.image_url
+        }`}
       />
       <Packaging />
       <div className="mt-[137px]">

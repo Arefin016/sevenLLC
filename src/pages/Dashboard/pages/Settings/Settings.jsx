@@ -19,6 +19,7 @@ import uploadImage from "../../../../assets/images/settingsUploadLogo/photo.png"
 import Button from "@/components/Button/Button";
 import PasswordInput from "@/components/PasswordInput/PasswordInput";
 import { Controller, useForm } from "react-hook-form";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
 const Settings = () => {
   const [image, setImage] = useState(uploadImage);
@@ -398,7 +399,7 @@ const Settings = () => {
                                   <SelectItem value="America">
                                     America
                                   </SelectItem>
-                                  <SelectItem value="Uk">UK</SelectItem>
+                                  <SelectItem value="UK">UK</SelectItem>
                                   <SelectItem value="Canada">Canada</SelectItem>
                                 </SelectGroup>
                               </SelectContent>

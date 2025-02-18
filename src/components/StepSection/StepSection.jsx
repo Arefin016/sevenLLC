@@ -1,3 +1,4 @@
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 import steponePic1 from "../../assets/images/step1.png";
 import steponePic2 from "../../assets/images/step2.png";
 import steponePic3 from "../../assets/images/step3.png";
@@ -8,8 +9,28 @@ import {
   StepFormLogoThree,
   StepFormLogoTwo,
 } from "../SvgContainer/SvgConainer";
+import { useQuery } from "@tanstack/react-query";
 
 const StepSection = ({ title, subtitle, btnText, isAbout }) => {
+  const axiosPublic = useAxiosPublic();
+
+  const stepFormData = async () => {
+    try {
+      const response = await axiosPublic.get("/api/home");
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching card data: ", error.message || error);
+      throw new Error("Failed to fetch card data");
+    }
+  };
+
+  const { data: StepFormData } = useQuery({
+    queryKey: ["stepFormData"],
+    queryFn: stepFormData,
+  });
+
+  console.log(StepFormData?.data?.works_step_1);
+
   return (
     <section className="">
       <div className="container mx-auto">
@@ -32,11 +53,10 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
             </div>
             <div className="mt-7">
               <h1 className="text-headingColor text-lg font-semibold">
-                Submit Your Design or Idea
+                {StepFormData?.data?.works_step_1?.title}
               </h1>
               <p className="text-lg text-navbarColor mt-[9px]">
-                Upload your design or work with our team to bring your vision to
-                life.
+                {StepFormData?.data?.works_step_1?.description}
               </p>
             </div>
           </div>
@@ -53,10 +73,10 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
             </div>
             <div className="mt-7">
               <h1 className="text-headingColor text-lg font-semibold">
-                Receive a Quote
+                {StepFormData?.data?.works_step_2?.title}
               </h1>
               <p className="text-lg text-navbarColor mt-[9px]">
-                Get competitive pricing within 2-3 business <br /> days.
+                {StepFormData?.data?.works_step_2?.description}
               </p>
             </div>
           </div>
@@ -74,10 +94,10 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
             {/*  */}
             <div className="mt-7">
               <h1 className="text-headingColor text-lg font-semibold">
-                Production Begins
+                {StepFormData?.data?.works_step_3?.title}
               </h1>
               <p className="text-lg text-navbarColor mt-[9px]">
-                We handle everything from manufacturing to quality checks.
+                {StepFormData?.data?.works_step_3?.description}
               </p>
             </div>
           </div>
@@ -94,10 +114,10 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
             {/*  */}
             <div className="mt-7">
               <h1 className="text-headingColor text-lg font-semibold">
-                Delivered to You
+                {StepFormData?.data?.works_step_4?.title}
               </h1>
               <p className="text-lg text-navbarColor mt-[9px]">
-                Your high-quality packaging arrives on time, every <br /> time.
+                {StepFormData?.data?.works_step_3?.description}
               </p>
             </div>
           </div>

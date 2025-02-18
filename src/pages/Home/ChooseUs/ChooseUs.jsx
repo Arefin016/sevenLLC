@@ -1,17 +1,23 @@
 import { useLocation } from "react-router-dom";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import Button from "../../../components/Button/Button";
+import parse from "html-react-parser";
 
 const ChooseUs = ({
   title,
-  bulletPoints,
   description,
   image,
   buttonText,
   imageAlt = "Choose us image",
   showBreadcrumb = true,
+  img
 }) => {
   const location = useLocation();
+
+  const parsedData =
+    typeof description === "string" ? description : String(description);
+
+  console.log(parsedData);
 
   return (
     <section className="ml-[210px] mt-[150px]">
@@ -24,19 +30,8 @@ const ChooseUs = ({
           <h1 className="text-headingColor text-5xl font-bold max-w-[721px] leading-[67.2px]">
             {title}
           </h1>
-          <ul className="mt-7 unorderList">
-            {bulletPoints.map((point, index) => (
-              <li key={index} className="bulletPoint">
-                {point}
-              </li>
-            ))}
-          </ul>
-          <p className="text-xl text-navbarColor">
-            <span className="text-headingColor font-semibold leading-9 tracking-[-0.4px]">
-              Meta Description :
-            </span>{" "}
-            {description}
-          </p>
+         
+          <p className="user-descreption-wrapper"> {parse(parsedData)}</p>
           {/* Button Section */}
           <div className="mt-12">
             <Button text={buttonText} color={"bg-buttonColor"} />
@@ -44,7 +39,7 @@ const ChooseUs = ({
         </div>
         {/* Second div: Image */}
         <div className="max-w-[829px] h-[671px] object-cover">
-          <img src={image} alt={imageAlt} />
+          <img src={img} alt={imageAlt} />
         </div>
       </div>
     </section>

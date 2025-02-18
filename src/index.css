@@ -80,6 +80,9 @@
   .custom-gradient {
     background: linear-gradient(107deg, #f8feff 0%, #fff9f8 100%);
   }
+  .user-descreption-wrapper ul {
+    @apply flex flex-col gap-y-5 list-disc pl-5 my-5;
+  }
 }
 
 /* Navbar arrow down */

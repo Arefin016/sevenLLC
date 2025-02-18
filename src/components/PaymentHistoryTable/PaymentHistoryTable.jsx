@@ -40,14 +40,26 @@ export const columns = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        onCheckedChange={(value) => {
+          table.toggleAllPageRowsSelected(!!value);
+          console.log("Select all checked:", value);
+        }}
         aria-label="Select all"
       />
     ),
-    cell: ({ row }) => (
+    cell: ({ row, table }) => (
       <Checkbox
         checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        onCheckedChange={(value) => {
+          table.getRowModel().rows.forEach((r) => {
+            if (r.id !== row.id) {
+              r.toggleSelected(false);
+            }
+          });
+
+          row.toggleSelected(!!value);
+          setCheckedData(value ? row.original : null);
+        }}
         aria-label="Select row"
       />
     ),

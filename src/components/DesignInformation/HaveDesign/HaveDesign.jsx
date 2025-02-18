@@ -19,6 +19,9 @@ const HaveDesign = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isToggled, setIsToggled] = useState(false);
   const [fillData, setFillData] = useState();
+  //
+  const [addNewAddress, setAddNewAddress] = useState(false);
+  const [addresses, setAddresses] = useState([]);
   // Handle file selection
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -44,7 +47,15 @@ const HaveDesign = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    const updatedAddresses = [...addresses, data];
+    console.log(updatedAddresses);
+    localStorage.setItem("savedAddresses", JSON.stringify(updatedAddresses));
+    setAddresses(updatedAddresses);
+    setAddNewAddress(false);
+    reset();
+  };
 
   const handleSelectChange = (value) => {
     console.log(value);
@@ -541,9 +552,10 @@ const HaveDesign = () => {
                       Country*
                     </label>
                     <Controller
-                      name="Country"
+                      name="country"
                       control={control}
                       rules={{ required: "Country is required" }}
+                      defaultValue=""
                       render={({ field }) => (
                         <Select
                           {...field}
@@ -566,9 +578,9 @@ const HaveDesign = () => {
                         </Select>
                       )}
                     />
-                    {errors.Country && (
+                    {errors.country && (
                       <p className="text-red-500 text-sm">
-                        {errors.Country.message}{" "}
+                        {errors.country.message}{" "}
                       </p>
                     )}
                   </div>
@@ -578,9 +590,10 @@ const HaveDesign = () => {
                       Region/State*
                     </label>
                     <Controller
-                      name="Region"
+                      name="region"
                       control={control}
                       rules={{ required: "Region is required" }}
+                      defaultValue=""
                       render={({ field }) => (
                         <Select
                           {...field}
@@ -605,9 +618,9 @@ const HaveDesign = () => {
                         </Select>
                       )}
                     />
-                    {errors.Region && (
+                    {errors.region && (
                       <p className="text-red-500 text-sm">
-                        {errors.Region.message}
+                        {errors.region.message}
                       </p>
                     )}
                   </div>
@@ -623,6 +636,7 @@ const HaveDesign = () => {
                       name="City"
                       control={control}
                       rules={{ required: "City is required" }}
+                      defaultValue=""
                       render={({ field }) => (
                         <Select
                           {...field}
