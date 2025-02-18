@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UploadFileSvg } from "../../SvgContainer/SvgConainer";
 import Button from "../../Button/Button";
 import React from "react";
@@ -28,8 +28,7 @@ const HaveDesign = () => {
   };
 
   //
-
-  console.log(fillData);
+  // console.log(fillData);
 
   // Toggle the state when switch is clicked
   const handleToggle = () => {
@@ -39,15 +38,13 @@ const HaveDesign = () => {
   // This is the local storage data
   const savedAddresses =
     JSON.parse(localStorage.getItem("savedAddresses")) || [];
-  console.log(savedAddresses);
-  console.log(savedAddresses[0].country);
 
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     control,
+    setValue,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
@@ -58,7 +55,31 @@ const HaveDesign = () => {
     setFillData(savedAddresses[index]);
   };
 
-  console.log(fillData);
+  useEffect(() => {
+    if (fillData) {
+      reset({
+        firstName: fillData.firstName || "",
+        lastName: fillData.lastName || "",
+        email: fillData.email || "",
+        phone: fillData.phone || "",
+        address: fillData.address || "",
+        city: fillData.City || "",
+        region: fillData.region || "",
+        postalCode: fillData.postalCode || "",
+        country: fillData.country || "",
+        companyName: fillData.companyName || "",
+      });
+      if (fillData.country) {
+        setValue("Country", fillData.country);
+      }
+      if (fillData.region) {
+        setValue("Region", fillData.region);
+      }
+      if (fillData.City) {
+        setValue("City", fillData.City);
+      }
+    }
+  }, [fillData, reset]);
 
   return (
     <section>
@@ -425,8 +446,8 @@ const HaveDesign = () => {
                     <Input
                       className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                       type="text"
+                      name="firstName"
                       placeholder="First Name"
-                      value={fillData?.firstName || ""}
                       {...register("firstName", { required: true })}
                     />
                     {errors.firstName && (
@@ -443,8 +464,8 @@ const HaveDesign = () => {
                     <Input
                       className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                       type="text"
+                      name="lastName"
                       placeholder="Last Name"
-                      value={fillData?.lastName || ""}
                       {...register("lastName", { required: true })}
                     />
                     {errors.lastName && (
@@ -461,19 +482,12 @@ const HaveDesign = () => {
                     <label className="text-lg text-headingColor font-medium">
                       Phone*
                     </label>
-                    <Controller
+                    <Input
+                      className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                      type="number"
                       name="phone"
-                      control={control} // control is passed from useForm
-                      defaultValue={fillData?.phone || ""} // Set the default value
-                      rules={{ required: "Phone is required" }}
-                      render={({ field }) => (
-                        <Input
-                          {...field} // Let React Hook Form control the value and onChange
-                          className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
-                          type="number"
-                          placeholder="Phone"
-                        />
-                      )}
+                      {...register("phone", { required: true })}
+                      placeholder="Phone"
                     />
                     {errors.phone && (
                       <span className="text-red-500 text-sm">
@@ -489,8 +503,8 @@ const HaveDesign = () => {
                     <Input
                       className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                       type="email"
+                      name="email"
                       placeholder="Email"
-                      value={fillData?.email || ""}
                       {...register("email", { required: true })}
                     />
                     {errors.email && (
@@ -509,8 +523,8 @@ const HaveDesign = () => {
                     <Input
                       className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                       type="text"
+                      name="companyName"
                       placeholder="Company Name"
-                      value={fillData?.companyName || ""}
                       {...register("companyName", { required: true })}
                     />
                     {errors.companyName && (
@@ -533,7 +547,6 @@ const HaveDesign = () => {
                       rules={{ required: "Country is required" }}
                       render={({ field }) => (
                         <Select
-                          value={fillData?.country || ""}
                           {...field}
                           onValueChange={(value) => field.onChange(value)}
                         >
@@ -571,7 +584,6 @@ const HaveDesign = () => {
                       rules={{ required: "Region is required" }}
                       render={({ field }) => (
                         <Select
-                          value={fillData?.region || ""}
                           {...field}
                           onValueChange={(value) => field.onChange(value)}
                         >
@@ -612,7 +624,6 @@ const HaveDesign = () => {
                       rules={{ required: "City is required" }}
                       render={({ field }) => (
                         <Select
-                          value={fillData?.City || ""}
                           {...field}
                           onValueChange={(value) => field.onChange(value)}
                         >
@@ -648,7 +659,7 @@ const HaveDesign = () => {
                       className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
                       type="number"
                       placeholder="Postal Code"
-                      value={fillData?.postalCode || ""}
+                      name="postalCode"
                       {...register("postalCode", { required: true })}
                     />
                     {errors.postalCode && (
