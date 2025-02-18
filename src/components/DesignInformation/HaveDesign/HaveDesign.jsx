@@ -13,10 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Controller, useForm } from "react-hook-form";
 
 const HaveDesign = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isToggled, setIsToggled] = useState(false);
+  const [fillData, setFillData] = useState();
   // Handle file selection
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -25,10 +27,38 @@ const HaveDesign = () => {
     }
   };
 
+  //
+
+  console.log(fillData);
+
   // Toggle the state when switch is clicked
   const handleToggle = () => {
     setIsToggled((prevState) => !prevState);
   };
+
+  // This is the local storage data
+  const savedAddresses =
+    JSON.parse(localStorage.getItem("savedAddresses")) || [];
+  console.log(savedAddresses);
+  console.log(savedAddresses[0].country);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
+  const handleSelectChange = (value) => {
+    console.log(value);
+    const index = parseInt(value.split("_")[1]);
+    setFillData(savedAddresses[index]);
+  };
+
+  console.log(fillData);
 
   return (
     <section>
@@ -185,8 +215,6 @@ const HaveDesign = () => {
                 placeholder="Design Placement"
               />
             </div>
-
-            {/* Product Information */}
             {/* This is the Product Information */}
             <div className="mt-12">
               <h1 className="text-center text-buttonColor text-2xl">
@@ -363,33 +391,285 @@ const HaveDesign = () => {
                   <label className="text-lg text-headingColor font-medium">
                     Shipping Address (required)*
                   </label>
-                  <Select>
-                    <SelectTrigger className="py-[28px] h-[97px] pl-5 bg-[#D9D9D91A] !text-xl text-headingColor">
+                  <Select onValueChange={handleSelectChange}>
+                    <SelectTrigger className="py-[28px] h-[97px] pl-5 bg-[#D9D9D91A] !text-xl text-buttonColor">
                       <SelectValue
                         className="!text-navbarColor"
                         placeholder="Choose An Address"
                       />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="Billing Address 1">
-                          Billing Address 1
-                        </SelectItem>
-                        <SelectItem value="Billing Address 2">
-                          Billing Address 2
-                        </SelectItem>
-                      </SelectGroup>
+                      {savedAddresses.map((address, index) => {
+                        return (
+                          <SelectItem
+                            key={index}
+                            value={`Address_${index}`}
+                            item
+                          >
+                            Billing Address {index + 1}
+                          </SelectItem>
+                        );
+                      })}
                     </SelectContent>
                   </Select>
                 </div>
               </div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {/* This is the First and Last field */}
+                <div className="flex justify-between gap-5 mt-7">
+                  {/* This is the First Name input */}
+                  <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                    <label className="text-lg text-headingColor font-medium">
+                      First Name*
+                    </label>
+                    <Input
+                      className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                      type="text"
+                      placeholder="First Name"
+                      value={fillData?.firstName || ""}
+                      {...register("firstName", { required: true })}
+                    />
+                    {errors.firstName && (
+                      <span className="text-red-500 text-sm">
+                        First Name is required
+                      </span>
+                    )}
+                  </div>
+                  {/* This is the Last Name input */}
+                  <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                    <label className="text-lg text-headingColor font-medium">
+                      Last Name*
+                    </label>
+                    <Input
+                      className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                      type="text"
+                      placeholder="Last Name"
+                      value={fillData?.lastName || ""}
+                      {...register("lastName", { required: true })}
+                    />
+                    {errors.lastName && (
+                      <span className="text-red-500 text-sm">
+                        Last Name is required
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {/* This is the Phone and Email field */}
+                <div className="flex justify-between gap-5 mt-7">
+                  {/* This is the Phone input */}
+                  <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                    <label className="text-lg text-headingColor font-medium">
+                      Phone*
+                    </label>
+                    <Controller
+                      name="phone"
+                      control={control} // control is passed from useForm
+                      defaultValue={fillData?.phone || ""} // Set the default value
+                      rules={{ required: "Phone is required" }}
+                      render={({ field }) => (
+                        <Input
+                          {...field} // Let React Hook Form control the value and onChange
+                          className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                          type="number"
+                          placeholder="Phone"
+                        />
+                      )}
+                    />
+                    {errors.phone && (
+                      <span className="text-red-500 text-sm">
+                        Phone is required
+                      </span>
+                    )}
+                  </div>
+                  {/* This is the Email input */}
+                  <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                    <label className="text-lg text-headingColor font-medium">
+                      Email*
+                    </label>
+                    <Input
+                      className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                      type="email"
+                      placeholder="Email"
+                      value={fillData?.email || ""}
+                      {...register("email", { required: true })}
+                    />
+                    {errors.email && (
+                      <span className="text-red-500 text-sm">
+                        Email is required
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {/* This is the Company Name field */}
+                <div className="flex justify-between gap-5 mt-7">
+                  <div className="flex flex-col gap-y-[10.5px] w-full">
+                    <label className="text-lg text-headingColor font-medium">
+                      Company Name
+                    </label>
+                    <Input
+                      className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                      type="text"
+                      placeholder="Company Name"
+                      value={fillData?.companyName || ""}
+                      {...register("companyName", { required: true })}
+                    />
+                    {errors.companyName && (
+                      <span className="text-red-500 text-sm">
+                        Company Name is required
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {/* This is the Country and Region field */}
+                <div className="flex justify-between gap-5 mt-7">
+                  {/* This is the Country* input */}
+                  <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                    <label className="text-lg text-headingColor font-medium">
+                      Country*
+                    </label>
+                    <Controller
+                      name="Country"
+                      control={control}
+                      rules={{ required: "Country is required" }}
+                      render={({ field }) => (
+                        <Select
+                          value={fillData?.country || ""}
+                          {...field}
+                          onValueChange={(value) => field.onChange(value)}
+                        >
+                          <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                            <SelectValue
+                              className="!text-navbarColor"
+                              placeholder="Select"
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>Country</SelectLabel>
+                              <SelectItem value="America">America</SelectItem>
+                              <SelectItem value="Uk">UK</SelectItem>
+                              <SelectItem value="Canada">Canada</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      )}
+                    />
+                    {errors.Country && (
+                      <p className="text-red-500 text-sm">
+                        {errors.Country.message}{" "}
+                      </p>
+                    )}
+                  </div>
+                  {/* This is the Region/State* input */}
+                  <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                    <label className="text-lg text-headingColor font-medium">
+                      Region/State*
+                    </label>
+                    <Controller
+                      name="Region"
+                      control={control}
+                      rules={{ required: "Region is required" }}
+                      render={({ field }) => (
+                        <Select
+                          value={fillData?.region || ""}
+                          {...field}
+                          onValueChange={(value) => field.onChange(value)}
+                        >
+                          <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                            <SelectValue
+                              className="!text-navbarColor"
+                              placeholder="Select"
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>Region/State*</SelectLabel>
+                              <SelectItem value="Texas">Texas</SelectItem>
+                              <SelectItem value="Virginia">Virginia</SelectItem>
+                              <SelectItem value="Dallas">Dallas</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      )}
+                    />
+                    {errors.Region && (
+                      <p className="text-red-500 text-sm">
+                        {errors.Region.message}{" "}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                {/* This is the City and Postal Code field */}
+                <div className="flex justify-between gap-5 mt-7">
+                  {/* This is the City input */}
+                  <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                    <label className="text-lg text-headingColor font-medium">
+                      City*
+                    </label>
+                    <Controller
+                      name="City"
+                      control={control}
+                      rules={{ required: "City is required" }}
+                      render={({ field }) => (
+                        <Select
+                          value={fillData?.City || ""}
+                          {...field}
+                          onValueChange={(value) => field.onChange(value)}
+                        >
+                          <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                            <SelectValue
+                              className="!text-navbarColor"
+                              placeholder="Select"
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>City</SelectLabel>
+                              <SelectItem value="New York">New York</SelectItem>
+                              <SelectItem value="LA">LA</SelectItem>
+                              <SelectItem value="Dallas">Dallas</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      )}
+                    />
+                    {errors.City && (
+                      <p className="text-red-500 text-sm">
+                        {errors.City.message}
+                      </p>
+                    )}
+                  </div>
+                  {/* This is the Postal Code input */}
+                  <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                    <label className="text-lg text-headingColor font-medium">
+                      Postal Code
+                    </label>
+                    <Input
+                      className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                      type="number"
+                      placeholder="Postal Code"
+                      value={fillData?.postalCode || ""}
+                      {...register("postalCode", { required: true })}
+                    />
+                    {errors.postalCode && (
+                      <span className="text-red-500 text-sm">
+                        Postal Code is required
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {/* This it the button */}
+                <div className="flex justify-center mt-12">
+                  <Button
+                    type="submit"
+                    text={"Place Order"}
+                    color={"bg-buttonColor"}
+                  />
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </div>
-      {/* This it the button */}
-      <div className="flex justify-center mt-12">
-        <Button text={"Place Order"} color={"bg-buttonColor"} />
       </div>
     </section>
   );

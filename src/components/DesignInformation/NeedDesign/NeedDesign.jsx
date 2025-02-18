@@ -362,11 +362,24 @@ const HaveDesign = () => {
                   <label className="text-lg text-headingColor font-medium">
                     Shipping Address (required)*
                   </label>
-                  <Input
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
-                    type="text"
-                    placeholder="Enter full delivery address.."
-                  />
+                  <Select>
+                    <SelectTrigger className="py-[28px] h-[97px] pl-5 bg-[#D9D9D91A] !text-xl  text-buttonColor">
+                      <SelectValue
+                        className="!text-navbarColor"
+                        placeholder="Choose An Address"
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="Billing Address 1">
+                          Billing Address 1
+                        </SelectItem>
+                        <SelectItem value="Billing Address 2">
+                          Billing Address 2
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>

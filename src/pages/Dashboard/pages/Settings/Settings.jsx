@@ -42,20 +42,17 @@ const Settings = () => {
     reset,
   } = useForm();
 
+  useEffect(() => {
+    const storedAddresses =
+      JSON.parse(localStorage.getItem("savedAddresses")) || [];
+    setSavedAddresses(storedAddresses);
+  }, []);
+
   const onSubmit = (data) => {
-    // Update the savedAddresses state with the new data
     const updatedAddresses = [...savedAddresses, data];
-
-    // Save the updated addresses array to localStorage
     localStorage.setItem("savedAddresses", JSON.stringify(updatedAddresses));
-
-    // Update the state with the new addresses
     setSavedAddresses(updatedAddresses);
-
-    // Close the form or reset UI
     setAddNewAddress(false);
-
-    // Reset the form values (if using a form handling library like React Hook Form)
     reset();
   };
 
