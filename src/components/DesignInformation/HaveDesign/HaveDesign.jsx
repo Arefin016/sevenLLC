@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { UploadFileSvg } from "../../SvgContainer/SvgConainer";
 import Button from "../../Button/Button";
 import React from "react";
-import { Space, Switch } from "antd";
+import { Empty, Space, Switch } from "antd";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -26,9 +26,6 @@ const HaveDesign = () => {
       setSelectedFile(file);
     }
   };
-
-  //
-  // console.log(fillData);
 
   // Toggle the state when switch is clicked
   const handleToggle = () => {
@@ -72,8 +69,8 @@ const HaveDesign = () => {
       if (fillData.country) {
         setValue("Country", fillData.country);
       }
-      if (fillData.region) {
-        setValue("Region", fillData.region);
+      if (fillData?.region) {
+        setValue("Region", fillData?.region);
       }
       if (fillData.City) {
         setValue("City", fillData.City);
@@ -420,8 +417,8 @@ const HaveDesign = () => {
                       />
                     </SelectTrigger>
                     <SelectContent>
-                      {savedAddresses.map((address, index) => {
-                        return (
+                      {savedAddresses.length > 0 ? (
+                        savedAddresses.map((address, index) => (
                           <SelectItem
                             key={index}
                             value={`Address_${index}`}
@@ -429,8 +426,10 @@ const HaveDesign = () => {
                           >
                             Billing Address {index + 1}
                           </SelectItem>
-                        );
-                      })}
+                        ))
+                      ) : (
+                        <Empty />
+                      )}
                     </SelectContent>
                   </Select>
                 </div>
@@ -595,10 +594,12 @@ const HaveDesign = () => {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectGroup>
-                              <SelectLabel>Region/State*</SelectLabel>
+                              <SelectLabel>Region</SelectLabel>
+                              <SelectItem value="California">
+                                California
+                              </SelectItem>
                               <SelectItem value="Texas">Texas</SelectItem>
-                              <SelectItem value="Virginia">Virginia</SelectItem>
-                              <SelectItem value="Dallas">Dallas</SelectItem>
+                              <SelectItem value="Florida">Florida</SelectItem>
                             </SelectGroup>
                           </SelectContent>
                         </Select>
@@ -606,7 +607,7 @@ const HaveDesign = () => {
                     />
                     {errors.Region && (
                       <p className="text-red-500 text-sm">
-                        {errors.Region.message}{" "}
+                        {errors.Region.message}
                       </p>
                     )}
                   </div>
@@ -637,8 +638,10 @@ const HaveDesign = () => {
                             <SelectGroup>
                               <SelectLabel>City</SelectLabel>
                               <SelectItem value="New York">New York</SelectItem>
-                              <SelectItem value="LA">LA</SelectItem>
-                              <SelectItem value="Dallas">Dallas</SelectItem>
+                              <SelectItem value="Los Angeles">
+                                Los Angeles
+                              </SelectItem>
+                              <SelectItem value="Chicago">Chicago</SelectItem>
                             </SelectGroup>
                           </SelectContent>
                         </Select>
