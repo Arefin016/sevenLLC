@@ -1,46 +1,30 @@
 import ChooseUsCard from "../../../components/ChooseUsCard/ChooseUsCard";
-import chooseUsLogo1 from "../../../assets/images/chooseUslogo/logo1.png";
-import chooseUsLogo2 from "../../../assets/images/chooseUslogo/logo2.png";
-import chooseUsLogo3 from "../../../assets/images/chooseUslogo/logo3.png";
-import chooseUsLogo4 from "../../../assets/images/chooseUslogo/logo4.png";
-import chooseUsLogo5 from "../../../assets/images/chooseUslogo/logo5.png";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const WhyChooseUs = () => {
-  const chooseUsData = [
-    {
-      imgSrc: chooseUsLogo1,
-      title: "Locally Owned, Globally Connected",
-      description:
-        "We’re proud to be located in Rhode Island, with a global network of trusted suppliers, offering high-quality and high-quantity packaging solutions.",
-    },
-    {
-      imgSrc: chooseUsLogo2,
-      title: "Customer-Centric Approach",
-      description:
-        "As a small business, we focus on building strong relationships with our clients, offering 24/7 support and a seamless customer experience.",
-    },
-    {
-      imgSrc: chooseUsLogo3,
-      title: "Timely & Professional",
-      description:
-        "From quick quotes to fast turnarounds, we prioritize your deadlines and ensure your satisfaction at every step.",
-    },
-    {
-      imgSrc: chooseUsLogo4,
-      title: "Uncompromising Quality",
-      description:
-        "Every product is sourced from certified suppliers with proven records of ethical practices, durable materials, and exceptional craftsmanship.",
-    },
-    {
-      imgSrc: chooseUsLogo5,
-      title: "Versatility B2B Service",
-      description:
-        "We provide tailored solutions for industries from food to luxury goods. We are truly a business’s business, supporting your B2B needs!",
-    },
-  ];
+  const axiosPublic = useAxiosPublic();
 
-  const remainder = chooseUsData.length % 3;
-  const fullRowsCount = Math.floor(chooseUsData.length / 3) * 3;
+  const whyChooseUsData = async () => {
+    try {
+      const response = await axiosPublic.get("/api/about-us");
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching card data:", error.message || error);
+      throw new Error("Failed to fetch card data");
+    }
+  };
+
+  const { data: WhyChooseUsData } = useQuery({
+    queryKey: ["WhyChooseUsData"],
+    queryFn: whyChooseUsData,
+  });
+
+  // console.log(WhyChooseUsData?.data?.WHY_CHOOSE_ITEMS);
+
+  const remainder = WhyChooseUsData?.data?.WHY_CHOOSE_ITEMS.length % 3;
+  const fullRowsCount =
+    Math.floor(WhyChooseUsData?.data?.WHY_CHOOSE_ITEMS.length / 3) * 3;
 
   return (
     <section className="mt-[158px]">
@@ -54,26 +38,32 @@ const WhyChooseUs = () => {
         </div>
 
         <div className="grid grid-cols-3 gap-[30px] mt-[52px] ">
-          {chooseUsData.slice(0, fullRowsCount).map((card, index) => (
-            <ChooseUsCard
-              key={index}
-              imgSrc={card.imgSrc}
-              title={card.title}
-              description={card.description}
-            />
-          ))}
+          {WhyChooseUsData?.data?.WHY_CHOOSE_ITEMS.slice(0, fullRowsCount).map(
+            (card, index) => (
+              <ChooseUsCard
+                key={index}
+                imgSrc={`${import.meta.env.VITE_SITE_URL}/${card.image_url}`}
+                title={card.title}
+                description={card.description}
+              />
+            )
+          )}
 
           {/* This is the card section */}
           {remainder > 0 && (
             <div className="col-span-3 flex justify-center gap-[30px]">
-              {chooseUsData.slice(fullRowsCount).map((item, index) => (
-                <ChooseUsCard
-                  key={fullRowsCount + index}
-                  imgSrc={item.imgSrc}
-                  title={item.title}
-                  description={item.description}
-                />
-              ))}
+              {WhyChooseUsData?.data?.WHY_CHOOSE_ITEMS.slice(fullRowsCount).map(
+                (item, index) => (
+                  <ChooseUsCard
+                    key={fullRowsCount + index}
+                    imgSrc={`${import.meta.env.VITE_SITE_URL}/${
+                      item.image_url
+                    }`}
+                    title={item.title}
+                    description={item.description}
+                  />
+                )
+              )}
             </div>
           )}
         </div>

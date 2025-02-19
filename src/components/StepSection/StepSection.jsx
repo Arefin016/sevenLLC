@@ -24,12 +24,12 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
     }
   };
 
-  const { data: StepFormData } = useQuery({
+  const { isLoading, data: StepFormData } = useQuery({
     queryKey: ["stepFormData"],
     queryFn: stepFormData,
   });
 
-  // console.log(StepFormData?.data?.works_step_1);
+  console.log(StepFormData?.data?.works_step_1);
 
   return (
     <section className="">
@@ -53,10 +53,11 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
             </div>
             <div className="mt-7">
               <h1 className="text-headingColor text-lg font-semibold">
-                {StepFormData?.data?.works_step_1?.title}
+                {title}
               </h1>
               <p className="text-lg text-navbarColor mt-[9px]">
-                {StepFormData?.data?.works_step_1?.description}
+                Upload your design or work with our team to bring your vision to
+                life.
               </p>
             </div>
           </div>
@@ -73,10 +74,10 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
             </div>
             <div className="mt-7">
               <h1 className="text-headingColor text-lg font-semibold">
-                {StepFormData?.data?.works_step_2?.title}
+                Receive a Quote
               </h1>
               <p className="text-lg text-navbarColor mt-[9px]">
-                {StepFormData?.data?.works_step_2?.description}
+                Get competitive pricing within 2-3 business <br /> days.
               </p>
             </div>
           </div>
@@ -94,10 +95,10 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
             {/*  */}
             <div className="mt-7">
               <h1 className="text-headingColor text-lg font-semibold">
-                {StepFormData?.data?.works_step_3?.title}
+                Production Begins
               </h1>
               <p className="text-lg text-navbarColor mt-[9px]">
-                {StepFormData?.data?.works_step_3?.description}
+                We handle everything from manufacturing to quality checks.
               </p>
             </div>
           </div>
@@ -114,10 +115,10 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
             {/*  */}
             <div className="mt-7">
               <h1 className="text-headingColor text-lg font-semibold">
-                {StepFormData?.data?.works_step_4?.title}
+                Delivered to You
               </h1>
               <p className="text-lg text-navbarColor mt-[9px]">
-                {StepFormData?.data?.works_step_3?.description}
+                Your high-quality packaging arrives on time, every <br /> time.
               </p>
             </div>
           </div>

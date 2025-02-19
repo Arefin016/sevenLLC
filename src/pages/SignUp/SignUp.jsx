@@ -10,15 +10,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import useAuth from "@/hooks/useAuth";
 
 const SignUp = () => {
   const [image, setImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const {currentUser , setCurrentUser} = useAuth()
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const axiosPublic = useAxiosPublic();
+
+  
 
   const {
     register,
@@ -53,7 +57,9 @@ const SignUp = () => {
       // Store the token received in the response
       localStorage.setItem("token", response?.data?.data?.token);
 
-      console.log(response);
+
+      console.log( 'response', response.data.data);
+      setCurrentUser(response.data.data)
       toast.success(response.data.message, {
         duration: 1500,
       });

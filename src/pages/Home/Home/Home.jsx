@@ -67,7 +67,7 @@ const Home = () => {
     queryFn: chooseUsData,
   });
 
-  console.log(ChooseUsData?.data?.why_choose_us);
+  // console.log(ChooseUsData?.data?.why_choose_us);
 
   return (
     <div>

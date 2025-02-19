@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 const axiosSecure = axios.create({
@@ -9,22 +9,14 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const [authToken, setAuthToken] = useState(null);
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      setAuthToken(token);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (authToken) {
-      axiosSecure.defaults.headers["Authorization"] = `Bearer ${authToken}`;
+      axiosSecure.defaults.headers["Authorization"] = `Bearer ${token}`;
     } else {
       delete axiosSecure.defaults.headers["Authorization"];
     }
-  }, [authToken]);
+  }, []);
 
   return axiosSecure;
 };

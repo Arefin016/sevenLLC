@@ -13,6 +13,8 @@ import productServicePic11 from "../../../assets/images/productServicePic/produc
 import productServicePic12 from "../../../assets/images/productServicePic/productServicePic12.png";
 import productServicePic13 from "../../../assets/images/productServicePic/productServicePic13.png";
 import productServicePic14 from "../../../assets/images/productServicePic/productServicePic14.png";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductCardSection = () => {
   // This is the industry data section
@@ -179,47 +181,79 @@ const ProductCardSection = () => {
       buttonColor: "bg-buttonColor",
     },
   ];
+
+  const axiosPublic = useAxiosPublic();
+
+  const allProductData = async () => {
+    try {
+      const response = await axiosPublic.get("/api/explore-all");
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching card data: ", error.message || error);
+      throw new Error("Failed to fetch card data");
+    }
+  };
+
+  const { data: AllProductData } = useQuery({
+    queryKey: ["allProductData"],
+    queryFn: allProductData,
+  });
+
+  console.log(AllProductData?.data[1]?.products);
+
   return (
     <section className="mt-[90px]">
       <div className="container mx-auto">
         <div className="flex flex-col justify-center text-center">
           <h2 className="headingStyle">Products & Services</h2>
-          <p className="text-buttonColor text-[28px] font-medium mt-2">
-            Section 1 : By Industry
-          </p>
           {/* This is the Industry Data section */}
+          <p className="text-buttonColor text-[28px] font-medium mt-2">
+            Section 1 : {AllProductData?.data[0]?.name}
+          </p>
           <div className="container mx-auto mt-[77px] space-y-[77px]">
-            {industryData?.map((product, index) => (
-              <ProductCard key={index} {...product} />
+            {AllProductData?.data[0]?.products?.map((product, index) => (
+              <ProductCard
+                key={index}
+                description={product?.description}
+                image={`${import.meta.env.VITE_SITE_URL}/${product?.image}`}
+              />
             ))}
           </div>
-          {/* This is the Industry Data section */}
+          {/* This is the By Material Data section */}
           <div className="container mx-auto mt-[113px] space-y-[77px]">
             <div>
               <h1 className="text-buttonColor text-[28px] font-medium">
-                Section 2 : By Material
+                Section 2 : {AllProductData?.data[1].name}
               </h1>
               <p className="text-xl text-navbarColor mt-5">
                 For customers looking for specific materials to suit their
                 needs.
               </p>
             </div>
-            {materialData?.map((product, index) => (
-              <ProductCard key={index} {...product} />
+            {AllProductData?.data[1]?.products?.map((product, index) => (
+              <ProductCard
+                key={index}
+                description={product?.description}
+                image={`${import.meta.env.VITE_SITE_URL}/${product?.image}`}
+              />
             ))}
           </div>
           {/* This is the Function Data section */}
           <div className="container mx-auto mt-[113px] space-y-[77px]">
             <div>
               <h1 className="text-buttonColor text-[28px] font-medium">
-                Section 3 : By Function
+                Section 3 : {AllProductData?.data[2].name}
               </h1>
               <p className="text-xl text-navbarColor mt-5">
                 Customers can find products based on their intended use.
               </p>
             </div>
-            {functionData?.map((product, index) => (
-              <ProductCard key={index} {...product} />
+            {AllProductData?.data[2]?.products?.map((product, index) => (
+              <ProductCard
+                key={index}
+                description={product?.description}
+                image={`${import.meta.env.VITE_SITE_URL}/${product?.image}`}
+              />
             ))}
           </div>
         </div>

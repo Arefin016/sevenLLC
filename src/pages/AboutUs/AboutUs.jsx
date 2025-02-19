@@ -47,7 +47,7 @@ const AboutUs = () => {
     queryFn: aboutUsBannerData,
   });
 
-  console.log(AboutUsBannerData?.data?.OUR_MISSION);
+  console.log(AboutUsBannerData?.data?.WHY_CHOOSE_ITEMS);
 
   return (
     <section className="mt-[148px]">
