@@ -213,6 +213,7 @@ const ProductCardSection = () => {
           <div className="container mx-auto mt-[77px] space-y-[77px]">
             {AllProductData?.data[0]?.products?.map((product, index) => (
               <ProductCard
+                reverse={product.reverse === "right"}
                 key={index}
                 description={product?.description}
                 image={`${import.meta.env.VITE_SITE_URL}/${product?.image}`}
@@ -233,6 +234,7 @@ const ProductCardSection = () => {
             {AllProductData?.data[1]?.products?.map((product, index) => (
               <ProductCard
                 key={index}
+                reverse={product.reverse === "right"}
                 description={product?.description}
                 image={`${import.meta.env.VITE_SITE_URL}/${product?.image}`}
               />
@@ -251,6 +253,7 @@ const ProductCardSection = () => {
             {AllProductData?.data[2]?.products?.map((product, index) => (
               <ProductCard
                 key={index}
+                reverse={product.reverse === "right"}
                 description={product?.description}
                 image={`${import.meta.env.VITE_SITE_URL}/${product?.image}`}
               />
