@@ -49,6 +49,11 @@ const SignUp = () => {
       const response = await axiosPublic.post("/api/users/register", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+
+      // Store the token received in the response
+      localStorage.setItem("token", response?.data?.data?.token);
+
+      console.log(response);
       toast.success(response.data.message, {
         duration: 1500,
       });

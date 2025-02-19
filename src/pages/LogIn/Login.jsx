@@ -4,10 +4,10 @@ import logo from "../../assets/images/signUpImage/signUpLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { SignUpSvg } from "../../components/SvgContainer/SvgConainer";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 const Login = () => {
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -23,11 +23,24 @@ const Login = () => {
         email: data.email,
         password: data.password,
       });
+
       console.log(response);
-      localStorage.setItem("token", response.data.token);
+
+      // Store the token received in the response
+      localStorage.setItem("token", response?.data?.data?.token);
+
+      // Dynamically show success toast with user's first name
+      const firstName = response?.data?.data?.first_name;
+
+      toast.success(`${firstName} logged in successfully!`, {
+        autoClose: 3000,
+      });
       navigate("/");
     } catch (error) {
       console.error("Login failed", error);
+      toast.error("Login failed! Please try again.", {
+        autoClose: 3000,
+      });
     }
   };
 
