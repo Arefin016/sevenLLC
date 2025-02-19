@@ -6,18 +6,15 @@ import parse from "html-react-parser";
 const ChooseUs = ({
   title,
   description,
-  image,
   buttonText,
   imageAlt = "Choose us image",
   showBreadcrumb = true,
-  img
+  img,
 }) => {
   const location = useLocation();
 
   const parsedData =
     typeof description === "string" ? description : String(description);
-
-  console.log(parsedData);
 
   return (
     <section className="ml-[210px] mt-[150px]">
@@ -30,15 +27,15 @@ const ChooseUs = ({
           <h1 className="text-headingColor text-5xl font-bold max-w-[721px] leading-[67.2px]">
             {title}
           </h1>
-         
-          <p className="user-descreption-wrapper"> {parse(parsedData)}</p>
+
+          <p className="user-descreption-wrapper mt-4">{parse(parsedData)}</p>
           {/* Button Section */}
           <div className="mt-12">
             <Button text={buttonText} color={"bg-buttonColor"} />
           </div>
         </div>
         {/* Second div: Image */}
-        <div className="max-w-[829px] h-[671px] object-cover">
+        <div className="max-w-[829px] h-[710px] object-cover">
           <img src={img} alt={imageAlt} />
         </div>
       </div>

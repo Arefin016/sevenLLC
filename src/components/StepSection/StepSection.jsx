@@ -29,7 +29,7 @@ const StepSection = ({ title, subtitle, btnText, isAbout }) => {
     queryFn: stepFormData,
   });
 
-  console.log(StepFormData?.data?.works_step_1);
+  // console.log(StepFormData?.data?.works_step_1);
 
   return (
     <section className="">

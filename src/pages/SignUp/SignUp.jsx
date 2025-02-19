@@ -6,30 +6,84 @@ import {
   UploadPicSvg,
 } from "../../components/SvgContainer/SvgConainer";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+  // const [image, setImage] = useState(null);
+  // const [showPassword, setShowPassword] = useState(false);
+  // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [image, setImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    setLoading(true);
+    try {
+      // Create FormData to send files
+      const formData = new FormData();
+      formData.append("first_name", data.first_Name);
+      formData.append("last_name", data.last_Name);
+      formData.append("phone", data.phone);
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      formData.append("password_confirmation", data.password_confirmation);
+      if (image) formData.append("avatar", image);
+
+      console.log(...formData);
+
+      // Send formData to your backend API
+      const response = await axiosPublic.post("/api/users/register", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      // console.log(response);
+      toast.success(response.data.message, {
+        duration: 1500,
+      });
+      reset();
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration Error: ", error);
+      alert(error.response?.data?.message || "Registration Failed.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    if (file && file.size <= 2 * 1024 * 1024) {
-      setImage(URL.createObjectURL(file)); 
-    } else {
-      alert("File must be less than 2MB.");
+
+    if (file) {
+      // Validate file type and size
+      if (!file.type.startsWith("image/")) {
+        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
+        return;
+      }
+      if (file.size > 2 * 1024 * 1024) {
+        // 2MB limit
+        alert("File must be less than 2MB.");
+        return;
+      }
+      // Set the image as a File object
+      setImage(file);
     }
   };
+  console.log(image);
+
   return (
     <section>
       <div className="flex h-[100vh] overflow-hidden">
@@ -46,7 +100,10 @@ const SignUp = () => {
             </h1>
           </div>
           {/* Input Field */}
-          <div className="ml-[200px] mt-16 max-w-[560px]">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="ml-[200px] mt-16 max-w-[560px]"
+          >
             <div className="flex gap-4 items-center">
               <label
                 htmlFor="photo-upload"
@@ -80,7 +137,7 @@ const SignUp = () => {
             </div>
             {/* This is input field */}
             {/* Your Name Field */}
-            <form onSubmit={handleSubmit(onSubmit)} className="mt-12">
+            <div className="mt-12">
               {/* This is the First name input field */}
               <div className="flex flex-col gap-2">
                 <label className="text-headingColor text-lg font-medium">
@@ -88,12 +145,12 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                  name="firstName"
-                  {...register("firstName", { required: true })}
+                  name="first_Name"
+                  {...register("first_Name", { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Your First Name"
                 />
-                {errors.firstName && (
+                {errors.first_Name && (
                   <span className="text-red-600 font-semibold">
                     First Name is required
                   </span>
@@ -106,12 +163,12 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                  name="lastName"
-                  {...register("lastName", { required: true })}
+                  name="last_Name"
+                  {...register("last_Name", { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Your Last Name"
                 />
-                {errors.lastName && (
+                {errors.last_Name && (
                   <span className="text-red-600 font-semibold">
                     Last Name is required
                   </span>
@@ -188,8 +245,8 @@ const SignUp = () => {
                 </label>
                 <input
                   type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  {...register("confirmPassword", { required: true })}
+                  name="password_confirmation"
+                  {...register("password_confirmation", { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Password"
                 />
@@ -203,7 +260,7 @@ const SignUp = () => {
                     <IoEyeOffOutline className="text-xl" />
                   )}
                 </span>
-                {errors.confirmPassword && (
+                {errors.password_confirmation && (
                   <span className="text-red-600 font-semibold">
                     Confirm Password is required
                   </span>
@@ -239,8 +296,8 @@ const SignUp = () => {
                   </span>{" "}
                 </Link>
               </p>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
         {/* This is the right div */}
         <div className="w-[50%] relative">

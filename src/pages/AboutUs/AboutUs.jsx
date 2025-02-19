@@ -7,6 +7,8 @@ import BetterPlanet from "../Home/BetterPlanet/BetterPlanet";
 import commitmentPic from "../../assets/images/commitmentPic.png";
 import WhyChooseUs from "./WhyChooseUs/WhyChooseUs";
 import WhatWeOffer from "./WhatWeOffer/WhatWeOffer";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const AboutUs = () => {
   const bulletPoints = [
@@ -28,18 +30,44 @@ const AboutUs = () => {
       "linear-gradient(0deg, rgba(7, 160, 236, 0.90) 0%, rgba(7, 160, 236, 0.90) 100%)",
   };
 
+  const axiosPublic = useAxiosPublic();
+
+  const aboutUsBannerData = async () => {
+    try {
+      const response = await axiosPublic.get("/api/about-us");
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching card data:", error.message || error);
+      throw new Error("Failed to fetch card data");
+    }
+  };
+
+  const { data: AboutUsBannerData } = useQuery({
+    queryKey: aboutUsBannerData,
+    queryFn: aboutUsBannerData,
+  });
+
+  console.log(AboutUsBannerData?.data?.OUR_MISSION);
+
   return (
     <section className="mt-[148px]">
       <div>
         <ChooseUs
-          title="Your Teammate in Packaging Excellence"
-          bulletPoints={bulletPoints}
-          description={description}
-          image={choosePic}
+          title={AboutUsBannerData?.data?.ABOUT_US?.title}
+          description={AboutUsBannerData?.data?.ABOUT_US?.description}
           buttonText="Learn More About 777Bags"
           showBreadcrumb={true}
+          img={`${import.meta.env.VITE_SITE_URL}/${
+            AboutUsBannerData?.data?.ABOUT_US?.image_url
+          }`}
         />
-        <OurStory />
+        <OurStory
+          image={`${import.meta.env.VITE_SITE_URL}/${
+            AboutUsBannerData?.data?.OUR_STORY?.image_url
+          }`}
+          title={AboutUsBannerData?.data?.OUR_STORY?.title}
+          subTitle={AboutUsBannerData?.data?.OUR_STORY?.description}
+        />
         <MissionAndVision />
         <WhyChooseUs />
         <div className="bg-[#FAFBFC] pb-[150px] pt-[137px] mt-[150px]">
