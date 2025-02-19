@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
 import logo from "../../assets/images/signUpImage/signUpLogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SignUpSvg } from "../../components/SvgContainer/SvgConainer";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 const Login = () => {
   const {
     register,
@@ -11,7 +12,24 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const navigate = useNavigate();
+
+  const axiosSecure = useAxiosSecure();
+
+  const onSubmit = async (data) => {
+    try {
+      // Make the login request to the backend
+      const response = await axiosSecure.post("api/users/login", {
+        email: data.email,
+        password: data.password,
+      });
+      console.log(response);
+      localStorage.setItem("token", response.data.token);
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed", error);
+    }
+  };
 
   return (
     <section>

@@ -12,9 +12,6 @@ import useAxiosPublic from "@/hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 
 const SignUp = () => {
-  // const [image, setImage] = useState(null);
-  // const [showPassword, setShowPassword] = useState(false);
-  // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [image, setImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -27,8 +24,11 @@ const SignUp = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const password = watch("password");
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -49,8 +49,6 @@ const SignUp = () => {
       const response = await axiosPublic.post("/api/users/register", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
-      // console.log(response);
       toast.success(response.data.message, {
         duration: 1500,
       });
@@ -58,7 +56,7 @@ const SignUp = () => {
       navigate("/login");
     } catch (error) {
       console.error("Registration Error: ", error);
-      alert(error.response?.data?.message || "Registration Failed.");
+      toast.error(error.response?.data?.message || "Registration Failed.");
     } finally {
       setLoading(false);
     }
@@ -68,21 +66,17 @@ const SignUp = () => {
     const file = event.target.files[0];
 
     if (file) {
-      // Validate file type and size
       if (!file.type.startsWith("image/")) {
         alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
         return;
       }
       if (file.size > 2 * 1024 * 1024) {
-        // 2MB limit
         alert("File must be less than 2MB.");
         return;
       }
-      // Set the image as a File object
       setImage(file);
     }
   };
-  console.log(image);
 
   return (
     <section>
@@ -215,57 +209,69 @@ const SignUp = () => {
                 <label className="text-headingColor text-lg font-medium">
                   Password
                 </label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  {...register("password", { required: true })}
-                  className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
-                  placeholder="Enter Password"
-                />
-                <span
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute bottom-[28px] right-[10px]"
-                >
-                  {showPassword ? (
-                    <IoEyeOutline className="text-xl" />
-                  ) : (
-                    <IoEyeOffOutline className="text-xl text-black" />
-                  )}
-                </span>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    {...register("password", {
+                      required: "Password is required",
+                    })}
+                    className="border border-[#D0D3D6] rounded-xl py-[25px] px-5 w-full"
+                    placeholder="Enter Password"
+                  />
+                  <span
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute bottom-[28px] right-[10px] cursor-pointer"
+                  >
+                    {showPassword ? (
+                      <IoEyeOutline className="text-xl" />
+                    ) : (
+                      <IoEyeOffOutline className="text-xl text-black" />
+                    )}
+                  </span>
+                </div>
                 {errors.password && (
                   <span className="text-red-600 font-semibold">
-                    Password is required
+                    {errors.password.message}
                   </span>
                 )}
               </div>
+
               {/* This is the Confirm Password input field */}
               <div className="flex flex-col gap-2 mt-[28px] relative">
                 <label className="text-headingColor text-lg font-medium">
                   Confirm Password
                 </label>
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="password_confirmation"
-                  {...register("password_confirmation", { required: true })}
-                  className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
-                  placeholder="Enter Password"
-                />
-                <span
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute bottom-[28px] right-[10px]"
-                >
-                  {showConfirmPassword ? (
-                    <IoEyeOutline className="text-xl" />
-                  ) : (
-                    <IoEyeOffOutline className="text-xl" />
-                  )}
-                </span>
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="password_confirmation"
+                    {...register("password_confirmation", {
+                      required: "Confirm Password is required",
+                      validate: (value) =>
+                        value === password || "Passwords do not match",
+                    })}
+                    className="border border-[#D0D3D6] rounded-xl py-[25px] px-5 w-full"
+                    placeholder="Enter Confirm Password"
+                  />
+                  <span
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute bottom-[28px] right-[10px] cursor-pointer"
+                  >
+                    {showConfirmPassword ? (
+                      <IoEyeOutline className="text-xl" />
+                    ) : (
+                      <IoEyeOffOutline className="text-xl" />
+                    )}
+                  </span>
+                </div>
                 {errors.password_confirmation && (
                   <span className="text-red-600 font-semibold">
-                    Confirm Password is required
+                    {errors.password_confirmation.message}
                   </span>
                 )}
               </div>
+
               {/* forget password text */}
               <div className="flex justify-center mt-[23px]">
                 <p className="text-navbarColor text-lg">
