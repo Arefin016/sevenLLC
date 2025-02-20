@@ -84,19 +84,6 @@ export function DataTableDemo({ setCheckedData }) {
   const columns = [
     {
       id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => {
-            table.toggleAllPageRowsSelected(!!value);
-            console.log("Select all checked:", value);
-          }}
-          aria-label="Select all"
-        />
-      ),
       cell: ({ row, table }) => (
         <Checkbox
           checked={row.getIsSelected()}
@@ -148,12 +135,12 @@ export function DataTableDemo({ setCheckedData }) {
     {
       accessorKey: "invoiceId",
       header: () => (
-        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base w-[100px]">
           Invoice ID
         </span>
       ),
       cell: ({ row }) => (
-        <div className="text-buttonColor text-xs xxs:text-base">
+        <div className="text-buttonColor text-xs xxs:text-base w-[100px]">
           {row.getValue("invoiceId")}
         </div>
       ),

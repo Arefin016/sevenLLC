@@ -8,7 +8,7 @@ const OrderHistory = () => {
   const [checkedData, setCheckedData] = useState(null);
 
   return (
-    <section className="px-8">
+    <section className="px-4 md:px-8">
       {checkedData ? (
         <OrderDetails checkedData={checkedData} />
       ) : (
