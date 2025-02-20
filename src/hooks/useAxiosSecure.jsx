@@ -1,23 +1,25 @@
-import { useEffect } from "react";
-import axios from "axios";
+import axios from 'axios';
 
-const axiosSecure = axios.create({
+export const axiosSecure = axios.create({
   baseURL: import.meta.env.VITE_SITE_URL,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
-const useAxiosSecure = () => {
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+axiosSecure.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
     if (token) {
-      axiosSecure.defaults.headers["Authorization"] = `Bearer ${token}`;
-    } else {
-      delete axiosSecure.defaults.headers["Authorization"];
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
-  }, []);
-
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+const useAxiosSecure = () => {
   return axiosSecure;
 };
 
