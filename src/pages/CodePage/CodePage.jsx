@@ -1,3 +1,4 @@
+import { useForm } from 'react-hook-form';
 import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
 import logo from '../../assets/images/signUpImage/signUpLogo.png';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,7 @@ import toast from 'react-hot-toast';
 const CodePage = () => {
   const { loading, setLoading } = useAuth();
   const [otp, setOtp] = useState('');
+  const { handleSubmit } = useForm();
 
   // mutation:
   const otpVerifyMutation = useMutation({
@@ -25,11 +27,12 @@ const CodePage = () => {
       console.log(data);
       setLoading(false);
       setOtp('');
+      localStorage.removeItem('email');
       toast.success(data?.message);
     },
-    onError: (error) => {
+    onError: () => {
       setLoading(false);
-      toast.error(error?.message);
+      toast.error('Invalid OTP !');
     },
   });
 
@@ -64,7 +67,7 @@ const CodePage = () => {
           <div className="ml-[200px] mt-12 max-w-[560px]">
             {/* This is input field */}
             {/* Your Name Field */}
-            <form className="">
+            <form onSubmit={handleSubmit(onSubmit)} className="">
               {/* This is the Email Address input field */}
               <div id="otp_container" className="">
                 <OtpInput
@@ -78,7 +81,6 @@ const CodePage = () => {
               {/* This is the submit button */}
               <div className="flex items-center gap-2">
                 <button
-                  onClick={onSubmit}
                   className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
                   type="submit"
                 >
