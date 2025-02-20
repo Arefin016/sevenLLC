@@ -32,10 +32,14 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     try {
-      const userData = { ...data, avatar: image };
-      await signUpMutation(userData); // Wait for mutation to complete
-      reset(); // Reset the form after successful mutation
-      setImage(null);
+      if (image) {
+        const userData = { ...data, avatar: image };
+        await signUpMutation(userData); // Wait for mutation to complete
+        reset(); // Reset the form after successful mutation
+        setImage(null);
+      } else {
+        toast.error('You must upload a image before proceed');
+      }
     } catch (error) {
       console.error('Registration Error: ', error);
       toast.error(error.response?.data?.message || 'Registration Failed.');

@@ -1,44 +1,31 @@
-import { useForm } from "react-hook-form";
-import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
-import logo from "../../assets/images/signUpImage/signUpLogo.png";
-import { Link, useNavigate } from "react-router-dom";
-import { SignUpSvg } from "../../components/SvgContainer/SvgConainer";
-import useAxiosSecure from "@/hooks/useAxiosSecure";
-import toast from "react-hot-toast";
+import { useForm } from 'react-hook-form';
+import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
+import logo from '../../assets/images/signUpImage/signUpLogo.png';
+import { Link } from 'react-router-dom';
+import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
+import toast from 'react-hot-toast';
+import { useLogin } from '@/hooks/auth.mutations';
+import useAuth from '@/hooks/useAuth';
+import { ImSpinner9 } from 'react-icons/im';
 const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
-
-  const axiosSecure = useAxiosSecure();
+  const { mutateAsync: loginMutation } = useLogin();
+  const { loading } = useAuth();
 
   const onSubmit = async (data) => {
     try {
-      // Make the login request to the backend
-      const response = await axiosSecure.post("api/users/login", {
-        email: data.email,
-        password: data.password,
-      });
-
-      console.log(response);
-
-      // Store the token received in the response
-      localStorage.setItem("token", response?.data?.data?.token);
-
-      // Dynamically show success toast with user's first name
-      const firstName = response?.data?.data?.first_name;
-
-      toast.success(`${firstName} logged in successfully!`, {
-        autoClose: 3000,
-      });
-      navigate("/");
+      // console.log(data);
+      await loginMutation(data);
+      reset();
     } catch (error) {
-      console.error("Login failed", error);
-      toast.error("Login failed! Please try again.", {
+      console.error('Login failed', error);
+      toast.error('Login failed! Please try again.', {
         autoClose: 3000,
       });
     }
@@ -72,7 +59,7 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
-                  {...register("email", { required: true })}
+                  {...register('email', { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Email Address"
                 />
@@ -90,7 +77,7 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
-                  {...register("password", { required: true })}
+                  {...register('password', { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Password"
                 />
@@ -103,31 +90,37 @@ const Login = () => {
               {/* forget password text */}
               <div className="flex justify-center mt-[23px]">
                 <p className="text-navbarColor text-lg">
-                  Forgot your Password?{" "}
-                  <Link to={"/forgetPassword"}>
+                  Forgot your Password?{' '}
+                  <Link to={'/forgetPassword'}>
                     <span className="text-buttonColor text-lg font-bold underline">
                       Click Here
-                    </span>{" "}
+                    </span>{' '}
                   </Link>
                 </p>
               </div>
               {/* This is the submit button */}
               <div className="flex items-center gap-2">
                 <button
-                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor"
+                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
                   type="submit"
                 >
-                  <span>Log In</span>
-                  <SignUpSvg />
+                  {loading ? (
+                    <ImSpinner9 className="text-white size-7 animate-spin group-hover:text-buttonColor" />
+                  ) : (
+                    <span className="flex items-center justify-center gap-1">
+                      <span>Log In</span>
+                      <SignUpSvg />
+                    </span>
+                  )}
                 </button>
               </div>
               {/*  */}
               <p className="text-center mt-[113px] mb-[47px] text-navbarColor text-lg">
                 New User?
-                <Link to={"/signUp"}>
+                <Link to={'/signUp'}>
                   <span className="text-buttonColor text-lg font-bold ml-2">
                     Create Account
-                  </span>{" "}
+                  </span>{' '}
                 </Link>
               </p>
             </form>
@@ -136,7 +129,7 @@ const Login = () => {
         {/* This is the right div */}
         <div className="w-[50%] relative">
           <div className="flex items-center gap-2 absolute right-[200px] top-[56px]">
-            <Link to={"/"}>
+            <Link to={'/'}>
               <button
                 className="bg-transparent rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[208px] h-[58px] flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"
