@@ -98,6 +98,9 @@ const Divider = () => (
 );
 
 const Navbar = () => {
+  const { user, setUser } = useAuth();
+
+  console.log(user?.first_name);
   return (
     <nav className=" border-b border-gray-300">
       <div className="container mx-auto">
@@ -169,7 +172,7 @@ const Navbar = () => {
               </Dropdown>
             </div>
             {/* login */}
-            <div className="flex gap-1 items-center mr-5 text-navbarColor font-semibold">
+            <Link to={"/"} className="flex gap-1 items-center mr-5 text-navbarColor font-semibold">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="31"
@@ -191,7 +194,7 @@ const Navbar = () => {
                 />
               </svg>
               Log in
-            </div>
+            </Link>
             <div>
               <Link to={"/signUp"}>
                 <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
