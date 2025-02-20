@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { SignUpSvg } from "../../components/SvgContainer/SvgConainer";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAuth from "@/hooks/useAuth";
 const Login = () => {
   const {
     register,
@@ -16,6 +17,8 @@ const Login = () => {
 
   const axiosSecure = useAxiosSecure();
 
+  const { user, setUser } = useAuth();
+
   const onSubmit = async (data) => {
     try {
       // Make the login request to the backend
@@ -24,14 +27,16 @@ const Login = () => {
         password: data.password,
       });
 
-      console.log(response);
+      setUser(response?.data?.data);
+
+      // console.log(response?.data?.data);
 
       // Store the token received in the response
       localStorage.setItem("token", response?.data?.data?.token);
 
       // Dynamically show success toast with user's first name
       const firstName = response?.data?.data?.first_name;
-
+      setUser;
       toast.success(`${firstName} logged in successfully!`, {
         autoClose: 3000,
       });
@@ -43,6 +48,8 @@ const Login = () => {
       });
     }
   };
+
+  console.log(user);
 
   return (
     <section>

@@ -48,6 +48,7 @@ const SignUp = () => {
       if (image) formData.append("avatar", image);
 
       console.log(...formData);
+      
 
       // Send formData to your backend API
       const response = await axiosPublic.post("/api/users/register", formData, {

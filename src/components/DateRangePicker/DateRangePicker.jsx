@@ -31,7 +31,7 @@ const DateRangePicker = ({ className }) => {
                 !date && "text-muted-foreground"
               )}
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-center text-xs xxs:text-base gap-2">
                 <CalendarIcon />
                 {date?.from ? (
                   date.to ? (
