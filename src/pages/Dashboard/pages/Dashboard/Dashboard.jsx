@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   return (
     <section className="">
-      <div className="px-10 ">
+      <div className="px-10 pt-[55px] pb-[21px] ">
         <h1 className="text-4xl">
           Welcome{" "}
           <span className="text-headingColor font-semibold text-4xl">
