@@ -41,17 +41,17 @@ const Dashboard = () => {
 
   return (
     <section className="">
-      <div className="px-10 ">
-        <h1 className="text-4xl">
+      <div className="md:px-10 mt-5 ml-5 px-3">
+        <h1 className="text-lg sm:text-xl lg:text-4xl">
           Welcome{" "}
-          <span className="text-headingColor font-semibold text-4xl">
+          <span className="text-headingColor font-semibold text-lg sm:text-xl lg:text-4xl">
             Michael!
           </span>
         </h1>
         {/*  */}
-        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
+        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-2 xxs:px-4 sm:px-4 md:px-0">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
-            <h1 className="text-headingColor text-xl font-semibold ">
+            <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold ">
               Order Summery
             </h1>
             <OrderSummerySvg />
@@ -61,23 +61,32 @@ const Dashboard = () => {
             style={{
               background: "linear-gradient(107deg, #F8FEFF 0%, #FFF9F8 100%)",
             }}
-            className="mx-6 rounded-xl mb-[57px]"
+            className="mx-2 md:mx-6 rounded-xl mb-[57px]"
           >
-            <h1 className="text-2xl text-headingColor font-semibold ml-[38px] pt-[26px]">
+            <h1 className="text-lg lg:text-2xl text-headingColor font-semibold ml-5 md:ml-[38px] pt-[26px]">
               Product Summary
             </h1>
             {/* This is the Product Summary */}
-            <div className="flex gap-6 items-center mt-5 pb-12 ml-[38px]">
+            <div className="grid xxs:grid-cols-2 xmd:grid-cols-3 xlg:grid-cols-5 md:flex-row justify-between items-center mt-5 pb-12 xlg:ml-[38px] gap-5 px-5 xxl:px-0">
               {productSummaries?.map((product, index) => (
-                <div key={index} className="flex items-center gap-3">
+                <div
+                  key={index}
+                  className="flex items-center justify-left gap-2 md:gap-3 w-full"
+                >
                   <img src={product.img} alt={product.category} />
-                  <div className="pr-3">
-                    <p className="text-headingColor font-bold">
+                  <div className="xxl:pr-[70px]">
+                    <p className="text-headingColor font-bold text-xs xxs:text-sm">
                       {product.category}
                     </p>
-                    <p className="text-headingColor">{product.name}</p>
+                    <p className="text-headingColor text-xs xxs:text-sm">
+                      {product.name}
+                    </p>
                   </div>
-                  {index < productSummaries.length - 1 && <ProductLineBorder />}
+                  {index < productSummaries.length - 1 && (
+                    <div className="hidden xlg:block">
+                      <ProductLineBorder />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
