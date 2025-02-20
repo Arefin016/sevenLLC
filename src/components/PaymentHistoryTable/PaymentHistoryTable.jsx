@@ -69,7 +69,7 @@ export const columns = [
   {
     accessorKey: "invoiceId",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Invoice ID
       </span>
     ),
@@ -80,12 +80,12 @@ export const columns = [
   {
     accessorKey: "invoiceDate",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Invoice Date
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
+      <div className="text-navbarColor text-xs xxs:text-base">
         {row.getValue("invoiceDate")}
       </div>
     ),
@@ -93,12 +93,12 @@ export const columns = [
   {
     accessorKey: "product",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Product
       </span>
     ),
     cell: ({ row }) => (
-      <div className="capitalize text-navbarColor text-base">
+      <div className="capitalize text-navbarColor text-xs xxs:text-base">
         {row.getValue("product")}
       </div>
     ),
@@ -106,12 +106,12 @@ export const columns = [
   {
     accessorKey: "quantity",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Quantity
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
+      <div className="text-navbarColor text-xs xxs:text-base">
         {row.getValue("quantity")}
       </div>
     ),
@@ -119,7 +119,7 @@ export const columns = [
   {
     accessorKey: "amount",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Amount
       </span>
     ),
@@ -129,18 +129,22 @@ export const columns = [
         style: "currency",
         currency: "USD",
       }).format(amount);
-      return <div className="text-navbarColor text-base">{formatted}</div>;
+      return (
+        <div className="text-navbarColor text-xs xxs:text-base">
+          {formatted}
+        </div>
+      );
     },
   },
   {
     accessorKey: "paymentMethod",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Payment Method
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
+      <div className="text-navbarColor text-xs xxs:text-base">
         {row.getValue("paymentMethod")}
       </div>
     ),
@@ -148,12 +152,12 @@ export const columns = [
   {
     accessorKey: "datePaid",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Date Paid
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
+      <div className="text-navbarColor text-xs xxs:text-base">
         {row.getValue("datePaid")}
       </div>
     ),
@@ -161,7 +165,7 @@ export const columns = [
   {
     accessorKey: "status",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Status
       </span>
     ),

@@ -200,15 +200,15 @@ const PaymentHistory = () => {
   };
 
   return (
-    <section className="mt-8 ml-8 mr-11 border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow pl-[30px] pr-[61px] pt-6 pb-[62px]">
-      <div className="flex flex-col gap-11">
-        <div className="flex gap-11 items-center">
+    <section className="md:my-8 mx-8 my-8 md:mx-8 border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow md:pl-[30px] md:pr-[30px] px-4 md:pt-6 md:pb-[62px]">
+      <div className="flex flex-col gap-6 md:gap-11">
+        <div className="flex flex-col md:flex-row gap-11 items-center">
           {/* Tabs Header */}
-          <div className="flex border-b gap-[167px] w-[80%]">
+          <div className="flex border-b gap-10 md:gap-5 xl:gap-[167px] md:w-[80%]">
             {tabs.map((tab) => (
               <button
                 key={tab?.dataTitle}
-                className={`px-4 py-[21px] text-xl font-semibold ${
+                className={`xmd:px-4 pt-6 pb-2 xmd:py-[21px] text-xs xxs:text-lg xmd:text-xl font-semibold ${
                   activeTab?.dataTitle === tab?.dataTitle
                     ? "border-b-2 border-headingColor text-headingColor text-xl font-semibold"
                     : "text-navbarColor text-xl font-semibold"
