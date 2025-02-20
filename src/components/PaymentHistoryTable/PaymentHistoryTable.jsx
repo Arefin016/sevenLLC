@@ -34,19 +34,6 @@ import {
 export const columns = [
   {
     id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => {
-          table.toggleAllPageRowsSelected(!!value);
-          console.log("Select all checked:", value);
-        }}
-        aria-label="Select all"
-      />
-    ),
     cell: ({ row, table }) => (
       <Checkbox
         checked={row.getIsSelected()}
@@ -74,7 +61,9 @@ export const columns = [
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-buttonColor">{row.getValue("invoiceId")}</div>
+      <div className="text-buttonColor w-[100px]">
+        {row.getValue("invoiceId")}
+      </div>
     ),
   },
   {
@@ -85,7 +74,7 @@ export const columns = [
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-xs xxs:text-base">
+      <div className="text-navbarColor text-xs xxs:text-base w-[100px]">
         {row.getValue("invoiceDate")}
       </div>
     ),
@@ -98,7 +87,7 @@ export const columns = [
       </span>
     ),
     cell: ({ row }) => (
-      <div className="capitalize text-navbarColor text-xs xxs:text-base">
+      <div className="capitalize text-navbarColor text-xs xxs:text-base w-[200px]">
         {row.getValue("product")}
       </div>
     ),
@@ -111,7 +100,7 @@ export const columns = [
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-xs xxs:text-base">
+      <div className="text-navbarColor text-xs xxs:text-base w-[100px]">
         {row.getValue("quantity")}
       </div>
     ),
@@ -119,7 +108,7 @@ export const columns = [
   {
     accessorKey: "amount",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base w-[100px]">
         Amount
       </span>
     ),
@@ -130,7 +119,7 @@ export const columns = [
         currency: "USD",
       }).format(amount);
       return (
-        <div className="text-navbarColor text-xs xxs:text-base">
+        <div className="text-navbarColor text-xs xxs:text-base w-[100px]">
           {formatted}
         </div>
       );
@@ -144,7 +133,7 @@ export const columns = [
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-xs xxs:text-base">
+      <div className="text-navbarColor text-xs xxs:text-base w-[200px]">
         {row.getValue("paymentMethod")}
       </div>
     ),
@@ -157,7 +146,7 @@ export const columns = [
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-xs xxs:text-base">
+      <div className="text-navbarColor text-xs xxs:text-base w-[100px]">
         {row.getValue("datePaid")}
       </div>
     ),
@@ -170,7 +159,7 @@ export const columns = [
       </span>
     ),
     cell: ({ row }) => (
-      <div className="font-publicSans text-[#005CE8] font-medium bg-[#F0F6FF] text-center py-[5px] px-4 rounded-[130px]">
+      <div className="font-publicSans text-[#005CE8] font-medium bg-[#F0F6FF] text-center py-[5px] px-4 rounded-[130px] w-[100px]">
         {row.getValue("status")}
       </div>
     ),
@@ -268,7 +257,7 @@ const PaymentHistoryTable = ({ data }) => {
                   className=""
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="px-4 py-4 text-left ">
+                    <TableCell key={cell.id} className="text-left ">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
