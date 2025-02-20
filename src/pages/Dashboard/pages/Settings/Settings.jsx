@@ -76,7 +76,7 @@ const Settings = () => {
       <div className="container mx-auto">
         <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
-            <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold ">
+            <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold">
               Account Setting
             </h1>
             <OrderSummerySvg />
@@ -114,7 +114,6 @@ const Settings = () => {
               </div>
             </div>
           </div>
-
           {/* This is the Product Information */}
           <div className="mt-10 xmd:px-[97px]">
             {/* First Input Column */}
@@ -168,7 +167,6 @@ const Settings = () => {
               </div>
             </div>
           </div>
-
           {/* This is the contact information */}
           <div className="xmd:px-[97px]">
             {/* Country / Region */}
@@ -224,11 +222,50 @@ const Settings = () => {
               </div>
             </div>
           </div>
-
           {/* This is the button section */}
           <div className="xmd:px-[97px] px-5 my-8">
             <Button text={"Save Changes"} color={"bg-buttonColor"} />
           </div>
+        </div>
+      </div>
+
+      {/* Password Setting */}
+      <div className="container mx-auto my-5 pb-10">
+        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
+          <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
+            <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold ">
+              Password Setting
+            </h1>
+            <OrderSummerySvg />
+          </div>
+          <section>
+            {/* This is the Password Setting Section */}
+            <div className="xlg:mt-6 xlg:ml-[31px] border border-[#F0F0F0] rounded max-w-[984px] xlg:mb-[50px]">
+              <div className="">
+                <h1 className="text-headingColor text-base font-semibold border pl-5 py-[13px]">
+                  Change Password
+                </h1>
+              </div>
+
+              {/* Current Password Div */}
+              <PasswordInput
+                label={"Current Password"}
+                placeholder={"Current Password"}
+              />
+              <PasswordInput
+                label={"New Password"}
+                placeholder={"8+ characters"}
+              />
+              <PasswordInput
+                label={"Confirm Password"}
+                placeholder={"Confirm Password"}
+              />
+              {/* This the button section */}
+              <div className="pl-6 my-8">
+                <Button text={"Change Password"} color={"bg-buttonColor"} />
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </section>
