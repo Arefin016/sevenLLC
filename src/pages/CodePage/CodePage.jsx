@@ -1,21 +1,47 @@
-import { useForm } from "react-hook-form";
-import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
-import logo from "../../assets/images/signUpImage/signUpLogo.png";
-import { Link } from "react-router-dom";
-import { SignUpSvg } from "../../components/SvgContainer/SvgConainer";
-import { useState } from "react";
-import OtpInput from "react-otp-input";
+import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
+import logo from '../../assets/images/signUpImage/signUpLogo.png';
+import { Link } from 'react-router-dom';
+import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
+import { useState } from 'react';
+import OtpInput from 'react-otp-input';
+import useAuth from '@/hooks/useAuth';
+import { useMutation } from '@tanstack/react-query';
+import { OtpVerifyFunc } from '@/hooks/auth.hooks';
+import { PiSpinnerBold } from 'react-icons/pi';
+import toast from 'react-hot-toast';
 
 const CodePage = () => {
-  const [otp, setOtp] = useState("");
-  const {
-    register,
-    reset,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { loading, setLoading } = useAuth();
+  const [otp, setOtp] = useState('');
 
-  const onSubmit = (data) => console.log(data);
+  // mutation:
+  const otpVerifyMutation = useMutation({
+    mutationKey: ['otp-verify'],
+    mutationFn: (payload) => OtpVerifyFunc(payload),
+    onMutate: () => {
+      setLoading(true);
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      setLoading(false);
+      setOtp('');
+      toast.success(data?.message);
+    },
+    onError: (error) => {
+      setLoading(false);
+      toast.error(error?.message);
+    },
+  });
+
+  //handlers:
+  const onSubmit = () => {
+    const email = localStorage.getItem('email');
+    const payload = {
+      email: JSON.parse(email),
+      otp,
+    };
+    otpVerifyMutation.mutate(payload);
+  };
   return (
     <section>
       <div className="flex h-[100vh] overflow-hidden">
@@ -51,15 +77,20 @@ const CodePage = () => {
               </div>
               {/* This is the submit button */}
               <div className="flex items-center gap-2">
-                <Link to={"/enterCodePage"}>
-                  <button
-                    className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor"
-                    type="submit"
-                  >
-                    <span>Submit</span>
-                    <SignUpSvg />
-                  </button>
-                </Link>
+                <button
+                  onClick={onSubmit}
+                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
+                  type="submit"
+                >
+                  {loading ? (
+                    <PiSpinnerBold className="text-white size-7 animate-spin group-hover:text-buttonColor" />
+                  ) : (
+                    <span className="flex items-center gap-1">
+                      <span>Submit</span>
+                      <SignUpSvg />
+                    </span>
+                  )}
+                </button>
               </div>
             </form>
           </div>
@@ -67,7 +98,7 @@ const CodePage = () => {
         {/* This is the right div */}
         <div className="w-[50%] relative">
           <div className="flex items-center gap-2 absolute right-[200px] top-[56px]">
-            <Link to={"/"}>
+            <Link to={'/'}>
               <button
                 className="bg-transparent rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[208px] h-[58px] flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"
