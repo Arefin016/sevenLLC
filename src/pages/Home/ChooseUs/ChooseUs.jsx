@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useLocation } from "react-router-dom";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import Button from "../../../components/Button/Button";
@@ -36,7 +37,7 @@ const ChooseUs = ({
         </div>
         {/* Second div: Image */}
         <div className="max-w-[829px] h-[710px] object-cover">
-          <img src={img} alt={imageAlt} />
+          <img className="rounded-t-[80px] rounded-r-none" src={img} alt={imageAlt} />
         </div>
       </div>
     </section>

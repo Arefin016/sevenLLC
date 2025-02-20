@@ -1,19 +1,16 @@
-import React from "react";
-import { Dropdown, Space } from "antd";
+import React from 'react';
+import { Dropdown, Space } from 'antd';
 
-import logo from "../../assets/images/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import logo from '../../assets/images/logo.png';
+import { Link, NavLink } from 'react-router-dom';
 import {
   AllCategoriesSvg,
   SearchBarSvg,
-  WorldIconSvg,
-  WorldSvg,
-} from "../../components/SvgContainer/SvgConainer";
-import useAuth from "@/hooks/useAuth";
+} from '../../components/SvgContainer/SvgConainer';
 
 const items = [
   {
-    key: "1",
+    key: '1',
     label: (
       <a
         target="_blank"
@@ -25,7 +22,7 @@ const items = [
     ),
   },
   {
-    key: "2",
+    key: '2',
     label: (
       <a
         target="_blank"
@@ -37,7 +34,7 @@ const items = [
     ),
   },
   {
-    key: "3",
+    key: '3',
     label: (
       <a
         target="_blank"
@@ -49,40 +46,14 @@ const items = [
     ),
   },
 ];
-const language = [
-  {
-    key: "3",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        Bangla
-      </a>
-    ),
-  },
-  {
-    key: "3",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        Bangla
-      </a>
-    ),
-  },
-];
 
 const menuItems = [
-  { name: "About Us", link: "/aboutUs" },
-  { name: "Products & Services", link: "/productServices" },
-  { name: "Dashboard", link: "/dashboardLayout/mainDashboard" },
-  { name: "Order Requests", link: "/orderForms" },
-  { name: "Blog", link: "/blogArticles" },
-  { name: "Contact Us", link: "/contactUs" },
+  { name: 'About Us', link: '/aboutUs' },
+  { name: 'Products & Services', link: '/productServices' },
+  { name: 'Dashboard', link: '/dashboardLayout/mainDashboard' },
+  { name: 'Order Requests', link: '/orderForms' },
+  { name: 'Blog', link: '/blogArticles' },
+  { name: 'Contact Us', link: '/contactUs' },
 ];
 
 const Divider = () => (
@@ -104,7 +75,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center mt-4">
           {/* logo */}
           <div className="max-w-[113px] h-[86px]">
-            <Link to={"/"}>
+            <Link to={'/'}>
               <img src={logo} alt="" />
             </Link>
           </div>
@@ -157,19 +128,11 @@ const Navbar = () => {
           </div>
           {/* This is the third row */}
           <div className="flex items-center justify-center">
-            <div className="flex justify-center gap-2 items-center mr-10">
-              <WorldSvg />
-              <Dropdown menu={{ items }}>
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space className="font-raleway text-navbarColor text-base font-bold mt-1">
-                    EN
-                    <WorldIconSvg />
-                  </Space>
-                </a>
-              </Dropdown>
-            </div>
             {/* login */}
-            <div className="flex gap-1 items-center mr-5 text-navbarColor font-semibold">
+            <Link
+              to="/login"
+              className="flex gap-1 items-center mr-5 text-navbarColor font-semibold"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="31"
@@ -191,9 +154,9 @@ const Navbar = () => {
                 />
               </svg>
               Log in
-            </div>
+            </Link>
             <div>
-              <Link to={"/signUp"}>
+              <Link to={'/signUp'}>
                 <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                   Sign up
                 </button>
@@ -212,8 +175,8 @@ const Navbar = () => {
                       to={item.link}
                       className={({ isActive }) =>
                         isActive
-                          ? "text-buttonColor font-medium hover:text-buttonColor"
-                          : "text-navbarColor font-medium hover:text-buttonColor"
+                          ? 'text-buttonColor font-medium hover:text-buttonColor'
+                          : 'text-navbarColor font-medium hover:text-buttonColor'
                       }
                     >
                       {item.name}
