@@ -18,7 +18,7 @@ const DashboardLayout = () => {
         </div>
 
         {/* Content below navbar */}
-        <div className="flex-1 z-0 bg-[#FAFBFC] overflow-y-auto mt-[60px] xlg:mt-[120px] p-4">
+        <div className="flex-1 z-0 bg-[#FAFBFC] overflow-y-auto mt-[60px] xlg:mt-[120px]">
           <Outlet />
         </div>
       </div>

@@ -200,7 +200,7 @@ const PaymentHistory = () => {
   };
 
   return (
-    <section className="md:my-8 mx-4 my-4 md:mx-8 border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow md:pl-[30px] md:pr-[30px] px-4 md:pt-6 md:pb-[62px]">
+    <section className="md:my-10 mx-4 my-10 md:mx-8 border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow md:pl-[30px] md:pr-[30px] px-4 md:pt-6 md:pb-[62px]">
       <div className="flex flex-col gap-6 md:gap-11">
         <div className="flex flex-col md:flex-row gap-11 items-center">
           {/* Tabs Header */}
