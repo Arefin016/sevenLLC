@@ -6,14 +6,8 @@ import { axiosSecure } from '@/hooks/useAxiosSecure';
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-
-  // console.log( 'stateUser', currentUser)
-
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
-
-  // const [token, setToken] = useState(localStorage.getItem('token') || null);
 
   //get user info::
   const token = localStorage.getItem('token');
@@ -32,8 +26,6 @@ const AuthProvider = ({ children }) => {
     user,
     setUser,
     token,
-    currentUser,
-    setCurrentUser,
     loading,
     setLoading,
   };

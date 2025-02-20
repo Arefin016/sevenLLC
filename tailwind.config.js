@@ -37,6 +37,8 @@ export default {
       colors: {
         navbarColor: "#616161",
         buttonColor: "#07A0EC",
+
+        
         headingColor: "#000B1C",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

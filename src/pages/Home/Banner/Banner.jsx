@@ -1,6 +1,7 @@
 import useAxiosPublic from "@/hooks/useAxiosPublic";
 import Button from "../../../components/Button/Button";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const axiosPublic = useAxiosPublic();
@@ -36,7 +37,9 @@ const Banner = () => {
               {BannerData?.data?.hero_section?.description}
             </p>
             <div className="mt-12">
-              <Button text="Request a Quote" color="bg-buttonColor" />
+              <Link to={"/orderForms"}>
+                <Button text="Request a Quote" color="bg-buttonColor" />
+              </Link>
             </div>
           </div>
           {/* This is the second div */}

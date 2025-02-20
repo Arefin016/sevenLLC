@@ -9,7 +9,8 @@ const Main = () => {
     location.pathname === "/signUp" ||
     location.pathname === "/login" ||
     location.pathname === "/forgetPassword" ||
-    location.pathname === "/enterCodePage";
+    location.pathname === "/enterCodePage" ||
+    location.pathname === "/resetPassword";
   return (
     <div>
       <ScrollRestoration />
