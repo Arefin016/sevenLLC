@@ -19,6 +19,7 @@ import OrderHistory from "../pages/Dashboard/pages/OrderHistory/OrderHistory";
 import PaymentHistory from "../pages/Dashboard/pages/PaymentHistory/PaymentHistory";
 import Settings from "../pages/Dashboard/pages/Settings/Settings";
 import ContactUs from "@/pages/ContactUs/ContactUs";
+import ResetPasswordPage from "@/pages/ResetPasswordPage/ResetPasswordPage";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: "/contactUs",
         element: <ContactUs />,
+      },
+      {
+        path: "/resetPassword",
+        element: <ResetPasswordPage />,
       },
     ],
   },

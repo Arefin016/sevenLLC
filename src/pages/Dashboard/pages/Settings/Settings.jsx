@@ -74,19 +74,19 @@ const Settings = () => {
     <section className="">
       {/* Account Settings */}
       <div className="container mx-auto">
-        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
+        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
-            <h1 className="text-headingColor text-xl font-semibold ">
+            <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold">
               Account Setting
             </h1>
             <OrderSummerySvg />
           </div>
           {/* This is the Upload Images section */}
-          <div className="ml-[97px] mt-[70.5px] max-w-[560px]">
-            <div className="flex gap-6 items-center">
+          <div className="xmd:ml-[97px] xmd:mt-[70.5px] max-w-[560px]">
+            <div className="flex gap-6 items-center ml-5 xmd:ml-0">
               <label
                 htmlFor="photo-upload"
-                className="w-[130px] h-[130px] border-gray-300 flex justify-center items-center rounded-full cursor-pointer hover:border-blue-500 transition bg-cover bg-center"
+                className="w-24 xxs:w-[130px] xxs:h-[130px] h-24 border-gray-300 flex justify-center items-center rounded-full cursor-pointer hover:border-blue-500 transition bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${image})`,
                   backgroundSize: "cover",
@@ -105,20 +105,21 @@ const Settings = () => {
                 onChange={handleImageChange}
               />
               <div className=" items-center gap-3">
-                <p className="text-2xl text-headingColor font-bold">
+                <p className="text-base xxs:text-2xl text-headingColor font-bold">
                   Michael Watson
                 </p>
-                <p className="text-lg text-navbarColor">President of Sales</p>
+                <p className="text-xs xxs:text-lg text-navbarColor">
+                  President of Sales
+                </p>
               </div>
             </div>
           </div>
-
           {/* This is the Product Information */}
-          <div className="mt-10 px-[97px]">
+          <div className="mt-10 xmd:px-[97px]">
             {/* First Input Column */}
-            <div className="flex gap-10">
+            <div className="flex flex-col md:flex-row gap-10">
               {/* First Name */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <div className="flex flex-col gap-y-[10.5px] w-full px-4 xmd:px-0 md:w-[50%]">
                 <label className="text-base text-headingColor font-medium">
                   First Name
                 </label>
@@ -128,8 +129,8 @@ const Settings = () => {
                   placeholder="Michael"
                 />
               </div>
-              {/* Your Last Name */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              {/* Last Name */}
+              <div className="flex flex-col gap-y-[10.5px] w-full px-4 xmd:px-0 md:w-[50%]">
                 <label className="text-base text-headingColor font-medium">
                   Your Last Name
                 </label>
@@ -141,9 +142,9 @@ const Settings = () => {
               </div>
             </div>
             {/* Second Input Column  */}
-            <div className="flex gap-10 mt-6">
+            <div className="flex flex-col md:flex-row gap-10 mt-6">
               {/* phone */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <div className="flex flex-col gap-y-[10.5px] w-full px-4 xmd:px-0 md:w-[50%]">
                 <label className="text-base text-headingColor font-medium">
                   Phone
                 </label>
@@ -154,7 +155,7 @@ const Settings = () => {
                 />
               </div>
               {/* Email */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <div className="flex flex-col gap-y-[10.5px] w-full px-4 xmd:px-0 md:w-[50%]">
                 <label className="text-base text-headingColor font-medium">
                   Email
                 </label>
@@ -166,12 +167,12 @@ const Settings = () => {
               </div>
             </div>
           </div>
-
           {/* This is the contact information */}
-          <div className="px-[97px]">
+          <div className="xmd:px-[97px]">
             {/* Country / Region */}
-            <div className="flex gap-8 mt-6">
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+            <div className="flex flex-col md:flex-row gap-8 mt-6">
+              {/* Country */}
+              <div className="flex flex-col gap-y-[10.5px] w-full px-4 xmd:px-0 md:w-[50%]">
                 <label className="text-base text-headingColor font-medium">
                   Country/Region
                 </label>
@@ -190,7 +191,7 @@ const Settings = () => {
                 </Select>
               </div>
               {/* States */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <div className="flex flex-col gap-y-[10.5px] w-full px-4 xmd:px-0 md:w-[50%]">
                 <label className="text-base text-headingColor font-medium">
                   States
                 </label>
@@ -209,7 +210,7 @@ const Settings = () => {
                 </Select>
               </div>
               {/* Postal Code */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+              <div className="flex flex-col gap-y-[10.5px] w-full px-4 xmd:px-0 md:w-[50%]">
                 <label className="text-base text-headingColor font-medium">
                   Postal Code
                 </label>
@@ -221,26 +222,24 @@ const Settings = () => {
               </div>
             </div>
           </div>
-
-          {/*  */}
-          <div className="px-[97px] my-8">
+          {/* This is the button section */}
+          <div className="xmd:px-[97px] px-5 my-8">
             <Button text={"Save Changes"} color={"bg-buttonColor"} />
           </div>
         </div>
       </div>
-
       {/* address Setting */}
       <div className="container mx-auto my-5 pb-10">
-        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
+        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
-            <h1 className="text-headingColor text-xl font-semibold ">
+            <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold ">
               Address Setting
             </h1>
             <OrderSummerySvg />
           </div>
           <section>
             {/* This is the Billing Address Section */}
-            <div className="px-8 mb-10 mt-6">
+            <div className="md:px-8 mb-10 mt-6">
               {/* Addresses Grid */}
               <div className="flex flex-row gap-6 flex-wrap">
                 {/* Display saved addresses */}
@@ -292,10 +291,10 @@ const Settings = () => {
 
                 {/* "Add New Address" Button - Always Last */}
                 {!addNewAddress ? (
-                  <div className="border rounded-2xl min-w-[444px] min-h-[550px] flex justify-center items-center p-4">
+                  <div className="border rounded-2xl min-w-full min-h-[300px] md:min-w-[444px] md:min-h-[550px] flex justify-center items-center p-4">
                     <button
                       onClick={() => setAddNewAddress(true)}
-                      className="text-center text-[#8993A4] font-medium"
+                      className="text-center text-xs xxs:text-base text-[#8993A4] font-medium"
                     >
                       + Add new Address
                     </button>
@@ -303,7 +302,7 @@ const Settings = () => {
                 ) : (
                   <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col border rounded-b-2xl w-[32%] mt-2"
+                    className="flex flex-col border rounded-b-2xl lg:w-[32%] mt-2"
                   >
                     <div className="flex gap-[150px] justify-between border items-center px-6">
                       <h1 className="text-headingColor text-base font-semibold py-[13px]">
@@ -312,7 +311,7 @@ const Settings = () => {
                     </div>
                     {/* This is the Billing Address */}
                     <div className="my-6 space-y-4">
-                      <div className="flex gap-4 justify-center">
+                      <div className="flex flex-col xlg:flex-row px-2 xlg:px-6 gap-4 justify-center">
                         {/* First Name */}
                         <div className="">
                           <label className="text-headingColor">
@@ -347,7 +346,7 @@ const Settings = () => {
                         </div>
                       </div>
                       {/* Company Name */}
-                      <div className="px-6 mt-4">
+                      <div className="px-2 xlg:px-6 mt-4">
                         <label className="text-headingColor">
                           Company Name (Optional)
                         </label>
@@ -364,7 +363,7 @@ const Settings = () => {
                         )}
                       </div>
                       {/* Address */}
-                      <div className="px-6">
+                      <div className="px-2 xlg:px-6">
                         <label className="text-headingColor">Address</label>
                         <Input
                           className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
@@ -379,7 +378,7 @@ const Settings = () => {
                         )}
                       </div>
                       {/* Country */}
-                      <div className="px-6">
+                      <div className="px-2 xlg:px-6">
                         <label className="text-headingColor">Country</label>
                         <Controller
                           name="country"
@@ -414,7 +413,7 @@ const Settings = () => {
                       </div>
 
                       {/* Region/State */}
-                      <div className="px-6">
+                      <div className="px-2 xlg:px-6">
                         <label className="text-headingColor">
                           Region/State
                         </label>
@@ -510,7 +509,7 @@ const Settings = () => {
                         </div>
                       </div>
                       {/* Email */}
-                      <div className="px-6 mt-4">
+                      <div className="px-2 xlg:px-6 mt-4">
                         <label className="text-headingColor">Email</label>
                         <Input
                           className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
@@ -525,7 +524,7 @@ const Settings = () => {
                         )}
                       </div>
                       {/* Phone Number */}
-                      <div className="px-6 mt-4">
+                      <div className="px-2 xlg:px-6 mt-4">
                         <label className="text-headingColor">
                           Phone Number
                         </label>
@@ -563,19 +562,18 @@ const Settings = () => {
           </section>
         </div>
       </div>
-
       {/* Password Setting */}
       <div className="container mx-auto my-5 pb-10">
-        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5">
+        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
-            <h1 className="text-headingColor text-xl font-semibold ">
+            <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold ">
               Password Setting
             </h1>
             <OrderSummerySvg />
           </div>
           <section>
             {/* This is the Password Setting Section */}
-            <div className="mt-6 ml-[31px] border border-[#F0F0F0] rounded max-w-[984px] mb-[50px]">
+            <div className="xlg:mt-6 xlg:ml-[31px] border border-[#F0F0F0] rounded max-w-[984px] xlg:mb-[50px]">
               <div className="">
                 <h1 className="text-headingColor text-base font-semibold border pl-5 py-[13px]">
                   Change Password
