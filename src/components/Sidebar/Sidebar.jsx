@@ -44,7 +44,7 @@ const Sidebar = () => {
           <div className="flex justify-center mt-[47.8px] mb-[37.36px]">
             <Link to="/">
               <img
-                className="w-[118px] h-[89px] object-cover "
+                className=" w-[100px] xl:w-[118px] h-[75px] xl:h-[89px] object-cover "
                 src={dashboardLogo}
                 alt=""
               />
@@ -57,7 +57,7 @@ const Sidebar = () => {
                 key={link?.path}
                 to={link?.path}
                 className={({ isActive }) =>
-                  `flex gap-4 items-center py-4 px-6 rounded-2xl text-[#FFF] ${
+                  `flex gap-4 items-center  py-4 px-6 rounded-xl xl:rounded-2xl text-[#FFF] ${
                     isActive
                       ? "bg-buttonColor text-white text-lg"
                       : "bg-white text-navbarColor text-lg"

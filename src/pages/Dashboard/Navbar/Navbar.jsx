@@ -12,11 +12,12 @@ import dashboardHumanPic from "../../../assets/images/DashboardLogo/dashboardHum
 import Logo from "../../../assets/images/logo.png";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 
 const Navbar = () => {
-    const [isSideBarOpen, setisSideBarOpen] = useState(false);
-    const currentLocation = useLocation()?.pathname;
+  const [isSideBarOpen, setisSideBarOpen] = useState(false);
+  const currentLocation = useLocation()?.pathname;
 
   const sideBarRef = useRef(null);
   const items = [
@@ -97,76 +98,85 @@ const Navbar = () => {
     };
   }, [isSideBarOpen]);
 
-
   return (
     <>
-      {isSideBarOpen && (
-        <section ref={sideBarRef} className="xlg:hidden z-[500] w-full">
-          <div
-            className={`fixed top-0 left-0 h-full bg-white shadow-lg px-0 w-[280px] py-8 transition-transform duration-500 ease-in-out
-        ${isSideBarOpen ? "translate-x-0" : "-translate-x-full"}`}
-          >
-            <section>
-              <div className="w-full xlg:hidden pb-5">
-                <div className="flex w-full items-center justify-between px-5 xlg:px-10">
-                  <img
-                    src={Logo}
-                    alt="Logo"
-                    className="h-[50px] w-[60px] object-cover"
-                  />
-                  {/* Sidebar Toggle Button */}
-                  <div
-                    onClick={() => setisSideBarOpen(false)}
-                    className="relative cursor-pointer transition-all ease-linear duration-300 w-[40px] h-[40px] flex items-center justify-center"
-                  >
-                    <div className="absolute w-[30px] h-[2px] bg-headingColor rotate-45"></div>
-                    <div className="absolute w-[30px] h-[2px] bg-headingColor -rotate-45"></div>
+      {/* {desktop version navbar } */}
+      {/* Sidebar with Animation */}
+      <div className="z-[500]">
+        <AnimatePresence>
+          {isSideBarOpen && (
+            <motion.section
+              ref={sideBarRef}
+              className="xlg:hidden h-[100vh] w-full"
+              initial={{ x: -280 }} // Initial off-screen position
+              animate={{ x: 0 }} // Animate to the open position
+              exit={{ x: -280 }} // Animate back to the closed position
+              transition={{
+                type: "tween",
+                ease: "easeInOut",
+                duration: 0.5,
+              }} // Smooth transition
+            >
+              <div className="fixed top-0 left-0 h-[100vh] z-[999] bg-[#fff] shadow-lg px-0 w-[280px] py-8">
+                <section>
+                  <div className="w-full xlg:hidden pb-5">
+                    <div className="flex w-full items-center justify-between px-5 xlg:px-10">
+                      <img
+                        src={Logo}
+                        alt="Logo"
+                        className="h-[50px] w-[60px] object-cover"
+                      />
+                      {/* Close Button */}
+                      <div
+                        onClick={() => setisSideBarOpen(false)}
+                        className="relative cursor-pointer transition-all ease-linear duration-300 w-[40px] h-[40px] flex items-center justify-center"
+                      >
+                        <div className="absolute w-[30px] h-[2px] bg-headingColor rotate-45"></div>
+                        <div className="absolute w-[30px] h-[2px] bg-headingColor -rotate-45"></div>
+                      </div>
+                    </div>
                   </div>
+                </section>
+                <div className="px-5 w-full pt-5 space-y-4">
+                  {/* Sidebar Links */}
+                  {dashboardSidebarNavLinks?.map(link => (
+                    <NavLink
+                      onClick={() => setisSideBarOpen(false)}
+                      key={link?.path}
+                      to={link?.path}
+                      className={({ isActive }) =>
+                        `flex gap-4 items-center max-w-[250px] py-3 px-3 rounded-2xl text-[#FFF] ${
+                          isActive
+                            ? "bg-buttonColor text-white text-sm"
+                            : "bg-white text-navbarColor text-sm"
+                        }`
+                      }
+                    >
+                      <link.svg isActive={currentLocation === link?.path} />
+                      <span>{link?.title}</span>
+                    </NavLink>
+                  ))}
+                  {/* Sign Out */}
+                  <NavLink
+                    onClick={() => setisSideBarOpen(false)}
+                    to="/"
+                    className={({ isActive }) =>
+                      `flex gap-4 items-center py-3 px-3 rounded-2xl text-[#FFF] ${
+                        isActive
+                          ? "bg-buttonColor text-white text-lg"
+                          : "bg-white text-navbarColor text-lg"
+                      }`
+                    }
+                  >
+                    <SignOutSvg />
+                    <span>Sign Out</span>
+                  </NavLink>
                 </div>
               </div>
-            </section>
-
-            <div className="px-5 w-full pt-5 space-y-4">
-              {/* Sidebar Links */}
-              {dashboardSidebarNavLinks?.map(link => (
-                <NavLink
-                  onClick={() => setisSideBarOpen(false)}
-                  key={link?.path}
-                  to={link?.path}
-                  className={({ isActive }) =>
-                    `flex gap-4 items-center max-w-[250px] py-3 px-3 rounded-2xl text-[#FFF] ${
-                      isActive
-                        ? "bg-buttonColor text-white text-sm"
-                        : "bg-white text-navbarColor text-sm"
-                    }`
-                  }
-                >
-                  <link.svg isActive={currentLocation == link?.path} />
-                  <span>{link?.title}</span>
-                </NavLink>
-              ))}
-
-              {/* Sign Out */}
-              <NavLink
-                onClick={() => setisSideBarOpen(false)}
-                to="/"
-                className={({ isActive }) =>
-                  `flex gap-4 items-center py-3 px-3 rounded-2xl text-[#FFF] ${
-                    isActive
-                      ? "bg-buttonColor text-white text-lg"
-                      : "bg-white text-navbarColor text-lg"
-                  }`
-                }
-              >
-                <SignOutSvg />
-                <span>Sign Out</span>
-              </NavLink>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* {desktop version navbar } */}
+            </motion.section>
+          )}
+        </AnimatePresence>
+      </div>
       <section>
         <div className="w-full hidden  xlg:block  ">
           <div className="flex w-full justify-between px-10 ">
@@ -175,17 +185,6 @@ const Navbar = () => {
             </h1>
             {/* This is the right side */}
             <div className="flex">
-              <div className="flex justify-center gap-2 items-center mr-10">
-                <WorldSvg />
-                <Dropdown menu={{ items }}>
-                  <a onClick={e => e.preventDefault()}>
-                    <Space className="font-raleway text-navbarColor text-base font-bold mt-1">
-                      EN
-                      <WorldIconSvg />
-                    </Space>
-                  </a>
-                </Dropdown>
-              </div>
               <div className="flex gap-3 items-center">
                 <img
                   className="h-[60px] w-[60px] object-cover"
@@ -216,14 +215,12 @@ const Navbar = () => {
             {/* This is the right side */}
             {!isSideBarOpen && (
               <div
-                onClick={() => {
-                  setisSideBarOpen(true);
-                }}
-                className="flex relative flex-col ease-linear duration-300 items-center cursor-pointer gap-y-2 justify-center px-1   h-[40px] w-[40px] border-[2px] border-solid rounded-[10px] "
+                onClick={() => setisSideBarOpen(true)}
+                className="flex relative flex-col ease-linear duration-300 items-center cursor-pointer gap-y-2 justify-center px-1 h-[40px] w-[40px] border-[2px] border-solid rounded-[10px]"
               >
-                <span className=" w-full h-[1px] bg-headingColor "></span>
-                <span className=" w-full h-[1px] bg-headingColor "></span>
-                <span className=" w-full h-[1px] bg-headingColor "></span>
+                <span className="w-full h-[1px] bg-headingColor"></span>
+                <span className="w-full h-[1px] bg-headingColor"></span>
+                <span className="w-full h-[1px] bg-headingColor"></span>
               </div>
             )}
           </div>
@@ -234,4 +231,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
