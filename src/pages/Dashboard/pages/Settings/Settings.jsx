@@ -223,7 +223,7 @@ const Settings = () => {
             </div>
           </div>
           {/* This is the button section */}
-          <div className="xmd:px-[97px] px-5 my-8">
+          <div className="xmd:px-[97px] px-5 my-4 md:my-6 lg:my-8">
             <Button text={"Save Changes"} color={"bg-buttonColor"} />
           </div>
         </div>

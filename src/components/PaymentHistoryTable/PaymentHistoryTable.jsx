@@ -69,12 +69,12 @@ export const columns = [
   {
     accessorKey: "invoiceDate",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base w-[100px]">
         Invoice Date
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-xs xxs:text-base w-[100px]">
+      <div className="text-navbarColor text-xs xxs:text-base w-[100px] py-5">
         {row.getValue("invoiceDate")}
       </div>
     ),
