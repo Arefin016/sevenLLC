@@ -7,7 +7,6 @@ import {
   AllCategoriesSvg,
   MenuDropdownSvg,
   SearchBarSvg,
- 
   SearchBarSvgTwo,
   Line,
 } from '../../components/SvgContainer/SvgConainer';
@@ -117,11 +116,11 @@ const Navbar = () => {
   }, [isSideBarOpen]);
 
   useEffect(() => {
-    console.log("Sidebar Open:", isSideBarOpen);
-    document.body.style.overflow = isSideBarOpen ? "hidden" : "auto";
+    console.log('Sidebar Open:', isSideBarOpen);
+    document.body.style.overflow = isSideBarOpen ? 'hidden' : 'auto';
 
     return () => {
-      document.body.style.overflow = "auto"; // Cleanup on unmount
+      document.body.style.overflow = 'auto'; // Cleanup on unmount
     };
   }, [isSideBarOpen]);
 
@@ -247,33 +246,12 @@ const Navbar = () => {
                   />
                 </svg>
                 Log in
- 
- 
-          <div className="flex items-center justify-center">
-            {/* login */}
-            <Link
-              to={"/"}
-              className="flex gap-1 items-center mr-5 text-navbarColor font-semibold"
-            >
-              {/* <div className="flex gap-1 items-center mr-5 text-navbarColor font-semibold"> */}
-              <DefaultUser />
-              Log in
-            </Link>
-            <div>
-              <Link to={"/signUp"}>
+              </Link>
+              <Link to={'/signUp'}>
                 <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                   Sign up
                 </button>
- 
               </Link>
-
-              <div>
-                <Link to={'/signUp'}>
-                  <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
-                    Sign up
-                  </button>
-                </Link>
-              </div>
             </div>
           )}
         </div>
@@ -305,13 +283,8 @@ const Navbar = () => {
                 initial={{ x: -280 }}
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
- 
                 transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
                 className="absolute w-[280px] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5 h-[100vh]"
- 
-                transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
-                className="absolute w-[280px] h-[100vh] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5"
- 
               >
                 <div className="flex w-full items-center pt-5 justify-between px-5 xlg:px-10">
                   <img
