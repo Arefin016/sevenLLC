@@ -15,7 +15,7 @@ import {
 
 const Home = () => {
   const { data: homepageData, isLoading } = useHomePageQuery();
-  const { data: allProducts, productsLoading } = useAllProductsQuery();
+  const { data: allProducts, isLoading:productsLoading } = useAllProductsQuery();
   const { data: howItWorksData, isLoading: worksLoading } =
     useHowItWorksQuery();
 
