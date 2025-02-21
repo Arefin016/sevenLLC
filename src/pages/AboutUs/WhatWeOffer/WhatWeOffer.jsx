@@ -1,30 +1,24 @@
-import offerPic1 from "../../../assets/images/offerPic/offerPic1.png";
-import offerPic2 from "../../../assets/images/offerPic/offerPic2.png";
-import offerPic3 from "../../../assets/images/offerPic/offerPic3.png";
-import Button from "../../../components/Button/Button";
-
-const cardData = [
-  {
-    image: offerPic1,
-    heading: "Custom Packaging",
-    subheading:
-      "Mylar bags, luxury boxes, bakery packaging, and more, tailored to your brand.",
-  },
-  {
-    image: offerPic2,
-    heading: "Custom Packaging",
-    subheading:
-      "Mylar bags, luxury boxes, bakery packaging, and more, tailored to your brand.",
-  },
-  {
-    image: offerPic3,
-    heading: "Custom Packaging",
-    subheading:
-      "Mylar bags, luxury boxes, bakery packaging, and more, tailored to your brand.",
-  },
-];
+import { axiosPublic } from '@/hooks/useAxiosPublic';
+import Button from '../../../components/Button/Button';
+import { useQuery } from '@tanstack/react-query';
+import Loader from '@/components/Loader/Loader';
 
 const WhatWeOffer = () => {
+  //fetch data:
+  const whatWeOfferFunc = async () => {
+    const { data } = await axiosPublic('/api/what-we-offer');
+    return data?.data;
+  };
+
+  //query function:
+  const { data: whatWeOffer, isLoading } = useQuery({
+    queryKey: ['what-we-offer'],
+    queryFn: whatWeOfferFunc,
+  });
+
+  console.log(whatWeOffer);
+  // loader:
+  if (isLoading) return <Loader />;
   return (
     <section>
       <div className="max-w-[1480px] mx-auto my-[150px]">
@@ -37,29 +31,33 @@ const WhatWeOffer = () => {
               of all sizes:
             </p>
             <div className="mt-12">
-              {" "}
+              {' '}
               <Button
-                text={"Request a Quote"}
-                color={"bg-buttonColor"}
+                text={'Request a Quote'}
+                color={'bg-buttonColor'}
               ></Button>
             </div>
           </div>
           {/* This is the second div */}
           <div className="flex gap-[61px]">
-            {cardData.map((item, index) => {
+            {whatWeOffer?.map((item) => {
               return (
-                <div className="flex flex-col items-start" key={index}>
+                <div className="flex flex-col items-start" key={item?.id}>
                   {/* Render the content of each card here */}
-                  <img
-                    className="self-start"
-                    src={item.image}
-                    alt={item.heading}
-                  />
+                  <div className="rounded-[133.333px] bg-white shadow-[0px_2.667px_16.667px_rgba(0,0,0,0.10)] size-[80px] p-4">
+                    <img
+                      className="self-start h-full w-full object-cover"
+                      src={`${import.meta.env.VITE_SITE_URL}/${
+                        item?.image_url
+                      }`}
+                      alt={item.heading}
+                    />
+                  </div>
                   <h1 className="text-headingColor text-xl font-semibold text-left mt-8">
-                    {item.heading}
+                    {item.title}
                   </h1>
                   <p className="text-navbarColor text-base mt-4 text-left">
-                    {item.subheading}
+                    {item.description}
                   </p>
                 </div>
               );

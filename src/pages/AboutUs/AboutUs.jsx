@@ -7,9 +7,9 @@ import BetterPlanet from '../Home/BetterPlanet/BetterPlanet';
 import commitmentPic from '../../assets/images/commitmentPic.png';
 import WhyChooseUs from './WhyChooseUs/WhyChooseUs';
 import WhatWeOffer from './WhatWeOffer/WhatWeOffer';
-import useAxiosPublic, { axiosPublic } from '@/hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '@/components/Loader/Loader';
+import { axiosPublic } from '@/hooks/useAxiosPublic';
 
 const AboutUs = () => {
   //fetch data:
@@ -32,8 +32,11 @@ const AboutUs = () => {
       <div>
         <ChooseUs data={aboutUsData?.data?.ABOUT_US} showBreadcrumb={true} />
         <OurStory data={aboutUsData?.data?.OUR_STORY} />
-        <MissionAndVision />
-        <WhyChooseUs />
+        <MissionAndVision
+          mission={aboutUsData?.data?.OUR_MISSION}
+          vision={aboutUsData?.data?.OUR_VISION}
+        />
+        <WhyChooseUs data={aboutUsData?.data?.WHY_CHOOSE_ITEMS} />
         <div className="bg-[#FAFBFC] pb-[150px] pt-[137px] mt-[150px]">
           <StepSection
             isAbout={true}

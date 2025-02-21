@@ -16,9 +16,9 @@ const OurStory = ({ data }) => {
           <h1 className="text-headingColor text-5xl font-bold max-w-[721px] leading-[67.2px]">
             {data?.title}
           </h1>
-          <p className="text-lg text-navbarColor mt-[18px] max-w-[711px]">
+          <div className="text-lg text-navbarColor mt-[18px] max-w-[711px]">
             {parse(data?.description)}
-          </p>
+          </div>
         </div>
       </div>
     </section>
