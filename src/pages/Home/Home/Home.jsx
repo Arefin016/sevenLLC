@@ -2,30 +2,22 @@ import StepSection from '../../../components/StepSection/StepSection';
 import Banner from '../Banner/Banner';
 import Packaging from '../Packaging/Packaging';
 import Request from '../Request/Request';
-import { axiosPublic } from '@/hooks/useAxiosPublic';
-import { useQuery } from '@tanstack/react-query';
 import Loader from '@/components/Loader/Loader';
 import ChooseUs from '../ChooseUs/ChooseUs';
 import BetterPlanet from '../BetterPlanet/BetterPlanet';
 import { betterPlanetData } from '@/data/data';
 import betterPlanetPic from '../../../assets/images/betterPlanetPic.png';
+import { useHomePageQuery, useHowItWorksQuery } from '@/hooks/cms.queries';
 
 const Home = () => {
-  //fetch Function:
-  const homepageDataFunc = async () => {
-    const { data } = await axiosPublic('/api/home');
-    return data;
-  };
-
-  //query function:
-  const { data: homepageData, isLoading } = useQuery({
-    queryKey: ['homepageData'],
-    queryFn: homepageDataFunc,
-  });
+  const { data: homepageData, isLoading } = useHomePageQuery();
+  const { data: howItWorksData, isLoading: worksLoading } =
+    useHowItWorksQuery();
 
   // loader:
-  if (isLoading) return <Loader />;
+  if (isLoading || worksLoading) return <Loader />;
 
+  console.log(howItWorksData);
   return (
     <div>
       <Banner data={homepageData?.data?.hero_section} />
@@ -34,6 +26,7 @@ const Home = () => {
       <Packaging />
       <div className="mt-[137px]">
         <StepSection
+          data={howItWorksData}
           title={'How It Works'}
           subtitle={'Your Packaging, Simplified'}
           btnText={'Learn More About Our Process'}

@@ -8,7 +8,7 @@ const ChooseUs = ({ data,showBreadcrumb }) => {
   const location = useLocation();
 
   return (
-    <section className="ml-[210px] mt-[150px]">
+    <section className="ml-[210px] pt-[150px]">
       <div className="flex gap-[150px] items-center">
         {/* First div: Title, Bullet Points, Description, and Button */}
         <div className="w-1/2">

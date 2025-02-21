@@ -16,7 +16,6 @@ const WhatWeOffer = () => {
     queryFn: whatWeOfferFunc,
   });
 
-  console.log(whatWeOffer);
   // loader:
   if (isLoading) return <Loader />;
   return (
