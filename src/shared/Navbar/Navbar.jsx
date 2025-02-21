@@ -125,8 +125,17 @@ const Navbar = () => {
     };
   }, [isSideBarOpen]);
 
+  useEffect(() => {
+    console.log("Sidebar Open:", isSideBarOpen);
+    document.body.style.overflow = isSideBarOpen ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto"; // Cleanup on unmount
+    };
+  }, [isSideBarOpen]);
+
   return (
-    <nav className=" border-b border-gray-300">
+    <nav className=" border-b border-gray-300 ">
       <div className="container mx-auto">
         {/* desktop navbar */}
         <div className="xlg:flex hidden justify-between px-10 xxl:bg-px-0 items-center mt-4">
@@ -303,7 +312,7 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
                 transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
-                className="absolute w-[280px] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5 h-[100vh]"
+                className="absolute w-[280px] h-[100vh] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5"
               >
                 <div className="flex w-full items-center pt-5 justify-between px-5 xlg:px-10">
                   <img
@@ -357,6 +366,9 @@ const Navbar = () => {
                         <React.Fragment key={index}>
                           <li className=" text-navbarColor font-semibold hover:text-buttonColor transition-colors duration-300">
                             <NavLink
+                              onClick={() => {
+                                setisSideBarOpen(false);
+                              }}
                               to={item.link}
                               className={({ isActive }) =>
                                 isActive
