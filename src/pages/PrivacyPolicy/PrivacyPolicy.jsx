@@ -2,7 +2,7 @@ import { TermsBorderSvg } from "../../components/SvgContainer/SvgConainer";
 
 const PrivacyPolicy = () => {
   return (
-    <section className="mt-[112px]">
+    <section className="pt-[112px]">
       <div className="container mx-auto">
         {/* This is the title section */}
         <div className="flex flex-col justify-center items-center">

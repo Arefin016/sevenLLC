@@ -1,55 +1,10 @@
-import Button from "../../../components/Button/Button";
-import Card from "../../../components/Card/Card";
+/* eslint-disable react/prop-types */
+import Button from '@/components/Button/Button';
+import Card from '@/components/Card/Card';
 
-const Packaging = () => {
-  const cardData = [
-    {
-      imageSrc: "https://i.postimg.cc/HL7R0BwR/card1.png",
-      title: "Food & Beverages",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/j5S8gcPR/Frame-2147224289.png",
-      title: "Trash & Waste Management",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/tg5SNw1r/Frame-2147224289-1.png",
-      title: "Industrial & Wholesale Packaging",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/5t1KvbtY/Frame-2147224289-2.png",
-      title: "Health & Beauty Packaging",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/gJ7KMWGK/Frame-2147224289-3.png",
-      title: "Eco Friendly",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/GmvSHHbn/Frame-2147224290.png",
-      title: "Food & Beverage Packaging",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/Kv6HGnS5/Frame-2147224289-4.png",
-      title: "Trash & Waste Packaging",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/Prp7nScx/Frame-2147224289-5.png",
-      title: "Health & Beauty",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/pry6TCLs/Frame-2147224289-6.png",
-      title: "Bamboo & Eco Friendly",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/76KRwdwC/Frame-2147224289-7.png",
-      title: "Child resistant",
-    },
-    {
-      imageSrc: "https://i.postimg.cc/bJyMXpcc/Frame-2147224289-8.png",
-      title: "Food-Grade",
-    },
-  ];
-  const remainder = cardData.length % 4;
-  const fullRowsCount = Math.floor(cardData.length / 4) * 4;
+const Packaging = ({ data }) => {
+  const remainder = data?.length % 4;
+  const fullRowsCount = Math.floor(data?.length / 4) * 4;
   return (
     <section>
       <div className="custom-gradient py-[150px] px-[220px]">
@@ -58,26 +13,22 @@ const Packaging = () => {
           <h1 className="text-headingColor text-5xl font-bold max-w-[952px]">
             Packaging Solutions for Every Industry
           </h1>
-          <p className="text-navbarColor mt-6 max-w-[553px]">
+          <p className="text-navbarColor mt-6 max-w-[553px] text-[22px]">
             No Matter the Industry, 777Bags has you covered.
           </p>
         </div>
         {/* This is the card section */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {/* Full rows */}
-          {cardData.slice(0, fullRowsCount).map((card, index) => (
-            <Card key={index} imageSrc={card.imageSrc} title={card.title} />
+          {data?.slice(0, fullRowsCount).map((item,idx) => (
+            <Card key={idx} data={item} />
           ))}
 
           {/* Remainder cards - centered */}
           {remainder > 0 && (
             <div className="col-span-4 flex justify-center gap-4">
-              {cardData.slice(fullRowsCount).map((card, index) => (
-                <Card
-                  key={fullRowsCount + index}
-                  imageSrc={card.imageSrc}
-                  title={card.title}
-                />
+              {data?.slice(fullRowsCount).map((item,idx) => (
+                <Card key={idx} data={item} />
               ))}
             </div>
           )}
@@ -89,7 +40,7 @@ const Packaging = () => {
             ability and we’ll get you a quote!
           </div>
           <div className="mt-12">
-            <Button text={"Explore All Products"} color={"bg-buttonColor"} />
+            <Button text={'Explore All Products'} color={'bg-buttonColor'} />
           </div>
         </div>
       </div>

@@ -1,21 +1,17 @@
-import ButtonTwo from "../../../components/ButtonTwo/ButtonTwo";
+/* eslint-disable react/prop-types */
+import ButtonTwo from '../../../components/ButtonTwo/ButtonTwo';
 
-const BetterPlanet = ({
-  title,
-  description,
-  buttonText,
-  backgroundImage,
-  gradient,
-}) => {
+const BetterPlanet = ({ data, backgroundImage }) => {
+  const { title, description, buttonText, gradient } = data;
   return (
     <section className="mb-16">
       <div
         className=""
         style={{
           backgroundImage: `${gradient}, url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
         }}
       >
         <div className="py-[150px] px-[221px] flex gap-[133px]">

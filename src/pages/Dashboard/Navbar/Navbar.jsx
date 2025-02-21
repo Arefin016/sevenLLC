@@ -102,7 +102,7 @@ const Navbar = () => {
     <>
       {/* {desktop version navbar } */}
       {/* Sidebar with Animation */}
-      <div className="z-[500]">
+      <div ref={sideBarRef} className="z-[500]">
         <AnimatePresence>
           {isSideBarOpen && (
             <motion.section
@@ -117,7 +117,10 @@ const Navbar = () => {
                 duration: 0.5,
               }} // Smooth transition
             >
-              <div className="fixed top-0 left-0 h-[100vh] z-[999] bg-[#fff] shadow-lg px-0 w-[280px] py-8">
+              <div
+                ref={sideBarRef}
+                className="fixed top-0 left-0 h-[100vh] z-[999] bg-[#fff] shadow-lg px-0 w-[280px] py-8"
+              >
                 <section>
                   <div className="w-full xlg:hidden pb-5">
                     <div className="flex w-full items-center justify-between px-5 xlg:px-10">
