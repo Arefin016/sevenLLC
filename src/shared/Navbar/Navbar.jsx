@@ -116,7 +116,6 @@ const Navbar = () => {
   }, [isSideBarOpen]);
 
   useEffect(() => {
-    // console.log('Sidebar Open:', isSideBarOpen);
     document.body.style.overflow = isSideBarOpen ? 'hidden' : 'auto';
 
     return () => {

@@ -7,23 +7,27 @@ import ChooseUs from '../ChooseUs/ChooseUs';
 import BetterPlanet from '../BetterPlanet/BetterPlanet';
 import { betterPlanetData } from '@/data/data';
 import betterPlanetPic from '../../../assets/images/betterPlanetPic.png';
-import { useHomePageQuery, useHowItWorksQuery } from '@/hooks/cms.queries';
+import {
+  useAllProductsQuery,
+  useHomePageQuery,
+  useHowItWorksQuery,
+} from '@/hooks/cms.queries';
 
 const Home = () => {
   const { data: homepageData, isLoading } = useHomePageQuery();
+  const { data: allProducts, productsLoading } = useAllProductsQuery();
   const { data: howItWorksData, isLoading: worksLoading } =
     useHowItWorksQuery();
 
   // loader:
-  if (isLoading || worksLoading) return <Loader />;
+  if (isLoading || worksLoading || productsLoading) return <Loader />;
 
-  console.log(howItWorksData);
   return (
     <div>
       <Banner data={homepageData?.data?.hero_section} />
       <Request />
       <ChooseUs data={homepageData?.data?.why_choose_us} />
-      <Packaging />
+      <Packaging data={allProducts} />
       <div className="mt-[137px]">
         <StepSection
           data={howItWorksData}

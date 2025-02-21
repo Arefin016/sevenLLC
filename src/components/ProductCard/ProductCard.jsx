@@ -1,29 +1,31 @@
-import Button from "../Button/Button";
-import { Link } from "react-router-dom";
-import parse from "html-react-parser";
+/* eslint-disable react/prop-types */
+import Button from '../Button/Button';
+import { Link } from 'react-router-dom';
+import parse from 'html-react-parser';
 
-const ProductCard = ({ title, description, image, reverse }) => {
-  const parsedData =
-    typeof description === "string" ? description : String(description);
-
+const ProductCard = ({ data }) => {
   return (
     <section>
       <div className="container mx-auto">
         <div
           className={`flex items-center gap-[177px] ${
-            reverse ? "flex-row-reverse" : ""
+            data?.reverse == 'left' ? 'flex-row-reverse' : ''
           }`}
         >
           {/* Content Section */}
           <div className="w-1/2 flex flex-col text-left">
-            <h1 className="text-headingColor text-[32px] font-bold">{title}</h1>
+            <h2 className="text-headingColor text-[32px] font-bold">
+              {data?.title}
+            </h2>
             <span className="text-buttonColor text-lg mt-7">Products:</span>
-            <p className="user-descreption-wrapper mt-5">{parse(parsedData)}</p>
+            <p className="user-descreption-wrapper mt-5">
+              {parse(data?.description)}
+            </p>
             <div className="mt-12">
-              <Link to={"/productGuidePage"}>
+              <Link to={'/productGuidePage'}>
                 <Button
-                  text={"Explore Cannabis Packaging"}
-                  color={"bg-buttonColor"}
+                  text={'Explore Cannabis Packaging'}
+                  color={'bg-buttonColor'}
                 />
               </Link>
             </div>
@@ -32,9 +34,9 @@ const ProductCard = ({ title, description, image, reverse }) => {
           <div className="bg-buttonColor rounded-[70px] w-[694px] h-[580px] relative">
             <img
               className={`absolute w-[694px] h-[580px] top-[-25px]  object-cover rounded-[70px] overflow-hidden transition-all duration-300 hover:scale-105 ${
-                reverse ? "right-[25px]" : "left-[25px]"
+                data?.reverse == 'left' ? 'right-[25px]' : 'left-[25px]'
               } `}
-              src={image}
+              src={`${import.meta.env.VITE_SITE_URL}/${data?.image}`}
               alt="Product"
             />
           </div>

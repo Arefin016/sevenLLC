@@ -1,20 +1,9 @@
-import { axiosPublic } from '@/hooks/useAxiosPublic';
 import Button from '../../../components/Button/Button';
-import { useQuery } from '@tanstack/react-query';
 import Loader from '@/components/Loader/Loader';
+import { useWhatWeOfferQuery } from '@/hooks/cms.queries';
 
 const WhatWeOffer = () => {
-  //fetch data:
-  const whatWeOfferFunc = async () => {
-    const { data } = await axiosPublic('/api/what-we-offer');
-    return data?.data;
-  };
-
-  //query function:
-  const { data: whatWeOffer, isLoading } = useQuery({
-    queryKey: ['what-we-offer'],
-    queryFn: whatWeOfferFunc,
-  });
+  const { data: whatWeOffer, isLoading } = useWhatWeOfferQuery();
 
   // loader:
   if (isLoading) return <Loader />;
