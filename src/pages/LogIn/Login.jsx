@@ -1,11 +1,13 @@
 import { useForm } from 'react-hook-form';
 import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
 import logo from '../../assets/images/signUpImage/signUpLogo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
+
 import { useLogin } from '@/hooks/auth.mutations';
 import useAuth from '@/hooks/useAuth';
 import { ImSpinner9 } from 'react-icons/im';
+import { useEffect } from 'react';
 const Login = () => {
   const {
     register,
@@ -15,7 +17,8 @@ const Login = () => {
   } = useForm();
 
   const { mutateAsync: loginMutation } = useLogin();
-  const { loading } = useAuth();
+  const { loading, token } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -26,6 +29,14 @@ const Login = () => {
       console.error('Login failed', error);
     }
   };
+
+  //return if the user is signed in
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
+  if (token) return;
 
   return (
     <section>

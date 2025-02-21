@@ -22,7 +22,7 @@ const Banner = () => {
   });
 
   return (
-    <section className="mt-[132px]">
+    <section className="pt-[132px]">
       <div className="container mx-auto">
         <div className="flex gap-[66px]">
           {/* This is the first div */}

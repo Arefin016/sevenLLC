@@ -3,7 +3,7 @@ import logo from '../../assets/images/signUpImage/signUpLogo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignUpSvg } from '@/components/SvgContainer/SvgConainer';
 import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import { useMutation } from '@tanstack/react-query';
 import { ResetPasswordFunc } from '@/hooks/auth.hooks';
@@ -14,7 +14,7 @@ import { PiSpinnerBold } from 'react-icons/pi';
 const ResetPasswordPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { loading, setLoading } = useAuth();
+  const { loading, setLoading, token } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -25,6 +25,7 @@ const ResetPasswordPage = () => {
   } = useForm();
   const password = watch('password');
 
+  // mutation function:
   const resetPasswordMutation = useMutation({
     mutationKey: ['reset-password'],
     mutationFn: (payload) => ResetPasswordFunc(payload),
@@ -39,14 +40,19 @@ const ResetPasswordPage = () => {
         navigate('/login');
         localStorage.removeItem('email');
       }
-      toast.success(data?.message);
+      toast.success(data?.message, {
+        duration: 1500,
+      });
     },
     onError: (error) => {
       setLoading(false);
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message, {
+        duration: 1500,
+      });
     },
   });
 
+  //handlers:
   const onSubmit = async (data) => {
     const updatedData = {
       email: JSON.parse(localStorage.getItem('email')),
@@ -54,6 +60,14 @@ const ResetPasswordPage = () => {
     };
     resetPasswordMutation.mutate(updatedData);
   };
+
+  //return if the user is signed in
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
+  if (token) return;
 
   return (
     <div className="flex h-[100vh] overflow-hidden">

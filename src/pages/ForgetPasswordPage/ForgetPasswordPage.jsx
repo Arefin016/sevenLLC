@@ -8,9 +8,10 @@ import { VerifyEmailFunc } from '@/hooks/auth.hooks';
 import useAuth from '@/hooks/useAuth';
 import toast from 'react-hot-toast';
 import { PiSpinnerBold } from 'react-icons/pi';
+import { useEffect } from 'react';
 
 const ForgetPasswordPage = () => {
-  const { loading, setLoading } = useAuth();
+  const { loading, setLoading, token } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -31,11 +32,15 @@ const ForgetPasswordPage = () => {
       reset();
       localStorage.setItem('email', JSON.stringify(variables.email));
       navigate('/enterCodePage');
-      toast.success(data?.message);
+      toast.success(data?.message, {
+        duration: 1500,
+      });
     },
     onError: (error) => {
       setLoading(false);
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message, {
+        duration: 1500,
+      });
     },
   });
 
@@ -43,6 +48,14 @@ const ForgetPasswordPage = () => {
   const onSubmit = (data) => {
     verifyMailMutation.mutateAsync(data);
   };
+
+  //return if the user is signed in
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
+  if (token) return;
 
   return (
     <section>

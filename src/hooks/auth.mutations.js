@@ -15,13 +15,17 @@ export const useSignUp = () => {
     },
     mutationFn: (payload) => SignUpFunc(payload),
     onSuccess: () => {
-      toast.success('User registered successfully');
+      toast.success('User registered successfully', {
+        duration: 1500,
+      });
       setLoading(false);
       navigate('/login');
     },
     onError: (err) => {
       setLoading(false);
-      toast.error(err.response?.data?.message);
+      toast.error(err.response?.data?.message, {
+        duration: 1500,
+      });
     },
   });
 };
@@ -43,12 +47,16 @@ export const useLogin = () => {
       };
       localStorage.setItem('userData', JSON.stringify(userData));
       setLoading(false);
-      toast.success('User logged in successfully');
+      toast.success('User logged in successfully', {
+        duration: 1500,
+      });
       navigate('/');
     },
     onError: (error) => {
       setLoading(false);
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message, {
+        duration: 1500,
+      });
     },
   });
 };
@@ -65,7 +73,9 @@ export const useLogout = () => {
       setUser(null);
       localStorage.removeItem('token');
       localStorage.removeItem('userData');
-      toast.success('User logged out successfully');
+      toast.success('User logged out successfully', {
+        duration: 1500,
+      });
       navigate('/login');
     },
   });

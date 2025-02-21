@@ -125,10 +125,10 @@ const Navbar = () => {
   }, [isSideBarOpen]);
 
   return (
-    <nav className=" border-b border-gray-300 ">
+    <nav className=" border-b border-gray-300 h-[164px] fixed w-full left-0 top-0 bg-white z-50">
       <div className="container mx-auto">
         {/* desktop navbar */}
-        <div className="xlg:flex hidden justify-between px-10 xxl:bg-px-0 items-center mt-4">
+        <div className="xlg:flex hidden justify-between px-10 xxl:bg-px-0 items-center pt-4">
           {/* logo */}
           <div className="max-w-[113px] h-[86px]">
             <Link to={'/'}>
