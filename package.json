@@ -25,6 +25,7 @@
     "framer-motion": "^12.4.5",
     "html-react-parser": "^5.2.2",
     "localforage": "^1.10.0",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.475.0",
     "match-sorter": "^8.0.0",
     "react": "^18.3.1",
