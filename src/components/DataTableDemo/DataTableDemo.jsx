@@ -302,7 +302,7 @@ export function DataTableDemo({ setCheckedData }) {
                   className=""
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="px-4 py-4 text-left">
+                    <TableCell key={cell.id} className="p-2 md:p-4 text-left">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
