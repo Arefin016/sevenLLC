@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
+import { Link, useLocation } from 'react-router-dom';
 import Button from '../../../components/Button/Button';
 import parse from 'html-react-parser';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
-const ChooseUs = ({ data }) => {
-  // const location = useLocation();
-
-  // console.log(data);
+const ChooseUs = ({ data,showBreadcrumb }) => {
+  const location = useLocation();
 
   return (
     <section className="ml-[210px] mt-[150px]">
@@ -13,7 +13,7 @@ const ChooseUs = ({ data }) => {
         {/* First div: Title, Bullet Points, Description, and Button */}
         <div className="w-1/2">
           {/* Conditionally render Breadcrumb */}
-          {/* {showBreadcrumb && <Breadcrumb location={location} />} */}
+          {showBreadcrumb && <Breadcrumb location={location} />}
 
           <h1 className="text-headingColor text-5xl font-bold max-w-[721px] leading-[67.2px]">
             {data?.title}
@@ -23,9 +23,9 @@ const ChooseUs = ({ data }) => {
             {parse(data?.description)}
           </div>
           {/* Button Section */}
-          <div className="mt-12">
+          <Link to="/aboutUs" className="mt-12 inline-block">
             <Button text="Learn More About 777Bags" color={'bg-buttonColor'} />
-          </div>
+          </Link>
         </div>
         {/* Second div: Image */}
         <div className="max-w-[829px] h-[710px] object-cover">

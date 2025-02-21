@@ -6,6 +6,9 @@ import { axiosPublic } from '@/hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '@/components/Loader/Loader';
 import ChooseUs from '../ChooseUs/ChooseUs';
+import BetterPlanet from '../BetterPlanet/BetterPlanet';
+import { betterPlanetData } from '@/data/data';
+import betterPlanetPic from '../../../assets/images/betterPlanetPic.png';
 
 const Home = () => {
   //fetch Function:
@@ -36,7 +39,12 @@ const Home = () => {
           btnText={'Learn More About Our Process'}
         />
       </div>
-      <div className="mt-[150px]">{/* <BetterPlanet {...data} /> */}</div>
+      <div className="mt-[150px]">
+        <BetterPlanet
+          data={betterPlanetData}
+          backgroundImage={betterPlanetPic}
+        />
+      </div>
     </div>
   );
 };
