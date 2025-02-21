@@ -35,7 +35,7 @@ const ForgetPasswordPage = () => {
     },
     onError: (error) => {
       setLoading(false);
-      toast.error(error.message);
+      toast.error(error.response?.data?.message);
     },
   });
 

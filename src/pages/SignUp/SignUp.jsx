@@ -42,7 +42,6 @@ const SignUp = () => {
       }
     } catch (error) {
       console.error('Registration Error: ', error);
-      toast.error(error.response?.data?.message || 'Registration Failed.');
     }
   };
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Dropdown, Space } from 'antd';
 import profileImage from '../../assets/images/profile-image.png';
 import logo from '../../assets/images/logo.png';
@@ -7,20 +7,13 @@ import {
   AllCategoriesSvg,
   MenuDropdownSvg,
   SearchBarSvg,
+ 
+  SearchBarSvgTwo,
+  Line,
 } from '../../components/SvgContainer/SvgConainer';
 import useAuth from '@/hooks/useAuth';
 import { useLogout } from '@/hooks/auth.mutations';
-import {
-  AllCategoriesSvg,
-  DefaultUser,
-  Line,
-  SearchBarSvg,
-  SearchBarSvgTwo,
-  WorldIconSvg,
-  WorldSvg,
-} from "../../components/SvgContainer/SvgConainer";
-import useAuth from "@/hooks/useAuth";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion';
 
 const items = [
   {
@@ -68,7 +61,6 @@ const menuItems = [
   { name: 'Order Requests', link: '/orderForms' },
   { name: 'Blog', link: '/blogArticles' },
   { name: 'Contact Us', link: '/contactUs' },
- 
 ];
 
 const Navbar = () => {
@@ -105,7 +97,6 @@ const Navbar = () => {
     logOutMutation();
   };
 
-
   const sideBarRef = useRef(null);
   const [isSideBarOpen, setisSideBarOpen] = useState(false);
 
@@ -117,11 +108,11 @@ const Navbar = () => {
     };
 
     if (isSideBarOpen) {
-      document.addEventListener("mousedown", handleOutsideClick);
+      document.addEventListener('mousedown', handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isSideBarOpen]);
 
@@ -256,6 +247,8 @@ const Navbar = () => {
                   />
                 </svg>
                 Log in
+ 
+ 
           <div className="flex items-center justify-center">
             {/* login */}
             <Link
@@ -271,8 +264,9 @@ const Navbar = () => {
                 <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                   Sign up
                 </button>
-
+ 
               </Link>
+
               <div>
                 <Link to={'/signUp'}>
                   <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
@@ -286,7 +280,7 @@ const Navbar = () => {
         {/* mobile navbar  */}
         <div className="flex xlg:hidden justify-between items-center px-2 lg:px-5 my-4">
           {/* logo */}
-          <Link to={"/"}>
+          <Link to={'/'}>
             <img
               src={logo}
               alt="not found"
@@ -311,8 +305,13 @@ const Navbar = () => {
                 initial={{ x: -280 }}
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
+ 
+                transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
+                className="absolute w-[280px] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5 h-[100vh]"
+ 
                 transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
                 className="absolute w-[280px] h-[100vh] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5"
+ 
               >
                 <div className="flex w-full items-center pt-5 justify-between px-5 xlg:px-10">
                   <img
@@ -372,8 +371,8 @@ const Navbar = () => {
                               to={item.link}
                               className={({ isActive }) =>
                                 isActive
-                                  ? "text-buttonColor font-medium hover:text-buttonColor"
-                                  : "text-navbarColor font-medium hover:text-buttonColor"
+                                  ? 'text-buttonColor font-medium hover:text-buttonColor'
+                                  : 'text-navbarColor font-medium hover:text-buttonColor'
                               }
                             >
                               {item.name}
@@ -383,7 +382,7 @@ const Navbar = () => {
                       ))}
                     </ul>
                     <div>
-                      <Link to={"/signUp"}>
+                      <Link to={'/signUp'}>
                         <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px] hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                           Sign up
                         </button>

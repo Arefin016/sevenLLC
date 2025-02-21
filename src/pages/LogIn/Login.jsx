@@ -3,7 +3,6 @@ import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
 import logo from '../../assets/images/signUpImage/signUpLogo.png';
 import { Link } from 'react-router-dom';
 import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
-import toast from 'react-hot-toast';
 import { useLogin } from '@/hooks/auth.mutations';
 import useAuth from '@/hooks/useAuth';
 import { ImSpinner9 } from 'react-icons/im';
@@ -25,9 +24,6 @@ const Login = () => {
       reset();
     } catch (error) {
       console.error('Login failed', error);
-      toast.error('Login failed! Please try again.', {
-        autoClose: 3000,
-      });
     }
   };
 
