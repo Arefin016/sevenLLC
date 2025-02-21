@@ -1,24 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useLocation } from "react-router-dom";
-import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
-import Button from "../../../components/Button/Button";
-import parse from "html-react-parser";
+import { Link, useLocation } from 'react-router-dom';
+import Button from '../../../components/Button/Button';
+import parse from 'html-react-parser';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
-const ChooseUs = ({
-  title,
-  description,
-  buttonText,
-  imageAlt = "Choose us image",
-  showBreadcrumb = true,
-  img,
-}) => {
+const ChooseUs = ({ data,showBreadcrumb }) => {
   const location = useLocation();
 
-  const parsedData =
-    typeof description === "string" ? description : String(description);
-
   return (
-    <section className="ml-[210px] mt-[150px]">
+    <section className="ml-[210px] pt-[150px]">
       <div className="flex gap-[150px] items-center">
         {/* First div: Title, Bullet Points, Description, and Button */}
         <div className="w-1/2">
@@ -26,18 +16,24 @@ const ChooseUs = ({
           {showBreadcrumb && <Breadcrumb location={location} />}
 
           <h1 className="text-headingColor text-5xl font-bold max-w-[721px] leading-[67.2px]">
-            {title}
+            {data?.title}
           </h1>
 
-          <p className="user-descreption-wrapper mt-4">{parse(parsedData)}</p>
-          {/* Button Section */}
-          <div className="mt-12">
-            <Button text={buttonText} color={"bg-buttonColor"} />
+          <div className="user-descreption-wrapper mt-4">
+            {parse(data?.description)}
           </div>
+          {/* Button Section */}
+          <Link to="/aboutUs" className="mt-12 inline-block">
+            <Button text="Learn More About 777Bags" color={'bg-buttonColor'} />
+          </Link>
         </div>
         {/* Second div: Image */}
         <div className="max-w-[829px] h-[710px] object-cover">
-          <img className="rounded-t-[80px] rounded-r-none" src={img} alt={imageAlt} />
+          <img
+            className="rounded-tl-[80px] rounded-tr-none rounded-br-none rounded-bl-none"
+            src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
+            alt={data?.title}
+          />
         </div>
       </div>
     </section>

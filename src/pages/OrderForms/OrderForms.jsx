@@ -11,15 +11,15 @@ const OrderForms = () => {
   };
 
   return (
-    <section className="mt-[115px]">
+    <section className="pt-[115px]">
       <div className="container mx-auto border border-[#000F2D33] rounded-[30px] py-[120px] px-[80px]">
         {/* This is the title section */}
         <div className="flex flex-col justify-center items-center">
           <h1 className="text-headingColor text-5xl font-bold">Order Forms</h1>
           <p className="max-w-[697px] text-center mt-6 text-navbarColor font-semibold italic">
-            "MOQs vary depending on product specifications and design
+            &quot;MOQs vary depending on product specifications and design
             requirements. Accurate MOQs and pricing will be confirmed during the
-            quotation process. Thank you for your understanding!"
+            quotation process. Thank you for your understanding!&quot;
           </p>
         </div>
 

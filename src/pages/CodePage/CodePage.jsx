@@ -3,7 +3,7 @@ import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
 import logo from '../../assets/images/signUpImage/signUpLogo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import OtpInput from 'react-otp-input';
 import useAuth from '@/hooks/useAuth';
 import { useMutation } from '@tanstack/react-query';
@@ -12,7 +12,7 @@ import { PiSpinnerBold } from 'react-icons/pi';
 import toast from 'react-hot-toast';
 
 const CodePage = () => {
-  const { loading, setLoading } = useAuth();
+  const { loading, setLoading, token } = useAuth();
   const [otp, setOtp] = useState('');
   const { handleSubmit } = useForm();
   const navigate = useNavigate();
@@ -30,11 +30,15 @@ const CodePage = () => {
       setOtp('');
       // localStorage.removeItem('email');
       navigate('/resetPassword');
-      toast.success(data?.message);
+      toast.success(data?.message, {
+        duration: 1500,
+      });
     },
     onError: () => {
       setLoading(false);
-      toast.error('Invalid OTP !');
+      toast.error('Invalid OTP !', {
+        duration: 1500,
+      });
     },
   });
 
@@ -47,6 +51,16 @@ const CodePage = () => {
     };
     otpVerifyMutation.mutate(payload);
   };
+
+  //return if the user is signed in
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
+
+  if (token) return;
+
   return (
     <section>
       <div className="flex h-[100vh] overflow-hidden">

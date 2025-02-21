@@ -14,12 +14,18 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       const userData = async () => {
-        const { data } = await axiosSecure('/api/users/data');
-        setUser(data?.data);
-        return data;
+        try {
+          const { data } = await axiosSecure('/api/users/data');
+          setUser(data?.data);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        } finally {
+          setLoading(false); // Stop loading after fetching
+        }
       };
-
       userData();
+    } else {
+      setLoading(false); // No token means no need to fetch
     }
   }, [token]);
   const stateValue = {

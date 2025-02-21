@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
 import logo from '../../assets/images/signUpImage/signUpLogo.png';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../../components/SvgContainer/SvgConainer';
 import { ImSpinner9 } from 'react-icons/im';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import toast from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
@@ -15,11 +15,11 @@ import { useSignUp } from '@/hooks/auth.mutations';
 
 const SignUp = () => {
   const [image, setImage] = useState(null);
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { loading } = useAuth();
+  const { loading, token } = useAuth();
   const { mutateAsync: signUpMutation } = useSignUp();
-
   const {
     register,
     handleSubmit,
@@ -38,7 +38,9 @@ const SignUp = () => {
         reset(); // Reset the form after successful mutation
         setImage(null);
       } else {
-        toast.error('You must upload a image before proceed');
+        toast.error('You must upload a image before proceed', {
+          duration: 1500,
+        });
       }
     } catch (error) {
       console.error('Registration Error: ', error);
@@ -62,6 +64,13 @@ const SignUp = () => {
     }
   };
 
+  //return if the user is signed in
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
+  if (token) return;
   return (
     <section>
       <div className="flex h-[100vh] overflow-hidden">
