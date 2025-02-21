@@ -31,3 +31,10 @@ export const OtpVerifyFunc = async (payload) => {
   );
   return data;
 };
+export const ResetPasswordFunc = async (payload) => {
+  const { data } = await axiosPublic.post(
+    '/api/users/login/reset-password',
+    payload
+  );
+  return data;
+};

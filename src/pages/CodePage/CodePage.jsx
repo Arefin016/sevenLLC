@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
 import logo from '../../assets/images/signUpImage/signUpLogo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
 import { useState } from 'react';
 import OtpInput from 'react-otp-input';
@@ -15,6 +15,7 @@ const CodePage = () => {
   const { loading, setLoading } = useAuth();
   const [otp, setOtp] = useState('');
   const { handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   // mutation:
   const otpVerifyMutation = useMutation({
@@ -27,7 +28,8 @@ const CodePage = () => {
       console.log(data);
       setLoading(false);
       setOtp('');
-      localStorage.removeItem('email');
+      // localStorage.removeItem('email');
+      navigate('/resetPassword');
       toast.success(data?.message);
     },
     onError: () => {

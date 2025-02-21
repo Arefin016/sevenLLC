@@ -21,7 +21,7 @@ export const useSignUp = () => {
     },
     onError: (err) => {
       setLoading(false);
-      toast.error(err.message);
+      toast.error(err.response?.data?.message);
     },
   });
 };
@@ -46,9 +46,10 @@ export const useLogin = () => {
       toast.success('User logged in successfully');
       navigate('/');
     },
-    onError:()=>{
+    onError: (error) => {
       setLoading(false);
-    }
+      toast.error(error.response?.data?.message);
+    },
   });
 };
 export const useLogout = () => {
