@@ -1,11 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import {
   aboutUsDataFunc,
+  allBlogsFunc,
   allProductsFunc,
   homepageDataFunc,
   howItWorksFunc,
   processDataFunc,
   productsAndServicesFunc,
+  recentBlogsFunc,
+  singleBlogFunc,
   whatWeOfferFunc,
 } from './cms.api';
 
@@ -62,5 +65,30 @@ export const useProductsAndServicesQuery = () => {
   return useQuery({
     queryKey: ['products-and-services'],
     queryFn: productsAndServicesFunc,
+  });
+};
+
+// get all blogs:
+export const useAllBlogsQuery = () => {
+  return useQuery({
+    queryKey: ['all-blogs'],
+    queryFn: allBlogsFunc,
+  });
+};
+
+// single blog query:
+export const useSingleBlogQuery = (slug) => {
+  return useQuery({
+    queryKey: ['single-blog', slug], // Make sure slug is part of the key
+    queryFn: () => singleBlogFunc(slug), // Fetch new data when slug changes
+    enabled: !!slug, // Ensure it only runs when slug is available
+  });
+};
+
+//recent blogs query:
+export const useRecentBlogsQuery = () => {
+  return useQuery({
+    queryKey: ['recent-blogs'],
+    queryFn: recentBlogsFunc,
   });
 };

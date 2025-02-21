@@ -13,6 +13,8 @@ import { useAboutUsQuery, useProcessQuery } from '@/hooks/cms.queries';
 const AboutUs = () => {
   const { data: aboutUsData, isLoading } = useAboutUsQuery();
   const { data: processData, isLoading: processLoading } = useProcessQuery();
+
+  
   // loader:
   if (isLoading || processLoading) return <Loader />;
 
