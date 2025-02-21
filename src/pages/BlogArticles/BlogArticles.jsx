@@ -6,7 +6,7 @@ import { blogPosts } from "../../components/DummyData/DummyData";
 const BlogArticles = () => {
 
   return (
-    <section className="mt-[165px]">
+    <section className="pt-[165px]">
       <div className="container mx-auto">
         {/* This is the blog and articles */}
         <div className="flex justify-center">

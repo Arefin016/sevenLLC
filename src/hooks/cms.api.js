@@ -38,5 +38,12 @@ export const processDataFunc = async () => {
 
 // products and services:
 export const productsAndServicesFunc = async () => {
-    const {data}=await axiosPublic('/api/explore-all')
-    return data?.data;}
+  const { data } = await axiosPublic('/api/explore-all');
+  return data?.data;
+};
+
+//contact form:
+export const contactFormFunc = async (payload) => {
+  const { data } = await axiosPublic.post('/api/contact-us', payload);
+  return data?.data;
+};
