@@ -61,7 +61,7 @@ export const useLogin = () => {
   });
 };
 export const useLogout = () => {
-  const { setUser } = useAuth();
+  const { setUser, setCustomLoading } = useAuth();
   const navigate = useNavigate();
   return useMutation({
     mutationKey: ['logout'],
@@ -69,14 +69,21 @@ export const useLogout = () => {
       const { data } = await axiosSecure.post('/api/users/logout');
       return data;
     },
+    onMutate: () => {
+      setCustomLoading(true);
+    },
     onSuccess: () => {
       setUser(null);
+      setCustomLoading(false);
       localStorage.removeItem('token');
       localStorage.removeItem('userData');
       toast.success('User logged out successfully', {
         duration: 1500,
       });
       navigate('/login');
+    },
+    onError: () => {
+      setCustomLoading(false);
     },
   });
 };
