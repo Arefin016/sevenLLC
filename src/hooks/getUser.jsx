@@ -1,19 +1,16 @@
-import useAuth from "./useAuth"
-import useAxiosSecure from "./useAxiosSecure"
-
+import useAuth from "./useAuth";
+import useAxiosSecure from "./useAxiosSecure";
 
 function getUser() {
+  const axiosSecure = useAxiosSecure();
+  const { setCurrentUser } = useAuth();
 
-    const axiosSecure = useAxiosSecure()
-    const {setCurrentUser} = useAuth()
-
-   useEffect(() => {
+  useEffect(() => {
     (async () => {
-        const res = axiosSecure.get('/api/users/data')
-        setCurrentUser(res.data.data)
-    })()
-   },[])
-
+      const res = axiosSecure.get("/api/users/data");
+      setCurrentUser(res.data.data);
+    })();
+  }, []);
 }
 
-export default getUser
+export default getUser;

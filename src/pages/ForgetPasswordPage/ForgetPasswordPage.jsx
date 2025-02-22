@@ -1,14 +1,17 @@
-import { useForm } from 'react-hook-form';
-import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
-import logo from '../../assets/images/signUpImage/signUpLogo.png';
-import { Link, useNavigate } from 'react-router-dom';
-import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
-import { useMutation } from '@tanstack/react-query';
-import { VerifyEmailFunc } from '@/hooks/auth.hooks';
-import useAuth from '@/hooks/useAuth';
-import toast from 'react-hot-toast';
-import { PiSpinnerBold } from 'react-icons/pi';
-import { useEffect } from 'react';
+import { useForm } from "react-hook-form";
+import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
+import logo from "../../assets/images/signUpImage/signUpLogo.png";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  BackToHomeArrowSvg,
+  SignUpSvg,
+} from "../../components/SvgContainer/SvgConainer";
+import { useMutation } from "@tanstack/react-query";
+import { VerifyEmailFunc } from "@/hooks/auth.hooks";
+import useAuth from "@/hooks/useAuth";
+import toast from "react-hot-toast";
+import { PiSpinnerBold } from "react-icons/pi";
+import { useEffect } from "react";
 
 const ForgetPasswordPage = () => {
   const { loading, setLoading, token } = useAuth();
@@ -22,7 +25,7 @@ const ForgetPasswordPage = () => {
 
   // mutation:
   const verifyMailMutation = useMutation({
-    mutationKey: ['verify-email'],
+    mutationKey: ["verify-email"],
     mutationFn: VerifyEmailFunc,
     onMutate: async () => {
       setLoading(true);
@@ -30,8 +33,8 @@ const ForgetPasswordPage = () => {
     onSuccess: (data, variables) => {
       setLoading(false);
       reset();
-      localStorage.setItem('email', JSON.stringify(variables.email));
-      navigate('/enterCodePage');
+      localStorage.setItem("email", JSON.stringify(variables.email));
+      navigate("/enterCodePage");
       toast.success(data?.message, {
         duration: 1500,
       });
@@ -52,44 +55,47 @@ const ForgetPasswordPage = () => {
   //return if the user is signed in
   useEffect(() => {
     if (token) {
-      navigate('/');
+      navigate("/");
     }
   }, [navigate, token]);
   if (token) return;
 
   return (
     <section>
-      <div className="flex h-[100vh] overflow-hidden">
+      <div className="flex flex-col-reverse sm:flex-row h-[550px] md:h-[100vh] overflow-hidden">
         {/* This is the left div */}
-        <div className="w-[50%] ">
-          <div className="flex flex-col justify-center items-center mt-[68.58px]">
+        <div className="w-full sm:w-[50%]">
+          <div className="flex flex-col justify-center items-center sm:mt-[68.58px] mt-7">
             <img
-              className="w-[254px] h-[193px] object-cover"
+              className="md:w-[140px] lg:w-[190px] w-[120px] md:h-[150px] h-[120px] lg:h-[193px] object-contain"
               src={logo}
               alt=""
             />
-            <h1 className="text-headingColor text-[32px] font-bold mt-[104px]">
+            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-8">
               Forgot Password?
             </h1>
-            <p className="text-navbarColor mt-2">
+            <p className="text-navbarColor mt-2 px-2 text-center">
               Enter your email to get a verification code.
             </p>
           </div>
           {/* Input Field */}
-          <div className="ml-[200px] mt-16 max-w-[560px]">
+          <div className="xl:ml-[200px] mt-8 sm:mt-16 sm:max-w-[560px] w-full">
             {/* This is input field */}
             {/* Your Name Field */}
-            <form onSubmit={handleSubmit(onSubmit)} className="mt-12">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="sm:mt-12 mt-10 px-6 xlg:pl-14 xl:px-0"
+            >
               {/* This is the Email Address input field */}
-              <div className="flex flex-col gap-2 mt-[28px]">
-                <label className="text-headingColor text-lg font-medium">
+              <div className="flex flex-col gap-2 mt-[28px] w-full">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Email Address
                 </label>
                 <input
                   type="email"
                   name="email"
-                  {...register('email', { required: true })}
-                  className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
+                  {...register("email", { required: true })}
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Email Address"
                 />
                 {errors.email && (
@@ -99,9 +105,9 @@ const ForgetPasswordPage = () => {
                 )}
               </div>
               {/* This is the submit button */}
-              <div className="flex items-center gap-2">
+              <div className="flex justify-center sm:justify-normal items-center gap-2">
                 <button
-                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
+                  className="bg-buttonColor rounded-[60px] text-sm sm:text-base font-semibold mt-9 text-[#FFF] w-[560px] lg:h-[68px] h-11 flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
                   type="submit"
                 >
                   {loading ? (
@@ -118,31 +124,20 @@ const ForgetPasswordPage = () => {
           </div>
         </div>
         {/* This is the right div */}
-        <div className="w-[50%] relative">
-          <div className="flex items-center gap-2 absolute right-[200px] top-[56px]">
-            <Link to={'/'}>
+        <div className="w-full sm:w-[50%] relative overflow-auto">
+          <div className="flex items-center gap-2 absolute lg:right-[200px] right-[90px] lg:top-4">
+            <Link to={"/"}>
               <button
-                className="bg-transparent rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[208px] h-[58px] flex items-center justify-center cursor-pointer border border-[#FFF] "
+                className="bg-transparent rounded-[60px] lg:text-base text-sm font-semibold mt-9 text-[#FFF] w-[208px] lg:h-[58px] h-12 flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"
               >
                 <span>Back to Home</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M16.0054 9.414L7.39838 18.021L5.98438 16.607L14.5904 8H7.00538V6H18.0054V17H16.0054V9.414Z"
-                    fill="white"
-                  />
-                </svg>
+                <BackToHomeArrowSvg />
               </button>
             </Link>
           </div>
           <img
-            className="w-[960px] h-[100vh] object-cover"
+            className="w-full hidden sm:block sm:w-[960px] h-auto sm:h-[100vh] object-cover"
             src={signUpPic}
             alt=""
           />

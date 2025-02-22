@@ -1,7 +1,10 @@
-import { axiosPublic } from './useAxiosPublic';
+import { axiosPublic } from "./useAxiosPublic";
 
 // Homepage Data
 export const homepageDataFunc = async () => {
+  const { data } = await axiosPublic("/api/home");
+  return data;
+
   try {
     const { data } = await axiosPublic('/api/home');
     return data;
@@ -9,10 +12,13 @@ export const homepageDataFunc = async () => {
     console.error('Error fetching homepage data:', error);
     throw new Error('Failed to fetch homepage data');
   }
+
 };
 
 // All Products
 export const allProductsFunc = async () => {
+  const { data } = await axiosPublic("/api/product-list");
+  return data?.data;
   try {
     const { data } = await axiosPublic('/api/product-list');
     return data?.data || [];
@@ -20,10 +26,14 @@ export const allProductsFunc = async () => {
     console.error('Error fetching all products:', error);
     throw new Error('Failed to fetch products');
   }
+
 };
 
 // How It Works
 export const howItWorksFunc = async () => {
+
+  const { data } = await axiosPublic("/api/our-works");
+  return data?.data;
   try {
     const { data } = await axiosPublic('/api/our-works');
     return data?.data || [];
@@ -35,6 +45,8 @@ export const howItWorksFunc = async () => {
 
 // About Us
 export const aboutUsDataFunc = async () => {
+  const { data } = await axiosPublic("/api/about-us");
+  return data;
   try {
     const { data } = await axiosPublic('/api/about-us');
     return data;
@@ -46,6 +58,8 @@ export const aboutUsDataFunc = async () => {
 
 // What We Offer
 export const whatWeOfferFunc = async () => {
+  const { data } = await axiosPublic("/api/what-we-offer");
+  return data?.data;
   try {
     const { data } = await axiosPublic('/api/what-we-offer');
     return data?.data || [];
@@ -57,6 +71,8 @@ export const whatWeOfferFunc = async () => {
 
 // Our Process
 export const processDataFunc = async () => {
+  const { data } = await axiosPublic("/api/our-process");
+  return data?.data;
   try {
     const { data } = await axiosPublic('/api/our-process');
     return data?.data || [];
@@ -68,6 +84,8 @@ export const processDataFunc = async () => {
 
 // Products & Services
 export const productsAndServicesFunc = async () => {
+  const { data } = await axiosPublic("/api/explore-all");
+  return data?.data;
   try {
     const { data } = await axiosPublic('/api/explore-all');
     return data?.data || [];
@@ -79,6 +97,8 @@ export const productsAndServicesFunc = async () => {
 
 // Contact Form Submission
 export const contactFormFunc = async (payload) => {
+  const { data } = await axiosPublic.post("/api/contact-us", payload);
+  return data?.data;
   try {
     const { data } = await axiosPublic.post('/api/contact-us', payload);
     return data?.data || {};
@@ -86,10 +106,13 @@ export const contactFormFunc = async (payload) => {
     console.error('Error submitting contact form:', error);
     throw new Error('Failed to submit contact form');
   }
+
 };
 
 // All Blogs
 export const allBlogsFunc = async () => {
+  const { data } = await axiosPublic("/api/blog");
+  return data?.data;
   try {
     const { data } = await axiosPublic('/api/blog');
     return data?.data || [];
@@ -112,6 +135,8 @@ export const singleBlogFunc = async (slug) => {
 
 // Recent Blogs
 export const recentBlogsFunc = async () => {
+  const { data } = await axiosPublic("/api/recent-blogs");
+  return data?.data;
   try {
     const { data } = await axiosPublic('/api/recent-blogs');
     return data?.data || [];

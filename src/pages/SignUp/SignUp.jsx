@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
-import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
-import logo from '../../assets/images/signUpImage/signUpLogo.png';
+import { useEffect, useState } from "react";
+import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
+import logo from "../../assets/images/signUpImage/signUpLogo.png";
 import {
+  BackToHomeArrowSvg,
   SignUpSvg,
   UploadPicSvg,
-} from '../../components/SvgContainer/SvgConainer';
-import { ImSpinner9 } from 'react-icons/im';
-import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
-import toast from 'react-hot-toast';
-import useAuth from '@/hooks/useAuth';
-import { useSignUp } from '@/hooks/auth.mutations';
+} from "../../components/SvgContainer/SvgConainer";
+import { ImSpinner9 } from "react-icons/im";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import toast from "react-hot-toast";
+import useAuth from "@/hooks/useAuth";
+import { useSignUp } from "@/hooks/auth.mutations";
 
 const SignUp = () => {
   const [image, setImage] = useState(null);
@@ -28,7 +29,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const password = watch('password');
+  const password = watch("password");
 
   const onSubmit = async (data) => {
     try {
@@ -38,12 +39,12 @@ const SignUp = () => {
         reset(); // Reset the form after successful mutation
         setImage(null);
       } else {
-        toast.error('You must upload a image before proceed', {
+        toast.error("You must upload a image before proceed", {
           duration: 1500,
         });
       }
     } catch (error) {
-      console.error('Registration Error: ', error);
+      console.error("Registration Error: ", error);
     }
   };
 
@@ -52,12 +53,12 @@ const SignUp = () => {
     const file = event.target.files[0];
 
     if (file) {
-      if (!file.type.startsWith('image/')) {
-        alert('Only image files (JPEG, PNG, JPG, GIF) are allowed.');
+      if (!file.type.startsWith("image/")) {
+        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
         return;
       }
       if (file.size > 2 * 1024 * 1024) {
-        alert('File must be less than 2MB.');
+        alert("File must be less than 2MB.");
         return;
       }
       setImage(file);
@@ -67,31 +68,31 @@ const SignUp = () => {
   //return if the user is signed in
   useEffect(() => {
     if (token) {
-      navigate('/');
+      navigate("/");
     }
   }, [navigate, token]);
   if (token) return;
   return (
     <section>
-      <div className="flex h-[100vh] overflow-hidden">
+      <div className="flex flex-col-reverse sm:flex-row h-[100vh] overflow-hidden">
         {/* This is the left div */}
-        <div className="w-[50%] overflow-y-scroll">
-          <div className="flex flex-col justify-center items-center mt-[68.58px]">
+        <div className="w-full sm:w-[50%] overflow-y-scroll">
+          <div className="flex flex-col justify-center items-center sm:mt-[68.58px] mt-7">
             <img
-              className="w-[254px] h-[193px] object-cover"
+              className="md:w-[140px] lg:w-[190px] w-[120px] md:h-[150px] h-[120px] lg:h-[193px] object-contain"
               src={logo}
               alt=""
             />
-            <h1 className="text-headingColor text-[32px] font-bold mt-[104px]">
+            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-8">
               Sign Up
             </h1>
           </div>
           {/* Input Field */}
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="ml-[200px] mt-16 max-w-[560px]"
+            className="xl:ml-[200px] mt-8 sm:mt-16 sm:max-w-[560px] w-full"
           >
-            <div className="flex gap-4 items-center">
+            <div className="flex flex-col xl:justify-normal justify-center xxs:flex-row gap-4 items-center">
               <label
                 htmlFor="photo-upload"
                 className="w-24 h-24 border-2 border-dashed border-gray-300 flex justify-center items-center rounded-md cursor-pointer hover:border-blue-500 transition"
@@ -115,26 +116,28 @@ const SignUp = () => {
                 className="hidden"
                 onChange={handleImageChange}
               />
-              <div className="flex items-center gap-3">
-                <p className="text-2xl text-headingColor font-medium">
+              <div className="flex flex-col xmd:flex-row items-center gap-3">
+                <p className="text-xl lg:text-2xl text-headingColor font-medium">
                   Add your photo
                 </p>
-                <p className="text-lg text-navbarColor">(Less than 2MB)</p>
+                <p className="text-base lg:text-lg text-navbarColor">
+                  (Less than 2MB)
+                </p>
               </div>
             </div>
             {/* This is input field */}
             {/* Your Name Field */}
-            <div className="mt-12">
+            <div className="sm:mt-12 mt-8 px-6 xlg:pl-14 xl:px-0">
               {/* This is the First name input field */}
-              <div className="flex flex-col gap-2">
-                <label className="text-headingColor text-lg font-medium">
+              <div className="flex flex-col gap-2 w-full">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   First Name
                 </label>
                 <input
                   type="text"
                   name="first_name"
-                  {...register('first_name', { required: true })}
-                  className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
+                  {...register("first_name", { required: true })}
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Your First Name"
                 />
                 {errors.first_Name && (
@@ -144,15 +147,15 @@ const SignUp = () => {
                 )}
               </div>
               {/* This is the Last Name input field */}
-              <div className="flex flex-col gap-2 mt-[28px]">
-                <label className="text-headingColor text-lg font-medium">
+              <div className="flex flex-col gap-2 mt-3 sm:mt-[28px] w-full">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Last Name
                 </label>
                 <input
                   type="text"
                   name="last_name"
-                  {...register('last_name', { required: true })}
-                  className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
+                  {...register("last_name", { required: true })}
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Your Last Name"
                 />
                 {errors.last_Name && (
@@ -162,15 +165,15 @@ const SignUp = () => {
                 )}
               </div>
               {/* This is the Phone Number input field */}
-              <div className="flex flex-col gap-2 mt-[28px]">
-                <label className="text-headingColor text-lg font-medium">
+              <div className="flex flex-col gap-2 mt-3 sm:mt-[28px] w-full">
+                <label className="text-headingColor sm:text-lg text-base font-medium">
                   Phone Number
                 </label>
                 <input
                   type="number"
                   name="phone"
-                  {...register('phone', { required: true })}
-                  className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
+                  {...register("phone", { required: true })}
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Your Phone Number"
                 />
                 {errors.phone && (
@@ -180,15 +183,15 @@ const SignUp = () => {
                 )}
               </div>
               {/* This is the Email Address input field */}
-              <div className="flex flex-col gap-2 mt-[28px]">
-                <label className="text-headingColor text-lg font-medium">
+              <div className="flex flex-col gap-2 mt-3 sm:mt-[28px] w-full">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Email Address
                 </label>
                 <input
                   type="email"
                   name="email"
-                  {...register('email', { required: true })}
-                  className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
+                  {...register("email", { required: true })}
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Email Address"
                 />
                 {errors.email && (
@@ -198,23 +201,23 @@ const SignUp = () => {
                 )}
               </div>
               {/* This is the Password input field */}
-              <div className="flex flex-col gap-2 mt-[28px] relative">
-                <label className="text-headingColor text-lg font-medium">
+              <div className="flex flex-col gap-2 mt-3 sm:mt-[28px] relative w-full">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Password
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     name="password"
-                    {...register('password', {
-                      required: 'Password is required',
+                    {...register("password", {
+                      required: "Password is required",
                     })}
-                    className="border border-[#D0D3D6] rounded-xl py-[25px] px-5 w-full"
+                    className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5 w-full"
                     placeholder="Enter Password"
                   />
                   <span
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute bottom-[28px] right-[10px] cursor-pointer"
+                    className="absolute lg:bottom-7 bottom-[18px] right-[10px] cursor-pointer"
                   >
                     {showPassword ? (
                       <IoEyeOutline className="text-xl" />
@@ -231,25 +234,25 @@ const SignUp = () => {
               </div>
 
               {/* This is the Confirm Password input field */}
-              <div className="flex flex-col gap-2 mt-[28px] relative">
-                <label className="text-headingColor text-lg font-medium">
+              <div className="flex flex-col gap-2 mt-3 sm:mt-[28px] relative w-full">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Confirm Password
                 </label>
                 <div className="relative">
                   <input
-                    type={showConfirmPassword ? 'text' : 'password'}
+                    type={showConfirmPassword ? "text" : "password"}
                     name="password_confirmation"
-                    {...register('password_confirmation', {
-                      required: 'Confirm Password is required',
+                    {...register("password_confirmation", {
+                      required: "Confirm Password is required",
                       validate: (value) =>
-                        value === password || 'Passwords do not match',
+                        value === password || "Passwords do not match",
                     })}
-                    className="border border-[#D0D3D6] rounded-xl py-[25px] px-5 w-full"
+                    className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5 w-full"
                     placeholder="Enter Confirm Password"
                   />
                   <span
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute bottom-[28px] right-[10px] cursor-pointer"
+                    className="absolute lg:bottom-7 bottom-[18px] right-[10px] cursor-pointer"
                   >
                     {showConfirmPassword ? (
                       <IoEyeOutline className="text-xl" />
@@ -267,19 +270,19 @@ const SignUp = () => {
 
               {/* forget password text */}
               <div className="flex justify-center mt-[23px]">
-                <p className="text-navbarColor text-lg">
-                  Forgot your Password?{' '}
-                  <Link to={'/forgetPassword'}>
-                    <span className="text-buttonColor text-lg font-bold underline">
+                <p className="text-navbarColor text-base lg:text-lg">
+                  Forgot your Password?{" "}
+                  <Link to={"/forgetPassword"}>
+                    <span className="text-buttonColor text-base lg:text-lg font-bold underline">
                       Click Here
-                    </span>{' '}
+                    </span>{" "}
                   </Link>
                 </p>
               </div>
               {/* This is the submit button */}
-              <div className="flex items-center gap-2">
+              <div className="flex justify-center sm:justify-normal items-center gap-2">
                 <button
-                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px]  h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
+                  className="bg-buttonColor rounded-[60px] text-sm sm:text-base font-semibold mt-9 text-[#FFF] w-[560px] lg:h-[68px] h-11 flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
                   type="submit"
                 >
                   {loading ? (
@@ -293,43 +296,32 @@ const SignUp = () => {
                 </button>
               </div>
               {/*  */}
-              <p className="text-center mt-[113px] mb-[47px] text-navbarColor text-lg">
-                Already have an account?{' '}
-                <Link to={'/login'}>
-                  <span className="text-buttonColor text-lg font-bold ml-2">
+              <p className="text-center lg:mt-[113px] lg:mb-[47px] mt-5 mb-11 text-navbarColor text-base sm:text-lg">
+                Already have an account?{" "}
+                <Link to={"/login"}>
+                  <span className="text-buttonColor text-base lg:text-lg font-bold ml-2">
                     Log In
-                  </span>{' '}
+                  </span>{" "}
                 </Link>
               </p>
             </div>
           </form>
         </div>
         {/* This is the right div */}
-        <div className="w-[50%] relative">
-          <div className="flex items-center gap-2 absolute right-[200px] top-[56px]">
-            <Link to={'/'}>
+        <div className="w-full sm:w-[50%] relative overflow-auto">
+          <div className="flex items-center gap-2 absolute lg:right-[200px] right-[90px] lg:top-4">
+            <Link to={"/"}>
               <button
-                className="bg-transparent rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[208px] h-[58px] flex items-center justify-center cursor-pointer border border-[#FFF] "
+                className="bg-transparent rounded-[60px] lg:text-base text-sm font-semibold mt-9 text-[#FFF] w-[208px] lg:h-[58px] h-12 flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"
               >
                 <span>Back to Home</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M16.0054 9.414L7.39838 18.021L5.98438 16.607L14.5904 8H7.00538V6H18.0054V17H16.0054V9.414Z"
-                    fill="white"
-                  />
-                </svg>
+                <BackToHomeArrowSvg />
               </button>
             </Link>
           </div>
           <img
-            className="w-[960px] h-[100vh] object-cover"
+            className="w-full hidden sm:block sm:w-[960px] h-auto sm:h-[100vh] object-cover"
             src={signUpPic}
             alt=""
           />
