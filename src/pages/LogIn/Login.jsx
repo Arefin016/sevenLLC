@@ -50,11 +50,11 @@ const Login = () => {
         <div className="w-full sm:w-[50%] overflow-y-scroll">
           <div className="flex flex-col justify-center items-center sm:mt-[68.58px] mt-7">
             <img
-              className="md:w-[185px] lg:w-[254px] w-[150px] md:h-[150px] h-[120px] lg:h-[193px] object-cover"
+              className="md:w-[140px] lg:w-[190px] w-[120px] md:h-[150px] h-[120px] lg:h-[193px] object-contain"
               src={logo}
               alt=""
             />
-            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-12">
+            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-8">
               Log In
             </h1>
           </div>
@@ -85,7 +85,7 @@ const Login = () => {
                 )}
               </div>
               {/* This is the Password input field */}
-              <div className="flex flex-col gap-2 mt-[28px] relative w-full">
+              <div className="flex flex-col gap-2 mt-3 sm:mt-[28px] relative w-full">
                 <label className="text-headingColor lg:text-lg text-base font-medium">
                   Password
                 </label>

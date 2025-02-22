@@ -67,11 +67,11 @@ const ForgetPasswordPage = () => {
         <div className="w-full sm:w-[50%]">
           <div className="flex flex-col justify-center items-center sm:mt-[68.58px] mt-7">
             <img
-              className="md:w-[185px] lg:w-[254px] w-[150px] md:h-[150px] h-[120px] lg:h-[193px] object-cover"
+              className="md:w-[140px] lg:w-[190px] w-[120px] md:h-[150px] h-[120px] lg:h-[193px] object-contain"
               src={logo}
               alt=""
             />
-            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-12">
+            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-8">
               Forgot Password?
             </h1>
             <p className="text-navbarColor mt-2 px-2 text-center">
