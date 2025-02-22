@@ -127,7 +127,7 @@ const SignUp = () => {
             </div>
             {/* This is input field */}
             {/* Your Name Field */}
-            <div className="sm:mt-12 mt-10 px-3 xlg:pl-14 xl:px-0">
+            <div className="sm:mt-12 mt-10 px-6 xlg:pl-14 xl:px-0">
               {/* This is the First name input field */}
               <div className="flex flex-col gap-2 w-full">
                 <label className="text-headingColor lg:text-lg text-base font-medium">
