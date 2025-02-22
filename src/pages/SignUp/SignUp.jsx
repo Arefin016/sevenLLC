@@ -92,7 +92,7 @@ const SignUp = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="xl:ml-[200px] mt-8 sm:mt-16 sm:max-w-[560px] w-full"
           >
-            <div className="flex flex-col lg:justify-normal justify-center xxs:flex-row gap-4 items-center">
+            <div className="flex flex-col xl:justify-normal justify-center xxs:flex-row gap-4 items-center">
               <label
                 htmlFor="photo-upload"
                 className="w-24 h-24 border-2 border-dashed border-gray-300 flex justify-center items-center rounded-md cursor-pointer hover:border-blue-500 transition"
@@ -127,17 +127,17 @@ const SignUp = () => {
             </div>
             {/* This is input field */}
             {/* Your Name Field */}
-            <div className="sm:mt-12 mt-10 px-3 sm:px-0">
+            <div className="sm:mt-12 mt-10 px-3 xlg:pl-14 xl:px-0">
               {/* This is the First name input field */}
               <div className="flex flex-col gap-2 w-full">
-                <label className="text-headingColor sm:text-lg text-base font-medium">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   First Name
                 </label>
                 <input
                   type="text"
                   name="first_name"
                   {...register("first_name", { required: true })}
-                  className="border text-sm sm:text-base border-[#D0D3D6] rounded-xl py-4 sm:py-[25px] px-5"
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Your First Name"
                 />
                 {errors.first_Name && (
@@ -148,14 +148,14 @@ const SignUp = () => {
               </div>
               {/* This is the Last Name input field */}
               <div className="flex flex-col gap-2 mt-[28px] w-full">
-                <label className="text-headingColor sm:text-lg text-base font-medium">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Last Name
                 </label>
                 <input
                   type="text"
                   name="last_name"
                   {...register("last_name", { required: true })}
-                  className="border text-sm sm:text-base border-[#D0D3D6] rounded-xl py-4 sm:py-[25px] px-5"
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Your Last Name"
                 />
                 {errors.last_Name && (
@@ -173,7 +173,7 @@ const SignUp = () => {
                   type="number"
                   name="phone"
                   {...register("phone", { required: true })}
-                  className="border text-sm sm:text-base border-[#D0D3D6] rounded-xl py-4 sm:py-[25px] px-5"
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Your Phone Number"
                 />
                 {errors.phone && (
@@ -184,14 +184,14 @@ const SignUp = () => {
               </div>
               {/* This is the Email Address input field */}
               <div className="flex flex-col gap-2 mt-[28px] w-full">
-                <label className="text-headingColor sm:text-lg text-base font-medium">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Email Address
                 </label>
                 <input
                   type="email"
                   name="email"
                   {...register("email", { required: true })}
-                  className="border text-sm sm:text-base border-[#D0D3D6] rounded-xl py-4 sm:py-[25px] px-5"
+                  className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Email Address"
                 />
                 {errors.email && (
@@ -202,7 +202,7 @@ const SignUp = () => {
               </div>
               {/* This is the Password input field */}
               <div className="flex flex-col gap-2 mt-[28px] relative w-full">
-                <label className="text-headingColor sm:text-lg text-base font-medium">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Password
                 </label>
                 <div className="relative">
@@ -212,12 +212,12 @@ const SignUp = () => {
                     {...register("password", {
                       required: "Password is required",
                     })}
-                    className="border text-sm sm:text-base border-[#D0D3D6] rounded-xl py-4 sm:py-[25px] px-5 w-full"
+                    className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5 w-full"
                     placeholder="Enter Password"
                   />
                   <span
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute sm:bottom-7 bottom-[18px] right-[10px] cursor-pointer"
+                    className="absolute lg:bottom-7 bottom-[18px] right-[10px] cursor-pointer"
                   >
                     {showPassword ? (
                       <IoEyeOutline className="text-xl" />
@@ -235,7 +235,7 @@ const SignUp = () => {
 
               {/* This is the Confirm Password input field */}
               <div className="flex flex-col gap-2 mt-[28px] relative w-full">
-                <label className="text-headingColor sm:text-lg text-base font-medium">
+                <label className="text-headingColor lg:text-lg text-base font-medium">
                   Confirm Password
                 </label>
                 <div className="relative">
@@ -247,12 +247,12 @@ const SignUp = () => {
                       validate: (value) =>
                         value === password || "Passwords do not match",
                     })}
-                    className="border text-sm sm:text-base border-[#D0D3D6] rounded-xl py-4 sm:py-[25px] px-5 w-full"
+                    className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5 w-full"
                     placeholder="Enter Confirm Password"
                   />
                   <span
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute sm:bottom-7 bottom-[18px] right-[10px] cursor-pointer"
+                    className="absolute lg:bottom-7 bottom-[18px] right-[10px] cursor-pointer"
                   >
                     {showConfirmPassword ? (
                       <IoEyeOutline className="text-xl" />
@@ -270,10 +270,10 @@ const SignUp = () => {
 
               {/* forget password text */}
               <div className="flex justify-center mt-[23px]">
-                <p className="text-navbarColor text-base sm:text-lg">
+                <p className="text-navbarColor text-base lg:text-lg">
                   Forgot your Password?{" "}
                   <Link to={"/forgetPassword"}>
-                    <span className="text-buttonColor text-base sm:text-lg font-bold underline">
+                    <span className="text-buttonColor text-base lg:text-lg font-bold underline">
                       Click Here
                     </span>{" "}
                   </Link>
@@ -282,7 +282,7 @@ const SignUp = () => {
               {/* This is the submit button */}
               <div className="flex justify-center sm:justify-normal items-center gap-2">
                 <button
-                  className="bg-buttonColor rounded-[60px] text-sm sm:text-base font-semibold mt-9 text-[#FFF] w-[560px] sm:h-[68px] h-11 flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
+                  className="bg-buttonColor rounded-[60px] text-sm sm:text-base font-semibold mt-9 text-[#FFF] w-[560px] lg:h-[68px] h-11 flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
                   type="submit"
                 >
                   {loading ? (
@@ -296,10 +296,10 @@ const SignUp = () => {
                 </button>
               </div>
               {/*  */}
-              <p className="text-center sm:mt-[113px] sm:mb-[47px] my-5 text-navbarColor text-base sm:text-lg">
+              <p className="text-center lg:mt-[113px] lg:mb-[47px] mt-5 mb-11 text-navbarColor text-base sm:text-lg">
                 Already have an account?{" "}
                 <Link to={"/login"}>
-                  <span className="text-buttonColor text-base sm:text-lg font-bold ml-2">
+                  <span className="text-buttonColor text-base lg:text-lg font-bold ml-2">
                     Log In
                   </span>{" "}
                 </Link>
@@ -309,10 +309,10 @@ const SignUp = () => {
         </div>
         {/* This is the right div */}
         <div className="w-full sm:w-[50%] relative overflow-auto">
-          <div className="flex items-center gap-2 absolute right-[200px] top-[56px]">
+          <div className="flex items-center gap-2 absolute lg:right-[200px] right-[90px] lg:top-4">
             <Link to={"/"}>
               <button
-                className="bg-transparent rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[208px] h-[58px] flex items-center justify-center cursor-pointer border border-[#FFF] "
+                className="bg-transparent rounded-[60px] lg:text-base text-sm font-semibold mt-9 text-[#FFF] w-[208px] lg:h-[58px] h-12 flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"
               >
                 <span>Back to Home</span>
