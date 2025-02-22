@@ -6,6 +6,10 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 const ChooseUs = ({ data, showBreadcrumb }) => {
   const location = useLocation();
+  const safeParse = (html) => {
+    if (!html || typeof html !== "string") return "No content available"; // Handle undefined/null/invalid cases
+    return parse(html);
+  };
 
   return (
     <section className="ml-[210px] pt-[150px]">
@@ -20,7 +24,8 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
           </h1>
 
           <div className="user-descreption-wrapper mt-4">
-            {parse(String(data?.description || ''))}
+            {/* {parse(String(data?.description || ''))} */}
+            {safeParse(data?.description)}
           </div>
           {/* Button Section */}
           <Link to="/aboutUs" className="mt-12 inline-block">
