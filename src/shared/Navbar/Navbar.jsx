@@ -119,7 +119,7 @@ const Navbar = () => {
     document.body.style.overflow = isSideBarOpen ? 'hidden' : 'auto';
 
     return () => {
-      document.body.style.overflow = 'auto'; // Cleanup on unmount
+      document.body.style.overflow = "auto";
     };
   }, [isSideBarOpen]);
 
@@ -275,96 +275,102 @@ const Navbar = () => {
               <span className="w-full h-[1px] bg-headingColor transition-transform duration-300"></span>
             </div>
           )}
-          <AnimatePresence>
-            {isSideBarOpen && (
-              <motion.div
-                ref={sideBarRef}
-                initial={{ x: -280 }}
-                animate={{ x: 0 }}
-                exit={{ x: -280 }}
-                transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
-                className="absolute w-[280px] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5 h-[100vh]"
-              >
-                <div className="flex w-full items-center pt-5 justify-between px-5 xlg:px-10">
-                  <img
-                    src={logo}
-                    alt="Logo"
-                    className="h-[50px] w-[60px] object-cover"
-                  />
-                  {/* Close Button */}
-                  <div
-                    onClick={() => setisSideBarOpen(false)}
-                    className="relative cursor-pointer transition-all ease-linear duration-300 w-[40px] h-[40px] flex items-center justify-center hover:bg-gray-100 rounded-full"
-                  >
-                    <div className="absolute w-[30px] h-[2px] bg-headingColor rotate-45 transition-transform duration-300"></div>
-                    <div className="absolute w-[30px] h-[2px] bg-headingColor -rotate-45 transition-transform duration-300"></div>
+          {isSideBarOpen && (
+            <div className="h-[100vh] overflow-y-hidden" >
+              <AnimatePresence>
+                <motion.div
+                  ref={sideBarRef}
+                  initial={{ x: -280 }}
+                  animate={{ x: 0 }}
+                  exit={{ x: -280 }}
+                  transition={{
+                    type: "tween",
+                    ease: "easeInOut",
+                    duration: 0.3,
+                  }}
+                  className="absolute w-[280px] h-[100vh] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5"
+                >
+                  <div className="flex w-full items-center pt-5 justify-between px-5 xlg:px-10">
+                    <img
+                      src={logo}
+                      alt="Logo"
+                      className="h-[50px] w-[60px] object-cover"
+                    />
+                    {/* Close Button */}
+                    <div
+                      onClick={() => setisSideBarOpen(false)}
+                      className="relative cursor-pointer transition-all ease-linear duration-300 w-[40px] h-[40px] flex items-center justify-center hover:bg-gray-100 rounded-full"
+                    >
+                      <div className="absolute w-[30px] h-[2px] bg-headingColor rotate-45 transition-transform duration-300"></div>
+                      <div className="absolute w-[30px] h-[2px] bg-headingColor -rotate-45 transition-transform duration-300"></div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-col gap-y-5 px-5">
-                  <div className="border border-navbarColor rounded-2xl mt-4 py-1 px-1">
-                    <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-y-5 px-5">
+                    <div className="border border-navbarColor rounded-2xl mt-4 py-1 px-1">
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <input
+                            className="focus:outline-none border-none text-xs pl-[15px] py-[10px]"
+                            type="text"
+                            placeholder="Search for products..."
+                          />
+                        </div>
+                        <div className="flex items-center justify-center pr-[3px]">
+                          <Line />
+                          <button className="w-[35px] flex items-center justify-center rounded-[12px] bg-buttonColor h-[35px] hover:bg-buttonColorDark transition-colors duration-300">
+                            <SearchBarSvgTwo />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <Dropdown
+                      className=""
+                      menu={{
+                        items,
+                      }}
+                    >
+                      <a onClick={e => e.preventDefault()}>
+                        <Space className="text-base text-navbarColor font-semibold">
+                          All Categories
+                          <AllCategoriesSvg />
+                        </Space>
+                      </a>
+                    </Dropdown>
+                    <div className="flex flex-col gap-y-5 justify-center">
+                      <ul className="flex flex-col  gap-y-5   flex-wrap ">
+                        {menuItems.map((item, index) => (
+                          <React.Fragment key={index}>
+                            <li className=" text-navbarColor font-semibold hover:text-buttonColor transition-colors duration-300">
+                              <NavLink
+                                onClick={() => {
+                                  setisSideBarOpen(false);
+                                }}
+                                to={item.link}
+                                className={({ isActive }) =>
+                                  isActive
+                                    ? "text-buttonColor font-medium hover:text-buttonColor"
+                                    : "text-navbarColor font-medium hover:text-buttonColor"
+                                }
+                              >
+                                {item.name}
+                              </NavLink>
+                            </li>
+                          </React.Fragment>
+                        ))}
+                      </ul>
                       <div>
-                        <input
-                          className="focus:outline-none border-none text-xs pl-[15px] py-[10px]"
-                          type="text"
-                          placeholder="Search for products..."
-                        />
-                      </div>
-                      <div className="flex items-center justify-center pr-[3px]">
-                        <Line />
-                        <button className="w-[35px] flex items-center justify-center rounded-[12px] bg-buttonColor h-[35px] hover:bg-buttonColorDark transition-colors duration-300">
-                          <SearchBarSvgTwo />
-                        </button>
+                        <Link to={"/signUp"}>
+                          <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px] hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
+                            Sign up
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
-                  <Dropdown
-                    className=""
-                    menu={{
-                      items,
-                    }}
-                  >
-                    <a onClick={(e) => e.preventDefault()}>
-                      <Space className="text-base text-navbarColor font-semibold">
-                        All Categories
-                        <AllCategoriesSvg />
-                      </Space>
-                    </a>
-                  </Dropdown>
-                  <div className="flex flex-col gap-y-5 justify-center">
-                    <ul className="flex flex-col  gap-y-5   flex-wrap ">
-                      {menuItems.map((item, index) => (
-                        <React.Fragment key={index}>
-                          <li className=" text-navbarColor font-semibold hover:text-buttonColor transition-colors duration-300">
-                            <NavLink
-                              onClick={() => {
-                                setisSideBarOpen(false);
-                              }}
-                              to={item.link}
-                              className={({ isActive }) =>
-                                isActive
-                                  ? 'text-buttonColor font-medium hover:text-buttonColor'
-                                  : 'text-navbarColor font-medium hover:text-buttonColor'
-                              }
-                            >
-                              {item.name}
-                            </NavLink>
-                          </li>
-                        </React.Fragment>
-                      ))}
-                    </ul>
-                    <div>
-                      <Link to={'/signUp'}>
-                        <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px] hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
-                          Sign up
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          )}
         </div>
         {/* This is the navigation section */}
         <div>
