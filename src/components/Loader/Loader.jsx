@@ -1,5 +1,5 @@
-import loader from './loading-lottie.json';
-import Lottie from 'lottie-react';
+import loader from "./loading-lottie.json";
+import Lottie from "lottie-react";
 const Loader = () => {
   return (
     <div className="min-h-screen max-h-screen flex items-center justify-center">

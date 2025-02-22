@@ -9,6 +9,7 @@ export const homepageDataFunc = async () => {
     console.error('Error fetching homepage data:', error);
     throw new Error('Failed to fetch homepage data');
   }
+
 };
 
 // All Products
@@ -63,7 +64,7 @@ export const processDataFunc = async () => {
   } catch (error) {
     console.error('Error fetching process data:', error);
     throw new Error('Failed to fetch process data');
-  }
+  } 
 };
 
 // Products & Services
@@ -75,6 +76,7 @@ export const productsAndServicesFunc = async () => {
     console.error('Error fetching products and services:', error);
     throw new Error('Failed to fetch products and services');
   }
+
 };
 
 // Contact Form Submission
@@ -97,6 +99,7 @@ export const allBlogsFunc = async () => {
     console.error('Error fetching all blogs:', error);
     throw new Error('Failed to fetch blogs');
   }
+
 };
 
 // Single Blog
