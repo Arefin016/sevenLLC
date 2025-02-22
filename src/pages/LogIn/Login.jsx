@@ -54,7 +54,7 @@ const Login = () => {
               src={logo}
               alt=""
             />
-            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-8">
+            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-5">
               Log In
             </h1>
           </div>
@@ -130,11 +130,11 @@ const Login = () => {
               {/* This is the submit button */}
               <div className="flex justify-center sm:justify-normal items-center gap-2">
                 <button
-                  className="bg-buttonColor rounded-[60px] text-sm sm:text-base font-semibold mt-9 text-[#FFF] w-[560px] lg:h-[68px] h-11 flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
+                  className="bg-buttonColor rounded-[60px] text-sm sm:text-base font-semibold mt-9 text-[#FFF] w-[250px] sm:w-[560px] lg:h-[68px] h-10 flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
                   type="submit"
                 >
                   {loading ? (
-                    <ImSpinner9 className="text-white size-7 animate-spin group-hover:text-buttonColor" />
+                    <ImSpinner9 className="text-white size-4 sm:size-7 animate-spin group-hover:text-buttonColor" />
                   ) : (
                     <span className="flex items-center justify-center gap-1">
                       <span>Log In</span>
