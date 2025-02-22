@@ -1,25 +1,28 @@
-import { useForm } from 'react-hook-form';
-import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
-import logo from '../../assets/images/signUpImage/signUpLogo.png';
-import { Link, useNavigate } from 'react-router-dom';
-import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
-import { useEffect, useState } from 'react';
-import OtpInput from 'react-otp-input';
-import useAuth from '@/hooks/useAuth';
-import { useMutation } from '@tanstack/react-query';
-import { OtpVerifyFunc } from '@/hooks/auth.hooks';
-import { PiSpinnerBold } from 'react-icons/pi';
-import toast from 'react-hot-toast';
+import { useForm } from "react-hook-form";
+import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
+import logo from "../../assets/images/signUpImage/signUpLogo.png";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  BackToHomeArrowSvg,
+  SignUpSvg,
+} from "../../components/SvgContainer/SvgConainer";
+import { useEffect, useState } from "react";
+import OtpInput from "react-otp-input";
+import useAuth from "@/hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import { OtpVerifyFunc } from "@/hooks/auth.hooks";
+import { PiSpinnerBold } from "react-icons/pi";
+import toast from "react-hot-toast";
 
 const CodePage = () => {
   const { loading, setLoading, token } = useAuth();
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
   const { handleSubmit } = useForm();
   const navigate = useNavigate();
 
   // mutation:
   const otpVerifyMutation = useMutation({
-    mutationKey: ['otp-verify'],
+    mutationKey: ["otp-verify"],
     mutationFn: (payload) => OtpVerifyFunc(payload),
     onMutate: () => {
       setLoading(true);
@@ -27,16 +30,16 @@ const CodePage = () => {
     onSuccess: (data) => {
       console.log(data);
       setLoading(false);
-      setOtp('');
+      setOtp("");
       // localStorage.removeItem('email');
-      navigate('/resetPassword');
+      navigate("/resetPassword");
       toast.success(data?.message, {
         duration: 1500,
       });
     },
     onError: () => {
       setLoading(false);
-      toast.error('Invalid OTP !', {
+      toast.error("Invalid OTP !", {
         duration: 1500,
       });
     },
@@ -44,7 +47,7 @@ const CodePage = () => {
 
   //handlers:
   const onSubmit = () => {
-    const email = localStorage.getItem('email');
+    const email = localStorage.getItem("email");
     const payload = {
       email: JSON.parse(email),
       otp,
@@ -55,7 +58,7 @@ const CodePage = () => {
   //return if the user is signed in
   useEffect(() => {
     if (token) {
-      navigate('/');
+      navigate("/");
     }
   }, [navigate, token]);
 
@@ -63,27 +66,30 @@ const CodePage = () => {
 
   return (
     <section>
-      <div className="flex h-[100vh] overflow-hidden">
+      <div className="flex flex-col-reverse sm:flex-row h-[550px] md:h-[100vh] overflow-hidden">
         {/* This is the left div */}
-        <div className="w-[50%] ">
-          <div className="flex flex-col justify-center items-center mt-[68.58px]">
+        <div className="w-full sm:w-[50%]">
+          <div className="flex flex-col justify-center items-center sm:mt-[68.58px] mt-7">
             <img
-              className="w-[254px] h-[193px] object-cover"
+              className="md:w-[185px] lg:w-[254px] w-[150px] md:h-[150px] h-[120px] lg:h-[193px] object-cover"
               src={logo}
               alt=""
             />
-            <h1 className="text-headingColor text-[32px] font-bold mt-[104px]">
+            <h1 className="text-headingColor text-2xl md:text-2xl lg:text-[32px] font-bold lg:mt-[104px] mt-12">
               Enter The Code
             </h1>
-            <p className="text-navbarColor mt-2 max-w-[379px] flex text-center">
+            <p className="text-navbarColor mt-2 max-w-[379px] flex text-center px-2">
               Enter the code just sent your email to reset your password.
             </p>
           </div>
           {/* Input Field */}
-          <div className="ml-[200px] mt-12 max-w-[560px]">
+          <div className="max-w-[560px] px-5 mx-auto mt-12">
             {/* This is input field */}
             {/* Your Name Field */}
-            <form onSubmit={handleSubmit(onSubmit)} className="">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="lg:max-w-[560px]"
+            >
               {/* This is the Email Address input field */}
               <div id="otp_container" className="">
                 <OtpInput
@@ -97,7 +103,7 @@ const CodePage = () => {
               {/* This is the submit button */}
               <div className="flex items-center gap-2">
                 <button
-                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
+                  className="bg-buttonColor rounded-[60px] text-sm sm:text-base font-semibold mt-9 text-[#FFF] w-[560px] lg:h-[68px] h-11 flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
                   type="submit"
                 >
                   {loading ? (
@@ -114,31 +120,20 @@ const CodePage = () => {
           </div>
         </div>
         {/* This is the right div */}
-        <div className="w-[50%] relative">
-          <div className="flex items-center gap-2 absolute right-[200px] top-[56px]">
-            <Link to={'/'}>
+        <div className="w-full sm:w-[50%] relative overflow-auto">
+          <div className="flex items-center gap-2 absolute lg:right-[200px] right-[90px] lg:top-4">
+            <Link to={"/"}>
               <button
-                className="bg-transparent rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[208px] h-[58px] flex items-center justify-center cursor-pointer border border-[#FFF] "
+                className="bg-transparent rounded-[60px] lg:text-base text-sm font-semibold mt-9 text-[#FFF] w-[208px] lg:h-[58px] h-12 flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"
               >
                 <span>Back to Home</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M16.0054 9.414L7.39838 18.021L5.98438 16.607L14.5904 8H7.00538V6H18.0054V17H16.0054V9.414Z"
-                    fill="white"
-                  />
-                </svg>
+                <BackToHomeArrowSvg />
               </button>
             </Link>
           </div>
           <img
-            className="w-[960px] h-[100vh] object-cover"
+            className="w-full hidden sm:block sm:w-[960px] h-auto sm:h-[100vh] object-cover"
             src={signUpPic}
             alt=""
           />

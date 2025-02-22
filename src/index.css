@@ -278,6 +278,12 @@ input:checked + .slider:before {
   padding-top: 3px;
 }
 
+/* / For OTP Starts / */
+#otp_container div {
+  gap: 30px;
+}
+/* / For OTP Ends / */
+
 /*  */
 .ant-switch.ant-switch-checked {
   background-color: #07a0ec;
@@ -289,5 +295,37 @@ input:checked + .slider:before {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Custom media query */
+@media screen and (max-width: 1200px) {
+  #otp_container div {
+    gap: 20px;
+  }
+
+  #otp_container div input {
+    width: 80px !important;
+    height: 70px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #otp_container div {
+    gap: 15px;
+  }
+
+  #otp_container div input {
+    width: 70px !important;
+    height: 60px;
+  }
+}
+@media screen and (max-width: 480px) {
+  #otp_container div {
+    gap: 10px;
+  }
+
+  #otp_container div input {
+    width: 60px !important;
+    height: 60px;
   }
 }
