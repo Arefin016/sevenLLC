@@ -4,8 +4,12 @@ import Button from '../../../components/Button/Button';
 import parse from 'html-react-parser';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
-const ChooseUs = ({ data,showBreadcrumb }) => {
+const ChooseUs = ({ data, showBreadcrumb }) => {
   const location = useLocation();
+  const parsedData =
+    typeof description === 'string'
+      ? data?.description
+      : String(data?.description);
 
   return (
     <section className="ml-[210px] pt-[150px]">
@@ -19,10 +23,13 @@ const ChooseUs = ({ data,showBreadcrumb }) => {
             {data?.title}
           </h1>
 
+
           <div className="user-descreption-wrapper mt-4">
-            {/* {parse(data?.description)} */}
-            {data?.description ? parse(data?.description) : "No content available"}
+            {{parse(data?.description)}}
+            
           </div>
+          
+
           {/* Button Section */}
           <Link to="/aboutUs" className="mt-12 inline-block">
             <Button text="Learn More About 777Bags" color={'bg-buttonColor'} />
