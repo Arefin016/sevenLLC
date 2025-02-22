@@ -4,7 +4,7 @@ import Button from '../../../components/Button/Button';
 import parse from 'html-react-parser';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
-const ChooseUs = ({ data,showBreadcrumb }) => {
+const ChooseUs = ({ data, showBreadcrumb }) => {
   const location = useLocation();
 
   return (
@@ -20,7 +20,7 @@ const ChooseUs = ({ data,showBreadcrumb }) => {
           </h1>
 
           <div className="user-descreption-wrapper mt-4">
-            {parse(data?.description)}
+            {parse(String(data?.description || ''))}
           </div>
           {/* Button Section */}
           <Link to="/aboutUs" className="mt-12 inline-block">
