@@ -8,6 +8,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
+  const [customLoading, setCustomLoading] = useState(false);
 
   //get user info::
   const token = localStorage.getItem('token');
@@ -34,6 +35,8 @@ const AuthProvider = ({ children }) => {
     token,
     loading,
     setLoading,
+    customLoading,
+    setCustomLoading,
   };
 
   return (
