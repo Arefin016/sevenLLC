@@ -1,10 +1,18 @@
-import { useForm } from "react-hook-form";
-import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
-import logo from "../../assets/images/signUpImage/signUpLogo.png";
-import { Link } from "react-router-dom";
-import { SignUpSvg } from "../../components/SvgContainer/SvgConainer";
+import { useForm } from 'react-hook-form';
+import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
+import logo from '../../assets/images/signUpImage/signUpLogo.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { SignUpSvg } from '../../components/SvgContainer/SvgConainer';
+import { useMutation } from '@tanstack/react-query';
+import { VerifyEmailFunc } from '@/hooks/auth.hooks';
+import useAuth from '@/hooks/useAuth';
+import toast from 'react-hot-toast';
+import { PiSpinnerBold } from 'react-icons/pi';
+import { useEffect } from 'react';
 
 const ForgetPasswordPage = () => {
+  const { loading, setLoading, token } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     reset,
@@ -12,7 +20,42 @@ const ForgetPasswordPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  // mutation:
+  const verifyMailMutation = useMutation({
+    mutationKey: ['verify-email'],
+    mutationFn: VerifyEmailFunc,
+    onMutate: async () => {
+      setLoading(true);
+    },
+    onSuccess: (data, variables) => {
+      setLoading(false);
+      reset();
+      localStorage.setItem('email', JSON.stringify(variables.email));
+      navigate('/enterCodePage');
+      toast.success(data?.message, {
+        duration: 1500,
+      });
+    },
+    onError: (error) => {
+      setLoading(false);
+      toast.error(error.response?.data?.message, {
+        duration: 1500,
+      });
+    },
+  });
+
+  //handlers:
+  const onSubmit = (data) => {
+    verifyMailMutation.mutateAsync(data);
+  };
+
+  //return if the user is signed in
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
+  if (token) return;
 
   return (
     <section>
@@ -36,7 +79,7 @@ const ForgetPasswordPage = () => {
           <div className="ml-[200px] mt-16 max-w-[560px]">
             {/* This is input field */}
             {/* Your Name Field */}
-            <form className="mt-12">
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-12">
               {/* This is the Email Address input field */}
               <div className="flex flex-col gap-2 mt-[28px]">
                 <label className="text-headingColor text-lg font-medium">
@@ -45,7 +88,7 @@ const ForgetPasswordPage = () => {
                 <input
                   type="email"
                   name="email"
-                  {...register("email", { required: true })}
+                  {...register('email', { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Email Address"
                 />
@@ -57,15 +100,19 @@ const ForgetPasswordPage = () => {
               </div>
               {/* This is the submit button */}
               <div className="flex items-center gap-2">
-                <Link to={"/enterCodePage"}>
-                  <button
-                    className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor"
-                    type="submit"
-                  >
-                    <span>Submit</span>
-                    <SignUpSvg />
-                  </button>
-                </Link>
+                <button
+                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
+                  type="submit"
+                >
+                  {loading ? (
+                    <PiSpinnerBold className="text-white size-7 animate-spin group-hover:text-buttonColor" />
+                  ) : (
+                    <span className="flex items-center gap-1">
+                      <span>Submit</span>
+                      <SignUpSvg />
+                    </span>
+                  )}
+                </button>
               </div>
             </form>
           </div>
@@ -73,7 +120,7 @@ const ForgetPasswordPage = () => {
         {/* This is the right div */}
         <div className="w-[50%] relative">
           <div className="flex items-center gap-2 absolute right-[200px] top-[56px]">
-            <Link to={"/"}>
+            <Link to={'/'}>
               <button
                 className="bg-transparent rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[208px] h-[58px] flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"

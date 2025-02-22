@@ -34,19 +34,6 @@ import {
 export const columns = [
   {
     id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => {
-          table.toggleAllPageRowsSelected(!!value);
-          console.log("Select all checked:", value);
-        }}
-        aria-label="Select all"
-      />
-    ),
     cell: ({ row, table }) => (
       <Checkbox
         checked={row.getIsSelected()}
@@ -69,23 +56,25 @@ export const columns = [
   {
     accessorKey: "invoiceId",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Invoice ID
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-buttonColor">{row.getValue("invoiceId")}</div>
+      <div className="text-buttonColor w-[100px]">
+        {row.getValue("invoiceId")}
+      </div>
     ),
   },
   {
     accessorKey: "invoiceDate",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base w-[100px]">
         Invoice Date
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
+      <div className="text-navbarColor text-xs xxs:text-base w-[100px] py-5">
         {row.getValue("invoiceDate")}
       </div>
     ),
@@ -93,12 +82,12 @@ export const columns = [
   {
     accessorKey: "product",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Product
       </span>
     ),
     cell: ({ row }) => (
-      <div className="capitalize text-navbarColor text-base">
+      <div className="capitalize text-navbarColor text-xs xxs:text-base w-[200px]">
         {row.getValue("product")}
       </div>
     ),
@@ -106,12 +95,12 @@ export const columns = [
   {
     accessorKey: "quantity",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Quantity
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
+      <div className="text-navbarColor text-xs xxs:text-base w-[100px]">
         {row.getValue("quantity")}
       </div>
     ),
@@ -119,7 +108,7 @@ export const columns = [
   {
     accessorKey: "amount",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base w-[100px]">
         Amount
       </span>
     ),
@@ -129,18 +118,22 @@ export const columns = [
         style: "currency",
         currency: "USD",
       }).format(amount);
-      return <div className="text-navbarColor text-base">{formatted}</div>;
+      return (
+        <div className="text-navbarColor text-xs xxs:text-base w-[100px]">
+          {formatted}
+        </div>
+      );
     },
   },
   {
     accessorKey: "paymentMethod",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Payment Method
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
+      <div className="text-navbarColor text-xs xxs:text-base w-[200px]">
         {row.getValue("paymentMethod")}
       </div>
     ),
@@ -148,12 +141,12 @@ export const columns = [
   {
     accessorKey: "datePaid",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Date Paid
       </span>
     ),
     cell: ({ row }) => (
-      <div className="text-navbarColor text-base">
+      <div className="text-navbarColor text-xs xxs:text-base w-[100px]">
         {row.getValue("datePaid")}
       </div>
     ),
@@ -161,12 +154,12 @@ export const columns = [
   {
     accessorKey: "status",
     header: () => (
-      <span className="font-lato text-headingColor font-semibold text-base">
+      <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
         Status
       </span>
     ),
     cell: ({ row }) => (
-      <div className="font-publicSans text-[#005CE8] font-medium bg-[#F0F6FF] text-center py-[5px] px-4 rounded-[130px]">
+      <div className="font-publicSans text-[#005CE8] font-medium bg-[#F0F6FF] text-center py-[5px] px-4 rounded-[130px] w-[100px]">
         {row.getValue("status")}
       </div>
     ),
@@ -264,7 +257,7 @@ const PaymentHistoryTable = ({ data }) => {
                   className=""
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="px-4 py-4 text-left ">
+                    <TableCell key={cell.id} className="text-left ">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

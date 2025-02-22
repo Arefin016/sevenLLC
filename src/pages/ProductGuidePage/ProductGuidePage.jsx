@@ -1,6 +1,6 @@
 const ProductGuidePage = () => {
   return (
-    <section className="mt-24">
+    <section className="pt-24">
       <div className="container mx-auto">
         {/* This is the title section */}
         <div className="flex flex-col justify-center items-center">

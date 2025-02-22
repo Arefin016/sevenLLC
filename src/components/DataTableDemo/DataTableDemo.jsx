@@ -84,19 +84,6 @@ export function DataTableDemo({ setCheckedData }) {
   const columns = [
     {
       id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => {
-            table.toggleAllPageRowsSelected(!!value);
-            console.log("Select all checked:", value);
-          }}
-          aria-label="Select all"
-        />
-      ),
       cell: ({ row, table }) => (
         <Checkbox
           checked={row.getIsSelected()}
@@ -119,7 +106,7 @@ export function DataTableDemo({ setCheckedData }) {
     {
       accessorKey: "productName",
       header: () => (
-        <span className="font-lato text-headingColor font-semibold text-base">
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
           Product Name
         </span>
       ),
@@ -129,7 +116,7 @@ export function DataTableDemo({ setCheckedData }) {
         const product = data.find((p) => p.productName === productName);
 
         return (
-          <div className="capitalize text-headingColor text-base flex items-center">
+          <div className="capitalize text-headingColor text-xs xxs:text-base flex items-center pr-10 xmd:pr-0">
             {/* Conditionally render the image */}
             {product && product.imageUrl ? (
               <img
@@ -148,12 +135,12 @@ export function DataTableDemo({ setCheckedData }) {
     {
       accessorKey: "invoiceId",
       header: () => (
-        <span className="font-lato text-headingColor font-semibold text-base">
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base w-[100px]">
           Invoice ID
         </span>
       ),
       cell: ({ row }) => (
-        <div className="text-buttonColor text-base">
+        <div className="text-buttonColor text-xs xxs:text-base w-[100px]">
           {row.getValue("invoiceId")}
         </div>
       ),
@@ -161,12 +148,12 @@ export function DataTableDemo({ setCheckedData }) {
     {
       accessorKey: "category",
       header: () => (
-        <span className="font-lato text-headingColor font-semibold text-base">
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
           Category
         </span>
       ),
       cell: ({ row }) => (
-        <div className="capitalize text-navbarColor text-base">
+        <div className="capitalize text-navbarColor text-xs xxs:text-base">
           {row.getValue("category")}
         </div>
       ),
@@ -174,12 +161,12 @@ export function DataTableDemo({ setCheckedData }) {
     {
       accessorKey: "quantity",
       header: () => (
-        <span className="font-lato text-headingColor font-semibold text-base">
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
           Quantity
         </span>
       ),
       cell: ({ row }) => (
-        <div className="text-navbarColor text-base">
+        <div className="text-navbarColor text-xs xxs:text-base">
           {row.getValue("quantity")}
         </div>
       ),
@@ -187,7 +174,7 @@ export function DataTableDemo({ setCheckedData }) {
     {
       accessorKey: "price",
       header: () => (
-        <span className="font-lato text-headingColor font-semibold text-base">
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
           Price
         </span>
       ),
@@ -197,13 +184,17 @@ export function DataTableDemo({ setCheckedData }) {
           style: "currency",
           currency: "USD",
         }).format(price);
-        return <div className="text-navbarColor text-base">{formatted}</div>;
+        return (
+          <div className="text-navbarColor text-xs xxs:text-base">
+            {formatted}
+          </div>
+        );
       },
     },
     {
       accessorKey: "total",
       header: () => (
-        <span className="font-lato text-headingColor font-semibold text-base">
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
           Total
         </span>
       ),
@@ -213,7 +204,11 @@ export function DataTableDemo({ setCheckedData }) {
           style: "currency",
           currency: "USD",
         }).format(total);
-        return <div className="text-navbarColor text-base">{formatted}</div>;
+        return (
+          <div className="text-navbarColor text-xs xxs:text-base">
+            {formatted}
+          </div>
+        );
       },
     },
     {
@@ -307,7 +302,7 @@ export function DataTableDemo({ setCheckedData }) {
                   className=""
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="px-4 py-4 text-left">
+                    <TableCell key={cell.id} className="p-2 md:p-4 text-left">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

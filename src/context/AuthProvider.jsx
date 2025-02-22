@@ -1,60 +1,42 @@
-import { createContext, useState, useEffect } from "react";
-import useAxiosSecure from "@/hooks/useAxiosSecure";
+/* eslint-disable react/prop-types */
+import { createContext, useState, useEffect } from 'react';
+import { axiosSecure } from '@/hooks/useAxiosSecure';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(false);
+  const [customLoading, setCustomLoading] = useState(false);
 
-  // console.log( 'stateUser', currentUser)
-
-  const axiosSecure = useAxiosSecure();
-  const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
-
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
-
-  const login = (userData, receivedToken) => {
-    setUser(userData);
-    setToken(receivedToken);
-    localStorage.setItem("token", receivedToken);
-    localStorage.setItem("user", JSON.stringify(userData));
-  };
-
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  };
-
+  //get user info::
+  const token = localStorage.getItem('token');
   useEffect(() => {
-    const fetchUser = async () => {
-      if (!token) return;
-      try {
-        const response = await axiosSecure.get("/api/users/data", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUser(response.data.data);
-        localStorage.setItem("user", JSON.stringify(response.data.data));
-      } catch (error) {
-        console.error("Error fetching user info:", error);
-        logout();
-      }
-    };
-
-    fetchUser();
-  }, [token, axiosSecure]);
-
+    if (token) {
+      const userData = async () => {
+        try {
+          const { data } = await axiosSecure('/api/users/data');
+          setUser(data?.data);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        } finally {
+          setLoading(false); // Stop loading after fetching
+        }
+      };
+      userData();
+    } else {
+      setLoading(false); // No token means no need to fetch
+    }
+  }, [token]);
   const stateValue = {
     user,
+    setUser,
     token,
-    login,
-    logout,
-    currentUser,
-    setCurrentUser,
+    loading,
+    setLoading,
+    customLoading,
+    setCustomLoading,
   };
 
   return (

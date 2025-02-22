@@ -1,29 +1,25 @@
-import { useState } from "react";
-import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
-import logo from "../../assets/images/signUpImage/signUpLogo.png";
+import { useEffect, useState } from 'react';
+import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
+import logo from '../../assets/images/signUpImage/signUpLogo.png';
 import {
   SignUpSvg,
   UploadPicSvg,
-} from "../../components/SvgContainer/SvgConainer";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import useAxiosPublic from "@/hooks/useAxiosPublic";
-import toast from "react-hot-toast";
-import useAuth from "@/hooks/useAuth";
+} from '../../components/SvgContainer/SvgConainer';
+import { ImSpinner9 } from 'react-icons/im';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
+import toast from 'react-hot-toast';
+import useAuth from '@/hooks/useAuth';
+import { useSignUp } from '@/hooks/auth.mutations';
 
 const SignUp = () => {
   const [image, setImage] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
-  const {currentUser , setCurrentUser} = useAuth()
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  const axiosPublic = useAxiosPublic();
-
-  
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { loading, token } = useAuth();
+  const { mutateAsync: signUpMutation } = useSignUp();
   const {
     register,
     handleSubmit,
@@ -32,63 +28,49 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const password = watch("password");
+  const password = watch('password');
 
   const onSubmit = async (data) => {
-    setLoading(true);
     try {
-      // Create FormData to send files
-      const formData = new FormData();
-      formData.append("first_name", data.first_Name);
-      formData.append("last_name", data.last_Name);
-      formData.append("phone", data.phone);
-      formData.append("email", data.email);
-      formData.append("password", data.password);
-      formData.append("password_confirmation", data.password_confirmation);
-      if (image) formData.append("avatar", image);
-
-      console.log(...formData);
-
-      // Send formData to your backend API
-      const response = await axiosPublic.post("/api/users/register", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      // Store the token received in the response
-      localStorage.setItem("token", response?.data?.data?.token);
-
-
-      console.log( 'response', response.data.data);
-      setCurrentUser(response.data.data)
-      toast.success(response.data.message, {
-        duration: 1500,
-      });
-      reset();
-      navigate("/login");
+      if (image) {
+        const userData = { ...data, avatar: image };
+        await signUpMutation(userData); // Wait for mutation to complete
+        reset(); // Reset the form after successful mutation
+        setImage(null);
+      } else {
+        toast.error('You must upload a image before proceed', {
+          duration: 1500,
+        });
+      }
     } catch (error) {
-      console.error("Registration Error: ", error);
-      toast.error(error.response?.data?.message || "Registration Failed.");
-    } finally {
-      setLoading(false);
+      console.error('Registration Error: ', error);
     }
   };
 
+  //image handler:
   const handleImageChange = (event) => {
     const file = event.target.files[0];
 
     if (file) {
-      if (!file.type.startsWith("image/")) {
-        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
+      if (!file.type.startsWith('image/')) {
+        alert('Only image files (JPEG, PNG, JPG, GIF) are allowed.');
         return;
       }
       if (file.size > 2 * 1024 * 1024) {
-        alert("File must be less than 2MB.");
+        alert('File must be less than 2MB.');
         return;
       }
       setImage(file);
     }
   };
 
+  //return if the user is signed in
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
+  if (token) return;
   return (
     <section>
       <div className="flex h-[100vh] overflow-hidden">
@@ -116,7 +98,7 @@ const SignUp = () => {
               >
                 {image ? (
                   <img
-                    src={image}
+                    src={URL.createObjectURL(image)}
                     alt="Uploaded"
                     className="w-full h-full object-cover rounded-md"
                   />
@@ -150,8 +132,8 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                  name="first_Name"
-                  {...register("first_Name", { required: true })}
+                  name="first_name"
+                  {...register('first_name', { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Your First Name"
                 />
@@ -168,8 +150,8 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                  name="last_Name"
-                  {...register("last_Name", { required: true })}
+                  name="last_name"
+                  {...register('last_name', { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Your Last Name"
                 />
@@ -187,7 +169,7 @@ const SignUp = () => {
                 <input
                   type="number"
                   name="phone"
-                  {...register("phone", { required: true })}
+                  {...register('phone', { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Your Phone Number"
                 />
@@ -205,7 +187,7 @@ const SignUp = () => {
                 <input
                   type="email"
                   name="email"
-                  {...register("email", { required: true })}
+                  {...register('email', { required: true })}
                   className="border border-[#D0D3D6] rounded-xl py-[25px] px-5"
                   placeholder="Enter Email Address"
                 />
@@ -222,10 +204,10 @@ const SignUp = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
-                    {...register("password", {
-                      required: "Password is required",
+                    {...register('password', {
+                      required: 'Password is required',
                     })}
                     className="border border-[#D0D3D6] rounded-xl py-[25px] px-5 w-full"
                     placeholder="Enter Password"
@@ -255,12 +237,12 @@ const SignUp = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type={showConfirmPassword ? "text" : "password"}
+                    type={showConfirmPassword ? 'text' : 'password'}
                     name="password_confirmation"
-                    {...register("password_confirmation", {
-                      required: "Confirm Password is required",
+                    {...register('password_confirmation', {
+                      required: 'Confirm Password is required',
                       validate: (value) =>
-                        value === password || "Passwords do not match",
+                        value === password || 'Passwords do not match',
                     })}
                     className="border border-[#D0D3D6] rounded-xl py-[25px] px-5 w-full"
                     placeholder="Enter Confirm Password"
@@ -286,31 +268,37 @@ const SignUp = () => {
               {/* forget password text */}
               <div className="flex justify-center mt-[23px]">
                 <p className="text-navbarColor text-lg">
-                  Forgot your Password?{" "}
-                  <Link to={"/forgetPassword"}>
+                  Forgot your Password?{' '}
+                  <Link to={'/forgetPassword'}>
                     <span className="text-buttonColor text-lg font-bold underline">
                       Click Here
-                    </span>{" "}
+                    </span>{' '}
                   </Link>
                 </p>
               </div>
               {/* This is the submit button */}
               <div className="flex items-center gap-2">
                 <button
-                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px] h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor"
+                  className="bg-buttonColor rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[560px]  h-[68px] flex items-center justify-center cursor-pointer hover:bg-white border hover:border-buttonColor hover:text-buttonColor group"
                   type="submit"
                 >
-                  <span>Sign Up</span>
-                  <SignUpSvg />
+                  {loading ? (
+                    <ImSpinner9 className="text-white size-7 animate-spin group-hover:text-buttonColor" />
+                  ) : (
+                    <span className="flex items-center justify-center gap-1">
+                      <span>Sign Up</span>
+                      <SignUpSvg />
+                    </span>
+                  )}
                 </button>
               </div>
               {/*  */}
               <p className="text-center mt-[113px] mb-[47px] text-navbarColor text-lg">
-                Already have an account?{" "}
-                <Link to={"/login"}>
+                Already have an account?{' '}
+                <Link to={'/login'}>
                   <span className="text-buttonColor text-lg font-bold ml-2">
                     Log In
-                  </span>{" "}
+                  </span>{' '}
                 </Link>
               </p>
             </div>
@@ -319,7 +307,7 @@ const SignUp = () => {
         {/* This is the right div */}
         <div className="w-[50%] relative">
           <div className="flex items-center gap-2 absolute right-[200px] top-[56px]">
-            <Link to={"/"}>
+            <Link to={'/'}>
               <button
                 className="bg-transparent rounded-[60px] text-base font-semibold mt-9 text-[#FFF] w-[208px] h-[58px] flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"

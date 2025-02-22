@@ -1,96 +1,134 @@
-import { createBrowserRouter } from "react-router-dom";
-import Main from "../layouts/Main";
-import Home from "../pages/Home/Home/Home";
-import AboutUs from "../pages/AboutUs/AboutUs";
-import ProductServices from "../pages/ProductServices/ProductServices";
-import BlogArticles from "../pages/BlogArticles/BlogArticles";
-import BlogDetailsPage from "../pages/BlogArticles/BlogDetailsPage";
-import SignUp from "../pages/SignUp/SignUp";
-import Login from "../pages/LogIn/Login";
-import ForgetPasswordPage from "../pages/ForgetPasswordPage/ForgetPasswordPage";
-import CodePage from "../pages/CodePage/CodePage";
-import ProductGuidePage from "../pages/ProductGuidePage/ProductGuidePage";
-import TermsConditions from "../pages/TermsConditions/TermsConditions";
-import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
-import OrderForms from "../pages/OrderForms/OrderForms";
-import DashboardLayout from "../layouts/DashboardLayout";
-import Dashboard from "../pages/Dashboard/pages/Dashboard/Dashboard";
-import OrderHistory from "../pages/Dashboard/pages/OrderHistory/OrderHistory";
-import PaymentHistory from "../pages/Dashboard/pages/PaymentHistory/PaymentHistory";
-import Settings from "../pages/Dashboard/pages/Settings/Settings";
-import ContactUs from "@/pages/ContactUs/ContactUs";
+import { createBrowserRouter } from 'react-router-dom';
+import Main from '../layouts/Main';
+import Home from '../pages/Home/Home/Home';
+import AboutUs from '../pages/AboutUs/AboutUs';
+import ProductServices from '../pages/ProductServices/ProductServices';
+import BlogArticles from '../pages/BlogArticles/BlogArticles';
+import BlogDetailsPage from '../pages/BlogArticles/BlogDetailsPage';
+import SignUp from '../pages/SignUp/SignUp';
+import Login from '../pages/LogIn/Login';
+import ForgetPasswordPage from '../pages/ForgetPasswordPage/ForgetPasswordPage';
+import CodePage from '../pages/CodePage/CodePage';
+import ProductGuidePage from '../pages/ProductGuidePage/ProductGuidePage';
+import TermsConditions from '../pages/TermsConditions/TermsConditions';
+import PrivacyPolicy from '../pages/PrivacyPolicy/PrivacyPolicy';
+import OrderForms from '../pages/OrderForms/OrderForms';
+import DashboardLayout from '../layouts/DashboardLayout';
+import Dashboard from '../pages/Dashboard/pages/Dashboard/Dashboard';
+import OrderHistory from '../pages/Dashboard/pages/OrderHistory/OrderHistory';
+import PaymentHistory from '../pages/Dashboard/pages/PaymentHistory/PaymentHistory';
+import Settings from '../pages/Dashboard/pages/Settings/Settings';
+import ContactUs from '@/pages/ContactUs/ContactUs';
+import ResetPasswordPage from '@/pages/ResetPasswordPage/ResetPasswordPage';
+import PrivateRoute from './PrivateRoute';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <Home />,
       },
       {
-        path: "/aboutUs",
+        path: '/aboutUs',
         element: <AboutUs />,
       },
       {
-        path: "/productServices",
+        path: '/productServices',
         element: <ProductServices />,
       },
       {
-        path: "/blogArticles",
+        path: '/blogArticles',
         element: <BlogArticles />,
       },
       {
-        path: "/blogArticles/:slug",
+        path: '/blogArticles/:slug',
         element: <BlogDetailsPage />,
       },
       {
-        path: "/signUp",
+        path: '/signUp',
         element: <SignUp />,
       },
       {
-        path: "/login",
+        path: '/login',
         element: <Login />,
       },
       {
-        path: "/forgetPassword",
+        path: '/forgetPassword',
         element: <ForgetPasswordPage />,
       },
       {
-        path: "/enterCodePage",
+        path: '/enterCodePage',
         element: <CodePage />,
       },
       {
-        path: "/productGuidePage",
+        path: '/productGuidePage',
         element: <ProductGuidePage />,
       },
       {
-        path: "/terms",
+        path: '/terms',
         element: <TermsConditions />,
       },
       {
-        path: "/privacy",
+        path: '/privacy',
         element: <PrivacyPolicy />,
       },
       {
-        path: "/orderForms",
+        path: '/orderForms',
         element: <OrderForms />,
       },
       {
-        path: "/contactUs",
+        path: '/contactUs',
         element: <ContactUs />,
+      },
+      {
+        path: '/resetPassword',
+        element: <ResetPasswordPage />,
       },
     ],
   },
   {
-    path: "/dashboardLayout",
-    element: <DashboardLayout />,
+    path: '/dashboardLayout',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
-      { path: "/dashboardLayout/mainDashboard", element: <Dashboard /> },
-      { path: "/dashboardLayout/orderHistory", element: <OrderHistory /> },
-      { path: "/dashboardLayout/paymentHistory", element: <PaymentHistory /> },
-      { path: "/dashboardLayout/settings", element: <Settings /> },
+      {
+        path: '/dashboardLayout/mainDashboard',
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/dashboardLayout/orderHistory',
+        element: (
+          <PrivateRoute>
+            <OrderHistory />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/dashboardLayout/paymentHistory',
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/dashboardLayout/settings',
+        element: (
+          <PrivateRoute>
+            <Settings />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
