@@ -1,67 +1,72 @@
 import { axiosPublic } from "./useAxiosPublic";
 
-//homepage:
+// Homepage Data
 export const homepageDataFunc = async () => {
-  const { data } = await axiosPublic("/api/home");
+  const { data } = await axiosPublic('/api/home');
   return data;
 };
 
-//all products:
+// All Products
 export const allProductsFunc = async () => {
-  const { data } = await axiosPublic("/api/product-list");
+  const { data } = await axiosPublic('/api/product-list');
   return data?.data;
 };
 
-//howItWorks:
+// How It Works
 export const howItWorksFunc = async () => {
-  const { data } = await axiosPublic("/api/our-works");
+  const { data } = await axiosPublic('/api/our-works');
   return data?.data;
 };
 
-// about us:
+// About Us
 export const aboutUsDataFunc = async () => {
-  const { data } = await axiosPublic("/api/about-us");
+  const { data } = await axiosPublic('/api/about-us');
   return data;
 };
 
-//what we offer:
+// What We Offer
 export const whatWeOfferFunc = async () => {
-  const { data } = await axiosPublic("/api/what-we-offer");
+  const { data } = await axiosPublic('/api/what-we-offer');
   return data?.data;
 };
 
-// process:
+// Our Process
 export const processDataFunc = async () => {
-  const { data } = await axiosPublic("/api/our-process");
+  const { data } = await axiosPublic('/api/our-process');
   return data?.data;
 };
 
-// products and services:
+// Products & Services
 export const productsAndServicesFunc = async () => {
-  const { data } = await axiosPublic("/api/explore-all");
+  const { data } = await axiosPublic('/api/explore-all');
   return data?.data;
 };
 
-//contact form:
+// Contact Form Submission
 export const contactFormFunc = async (payload) => {
-  const { data } = await axiosPublic.post("/api/contact-us", payload);
+  const { data } = await axiosPublic.post('/api/contact-us', payload);
   return data?.data;
 };
 
-// all blogs:
+// All Blogs
 export const allBlogsFunc = async () => {
-  const { data } = await axiosPublic("/api/blog");
+  const { data } = await axiosPublic('/api/blog');
   return data?.data;
 };
 
-// single blog:
+// Single Blog
 export const singleBlogFunc = async (slug) => {
-  const { data } = await axiosPublic(`/api/blog/${slug}`);
-  return data?.data;
+  try {
+    const { data } = await axiosPublic(`/api/blog/${slug}`);
+    return data?.data || null;
+  } catch (error) {
+    console.error(`Error fetching blog: ${slug}`, error);
+    throw new Error('Failed to fetch blog');
+  }
 };
 
-// recent blogs:
+// Recent Blogs
 export const recentBlogsFunc = async () => {
-  const { data } = await axiosPublic("/api/recent-blogs");
+  const { data } = await axiosPublic('/api/recent-blogs');
   return data?.data;
 };

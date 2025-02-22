@@ -71,6 +71,10 @@
 }
 
 @layer components {
+  body[data-scroll-locked] .topbar {
+    /* margin-right: var(--removed-body-scroll-bar-size) !important; */
+    padding-right: var(--removed-body-scroll-bar-size) !important;
+  }
   .headingStyle {
     @apply text-headingColor text-5xl font-bold;
   }
