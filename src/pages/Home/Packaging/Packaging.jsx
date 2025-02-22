@@ -3,6 +3,7 @@ import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
 
 const Packaging = ({ data }) => {
+  console.log(data)
   const remainder = data?.length % 4;
   const fullRowsCount = Math.floor(data?.length / 4) * 4;
   return (

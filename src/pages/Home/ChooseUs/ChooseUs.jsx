@@ -20,7 +20,8 @@ const ChooseUs = ({ data,showBreadcrumb }) => {
           </h1>
 
           <div className="user-descreption-wrapper mt-4">
-            {parse(data?.description)}
+            {/* {parse(data?.description)} */}
+            {data?.description ? parse(data?.description) : "No content available"}
           </div>
           {/* Button Section */}
           <Link to="/aboutUs" className="mt-12 inline-block">

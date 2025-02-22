@@ -1,17 +1,17 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const axiosSecure = axios.create({
   baseURL: import.meta.env.VITE_SITE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 axiosSecure.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers["Authorization"] = `Bearer ${token}`;
     }
     return config;
   },
