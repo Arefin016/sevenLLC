@@ -12,7 +12,7 @@ const BlogArticles = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <section className="lg:pt-[165px]">
+    <section className="xlg:pt-[165px]">
       <div className="container mx-auto">
         {/* This is the blog and articles */}
         <div className="flex justify-center">
@@ -21,7 +21,7 @@ const BlogArticles = () => {
           </h2>
         </div>
         {/* This is the card section */}
-        <div className="grid lg:grid-cols-2 gap-6 gap-y-[60px] mt-[60px]">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-y-[60px] gap-y-9 mt-5 lg:mt-[60px] justify-center">
           {allBlogs?.map((post) => (
             <BlogCard key={post?.id} data={post} />
           ))}
