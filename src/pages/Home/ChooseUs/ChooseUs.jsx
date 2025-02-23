@@ -23,7 +23,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
             {data?.title}
           </h1>
 
-          <div className="user-descreption-wrapper mt-4 lg:leading-7">
+          <div className="user-descreption-wrapper mt-4">
             {parse(data?.description)}
           </div>
           {/* Button Section */}
