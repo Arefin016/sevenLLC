@@ -37,12 +37,12 @@ const Home = () => {
           btnText={"Learn More About Our Process"}
         />
       </div>
-      {/* <div className="mt-[150px]">
+      <div className="lg:mt-[150px] mt-12">
         <BetterPlanet
           data={betterPlanetData}
           backgroundImage={betterPlanetPic}
         />
-      </div> */}
+      </div>
     </div>
   );
 };
