@@ -313,7 +313,7 @@ const Navbar = () => {
                     }}
                   >
                     <a onClick={e => e.preventDefault()}>
-                      <Space className="text-base text-navbarColor font-semibold">
+                      <Space className="text-sm text-navbarColor font-semibold">
                         All Categories
                         <AllCategoriesSvg />
                       </Space>
@@ -331,8 +331,8 @@ const Navbar = () => {
                               to={item.link}
                               className={({ isActive }) =>
                                 isActive
-                                  ? "text-buttonColor font-medium hover:text-buttonColor"
-                                  : "text-navbarColor font-medium hover:text-buttonColor"
+                                  ? "text-buttonColor text-sm font-medium hover:text-buttonColor"
+                                  : "text-navbarColor text-sm font-medium hover:text-buttonColor"
                               }
                             >
                               {item.name}

@@ -100,8 +100,8 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `flex gap-4 items-center py-3 px-3 rounded-2xl text-[#FFF] ${
                         isActive
-                          ? "bg-buttonColor text-white text-lg"
-                          : "bg-white text-navbarColor text-lg"
+                          ? "bg-buttonColor text-white text-sm"
+                          : "bg-white text-navbarColor text-sm"
                       }`
                     }
                   >
