@@ -4,36 +4,25 @@ import Card from "@/components/Card/Card";
 
 const Packaging = ({ data }) => {
   console.log(data);
-  const remainder = data?.length % 4;
-  const fullRowsCount = Math.floor(data?.length / 4) * 4;
   return (
     <section>
-      <div className="custom-gradient lg:py-[150px] lg:px-[220px]">
+      <div className="custom-gradient lg:py-[150px] lg:px-[220px] px-3">
         {/* This is the title section */}
         <div className="flex flex-col items-center">
-          <h1 className="text-headingColor text-5xl font-bold max-w-[952px]">
+          <h1 className="text-headingColor xl:text-5xl text-2xl lg:text-3xl font-bold max-w-[952px] xl:leading-[67.2px]">
             Packaging Solutions for Every Industry
           </h1>
-          <p className="text-navbarColor mt-6 max-w-[553px] text-[22px]">
+          <p className="text-navbarColor mt-6 max-w-[553px] xl:text-[22px] text-base lg:text-lg leading-[37.4px]">
             No Matter the Industry, 777Bags has you covered.
           </p>
         </div>
         {/* This is the card section */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {/* Full rows */}
-          {data?.slice(0, fullRowsCount).map((item, idx) => (
+        <div className="xl:mt-12 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {data?.map((item, idx) => (
             <Card key={idx} data={item} />
           ))}
-
-          {/* Remainder cards - centered */}
-          {remainder > 0 && (
-            <div className="col-span-4 flex justify-center gap-4">
-              {data?.slice(fullRowsCount).map((item, idx) => (
-                <Card key={idx} data={item} />
-              ))}
-            </div>
-          )}
         </div>
+
         {/* This is the button section */}
         <div className="flex flex-col items-center mt-12">
           <div className="border max-w-[914px] border-buttonColor py-4 px-8 rounded-[60px] text-buttonColor text-lg font-medium">
