@@ -19,12 +19,16 @@ const StepSection = ({ title, subtitle, btnText, isAbout, data }) => {
     <section className="">
       <div className="container mx-auto">
         {/* This is title section */}
-        <div className="text-center ">
-          <h2 className="text-headingColor text-5xl font-bold">{title}</h2>
-          <p className="mt-6 text-navbarColor text-[22px]">{subtitle}</p>
+        <div className="text-center">
+          <h2 className="text-headingColor lg:text-5xl text-2xl font-bold">
+            {title}
+          </h2>
+          <p className="lg:mt-6 mt-3 text-navbarColor lg:text-[22px] text-lg">
+            {subtitle}
+          </p>
         </div>
 
-        <div className="flex flex-row gap-6 mt-16 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:mt-16 mt-8 mb-12">
           {updatedData?.map((item) => (
             <StepCard isAbout={isAbout} key={item?.id} data={item} />
           ))}
