@@ -9,7 +9,7 @@ const ProductBanner = (showBreadcrumb = true) => {
   return (
     <section className="mt-[44px]">
       <div
-        className="h-[645px] flex flex-col items-center justify-center"
+        className="xl:h-[645px] h-[400px] flex flex-col items-center justify-center px-5 xl:px-0"
         style={{
           backgroundImage: `linear-gradient(0deg, rgba(0, 11, 28, 0.90) 0%, rgba(0, 11, 28, 0.90) 100%), url(${productBannerPic}) `,
           backgroundSize: "cover",
@@ -23,14 +23,14 @@ const ProductBanner = (showBreadcrumb = true) => {
             <Breadcrumb textColor="text-white" location={location} />
           )}
 
-          <h2 className="text-white text-5xl font-bold max-w-[704px] leading-[67px]">
+          <h2 className="text-white xl:text-5xl text-xl md:text-3xl font-bold max-w-[704px] xl:leading-[67px]">
             High-Quality Packaging Solutions for Every Need
           </h2>
-          <p className="text-white text-xl max-w-[844px] mt-4">
+          <p className="text-white xl:text-xl text-sm md:text-base max-w-[844px] mt-4">
             Explore our custom and stock packaging options by industry,
             material, or function.
           </p>
-          <div className="mt-12 space-y-3 flex flex-col">
+          <div className="xl:mt-12 mt-8 space-y-3 flex flex-col">
             <Button
               onClick={() => {
                 alert("btn is working");

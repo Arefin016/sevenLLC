@@ -9,13 +9,13 @@ const Banner = ({ data }) => {
         <div className="flex flex-col-reverse items-center justify-center sm:flex-row lg:gap-[66px] gap-9">
           {/* This is the first div */}
           <div className="lg:w-1/2 w-full">
-            <h2 className="text-2xl sm:max-w-[707px] xlg:text-[64px] font-bold xmd:text-3xl lg:leading-[84px]">
+            <h2 className="text-2xl sm:max-w-[707px] xlg:text-[64px] font-bold xmd:text-3xl lg:leading-[84px] leading-10">
               {data?.title}
             </h2>
-            <h1 className="text-2xl text-buttonColor sm:max-w-[707px] xlg:text-[64px] lg:leading-[84px] xmd:text-3xl font-bold">
+            <h1 className="text-2xl text-buttonColor sm:max-w-[707px] xlg:text-[64px] lg:leading-[84px] xmd:text-3xl font-bold leading-10">
               {data?.sub_title}
             </h1>
-            <p className="text-base lg:text-2xl max-w-[700px] text-navbarColor mt-[21px]">
+            <p className="text-sm md:text-base lg:text-2xl max-w-[700px] text-navbarColor mt-[21px] xl:leading-[39.36px] leading-6">
               {data?.description}
             </p>
 
