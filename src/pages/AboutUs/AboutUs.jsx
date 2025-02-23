@@ -26,7 +26,7 @@ const AboutUs = () => {
         vision={aboutUsData?.data?.OUR_VISION}
       />
       <WhyChooseUs data={aboutUsData?.data?.WHY_CHOOSE_ITEMS} />
-      {/* <div className="bg-[#FAFBFC] pb-[150px] pt-[137px] mt-[150px]">
+      <div className="bg-[#FAFBFC] xl:pb-[150px] xl:pt-[137px] py-8 xl:mt-[150px] mt-12">
         <StepSection
           data={processData}
           isAbout={true}
@@ -34,9 +34,9 @@ const AboutUs = () => {
           subtitle={"Your Packaging, Simplified"}
           btnText={"Request a Quote"}
         />
-      </div> */}
-      {/* <WhatWeOffer /> */}
-      {/* <BetterPlanet data={aboutUsPlanetData} backgroundImage={commitmentPic} /> */}
+      </div>
+      <WhatWeOffer />
+      <BetterPlanet data={aboutUsPlanetData} backgroundImage={commitmentPic} />
     </div>
   );
 };
