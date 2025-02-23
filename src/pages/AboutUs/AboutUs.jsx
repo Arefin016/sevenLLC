@@ -21,10 +21,10 @@ const AboutUs = () => {
     <div>
       <ChooseUs data={aboutUsData?.data?.ABOUT_US} showBreadcrumb={true} />
       <OurStory data={aboutUsData?.data?.OUR_STORY} />
-      {/* <MissionAndVision
+      <MissionAndVision
         mission={aboutUsData?.data?.OUR_MISSION}
         vision={aboutUsData?.data?.OUR_VISION}
-      /> */}
+      />
       {/* <WhyChooseUs data={aboutUsData?.data?.WHY_CHOOSE_ITEMS} /> */}
       {/* <div className="bg-[#FAFBFC] pb-[150px] pt-[137px] mt-[150px]">
         <StepSection
