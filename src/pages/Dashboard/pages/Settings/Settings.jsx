@@ -74,7 +74,7 @@ const Settings = () => {
     <section className="">
       {/* Account Settings */}
       <div className="container mx-auto">
-        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
+        <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-14 px-5 xxs:px-4 sm:px-4 xl:px-0">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
             <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold">
               Account Setting
@@ -229,7 +229,7 @@ const Settings = () => {
         </div>
       </div>
       {/* address Setting */}
-      <div className="container mx-auto my-5 pb-10">
+      <div className="container mx-auto pb-10">
         <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
             <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold ">
@@ -563,7 +563,7 @@ const Settings = () => {
         </div>
       </div>
       {/* Password Setting */}
-      <div className="container mx-auto my-5 pb-10">
+      <div className="container mx-auto mb-4 pb-10">
         <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
           <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
             <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold ">
@@ -573,7 +573,7 @@ const Settings = () => {
           </div>
           <section>
             {/* This is the Password Setting Section */}
-            <div className="xlg:mt-6 xlg:ml-[31px] border border-[#F0F0F0] rounded max-w-[984px] xlg:mb-[50px]">
+            <div className="xlg:mt-6 xlg:ml-[31px] border border-[#F0F0F0] rounded max-w-[984px] xlg:mb-[50px] mb-5">
               <div className="">
                 <h1 className="text-headingColor text-base font-semibold border pl-5 py-[13px]">
                   Change Password
