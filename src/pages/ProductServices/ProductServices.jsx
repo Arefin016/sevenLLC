@@ -1,14 +1,14 @@
-import StepSection from '../../components/StepSection/StepSection';
-import BetterPlanet from '../Home/BetterPlanet/BetterPlanet';
-import ProductBanner from './ProductBanner/ProductBanner';
-import ProductCardSection from './ProductCardSection/ProductCardSection';
-import commitmentPic from '../../assets/images/commitmentPic.png';
-import { aboutUsPlanetData } from '@/data/data';
+import StepSection from "../../components/StepSection/StepSection";
+import BetterPlanet from "../Home/BetterPlanet/BetterPlanet";
+import ProductBanner from "./ProductBanner/ProductBanner";
+import ProductCardSection from "./ProductCardSection/ProductCardSection";
+import commitmentPic from "../../assets/images/commitmentPic.png";
+import { aboutUsPlanetData } from "@/data/data";
 import {
   useProcessQuery,
   useProductsAndServicesQuery,
-} from '@/hooks/cms.queries';
-import Loader from '@/components/Loader/Loader';
+} from "@/hooks/cms.queries";
+import Loader from "@/components/Loader/Loader";
 
 const ProductServices = () => {
   const { data: allProductsAndServicesData, isLoading } =
@@ -21,7 +21,7 @@ const ProductServices = () => {
     <div>
       <ProductBanner showBreadcrumb={true} />
       <ProductCardSection data={allProductsAndServicesData} />
-      <div className="bg-[#FAFBFC] pb-[150px] pt-[137px] mt-[150px]">
+      {/* <div className="bg-[#FAFBFC] pb-[150px] pt-[137px] mt-[150px]">
         <StepSection
           data={processData}
           isAbout={true}
@@ -29,8 +29,8 @@ const ProductServices = () => {
           subtitle={'Your Packaging, Simplified'}
           btnText={'Request a Quote'}
         />
-      </div>
-      <BetterPlanet data={aboutUsPlanetData} backgroundImage={commitmentPic} />
+      </div> */}
+      {/* <BetterPlanet data={aboutUsPlanetData} backgroundImage={commitmentPic} /> */}
     </div>
   );
 };
