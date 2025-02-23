@@ -29,7 +29,7 @@ const Home = () => {
       <Request />
       <ChooseUs data={homepageData?.data?.why_choose_us} />
       <Packaging data={allProducts} />
-      <div className="mt-[137px]">
+      {/* <div className="mt-[137px]">
         <StepSection
           data={howItWorksData}
           title={"How It Works"}
@@ -42,7 +42,7 @@ const Home = () => {
           data={betterPlanetData}
           backgroundImage={betterPlanetPic}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -12,7 +12,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
       : String(data?.description);
 
   return (
-    <section className="xl:ml-[210px] ml-0 lg:ml-5 xl:pt-[150px]">
+    <section className="xl:ml-[210px] ml-0 lg:ml-5 xl:pt-[150px] mt-12 xl:mt-0">
       <div className="flex flex-col-reverse sm:flex-row lg:gap-[150px] gap-10 items-center">
         {/* First div: Title, Bullet Points, Description, and Button */}
         <div className="lg:w-1/2 w-full xmd:w-[60%] px-5 lg:px-0">
