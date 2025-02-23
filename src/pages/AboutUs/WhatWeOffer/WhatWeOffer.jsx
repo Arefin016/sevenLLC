@@ -11,7 +11,7 @@ const WhatWeOffer = () => {
     <section>
       <div className="max-w-[1480px] mx-auto xl:my-[150px] mt-10 px-5 xl:px-0">
         {/* This is the first div */}
-        <div className="flex flex-col xl:flex-row xl:gap-[162px] gap-16">
+        <div className="flex flex-col md:flex-row xl:gap-[162px] gap-16">
           <div className="xl:w-[60%]">
             <h1 className="headingStyle mt-6">What We Offer</h1>
             <p className="xl:text-xl text-sm md:text-base text-navbarColor max-w-[396px] mt-6">
@@ -27,7 +27,7 @@ const WhatWeOffer = () => {
             </div>
           </div>
           {/* This is the second div */}
-          <div className="flex flex-col xl:flex-row gap-[61px]">
+          <div className="flex flex-col xl:flex-row xl:gap-[61px] gap-6">
             {whatWeOffer?.map((item) => {
               return (
                 <div className="flex flex-col items-start" key={item?.id}>

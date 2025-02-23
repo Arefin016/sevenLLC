@@ -8,7 +8,7 @@ const ButtonTwo = ({ text, variant }) => {
           variant == "transparent"
             ? "bg-transparent text-white hover:bg-white hover:text-buttonColor min-w-[262px]"
             : "bg-[#FFF] text-buttonColor hover:bg-transparent"
-        } rounded-[60px] lg:px-8 px-2 flex gap-2 justify-center items-center lg:py-4 py-1 text-base font-semibold border hover:border-[#FFF] hover:text-[#FFF] ease-in-out duration-150 group`}
+        } rounded-[60px] xl:px-8 px-3 flex gap-2 justify-center items-center xl:py-4 py-2 text-base font-semibold border hover:border-[#FFF] hover:text-[#FFF] ease-in-out duration-150 group`}
       >
         {text}
         <UpArrowSvg variant={variant} />
