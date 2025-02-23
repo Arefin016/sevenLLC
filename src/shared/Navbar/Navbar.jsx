@@ -69,6 +69,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { mutate: logOutMutation } = useLogout();
   const menuRef = useRef(null);
+
   useEffect(() => {
     const handleClickOutside = event => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -117,16 +118,15 @@ const Navbar = () => {
   }, [isSideBarOpen]);
 
   useEffect(() => {
-    // Prevent scrolling on the body when the sidebar is open
     if (isSideBarOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflowY = "auto";
     }
 
     // Cleanup function to reset overflow when the component unmounts
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflowY = "auto";
     };
   }, [isSideBarOpen]);
 
