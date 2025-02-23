@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import steponePic1 from '@/assets/images/step1.png';
-import steponePic2 from '@/assets/images/step2.png';
-import steponePic3 from '@/assets/images/step3.png';
-import steponePic4 from '@/assets/images/step4.png';
-import Button from '../Button/Button';
-import StepCard from '../Cards/StepCard';
+import steponePic1 from "@/assets/images/step1.png";
+import steponePic2 from "@/assets/images/step2.png";
+import steponePic3 from "@/assets/images/step3.png";
+import steponePic4 from "@/assets/images/step4.png";
+import Button from "../Button/Button";
+import StepCard from "../Cards/StepCard";
 
 const StepSection = ({ title, subtitle, btnText, isAbout, data }) => {
   const stepImages = [steponePic1, steponePic2, steponePic3, steponePic4];
@@ -32,7 +32,7 @@ const StepSection = ({ title, subtitle, btnText, isAbout, data }) => {
         {/* */}
         <div className="flex justify-center">
           {/* This is button section */}
-          <Button text={btnText} color={'bg-buttonColor'} />
+          <Button text={btnText} color={"bg-buttonColor"} />
         </div>
       </div>
     </section>

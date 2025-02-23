@@ -59,7 +59,7 @@ const Footer = () => {
               Insights
             </p>
             <div
-              className="flex xxs:flex-row flex-col sm:items-center xlg:justify-end mt-[26px] gap-4
+              className="flex xl:flex-row flex-col sm:items-center xlg:justify-end mt-[26px] gap-4
           "
             >
               <input
@@ -84,7 +84,7 @@ const Footer = () => {
             © Copyright 2024, All Rights Reserved
           </p>
           <div className="flex flex-row gap-3">
-            {socialMediaLinks.map(link => {
+            {socialMediaLinks.map((link) => {
               const IconComponent = link.icon;
               return (
                 <a

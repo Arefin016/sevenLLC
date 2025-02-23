@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation } from 'react-router-dom';
-import Button from '../../../components/Button/Button';
-import parse from 'html-react-parser';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import { Link, useLocation } from "react-router-dom";
+import Button from "../../../components/Button/Button";
+import parse from "html-react-parser";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 
 const ChooseUs = ({ data, showBreadcrumb }) => {
   const location = useLocation();
   const parsedData =
-    typeof description === 'string'
+    typeof description === "string"
       ? data?.description
       : String(data?.description);
 
@@ -23,10 +23,12 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
             {data?.title}
           </h1>
 
-          <div className="user-descreption-wrapper mt-4">{parsedData}</div>
+          <div className="user-descreption-wrapper mt-4">
+            {parse(data?.description)}
+          </div>
           {/* Button Section */}
           <Link to="/aboutUs" className="mt-12 inline-block">
-            <Button text="Learn More About 777Bags" color={'bg-buttonColor'} />
+            <Button text="Learn More About 777Bags" color={"bg-buttonColor"} />
           </Link>
         </div>
         {/* Second div: Image */}

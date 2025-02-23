@@ -37,9 +37,8 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* desktop navbar */}
       <section>
-        <div className="  bg-[#FFF] shadow-sm h-[100vh]">
+        <div className="  hidden xlg:block bg-[#FFF] shadow-sm h-[100vh]">
           {/* This is the dashboard logo */}
           <div className="flex justify-center mt-[47.8px] mb-[37.36px]">
             <Link to="/">
