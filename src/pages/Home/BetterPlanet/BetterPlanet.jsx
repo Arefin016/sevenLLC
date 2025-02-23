@@ -14,17 +14,19 @@ const BetterPlanet = ({ data, backgroundImage }) => {
           backgroundPosition: "center",
         }}
       >
-        <div className="lg:h-[515px] lg:py-[150px] py-5 lg:px-[221.5px]">
-          <div className="flex flex-col lg:flex-row lg:gap-[195px] gap-9 justify-center text-center lg:text-left px-5 lg:px-0">
-            <h1 className="max-w-[595px] text-[#FFF] lg:text-5xl text-2xl font-bold lg:leading-[67px] mt-5 lg:mt-0">
+        <div className="lg:py-[150px] py-8 lg:px-[221px] flex flex-col-reverse lg:flex-row lg:gap-[133px] gap-12 px-5">
+          <div className="lg:w-[45%]">
+            <h1 className="lg:max-w-[595px] text-[#FFF] lg:text-5xl text-2xl font-bold lg:leading-[67px]">
               {title}
             </h1>
-            <p className="lg:max-w-[720px] text-[#FAFBFC] lg:text-xl text-base lg:leading-9">
+            <div className="mt-9">
+              <ButtonTwo text={buttonText} />
+            </div>
+          </div>
+          <div>
+            <p className="max-w-[720px] text-[#FAFBFC] lg:text-xl text-base lg:leading-9">
               {description}
             </p>
-          </div>
-          <div className="mt-12">
-            <ButtonTwo text={buttonText} />
           </div>
         </div>
       </div>

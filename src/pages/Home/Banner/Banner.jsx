@@ -15,7 +15,7 @@ const Banner = ({ data }) => {
             <h1 className="text-2xl text-buttonColor sm:max-w-[707px] xlg:text-[64px] lg:leading-[84px] xmd:text-3xl font-bold">
               {data?.sub_title}
             </h1>
-            <p className="text-base lg:text-2xl max-w-[700px] text-navbarColor mt-[21px]">
+            <p className="text-sm md:text-base lg:text-2xl max-w-[700px] text-navbarColor mt-[21px]">
               {data?.description}
             </p>
 
