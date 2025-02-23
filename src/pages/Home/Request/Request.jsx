@@ -3,9 +3,9 @@ import ButtonTwo from "../../../components/ButtonTwo/ButtonTwo";
 
 const Request = () => {
   return (
-    <section className="mt-[150px]">
+    <section className="lg:mt-[150px] mt-8">
       <div
-        className="h-[619px]"
+        className="lg:h-[619px] h-[370px]"
         style={{
           backgroundImage: `linear-gradient(0deg, rgba(7, 160, 236, 0.90) 0%, rgba(7, 160, 236, 0.90) 100%), url(${requestSectionPic}) `,
           backgroundSize: "cover",
@@ -14,11 +14,11 @@ const Request = () => {
         }}
       >
         {/* This is the content inside the background image */}
-        <div className="flex flex-col items-center pt-[136px] pb-[150px]">
-          <h2 className="text-[#FFF] text-5xl font-bold">
+        <div className="flex flex-col items-center lg:pt-[136px] lg:pb-[150px] pt-5">
+          <h2 className="text-[#FFF] lg:text-5xl text-2xl mt-5 lg:mt-0 font-bold">
             Request a Quote Today
           </h2>
-          <p className="mt-6 max-w-[639px] text-[22px] text-center text-[#FAFBFC]">
+          <p className="mt-6 max-w-[639px] lg:text-[22px] text-base px-4 lg:px-0 text-center text-[#FAFBFC] lg:leading-[37.4px]">
             Upload your design to get a quote today or let us help you create a
             product tailored to your business needs!
           </p>

@@ -26,23 +26,23 @@ const Home = () => {
   return (
     <div>
       <Banner data={homepageData?.data?.hero_section} />
-      {/* <Request /> */}
-      {/* <ChooseUs data={homepageData?.data?.why_choose_us} /> */}
-      {/* <Packaging data={allProducts} /> */}
-      {/* <div className="mt-[137px]">
+      <Request />
+      <ChooseUs data={homepageData?.data?.why_choose_us} />
+      <Packaging data={allProducts} />
+      <div className="mt-[137px]">
         <StepSection
           data={howItWorksData}
           title={"How It Works"}
           subtitle={"Your Packaging, Simplified"}
           btnText={"Learn More About Our Process"}
         />
-      </div> */}
-      {/* <div className="mt-[150px]">
+      </div>
+      <div className="mt-[150px]">
         <BetterPlanet
           data={betterPlanetData}
           backgroundImage={betterPlanetPic}
         />
-      </div> */}
+      </div>
     </div>
   );
 };

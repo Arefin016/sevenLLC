@@ -12,29 +12,29 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
       : String(data?.description);
 
   return (
-    <section className="ml-[210px] pt-[150px]">
-      <div className="flex gap-[150px] items-center">
+    <section className="xl:ml-[210px] ml-0 lg:ml-5 xl:pt-[150px]">
+      <div className="flex flex-col-reverse sm:flex-row lg:gap-[150px] gap-10 items-center">
         {/* First div: Title, Bullet Points, Description, and Button */}
-        <div className="w-1/2">
+        <div className="lg:w-1/2 w-full xmd:w-[60%] px-5 lg:px-0">
           {/* Conditionally render Breadcrumb */}
           {showBreadcrumb && <Breadcrumb location={location} />}
 
-          <h1 className="text-headingColor text-5xl font-bold max-w-[721px] leading-[67.2px]">
+          <h1 className="text-headingColor lg:text-5xl text-2xl font-bold max-w-[721px] lg:leading-[67.2px]">
             {data?.title}
           </h1>
 
-          <div className="user-descreption-wrapper mt-4">
+          <div className="user-descreption-wrapper mt-4 lg:leading-7">
             {parse(data?.description)}
           </div>
           {/* Button Section */}
-          <Link to="/aboutUs" className="mt-12 inline-block">
+          <Link to="/aboutUs" className="lg:mt-12 mt-7 inline-block">
             <Button text="Learn More About 777Bags" color={"bg-buttonColor"} />
           </Link>
         </div>
         {/* Second div: Image */}
-        <div className="max-w-[829px] h-[710px] object-cover">
+        <div className="">
           <img
-            className="rounded-tl-[80px] rounded-tr-none rounded-br-none rounded-bl-none"
+            className="rounded-tl-[80px] rounded-tr-none rounded-br-none rounded-bl-none xlg:max-w-[829px] xlg:h-[710px] h-auto object-cover px-3 lg:px-0"
             src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
             alt={data?.title}
           />
