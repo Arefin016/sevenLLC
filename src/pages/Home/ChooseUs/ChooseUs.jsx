@@ -12,7 +12,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
       : String(data?.description);
 
   return (
-    <section className="xl:ml-[210px] ml-0 lg:ml-5 xl:pt-[150px]">
+    <section className="xl:ml-[210px] ml-0 lg:ml-5 xl:pt-[150px] mt-12 xl:mt-0">
       <div className="flex flex-col-reverse sm:flex-row lg:gap-[150px] gap-10 items-center">
         {/* First div: Title, Bullet Points, Description, and Button */}
         <div className="lg:w-1/2 w-full xmd:w-[60%] px-5 lg:px-0">
@@ -23,7 +23,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
             {data?.title}
           </h1>
 
-          <div className="user-descreption-wrapper mt-4 lg:leading-7">
+          <div className="user-descreption-wrapper mt-4">
             {parse(data?.description)}
           </div>
           {/* Button Section */}
@@ -34,7 +34,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
         {/* Second div: Image */}
         <div className="">
           <img
-            className="rounded-tl-[80px] rounded-tr-none rounded-br-none rounded-bl-none xlg:max-w-[829px] xlg:h-[710px] h-auto object-cover px-3 lg:px-0"
+            className="rounded-tl-[80px] rounded-tr-none rounded-br-none rounded-bl-none xlg:max-w-[829px] xlg:h-[710px] h-auto object-cover pl-3 lg:px-0"
             src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
             alt={data?.title}
           />

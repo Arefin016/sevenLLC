@@ -1,22 +1,22 @@
 /* eslint-disable react/prop-types */
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const OurStory = ({ data }) => {
   return (
-    <section className="pr-[210px] bg-[#FAFBFC] pt-28">
-      <div className="flex gap-[150px] items-center">
+    <section className="xl:pr-[210px] bg-[#FAFBFC] xl:pt-28 pt-10 pr-4">
+      <div className="flex flex-col sm:flex-row gap-8 lg:gap-20 xl:gap-[150px] items-center">
         <div className="">
           <img
-            className="w-[829px] h-[714px] object-cover rounded-tl-none rounded-tr-[80px] rounded-br-none rounded-bl-none"
+            className="xlg:w-[829px] xlg:h-[714px] object-cover rounded-tl-none rounded-tr-[80px] rounded-br-none rounded-bl-none"
             src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
-            alt={'ourStoryPic'}
+            alt={"ourStoryPic"}
           />
         </div>
-        <div className="w-1/2">
-          <h1 className="text-headingColor text-5xl font-bold max-w-[721px] leading-[67.2px]">
+        <div className="xl:w-1/2 px-5 sm:px-0">
+          <h1 className="text-headingColor text-2xl lg:text-5xl font-bold max-w-[721px] leading-[67.2px]">
             {data?.title}
           </h1>
-          <div className="text-lg text-navbarColor mt-[18px] max-w-[711px]">
+          <div className="lg:text-lg md:text-base text-sm  text-navbarColor lg:mt-[18px] max-w-[711px]">
             {parse(data?.description)}
           </div>
         </div>

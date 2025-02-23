@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
-import ChooseUsCard from '../../../components/ChooseUsCard/ChooseUsCard';
+import ChooseUsCard from "../../../components/ChooseUsCard/ChooseUsCard";
 
 const WhyChooseUs = ({ data }) => {
-  const remainder = data?.length % 3;
-  const fullRowsCount = Math.floor(data?.length / 3) * 3;
-
   return (
-    <section className="mt-[158px]">
+    <section className="xl:mt-[158px] mt-8">
       <div className="container mx-auto">
         <div className="flex flex-col justify-center text-center">
           <h2 className="headingStyle">Why Choose 777Bags?</h2>
@@ -16,19 +13,10 @@ const WhyChooseUs = ({ data }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-[30px] mt-[52px] ">
-          {data.slice(0, fullRowsCount).map((item) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[30px] mt-[52px] ">
+          {data?.map((item) => (
             <ChooseUsCard key={item?.id} data={item} />
           ))}
-
-          {/* This is the card section */}
-          {remainder > 0 && (
-            <div className="col-span-3 flex justify-center gap-[30px]">
-              {data?.slice(fullRowsCount).map((item) => (
-                <ChooseUsCard key={item?.id} data={item} />
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </section>
