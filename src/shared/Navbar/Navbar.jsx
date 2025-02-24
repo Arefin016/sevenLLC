@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Dropdown, Space } from "antd";
-import profileImage from "../../assets/images/profile-image.png";
-import logo from "../../assets/images/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react';
+import { Dropdown, Space } from 'antd';
+import profileImage from '../../assets/images/profile-image.png';
+import logo from '../../assets/images/logo.png';
+import { Link, NavLink } from 'react-router-dom';
 import {
   AllCategoriesSvg,
   MenuDropdownSvg,
@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 
 const items = [
   {
-    key: "1",
+    key: '1',
     label: (
       <a
         target="_blank"
@@ -30,7 +30,7 @@ const items = [
     ),
   },
   {
-    key: "2",
+    key: '2',
     label: (
       <a
         target="_blank"
@@ -42,7 +42,7 @@ const items = [
     ),
   },
   {
-    key: "3",
+    key: '3',
     label: (
       <a
         target="_blank"
@@ -66,35 +66,26 @@ const menuItems = [
 ];
 
 const Navbar = () => {
-  const { token } = useAuth();
-  const [user, setUser] = useState();
+  const { token, user } = useAuth();
+
   const [showMenu, setShowMenu] = useState(false);
   const { mutate: logOutMutation } = useLogout();
   const menuRef = useRef(null);
 
   useEffect(() => {
-    const handleClickOutside = event => {
+    const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setShowMenu(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-  useEffect(() => {
-    const userDataString = localStorage.getItem("userData");
-    if (userDataString) {
-      const parsedData = JSON.parse(userDataString);
-      setUser(parsedData);
-    }
-  }, []);
-
   //handlers:
-
   const handleLogout = () => {
     alert("working");
     setShowMenu(false);
@@ -105,31 +96,31 @@ const Navbar = () => {
   const [isSideBarOpen, setisSideBarOpen] = useState(false);
 
   useEffect(() => {
-    const handleOutsideClick = event => {
+    const handleOutsideClick = (event) => {
       if (sideBarRef.current && !sideBarRef.current.contains(event.target)) {
         setisSideBarOpen(false);
       }
     };
 
     if (isSideBarOpen) {
-      document.addEventListener("mousedown", handleOutsideClick);
+      document.addEventListener('mousedown', handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isSideBarOpen]);
 
   useEffect(() => {
     if (isSideBarOpen) {
-      document.body.style.overflowY = "hidden";
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflowY = "auto";
+      document.body.style.overflowY = 'auto';
     }
 
     // Cleanup function to reset overflow when the component unmounts
     return () => {
-      document.body.style.overflowY = "auto";
+      document.body.style.overflowY = 'auto';
     };
   }, [isSideBarOpen]);
 
@@ -140,7 +131,7 @@ const Navbar = () => {
         <div className="xlg:flex hidden justify-between px-10 xxl:bg-px-0 items-center pt-4">
           {/* logo */}
           <div className="max-w-[113px] h-[86px]">
-            <Link to={"/"}>
+            <Link to={'/'}>
               <img src={logo} alt="" />
             </Link>
           </div>
@@ -164,7 +155,7 @@ const Navbar = () => {
                     items,
                   }}
                 >
-                  <a onClick={e => e.preventDefault()}>
+                  <a onClick={(e) => e.preventDefault()}>
                     <Space className="text-sm text-navbarColor">
                       All Categories
                       <AllCategoriesSvg />
@@ -184,7 +175,7 @@ const Navbar = () => {
             // user info
             <div ref={menuRef} className="relative font-poppins">
               <div
-                onClick={() => setShowMenu(prev => !prev)}
+                onClick={() => setShowMenu((prev) => !prev)}
                 className="flex items-center gap-2 cursor-pointer"
               >
                 <div className="size-12 ">
@@ -197,7 +188,7 @@ const Navbar = () => {
                 </div>
                 {/* name */}
                 <p className="font-poppins font-semibold text-navbarColor">
-                  {user?.name}
+                  {user?.first_name + ' ' + user?.last_name}
                 </p>
 
                 <MenuDropdownSvg />
@@ -207,8 +198,8 @@ const Navbar = () => {
               <div
                 className={`absolute shadow-lg mt-2 transition-all duration-300 top-full left-0 w-full bg-buttonColor px-6 py-6 rounded-lg ${
                   showMenu
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-2"
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
                 }`}
               >
                 <ul className="space-y-2 font-bold">
@@ -237,7 +228,7 @@ const Navbar = () => {
                 <LoginUserSvg />
                 Log in
               </Link>
-              <Link to={"/signUp"}>
+              <Link to={'/signUp'}>
                 <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                   Sign up
                 </button>
@@ -248,7 +239,7 @@ const Navbar = () => {
         {/* mobile navbar  */}
         <div className="flex xlg:hidden justify-between items-center px-2 lg:px-5 my-4">
           {/* logo */}
-          <Link to={"/"}>
+          <Link to={'/'}>
             <img
               src={logo}
               alt="not found"
@@ -273,7 +264,7 @@ const Navbar = () => {
                 initial={{ x: -280 }}
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
-                transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
+                transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
                 className="absolute w-[280px] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5 h-[100vh]"
               >
                 <div className="flex w-full items-center pt-5 justify-between px-5 xlg:px-10">
@@ -315,7 +306,7 @@ const Navbar = () => {
                       items,
                     }}
                   >
-                    <a onClick={e => e.preventDefault()}>
+                    <a onClick={(e) => e.preventDefault()}>
                       <Space className="text-sm text-navbarColor font-semibold">
                         All Categories
                         <AllCategoriesSvg />
@@ -324,7 +315,7 @@ const Navbar = () => {
                   </Dropdown>
                   <div className="flex flex-col gap-y-5 justify-center">
                     <ul className="flex flex-col    gap-y-5   flex-wrap ">
-                      {menuItems.map((item, index) => (
+                      {menuItems.map((item) => (
                         <li
                           key={item.name}
                           className="text-[14px]  text-start "
@@ -343,7 +334,6 @@ const Navbar = () => {
                                 isActive
                                   ? "text-buttonColor font-medium hover:text-buttonColor"
                                   : "text-navbarColor font-medium hover:text-buttonColor"
-                              }
                             >
                               {item.name}
                             </NavLink>
@@ -379,6 +369,7 @@ const Navbar = () => {
                           isActive
                             ? "text-buttonColor font-medium hover:text-buttonColor"
                             : "text-navbarColor font-medium hover:text-buttonColor"
+
                         }
                       >
                         {item.name}

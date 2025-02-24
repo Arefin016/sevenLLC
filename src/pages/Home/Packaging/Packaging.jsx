@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
-import Button from "@/components/Button/Button";
-import Card from "@/components/Card/Card";
+import Button from '@/components/Button/Button';
+import Card from '@/components/Card/Card';
 
 const Packaging = ({ data }) => {
-  console.log(data);
   return (
     <section>
       <div className="custom-gradient xl:py-[150px] xl:px-[220px] px-5 py-12 mt-16 lg:mt-0">
@@ -30,7 +29,7 @@ const Packaging = ({ data }) => {
             ability and we’ll get you a quote!
           </div>
           <div className="xl:mt-12 mt-9">
-            <Button text={"Explore All Products"} color={"bg-buttonColor"} />
+            <Button text={'Explore All Products'} color={'bg-buttonColor'} />
           </div>
         </div>
       </div>
