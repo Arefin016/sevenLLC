@@ -9,10 +9,10 @@ const Banner = ({ data }) => {
         <div className="flex flex-col-reverse items-center justify-center lg:justify-between sm:flex-row lg:gap-[66px] gap-9 px-4 md:px-7 xl:px-8 xxl:px-0">
           {/* This is the first div */}
           <div className="xlg:w-1/2 w-full">
-            <h2 className="text-2xl sm:max-w-[707px] lg:text-4xl xlg:text-[64px] font-bold md:text-[40px] xlg:leading-[84px] leading-10 md:leading-10 lg:leading-[50px]">
+            <h2 className="text-2xl sm:max-w-[707px] lg:text-4xl xlg:text-[64px] font-bold md:text-[40px] xlg:leading-[84px] leading-10 md:leading-[44px] lg:leading-[50px]">
               {data?.title}
             </h2>
-            <h1 className="text-2xl text-buttonColor sm:max-w-[707px] xlg:text-[64px] lg:text-4xl xlg:leading-[84px] md:text-[40px] font-bold leading-10 md:leading-10 lg:leading-[50px]">
+            <h1 className="text-2xl text-buttonColor sm:max-w-[707px] xlg:text-[64px] lg:text-4xl xlg:leading-[84px] md:text-[40px] font-bold leading-10 md:leading-[44px] lg:leading-[50px]">
               {data?.sub_title}
             </h1>
             <p className="text-sm md:text-base xlg:text-2xl max-w-[700px] text-navbarColor mt-[21px] xl:leading-[39.36px] leading-6 md:leading-[25px] lg:leading-9">

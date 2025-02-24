@@ -2,9 +2,9 @@
 const Card = ({ data }) => {
   return (
     <section>
-      <div className="xl:mt-12 lg:hover:bg-[#E0E0E0] hover:shadow-custom_shadow ease-out duration-300 xl:p-[10px] p-4 hover:rounded-xl group">
+      <div className="xl:mt-12 lg:hover:bg-[#E0E0E0] hover:shadow-custom_shadow ease-out duration-300 xl:p-[10px]  hover:rounded-xl group py-4">
         <img
-          className="xl:w-[347px] mx-auto xl:h-[360px] h-[200px] object-cover transition-transform ease-out duration-300 transform group-hover:scale-95 rounded-2xl"
+          className="lg:w-[347px] w-[340px] md:w-[390px] mx-auto xl:h-[360px] h-[200px] object-cover transition-transform ease-out duration-300 transform group-hover:scale-95 rounded-2xl"
           src={`${import.meta.env.VITE_SITE_URL}/${data?.image}`}
           alt=""
         />

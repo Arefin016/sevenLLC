@@ -14,7 +14,7 @@ const Request = () => {
         }}
       >
         {/* This is the content inside the background image */}
-        <div className="flex flex-col items-center lg:pt-[136px] lg:pb-[150px] pt-5">
+        <div className="flex flex-col items-center lg:pt-[136px] lg:pb-[150px] pt-5 px-3">
           <h2 className="text-[#FFF] lg:text-5xl text-2xl mt-5 lg:mt-0 font-bold">
             Request a Quote Today
           </h2>
@@ -23,7 +23,7 @@ const Request = () => {
             product tailored to your business needs!
           </p>
           {/* This is button section */}
-          <div className="mt-12 flex flex-col gap-6">
+          <div className="lg:mt-12 mt-7 md:mt-8 flex flex-col gap-6">
             <ButtonTwo text={"Upload Your Design"} />
             <ButtonTwo text={"I need a design"} variant="transparent" />
           </div>

@@ -9,7 +9,7 @@ const WhatWeOffer = () => {
   if (isLoading) return <Loader />;
   return (
     <section>
-      <div className="max-w-[1480px] mx-auto xl:my-[150px] mt-10 px-5 xl:px-0">
+      <div className="max-w-[1480px] mx-auto xl:my-[150px] mt-10 px-6 xl:px-0">
         {/* This is the first div */}
         <div className="flex flex-col items-center md:flex-row xl:gap-[162px] gap-16">
           <div className="xl:w-[60%]">

@@ -9,7 +9,6 @@ import {
 import { Link } from "react-router-dom";
 const links = [
   { name: "Terms & Conditions", href: "/terms" },
-  { name: "Returns & Refunds", href: "/returns" },
   { name: "Privacy Policy", href: "/privacy" },
   { name: "Contact Us", href: "/contactUs" },
 ];
@@ -25,9 +24,9 @@ const Footer = () => {
   return (
     <section className=" mt-[30px] xlg:mt-[60px]  lg:px-10 xlg:px-0 mb-[10px] xlg:mb-[21px]">
       <div className="container">
-        <div className="flex flex-col md:flex-row gap-[30px] lg:gap-[100px] xlg:gap-[320px]  xlg:items-center">
+        <div className="flex flex-col md:flex-row xl:gap-[30px] lg:gap-[100px] gap-10 xlg:gap-[320px] xlg:items-center">
           {/* This is first div */}
-          <div className="">
+          <div className="w-full lg:w-[60%]">
             <Link to={"/"}>
               <img
                 src={footerLogo}
@@ -40,12 +39,12 @@ const Footer = () => {
               when you need them.
             </p>
             {/* This is the dynamic page */}
-            <div className="flex flex-col text-[14px] md:flex-row gap-2 xlg:gap-12 mt-[22px]">
+            <div className="flex flex-col text-[14px] md:flex-row gap-6 xlg:gap-12 mt-[22px]">
               {links.map((link, index) => (
                 <a
                   key={index}
                   href={link.href}
-                  className="text-headingColor hover:underline"
+                  className="text-headingColor text-sm hover:underline"
                 >
                   {link.name}
                 </a>
@@ -59,11 +58,11 @@ const Footer = () => {
               Insights
             </p>
             <div
-              className="flex xl:flex-row flex-col sm:items-center xlg:justify-end mt-[26px] gap-4
+              className="flex xl:flex-row flex-col sm:items-center xlg:justify-end mt-[26px] gap-4 
           "
             >
               <input
-                className="bg-[#F0F0F0]  max-h-[58px] py-4  text-[#616161] text-sm px-5 xlg:px-10 w-auto xlg:w-[230px] rounded-[20px] xlg:rounded-[46px] text-left email-border"
+                className="bg-[#F0F0F0] max-h-[58px] py-[14px] lg:py-4 text-[#616161] text-sm px-4 xlg:px-10 w-[150px] xlg:w-[230px] rounded-[20px] xlg:rounded-[46px] text-left email-border"
                 type="text"
                 placeholder="Email"
               />

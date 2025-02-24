@@ -19,7 +19,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
           {/* Conditionally render Breadcrumb */}
           {showBreadcrumb && <Breadcrumb location={location} />}
 
-          <h1 className="text-headingColor lg:text-5xl text-2xl font-bold max-w-[721px] lg:leading-[67.2px]">
+          <h1 className="text-headingColor lg:text-5xl text-2xl md:text-3xl lg:text-4xl font-bold max-w-[721px] lg:leading-[67.2px]">
             {data?.title}
           </h1>
 
@@ -34,7 +34,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
         {/* Second div: Image */}
         <div className="">
           <img
-            className="lg:rounded-tl-[80px] rounded-tl-[40px] rounded-tr-none rounded-br-none rounded-bl-none xl:max-w-[829px] lg:h-[710px]  object-cover pl-3 lg:px-0"
+            className="lg:rounded-tl-[80px] rounded-tl-[40px] rounded-tr-none rounded-br-none rounded-bl-none xl:max-w-[829px] lg:h-[710px]  object-cover pl-3 px-[10px] lg:px-0"
             src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
             alt={data?.title}
           />

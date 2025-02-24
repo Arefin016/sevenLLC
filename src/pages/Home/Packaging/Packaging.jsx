@@ -17,14 +17,14 @@ const Packaging = ({ data }) => {
           </p>
         </div>
         {/* This is the card section */}
-        <div className="xl:mt-12 mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  md:gap-8 lg:gap-8 xl:gap-8 px-10">
+        <div className="xl:mt-12 mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  md:gap-8 lg:gap-8 xl:gap-8 px-0 lg:px-5">
           {data?.map((item, idx) => (
             <Card key={idx} data={item} />
           ))}
         </div>
 
         {/* This is the button section */}
-        <div className="flex flex-col items-center xl:mt-12 mt-6 px-4 md:px-11 lg:px-0">
+        <div className="flex flex-col items-center xl:mt-12 mt-6  md:px-11 lg:px-0">
           <div className="border max-w-[914px] border-buttonColor xl:py-4 py-2 xl:px-8 px-4 xl:rounded-[60px] rounded-2xl text-buttonColor text-sm lg:text-base xl:text-lg font-medium">
             Don’t see what you need? Fill out our form to the best of your
             ability and we’ll get you a quote!

@@ -28,7 +28,7 @@ const StepSection = ({ title, subtitle, btnText, isAbout, data }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:mt-16 mt-8 mb-12 px-[18px] xl:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:mt-16 mt-8 mb-12 px-3 xl:px-0">
           {updatedData?.map((item) => (
             <StepCard isAbout={isAbout} key={item?.id} data={item} />
           ))}
