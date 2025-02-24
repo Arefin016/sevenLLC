@@ -14,6 +14,7 @@ import {
 import useAuth from "@/hooks/useAuth";
 import { useLogout } from "@/hooks/auth.mutations";
 import { AnimatePresence, motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const items = [
   {
@@ -61,6 +62,7 @@ const menuItems = [
   { name: "Order Requests", link: "/orderForms" },
   { name: "Blog", link: "/blogArticles" },
   { name: "Contact Us", link: "/contactUs" },
+  { name: "Log out", link: "/" },
 ];
 
 const Navbar = () => {
@@ -94,6 +96,7 @@ const Navbar = () => {
   //handlers:
 
   const handleLogout = () => {
+    alert("working");
     setShowMenu(false);
     logOutMutation();
   };
@@ -320,30 +323,37 @@ const Navbar = () => {
                     </a>
                   </Dropdown>
                   <div className="flex flex-col gap-y-5 justify-center">
-                    <ul className="flex flex-col  gap-y-5   flex-wrap ">
+                    <ul className="flex flex-col    gap-y-5   flex-wrap ">
                       {menuItems.map((item, index) => (
-                        <React.Fragment key={index}>
-                          <li className=" text-navbarColor font-semibold hover:text-buttonColor transition-colors duration-300">
+                        <li
+                          key={item.name}
+                          className="text-[14px]  text-start "
+                        >
+                          {item.name === "Log out" ? (
+                            <button
+                              onClick={handleLogout}
+                              className="text-navbarColor font-medium  hover:text-buttonColor"
+                            >
+                              {item.name}
+                            </button>
+                          ) : (
                             <NavLink
-                              onClick={() => {
-                                setisSideBarOpen(false);
-                              }}
                               to={item.link}
                               className={({ isActive }) =>
                                 isActive
-                                  ? "text-buttonColor text-sm font-medium hover:text-buttonColor"
-                                  : "text-navbarColor text-sm font-medium hover:text-buttonColor"
+                                  ? "text-buttonColor font-medium hover:text-buttonColor"
+                                  : "text-navbarColor font-medium hover:text-buttonColor"
                               }
                             >
                               {item.name}
                             </NavLink>
-                          </li>
-                        </React.Fragment>
+                          )}
+                        </li>
                       ))}
                     </ul>
                     <div>
                       <Link to={"/signUp"}>
-                        <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px] hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
+                        <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[15px] hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                           Sign up
                         </button>
                       </Link>
@@ -358,25 +368,28 @@ const Navbar = () => {
         <div>
           <div className="bg-white hidden xlg:block py-4">
             <ul className="flex  gap-y-2 lg:gap-y-0 lg:gap-2  flex-wrap items-center md:justify-center">
-              {menuItems.map((item, index) => (
-                <React.Fragment key={index}>
-                  <li className=" text-[14px] xlg:text-lg  px-2 lg:px-3">
-                    <NavLink
-                      to={item.link}
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-buttonColor font-medium hover:text-buttonColor"
-                          : "text-navbarColor font-medium hover:text-buttonColor"
-                      }
-                    >
-                      {item.name}
-                    </NavLink>
-                  </li>
-                  {index < menuItems.length - 1 && (
-                    <span className=" h-[15px] xlg:h-[29px] w-[1px] bg-[#616161] "></span>
-                  )}
-                </React.Fragment>
-              ))}
+              {menuItems.map((item, index) => {
+                if (item.name === "Log out") return;
+                return (
+                  <React.Fragment key={index}>
+                    <li className=" text-[14px] xlg:text-lg  px-2 lg:px-3">
+                      <NavLink
+                        to={item.link}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-buttonColor font-medium hover:text-buttonColor"
+                            : "text-navbarColor font-medium hover:text-buttonColor"
+                        }
+                      >
+                        {item.name}
+                      </NavLink>
+                    </li>
+                    {index < menuItems.length - 2 && (
+                      <span className=" h-[15px] xlg:h-[29px] w-[1px] bg-[#616161] "></span>
+                    )}
+                  </React.Fragment>
+                );
+              })}
             </ul>
           </div>
         </div>
