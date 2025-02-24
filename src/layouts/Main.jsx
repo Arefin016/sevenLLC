@@ -21,11 +21,13 @@ const Main = () => {
       {customLoading ? (
         <Loader />
       ) : (
-        <div className={`${!isSignUpPage ? "lg:mt-[164px] mt-28 " : ""} `}>
+        <div
+          className={`${!isSignUpPage ? "lg:mt-[145px] mt-28 xl:mt-44" : ""} `}
+        >
           <Outlet />
         </div>
       )}
-      {!isSignUpPage && <Footer />}
+      {/* {!isSignUpPage && <Footer />} */}
     </div>
   );
 };
