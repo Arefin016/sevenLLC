@@ -3,11 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ children }) => {
-  const { token, loading } = useAuth();
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const { token } = useAuth();
 
   return token ? children : <Navigate to="/login" replace />;
 };

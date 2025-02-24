@@ -1,4 +1,5 @@
 import { axiosPublic } from './useAxiosPublic';
+import { axiosSecure } from './useAxiosSecure';
 
 // Homepage Data
 export const homepageDataFunc = async () => {
@@ -9,7 +10,6 @@ export const homepageDataFunc = async () => {
     console.error('Error fetching homepage data:', error);
     throw new Error('Failed to fetch homepage data');
   }
-
 };
 
 // All Products
@@ -64,7 +64,7 @@ export const processDataFunc = async () => {
   } catch (error) {
     console.error('Error fetching process data:', error);
     throw new Error('Failed to fetch process data');
-  } 
+  }
 };
 
 // Products & Services
@@ -76,7 +76,6 @@ export const productsAndServicesFunc = async () => {
     console.error('Error fetching products and services:', error);
     throw new Error('Failed to fetch products and services');
   }
-
 };
 
 // Contact Form Submission
@@ -99,7 +98,6 @@ export const allBlogsFunc = async () => {
     console.error('Error fetching all blogs:', error);
     throw new Error('Failed to fetch blogs');
   }
-
 };
 
 // Single Blog
@@ -121,5 +119,34 @@ export const recentBlogsFunc = async () => {
   } catch (error) {
     console.error('Error fetching recent blogs:', error);
     throw new Error('Failed to fetch recent blogs');
+  }
+};
+
+//user information update:
+export const userInformationUpdateFunc = async (payload) => {
+  try {
+    const { data } = await axiosSecure.post('/api/users/data/update', payload, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error('Error updating user information:', error);
+    throw new Error('Failed to update user information');
+  }
+};
+
+// Password Change:
+export const passwordChangeFunc = async (payload) => {
+  try {
+    const { data } = await axiosSecure.post(
+      '/api/users/change-password',
+      payload
+    );
+    return data;
+  } catch (error) {
+    console.error('Error changing password:', error);
+    throw new Error('Failed to change password');
   }
 };
