@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { UploadFileSvg } from '../../SvgContainer/SvgConainer';
-import { Empty, Space, Switch } from 'antd';
-import { Input } from '@/components/ui/input';
+import { UploadFileSvg } from "../../SvgContainer/SvgConainer";
+import { Empty, Space, Switch } from "antd";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -10,8 +10,8 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Controller } from 'react-hook-form';
+} from "@/components/ui/select";
+import { Controller } from "react-hook-form";
 
 const HaveDesign = ({ register, control }) => {
   return (
@@ -25,7 +25,7 @@ const HaveDesign = ({ register, control }) => {
               Describe Your Design Idea*
             </label>
             <textarea
-              {...register('design_details', { required: true })}
+              {...register("design_details", { required: true })}
               className="bg-[#D9D9D91A] rounded-[10px] pt-[31.5px] pb-[160.5px] pl-[43px] pr-[65px]"
               type="text"
               placeholder="Tell us about your design concept, including colors, size, width, function text, logos, and placement preferences. Please be very specific."
@@ -65,10 +65,10 @@ const HaveDesign = ({ register, control }) => {
           {/* This is the preferred color */}
           <div>
             {/* First Input Column */}
-            <div className="flex gap-10 mt-[19px]">
+            <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
               {/* Preferred color */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Preferred Colors*
                 </label>
                 <Controller
@@ -77,7 +77,7 @@ const HaveDesign = ({ register, control }) => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                      <SelectTrigger className="xl:py-[31px] xl:h-[97px] h-[60px]  xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                         <SelectValue placeholder="Preferred Colors" />
                       </SelectTrigger>
                       <SelectContent>
@@ -94,8 +94,8 @@ const HaveDesign = ({ register, control }) => {
               </div>
 
               {/* Preferred Finish (optional) */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Preferred Finish (optional)
                 </label>
                 <Controller
@@ -104,7 +104,7 @@ const HaveDesign = ({ register, control }) => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                      <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                         <SelectValue
                           className="!text-navbarColor"
                           placeholder="Preferred Finish"
@@ -124,12 +124,12 @@ const HaveDesign = ({ register, control }) => {
               </div>
             </div>
             {/* Second Input Column  */}
-            <div className="flex gap-10 mt-[19px]">
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+            <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Logo Included?
                 </label>
-                <div className="bg-[#D9D9D91A] h-[97px] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px] flex items-center">
+                <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px] flex items-center">
                   <Space direction="vertical">
                     {/* Use Controller to Manage Switch Component */}
                     <Controller
@@ -151,13 +151,13 @@ const HaveDesign = ({ register, control }) => {
                 </div>
               </div>
               {/* Brand Text  */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Brand Text
                 </label>
                 <Input
-                  {...register('brand_text', { required: true })}
-                  className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                  {...register("brand_text", { required: true })}
+                  className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="text"
                   placeholder="Enter text for your packaging (e.g., brand name, tagline)"
                 />
@@ -184,12 +184,12 @@ const HaveDesign = ({ register, control }) => {
             </div>
             {/* This is the Design Placement */}
             <div className="flex flex-col gap-y-[10.5px] mt-[15.5px]">
-              <label className="text-lg text-headingColor font-medium">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
                 Design Placement:*
               </label>
               <Input
-                {...register('design_placement', { required: true })}
-                className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                {...register("design_placement", { required: true })}
+                className="xl:py-[31px] xl:h-[97px] h-[60px]  xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                 type="number"
                 placeholder="Design Placement"
               />
@@ -200,9 +200,9 @@ const HaveDesign = ({ register, control }) => {
                 Product Information
               </h1>
               {/* First Input Column */}
-              <div className="flex gap-10 mt-[19px]">
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Product Category*
                   </label>
                   <Controller
@@ -214,7 +214,7 @@ const HaveDesign = ({ register, control }) => {
                         onValueChange={field.onChange}
                         value={field.value}
                       >
-                        <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                        <SelectTrigger className="py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                           <SelectValue
                             className="!text-navbarColor"
                             placeholder="Product Category"
@@ -239,39 +239,39 @@ const HaveDesign = ({ register, control }) => {
                   />
                 </div>
                 {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Item Type*
                   </label>
                   <Input
-                    {...register('item_type', { required: true })}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    {...register("item_type", { required: true })}
+                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="I.e Perfume Bottle with Spray Top"
                   />
                 </div>
               </div>
               {/* Second Input Column  */}
-              <div className="flex gap-10 mt-7">
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-7">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Material(s) (optional)
                   </label>
                   <Input
-                    {...register('material')}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    {...register("material")}
+                    className="py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Material(s)"
                   />
                 </div>
                 {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Accessories (optional)
                   </label>
                   <Input
-                    {...register('accessories')}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    {...register("accessories")}
+                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Accessories"
                   />
@@ -282,9 +282,10 @@ const HaveDesign = ({ register, control }) => {
             {/* This is the contact information */}
             <div className="">
               {/* First Input Column */}
-              <div className="flex gap-10 mt-7">
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col md:flex-row  gap-10 mt-7">
+                {/* Size* */}
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Size*
                   </label>
                   <Controller
@@ -296,7 +297,7 @@ const HaveDesign = ({ register, control }) => {
                         onValueChange={field.onChange}
                         value={field.value}
                       >
-                        <SelectTrigger className="py-[28px] h-[97px] pl-5 bg-[#D9D9D91A] !text-xl text-headingColor">
+                        <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[60px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                           <SelectValue
                             className="!text-navbarColor"
                             placeholder="Preferred Colors"
@@ -314,25 +315,25 @@ const HaveDesign = ({ register, control }) => {
                     )}
                   />
                 </div>
-                {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                {/* Thickness in microns (optional) */}
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Thickness in microns (optional)
                   </label>
                   <Input
-                    {...register('thickness_in_micron')}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    {...register("thickness_in_micron")}
+                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Thickness in microns"
                   />
                 </div>
-                {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                {/* Label? */}
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Label?
                   </label>
                   {/*  */}
-                  <div className="bg-[#D9D9D91A] h-[97px] flex items-center pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                  <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] flex items-center pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
                     <Space direction="vertical">
                       <Controller
                         name="label"
@@ -361,27 +362,27 @@ const HaveDesign = ({ register, control }) => {
                 Order Quantity
               </h1>
               {/* First Input Column */}
-              <div className="flex gap-10 mt-[19px]">
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Desired Quantity (required)*
                     <span className="text-buttonColor text-lg font-semibold underline">
                       MOQ guide
                     </span>
                   </label>
                   <Input
-                    {...register('quantity', { required: true })}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    {...register("quantity", { required: true })}
+                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="number"
                     placeholder="Enter the number of units (e.g., 1,000)"
                   />
                 </div>
-                {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                {/* Reoccurring */}
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Reoccurring?
                   </label>
-                  <div className="bg-[#D9D9D91A] h-[97px] flex items-center pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                  <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] flex items-center pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
                     <Space direction="vertical">
                       <Controller
                         name="reoccurring"
