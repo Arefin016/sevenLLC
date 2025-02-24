@@ -11,6 +11,7 @@ import {
   singleBlogFunc,
   whatWeOfferFunc,
 } from './cms.api';
+import { GetUserDataFunc } from './auth.hooks';
 
 //homepage:
 export const useHomePageQuery = () => {
@@ -90,5 +91,13 @@ export const useRecentBlogsQuery = () => {
   return useQuery({
     queryKey: ['recent-blogs'],
     queryFn: recentBlogsFunc,
+  });
+};
+
+//get user info:
+export const useGetUserInfoQuery = () => {
+  return useQuery({
+    queryKey: ['user-info'],
+    queryFn: GetUserDataFunc,
   });
 };
