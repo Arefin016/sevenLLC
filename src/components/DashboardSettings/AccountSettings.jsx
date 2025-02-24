@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { OrderSummerySvg, SettingUploadSvg } from '../SvgContainer/SvgConainer';
-import uploadImage from '@/assets/images/settingsUploadLogo/photo.png';
 import { Input } from '../ui/input';
 import {
   Select,
@@ -11,49 +10,53 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import Button from '../Button/Button';
 import useAuth from '@/hooks/useAuth';
 import { Controller, useForm } from 'react-hook-form';
+import { useUserInfoUpdateMutation } from '@/hooks/cms.mutations';
+import { ImSpinner9 } from 'react-icons/im';
+
 const AccountSettings = () => {
-  const { user } = useAuth();
-  // console.log(user);
-  const [formData, setFormData] = useState({
-    first_name: '',
-    last_name: '',
-    phone: '',
-    email: '',
-    country: '',
-    state: '',
-    zipcode: '',
-    avatar: '',
+  const { user, loading } = useAuth();
+  const { mutateAsync: userUpdateMutation } = useUserInfoUpdateMutation();
+  const baseUrl = import.meta.env.VITE_SITE_URL;
+  const [image, setImage] = useState(
+    user?.avatar ? `${baseUrl}/${user.avatar}` : ''
+  );
+  const { register, handleSubmit, control, reset, setValue } = useForm({
+    defaultValues: {
+      first_name: '',
+      last_name: '',
+      phone: '',
+      email: '',
+      country: '',
+      state: '',
+      zipcode: '',
+      avatar: user?.avatar ? `${baseUrl}/${user.avatar}` : '',
+    },
   });
-  const [image, setImage] = useState(uploadImage);
-  const { register, handleSubmit, control } = useForm();
 
   // handlers:
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file && file.size <= 2 * 1024 * 1024) {
       setImage(URL.createObjectURL(file));
-      alert('File must be less than 2MB.');
+      setValue('avatar', file); // Store file in form
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await userUpdateMutation(data);
+    } catch (error) {
+      console.error('Login failed', error);
+    }
   };
 
   // useEffect:
   useEffect(() => {
     if (user) {
-      setFormData({
+      const avatarUrl = user?.avatar ? `${baseUrl}/${user.avatar}` : '';
+      reset({
         first_name: user?.first_name || '',
         last_name: user?.last_name || '',
         phone: user?.phone || '',
@@ -61,10 +64,11 @@ const AccountSettings = () => {
         country: user?.country || '',
         state: user?.state || '',
         zipcode: user?.zipcode || '',
-        avatar: user?.avatar || '',
+        avatar: avatarUrl,
       });
+      setImage(avatarUrl); // Ensure displayed image updates
     }
-  }, [user]);
+  }, [baseUrl, reset, user]);
   return (
     <div className="container mx-auto">
       <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-14 px-5 xxs:px-4 sm:px-4 xl:px-0">
@@ -98,6 +102,7 @@ const AccountSettings = () => {
                 id="photo-upload"
                 accept="image/*"
                 className="hidden"
+                {...register('avatar')}
                 onChange={handleImageChange}
               />
               <div className=" items-center gap-3">
@@ -123,9 +128,6 @@ const AccountSettings = () => {
                   {...register('first_name', { required: true })}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="text"
-                  name="first_name"
-                  value={formData.first_name}
-                  onChange={handleChange}
                   placeholder="Michael"
                 />
               </div>
@@ -136,8 +138,6 @@ const AccountSettings = () => {
                 </label>
                 <Input
                   {...register('last_name', { required: true })}
-                  value={formData.last_name}
-                  onChange={handleChange}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="text"
                   placeholder="Watson"
@@ -153,8 +153,6 @@ const AccountSettings = () => {
                 </label>
                 <Input
                   {...register('phone', { required: true })}
-                  value={formData.phone}
-                  onChange={handleChange}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="number"
                   placeholder="+1-202-555-0118"
@@ -167,8 +165,6 @@ const AccountSettings = () => {
                 </label>
                 <Input
                   {...register('email', { required: true })}
-                  value={formData.email}
-                  onChange={handleChange}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="email"
                   placeholder="michaelwatson@gmail.com"
@@ -186,9 +182,8 @@ const AccountSettings = () => {
                   Country/Region
                 </label>
                 <Controller
-                  name="color_code"
+                  name="country"
                   control={control}
-                  defaultValue={formData.country}
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor">
@@ -214,7 +209,6 @@ const AccountSettings = () => {
                 <Controller
                   name="state"
                   control={control}
-                  defaultValue={formData?.state}
                   render={({ field }) => (
                     <Select
                       value={field?.value}
@@ -242,8 +236,8 @@ const AccountSettings = () => {
                 </label>
                 <Input
                   {...register('zipcode', { required: true })}
-                  value={formData.zipcode}
-                  onChange={handleChange}
+                  // value={formData.zipcode}
+                  // onChange={handleChange}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="number"
                   placeholder="75460"
@@ -253,7 +247,29 @@ const AccountSettings = () => {
           </div>
           {/* This is the button section */}
           <div className="xmd:px-[97px] px-5 my-4 md:my-6 lg:my-8">
-            <Button text={'Save Changes'} color={'bg-buttonColor'} />
+            <button
+              className={`bg-buttonColor rounded-[60px] px-3 sm:px-6 md:px-7 lg:px-8 flex xl:gap-2 justify-center items-center xl:py-4 py-[10px] md:py-[10px] lg:py-3 text-[#FFF] font-semibold hover:bg-transparent border border-buttonColor hover:border-buttonColor hover:text-buttonColor ease-in-out duration-150 group text-sm xl:text-base group w-[250px]  `}
+            >
+              {loading ? (
+                <ImSpinner9 className="text-white size-4 sm:size-6 animate-spin group-hover:text-buttonColor" />
+              ) : (
+                <span className="flex items-center justify-center gap-1">
+                  <span>Save Changes</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 25 25"
+                    fill="none"
+                    className="transition size-5 md:size-6 duration-150 ease-in-out group-hover:fill-buttonColor"
+                  >
+                    <path
+                      d="M16.5054 9.6015L7.89838 18.2085L6.48438 16.7945L15.0904 8.1875H7.50538V6.1875H18.5054V17.1875H16.5054V9.6015Z"
+                      fill="white"
+                      className="group-hover:fill-buttonColor transition duration-150"
+                    />
+                  </svg>
+                </span>
+              )}
+            </button>
           </div>
         </form>
       </div>

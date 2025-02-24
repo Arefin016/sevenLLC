@@ -1,5 +1,9 @@
-import { useMutation } from '@tanstack/react-query';
-import { contactFormFunc, passwordChangeFunc } from './cms.api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  contactFormFunc,
+  passwordChangeFunc,
+  userInformationUpdateFunc,
+} from './cms.api';
 import useAuth from './useAuth';
 import toast from 'react-hot-toast';
 
@@ -20,6 +24,32 @@ export const useContactMutation = () => {
     onError: (error) => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
+        duration: 1500,
+      });
+    },
+  });
+};
+
+//user information update mutation:
+export const useUserInfoUpdateMutation = () => {
+  const { setLoading } = useAuth();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ['user-information-update'],
+    mutationFn: (payload) => userInformationUpdateFunc(payload),
+    onMutate: () => {
+      setLoading(true);
+    },
+    onSuccess: () => {
+      // queryClient.invalidateQueries(['user-info']);
+      toast.success('User information has been updated successfully!', {
+        duration: 1500,
+      });
+      setLoading(false);
+    },
+    onError: () => {
+      setLoading(false);
+      toast.error('Error in user information update', {
         duration: 1500,
       });
     },

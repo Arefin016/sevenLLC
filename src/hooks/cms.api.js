@@ -122,11 +122,31 @@ export const recentBlogsFunc = async () => {
   }
 };
 
+//user information update:
+export const userInformationUpdateFunc = async (payload) => {
+  try {
+    const { data } = await axiosSecure.post('/api/users/data/update', payload, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error('Error updating user information:', error);
+    throw new Error('Failed to update user information');
+  }
+};
+
 // Password Change:
 export const passwordChangeFunc = async (payload) => {
-  const { data } = await axiosSecure.post(
-    '/api/users/change-password',
-    payload
-  );
-  return data;
+  try {
+    const { data } = await axiosSecure.post(
+      '/api/users/change-password',
+      payload
+    );
+    return data;
+  } catch (error) {
+    console.error('Error changing password:', error);
+    throw new Error('Failed to change password');
+  }
 };
