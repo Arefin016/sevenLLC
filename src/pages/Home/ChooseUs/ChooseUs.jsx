@@ -34,7 +34,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
         {/* Second div: Image */}
         <div className="">
           <img
-            className="rounded-tl-[80px] rounded-tr-none rounded-br-none rounded-bl-none xlg:max-w-[829px] xlg:h-[710px] h-auto object-cover pl-3 lg:px-0"
+            className="lg:rounded-tl-[80px] rounded-tl-[40px] rounded-tr-none rounded-br-none rounded-bl-none xlg:max-w-[829px] xlg:h-[710px] h-auto object-cover pl-3 lg:px-0"
             src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
             alt={data?.title}
           />

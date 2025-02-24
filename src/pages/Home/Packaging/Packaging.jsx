@@ -6,7 +6,7 @@ const Packaging = ({ data }) => {
   console.log(data);
   return (
     <section>
-      <div className="custom-gradient xl:py-[150px] xl:px-[220px] px-5 py-12">
+      <div className="custom-gradient xl:py-[150px] xl:px-[220px] px-5 py-12 mt-16 lg:mt-0">
         {/* This is the title section */}
         <div className="flex flex-col items-center">
           <h1 className="text-headingColor xl:text-5xl text-2xl lg:text-3xl font-bold max-w-[952px] xl:leading-[67.2px]">
@@ -17,7 +17,7 @@ const Packaging = ({ data }) => {
           </p>
         </div>
         {/* This is the card section */}
-        <div className="xl:mt-12 mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="xl:mt-12 mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-10">
           {data?.map((item, idx) => (
             <Card key={idx} data={item} />
           ))}
