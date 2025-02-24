@@ -10,10 +10,11 @@ import {
   SearchBarSvgTwo,
   Line,
   LoginUserSvg,
-} from '../../components/SvgContainer/SvgConainer';
-import useAuth from '@/hooks/useAuth';
-import { useLogout } from '@/hooks/auth.mutations';
-import { AnimatePresence, motion } from 'framer-motion';
+} from "../../components/SvgContainer/SvgConainer";
+import useAuth from "@/hooks/useAuth";
+import { useLogout } from "@/hooks/auth.mutations";
+import { AnimatePresence, motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const items = [
   {
@@ -55,13 +56,13 @@ const items = [
 ];
 
 const menuItems = [
-  { name: 'About Us', link: '/aboutUs' },
-  { name: 'Products & Services', link: '/productServices' },
-  { name: 'Dashboard', link: '/dashboardLayout/mainDashboard' },
-  { name: 'Order Requests', link: '/orderForms' },
-  { name: 'Blog', link: '/blogArticles' },
-  { name: 'Contact Us', link: '/contactUs' },
-  { name: 'Log out', link: '/' },
+  { name: "About Us", link: "/aboutUs" },
+  { name: "Products & Services", link: "/productServices" },
+  { name: "Dashboard", link: "/dashboardLayout/mainDashboard" },
+  { name: "Order Requests", link: "/orderForms" },
+  { name: "Blog", link: "/blogArticles" },
+  { name: "Contact Us", link: "/contactUs" },
+  { name: "Log out", link: "/" },
 ];
 
 const Navbar = () => {
@@ -86,6 +87,7 @@ const Navbar = () => {
 
   //handlers:
   const handleLogout = () => {
+    alert("working");
     setShowMenu(false);
     logOutMutation();
   };
@@ -318,7 +320,7 @@ const Navbar = () => {
                           key={item.name}
                           className="text-[14px]  text-start "
                         >
-                          {item.name === 'Log out' ? (
+                          {item.name === "Log out" ? (
                             <button
                               onClick={handleLogout}
                               className="text-navbarColor font-medium  hover:text-buttonColor"
@@ -330,9 +332,8 @@ const Navbar = () => {
                               to={item.link}
                               className={({ isActive }) =>
                                 isActive
-                                  ? 'text-buttonColor font-medium hover:text-buttonColor'
-                                  : 'text-navbarColor font-medium hover:text-buttonColor'
-                              }
+                                  ? "text-buttonColor font-medium hover:text-buttonColor"
+                                  : "text-navbarColor font-medium hover:text-buttonColor"
                             >
                               {item.name}
                             </NavLink>
@@ -341,7 +342,7 @@ const Navbar = () => {
                       ))}
                     </ul>
                     <div>
-                      <Link to={'/signUp'}>
+                      <Link to={"/signUp"}>
                         <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[15px] hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                           Sign up
                         </button>
@@ -358,7 +359,7 @@ const Navbar = () => {
           <div className="bg-white hidden xlg:block py-4">
             <ul className="flex  gap-y-2 lg:gap-y-0 lg:gap-2  flex-wrap items-center md:justify-center">
               {menuItems.map((item, index) => {
-                if (item.name === 'Log out') return;
+                if (item.name === "Log out") return;
                 return (
                   <React.Fragment key={index}>
                     <li className=" text-[14px] xlg:text-lg  px-2 lg:px-3">
@@ -366,8 +367,9 @@ const Navbar = () => {
                         to={item.link}
                         className={({ isActive }) =>
                           isActive
-                            ? 'text-buttonColor font-medium hover:text-buttonColor'
-                            : 'text-navbarColor font-medium hover:text-buttonColor'
+                            ? "text-buttonColor font-medium hover:text-buttonColor"
+                            : "text-navbarColor font-medium hover:text-buttonColor"
+
                         }
                       >
                         {item.name}

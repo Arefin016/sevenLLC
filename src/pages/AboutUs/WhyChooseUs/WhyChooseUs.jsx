@@ -13,7 +13,7 @@ const WhyChooseUs = ({ data }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[30px] mt-[52px] ">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[30px] xl:mt-[52px] mt-9 px-3 lg:px-10 xl:px-0">
           {data?.map((item) => (
             <ChooseUsCard key={item?.id} data={item} />
           ))}

@@ -4,7 +4,7 @@ import { StepFormLogoOne } from "../SvgContainer/SvgConainer";
 const StepCard = ({ isAbout, data }) => {
   return (
     <div
-      className={`xl:max-w-[348px] w-full h-auto xl:py-[50px] py-8 px-[37px] rounded-[20px] o ${
+      className={`xl:max-w-[348px] w-full h-auto xl:py-[50px] py-5 md:py-7 px-7 rounded-[20px]  ${
         isAbout ? "bg-white" : "bg-[#FAFBFC]"
       }`}
     >

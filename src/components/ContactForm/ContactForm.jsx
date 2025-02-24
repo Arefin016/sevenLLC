@@ -22,7 +22,7 @@ const ContactForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 lg:mt-16 mt-5 xmd:mt-8"
+      className="space-y-6 lg:mt-16 mt-5 xmd:mt-8 px-3 lg:px-10 xl:px-0"
     >
       {/* First Input Column */}
       <div className="flex flex-col sm:flex-row sm:gap-10 gap-5">

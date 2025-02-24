@@ -4,7 +4,7 @@ import ButtonTwo from "../../../components/ButtonTwo/ButtonTwo";
 const BetterPlanet = ({ data, backgroundImage }) => {
   const { title, description, buttonText, gradient } = data;
   return (
-    <section className="mb-16">
+    <section className="mb-16 mt-12 xl:mt-0">
       <div
         className=""
         style={{
@@ -14,7 +14,7 @@ const BetterPlanet = ({ data, backgroundImage }) => {
           backgroundPosition: "center",
         }}
       >
-        <div className="xl:py-[150px] py-8 xl:px-[221px] flex flex-col-reverse lg:flex-row lg:gap-[133px] gap-12 px-5">
+        <div className="xl:py-[150px] py-8 lg:py-32 xl:px-[221px] flex flex-col-reverse lg:flex-row lg:gap-[133px] gap-12 px-6">
           <div className="lg:w-[45%]">
             <h1 className="lg:max-w-[595px] text-[#FFF] xl:text-5xl text-2xl lg:text-3xl font-bold xl:leading-[67px] lg:leading-7">
               {title}

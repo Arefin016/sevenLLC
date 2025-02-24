@@ -76,10 +76,10 @@
     padding-right: var(--removed-body-scroll-bar-size) !important;
   }
   .headingStyle {
-    @apply text-headingColor xl:text-5xl text-2xl font-bold;
+    @apply text-headingColor xl:text-5xl text-3xl md:text-4xl font-bold;
   }
   .subHeadingStyle {
-    @apply text-navbarColor xl:text-[22px] md:text-base text-sm;
+    @apply text-navbarColor xl:text-[22px] text-base md:text-lg lg:text-xl;
   }
   .custom-gradient {
     background: linear-gradient(107deg, #f8feff 0%, #fff9f8 100%);

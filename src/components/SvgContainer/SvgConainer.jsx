@@ -309,6 +309,7 @@ export const BorderSvg = () => {
       height="2"
       viewBox="0 0 971 2"
       fill="none"
+      className="xl:w-[971px] w-[100%] h-[2px]"
     >
       <path d="M971 1L5.34058e-05 1" stroke="#4A4A4A" strokeWidth="0.3" />
     </svg>
@@ -344,6 +345,7 @@ export const BottomBorderSvg = () => {
       height="2"
       viewBox="0 0 370 2"
       fill="none"
+      className="lg:w-[370px] w-full h-2"
     >
       <path d="M0 1H370" stroke="#9FA4B3" strokeWidth="0.3" />
     </svg>
