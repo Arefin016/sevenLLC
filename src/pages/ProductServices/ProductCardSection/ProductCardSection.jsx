@@ -3,7 +3,7 @@ import ProductsSection from "@/components/ProductsSection/ProductsSection";
 
 const ProductCardSection = ({ data }) => {
   return (
-    <section className="xl:mt-[90px] mt-5">
+    <section className="xl:mt-[90px] mt-12 lg:mt-14">
       <div className="container mx-auto">
         {/* title */}
         <div className="text-center">

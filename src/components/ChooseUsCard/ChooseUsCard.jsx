@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 const ChooseUsCard = ({ data }) => {
   return (
-    <div className="xl:max-w-[473px] rounded-[20px] bg-[#FAFBFC] xl:pt-[71.5px] py-5 xl:pb-16 xl:px-[43px] text-center flex flex-col items-center overflow-hidden transition-all duration-300 hover:scale-105 px-5">
+    <div className="xl:max-w-[473px] rounded-[20px] bg-[#FAFBFC] xl:pt-[71.5px] py-5 lg:py-10 xl:pb-16 xl:px-[43px] text-center flex flex-col items-center overflow-hidden transition-all duration-300 hover:scale-105 px-5">
       <img
-        className="h-16 w-16 object-cover"
+        className="xl:h-16 h-12 xl:w-16 w-12 object-cover"
         src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
         alt="Choose Us Logo"
       />
