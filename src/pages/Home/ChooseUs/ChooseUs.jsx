@@ -12,10 +12,10 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
       : String(data?.description);
 
   return (
-    <section className="xl:ml-[210px] ml-0 lg:ml-5 xl:pt-[150px] mt-12 xl:mt-0">
-      <div className="flex flex-col-reverse sm:flex-row lg:gap-[150px] gap-10 items-center">
+    <section className="xl:ml-[210px] ml-0 lg:ml-5 lg:pt-[120px] xl:pt-[150px] mt-12 xl:mt-0">
+      <div className="flex flex-col-reverse sm:flex-row xl:gap-[150px] gap-10 items-center px-4 md:px-7 xl:px-8 xxl:px-0">
         {/* First div: Title, Bullet Points, Description, and Button */}
-        <div className="lg:w-1/2 w-full xmd:w-[60%] px-5 lg:px-0">
+        <div className="xl:w-1/2 w-full lg:w-1/2 px-5 lg:px-0">
           {/* Conditionally render Breadcrumb */}
           {showBreadcrumb && <Breadcrumb location={location} />}
 
@@ -34,7 +34,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
         {/* Second div: Image */}
         <div className="">
           <img
-            className="lg:rounded-tl-[80px] rounded-tl-[40px] rounded-tr-none rounded-br-none rounded-bl-none xlg:max-w-[829px] xlg:h-[710px] h-auto object-cover pl-3 lg:px-0"
+            className="lg:rounded-tl-[80px] rounded-tl-[40px] rounded-tr-none rounded-br-none rounded-bl-none xl:max-w-[829px] lg:h-[710px]  object-cover pl-3 lg:px-0"
             src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
             alt={data?.title}
           />

@@ -21,7 +21,7 @@ const Main = () => {
       {customLoading ? (
         <Loader />
       ) : (
-        <div className={`${!isSignUpPage ? "xlg:mt-[164px] mt-28" : ""} `}>
+        <div className={`${!isSignUpPage ? "lg:mt-[164px] mt-28 " : ""} `}>
           <Outlet />
         </div>
       )}

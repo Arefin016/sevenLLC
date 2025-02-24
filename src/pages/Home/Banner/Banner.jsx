@@ -28,7 +28,7 @@ const Banner = ({ data }) => {
           {/* This is the second div */}
           <div>
             <img
-              className="xl:max-w-[569px] xl:h-[597px] h-[400px] md:h-full object-contain"
+              className="xl:max-w-[569px] xl:h-[597px] md:h-full object-contain"
               src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
               alt=""
             />
