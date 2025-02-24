@@ -1,21 +1,22 @@
-import StepSection from '../../../components/StepSection/StepSection';
-import Banner from '../Banner/Banner';
-import Packaging from '../Packaging/Packaging';
-import Request from '../Request/Request';
-import Loader from '@/components/Loader/Loader';
-import ChooseUs from '../ChooseUs/ChooseUs';
-import BetterPlanet from '../BetterPlanet/BetterPlanet';
-import { betterPlanetData } from '@/data/data';
-import betterPlanetPic from '../../../assets/images/betterPlanetPic.png';
+import StepSection from "../../../components/StepSection/StepSection";
+import Banner from "../Banner/Banner";
+import Packaging from "../Packaging/Packaging";
+import Request from "../Request/Request";
+import Loader from "@/components/Loader/Loader";
+import ChooseUs from "../ChooseUs/ChooseUs";
+import BetterPlanet from "../BetterPlanet/BetterPlanet";
+import { betterPlanetData } from "@/data/data";
+import betterPlanetPic from "../../../assets/images/betterPlanetPic.png";
 import {
   useAllProductsQuery,
   useHomePageQuery,
   useHowItWorksQuery,
-} from '@/hooks/cms.queries';
+} from "@/hooks/cms.queries";
 
 const Home = () => {
   const { data: homepageData, isLoading } = useHomePageQuery();
-  const { data: allProducts, isLoading:productsLoading } = useAllProductsQuery();
+  const { data: allProducts, isLoading: productsLoading } =
+    useAllProductsQuery();
   const { data: howItWorksData, isLoading: worksLoading } =
     useHowItWorksQuery();
 
@@ -28,15 +29,15 @@ const Home = () => {
       <Request />
       <ChooseUs data={homepageData?.data?.why_choose_us} />
       <Packaging data={allProducts} />
-      <div className="mt-[137px]">
+      <div className="lg:mt-[137px] mt-12">
         <StepSection
           data={howItWorksData}
-          title={'How It Works'}
-          subtitle={'Your Packaging, Simplified'}
-          btnText={'Learn More About Our Process'}
+          title={"How It Works"}
+          subtitle={"Your Packaging, Simplified"}
+          btnText={"Learn More About Our Process"}
         />
       </div>
-      <div className="mt-[150px]">
+      <div className="lg:mt-[150px] mt-12">
         <BetterPlanet
           data={betterPlanetData}
           backgroundImage={betterPlanetPic}

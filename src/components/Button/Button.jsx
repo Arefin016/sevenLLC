@@ -2,7 +2,7 @@
 const Button = ({ text, color }) => {
   return (
     <button
-      className={`${color} rounded-[60px] px-5 sm:px-6 md:px-7 lg:px-8 flex gap-2 justify-center items-center py-4 text-[#FFF] font-semibold hover:bg-transparent border border-buttonColor hover:border-buttonColor hover:text-buttonColor ease-in-out duration-150 group text-sm sm:text-base`}
+      className={`${color} rounded-[60px] px-3 sm:px-6 md:px-7 lg:px-8 flex xl:gap-2 justify-center items-center xl:py-4 py-[10px] md:py-[10px] lg:py-3 text-[#FFF] font-semibold hover:bg-transparent border border-buttonColor hover:border-buttonColor hover:text-buttonColor ease-in-out duration-150 group text-sm xl:text-base`}
     >
       {text}
       <svg

@@ -76,16 +76,25 @@
     padding-right: var(--removed-body-scroll-bar-size) !important;
   }
   .headingStyle {
-    @apply text-headingColor text-5xl font-bold;
+    @apply text-headingColor xl:text-5xl text-2xl font-bold;
   }
   .subHeadingStyle {
-    @apply text-navbarColor text-[22px];
+    @apply text-navbarColor xl:text-[22px] md:text-base text-sm;
   }
   .custom-gradient {
     background: linear-gradient(107deg, #f8feff 0%, #fff9f8 100%);
   }
   .user-descreption-wrapper ul {
-    @apply flex flex-col gap-y-5 list-disc pl-5 my-5;
+    @apply flex flex-col gap-y-5 list-disc pl-5 lg:my-5 text-navbarColor leading-9 text-xl;
+  }
+  .user-descreption-wrapper p {
+    @apply text-navbarColor lg:text-lg md:text-base text-sm xl:leading-[30.6px] leading-7;
+  }
+  .user-descreption-wrapper li {
+    @apply text-navbarColor lg:text-lg md:text-base text-sm lg:leading-[30.6px];
+  }
+  .user-descreption-wrapper strong {
+    @apply text-headingColor font-semibold lg:text-lg md:text-base text-sm;
   }
 }
 

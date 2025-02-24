@@ -1,32 +1,34 @@
 /* eslint-disable react/prop-types */
-import Button from '../../../components/Button/Button';
-import { Link } from 'react-router-dom';
+import Button from "../../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 const Banner = ({ data }) => {
   return (
-    <section className="pt-[132px]">
+    <section className="lg:pt-[132px]">
       <div className="container mx-auto">
-        <div className="flex gap-[66px]">
+        <div className="flex flex-col-reverse items-center justify-center sm:flex-row lg:gap-[66px] gap-9">
           {/* This is the first div */}
-          <div className="w-1/2">
-            <h2 className="text-[#000B1C] max-w-[707px] text-[64px] font-bold">
+          <div className="lg:w-1/2 w-full">
+            <h2 className="text-2xl sm:max-w-[707px] xlg:text-[64px] font-bold xmd:text-3xl lg:leading-[84px] leading-10">
               {data?.title}
             </h2>
-            <p className="text-buttonColor text-[64px] font-bold">
+            <h1 className="text-2xl text-buttonColor sm:max-w-[707px] xlg:text-[64px] lg:leading-[84px] xmd:text-3xl font-bold leading-10">
               {data?.sub_title}
-            </p>
-            <p className="max-w-[700px] text-2xl text-navbarColor mt-5">
+            </h1>
+            <p className="text-sm md:text-base lg:text-2xl max-w-[700px] text-navbarColor mt-[21px] xl:leading-[39.36px] leading-6">
               {data?.description}
             </p>
-            <div className="mt-12">
-              <Link to={'/orderForms'}>
+
+            <div className="lg:mt-12 mt-8">
+              <Link to={"/orderForms"}>
                 <Button text="Request a Quote" color="bg-buttonColor" />
               </Link>
             </div>
           </div>
           {/* This is the second div */}
-          <div className="max-w-[703px h-[650px]">
+          <div>
             <img
+              className="xlg:max-w-[569px] xlg:h-[597px] object-contain"
               src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
               alt=""
             />
