@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import {
   contactFormFunc,
   passwordChangeFunc,
@@ -33,7 +33,6 @@ export const useContactMutation = () => {
 //user information update mutation:
 export const useUserInfoUpdateMutation = () => {
   const { setLoading } = useAuth();
-  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ['user-information-update'],
     mutationFn: (payload) => userInformationUpdateFunc(payload),

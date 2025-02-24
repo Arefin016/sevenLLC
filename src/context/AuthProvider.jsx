@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from 'react';
-import { axiosSecure } from '@/hooks/useAxiosSecure';
 import { useGetUserInfoQuery } from '@/hooks/cms.queries';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -8,7 +7,11 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
-  const { data: currentUserData } = useGetUserInfoQuery();
+  const {
+    data: currentUserData,
+    isLoading: isLoadingUserData,
+    isFetching: isFetchingUserData,
+  } = useGetUserInfoQuery();
   const [loading, setLoading] = useState(false);
   const [customLoading, setCustomLoading] = useState(false);
 
@@ -18,7 +21,6 @@ const AuthProvider = ({ children }) => {
     if (token) {
       const userData = async () => {
         try {
-          console.log(currentUserData);
           setUser(currentUserData?.data);
         } catch (error) {
           console.error('Error fetching user data:', error);
@@ -40,6 +42,8 @@ const AuthProvider = ({ children }) => {
     setLoading,
     customLoading,
     setCustomLoading,
+    isLoadingUserData,
+    isFetchingUserData,
   };
 
   return (
