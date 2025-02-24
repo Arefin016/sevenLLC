@@ -3,7 +3,7 @@ import parse from "html-react-parser";
 
 const OurStory = ({ data }) => {
   return (
-    <section className="xl:pr-[210px] bg-[#FAFBFC] xl:pt-28 pt-10 pb-10 pr-4 mt-10 xl:mt-0">
+    <section className="xl:pr-[210px] bg-[#FAFBFC] xl:pt-28 pt-10 pb-10 lg:pb-0 pr-4 mt-10 xl:mt-0">
       <div className="flex flex-col sm:flex-row gap-8 lg:gap-20 xl:gap-[150px] items-center">
         <div className="">
           <img
