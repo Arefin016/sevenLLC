@@ -62,7 +62,7 @@ const Footer = () => {
           "
             >
               <input
-                className="bg-[#F0F0F0] max-h-[58px] py-[14px] lg:py-4 text-[#616161] text-sm px-4 xlg:px-10 w-[150px] xlg:w-[230px] rounded-[20px] xlg:rounded-[46px] text-left email-border"
+                className="bg-[#F0F0F0] max-h-[58px] py-[14px] lg:py-4 text-[#616161] text-sm px-4 xlg:px-10 w-full md:w-[150px] xl:w-[230px] rounded-[20px] xlg:rounded-[46px] text-left email-border"
                 type="text"
                 placeholder="Email"
               />
@@ -79,7 +79,7 @@ const Footer = () => {
         ></div>
         {/* This is the copyright section */}
         <div className="flex flex-col-reverse gap-y-4 sm:flex-row items-center xlg:items-start justify-between mt-[30px]">
-          <p className="text-navbarColor text-[15px] sm:text-lg ">
+          <p className="text-navbarColor text-[15px] sm:text-base">
             © Copyright 2024, All Rights Reserved
           </p>
           <div className="flex flex-row gap-3">

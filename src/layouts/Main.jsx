@@ -27,7 +27,7 @@ const Main = () => {
           <Outlet />
         </div>
       )}
-      {/* {!isSignUpPage && <Footer />} */}
+      {!isSignUpPage && <Footer />}
     </div>
   );
 };
