@@ -1,19 +1,19 @@
-import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
-import Navbar from '../shared/Navbar/Navbar';
-import Footer from '../shared/Footer/Footer';
-import useAuth from '@/hooks/useAuth';
-import Loader from '@/components/Loader/Loader';
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
+import Navbar from "../shared/Navbar/Navbar";
+import Footer from "../shared/Footer/Footer";
+import useAuth from "@/hooks/useAuth";
+import Loader from "@/components/Loader/Loader";
 
 const Main = () => {
   const location = useLocation();
   const { customLoading, isLoadingUserData, isFetchingUserData } = useAuth();
 
   const isSignUpPage =
-    location.pathname === '/signUp' ||
-    location.pathname === '/login' ||
-    location.pathname === '/forgetPassword' ||
-    location.pathname === '/enterCodePage' ||
-    location.pathname === '/resetPassword';
+    location.pathname === "/signUp" ||
+    location.pathname === "/login" ||
+    location.pathname === "/forgetPassword" ||
+    location.pathname === "/enterCodePage" ||
+    location.pathname === "/resetPassword";
 
   if (isLoadingUserData || isFetchingUserData) return <Loader />;
 
@@ -25,7 +25,7 @@ const Main = () => {
         <Loader />
       ) : (
         <div
-          className={`${!isSignUpPage ? "lg:mt-[145px] mt-28 xl:mt-44" : ""} `}
+          className={`${!isSignUpPage ? "lg:mt-[145px] mt-32 xl:mt-44" : ""} `}
         >
           <Outlet />
         </div>

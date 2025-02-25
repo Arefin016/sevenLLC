@@ -415,6 +415,7 @@ export const TermsBorderSvg = () => {
       height="2"
       viewBox="0 0 1384 2"
       fill="none"
+      className="xl:max-w-[1384] w-full"
     >
       <path d="M0 1L1384 1.00012" stroke="#616161" strokeWidth="0.4" />
     </svg>

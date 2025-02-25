@@ -1,13 +1,23 @@
-import { useState } from 'react';
-import { OrderSummerySvg } from '../SvgContainer/SvgConainer';
-import { Controller, useForm } from 'react-hook-form';
-import { Input } from '../ui/input';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select';
-import Button from '../Button/Button';
+import { useState } from "react";
+import { OrderSummerySvg } from "../SvgContainer/SvgConainer";
+import { Controller, useForm } from "react-hook-form";
+import { Input } from "../ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import Button from "../Button/Button";
+import { useBillingAddressMutation } from "@/hooks/cms.mutations";
 
 const AddressSettings = () => {
   const [addNewAddress, setAddNewAddress] = useState(false);
   const [savedAddresses, setSavedAddresses] = useState([]);
+  const { mutateAsync: billingFormMutation } = useBillingAddressMutation();
   const {
     register,
     handleSubmit,
@@ -17,13 +27,24 @@ const AddressSettings = () => {
   } = useForm();
 
   //handlers:
-  const onSubmit = (data) => {
-    const updatedAddresses = [...savedAddresses, data];
-    localStorage.setItem('savedAddresses', JSON.stringify(updatedAddresses));
-    setSavedAddresses(updatedAddresses);
-    setAddNewAddress(false);
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+
+      await billingFormMutation(data);
+
+      const updatedAddresses = [...(savedAddresses || []), data];
+
+      localStorage.setItem("savedAddresses", JSON.stringify(updatedAddresses));
+      setSavedAddresses(updatedAddresses);
+
+      setAddNewAddress(false);
+      reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
+
   return (
     <div className="container mx-auto pb-10">
       <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
@@ -109,7 +130,7 @@ const AddressSettings = () => {
                         <Input
                           className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
                           type="text"
-                          {...register('firstName', { required: true })}
+                          {...register("firstName", { required: true })}
                           placeholder="First Name"
                         />
                         {errors.firstName && (
@@ -124,7 +145,7 @@ const AddressSettings = () => {
                         <Input
                           className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
                           type="text"
-                          {...register('lastName', { required: true })}
+                          {...register("lastName", { required: true })}
                           placeholder="Last Name"
                         />
                         {errors.lastName && (
@@ -142,7 +163,7 @@ const AddressSettings = () => {
                       <Input
                         className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
                         type="text"
-                        {...register('companyName', { required: true })}
+                        {...register("companyName", { required: true })}
                         placeholder="Company Name"
                       />
                       {errors.companyName && (
@@ -157,7 +178,7 @@ const AddressSettings = () => {
                       <Input
                         className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
                         type="text"
-                        {...register('address', { required: true })}
+                        {...register("address", { required: true })}
                         placeholder="Address"
                       />
                       {errors.address && (
@@ -172,7 +193,7 @@ const AddressSettings = () => {
                       <Controller
                         name="country"
                         control={control}
-                        rules={{ required: 'Country is required' }}
+                        rules={{ required: "Country is required" }}
                         render={({ field }) => (
                           <Select
                             {...field}
@@ -205,7 +226,7 @@ const AddressSettings = () => {
                       <Controller
                         name="region"
                         control={control}
-                        rules={{ required: 'Region is required' }}
+                        rules={{ required: "Region is required" }}
                         render={({ field }) => (
                           <Select
                             {...field}
@@ -241,7 +262,7 @@ const AddressSettings = () => {
                         <Controller
                           name="City" // Use the name "City" to match the field name
                           control={control}
-                          rules={{ required: 'City is required' }}
+                          rules={{ required: "City is required" }}
                           render={({ field }) => (
                             <Select
                               {...field}
@@ -269,7 +290,7 @@ const AddressSettings = () => {
                         />
                         {errors.City && (
                           <p className="text-red-500 text-sm">
-                            {errors.City.message}{' '}
+                            {errors.City.message}{" "}
                           </p>
                         )}
                       </div>
@@ -279,7 +300,7 @@ const AddressSettings = () => {
                         <Input
                           className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
                           type="number"
-                          {...register('postalCode', { required: true })}
+                          {...register("postalCode", { required: true })}
                           placeholder="Your code here"
                         />
                         {errors.postalCode && (
@@ -295,7 +316,7 @@ const AddressSettings = () => {
                       <Input
                         className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
                         type="email"
-                        {...register('email', { required: true })}
+                        {...register("email", { required: true })}
                         placeholder="Your email here"
                       />
                       {errors.email && (
@@ -310,7 +331,7 @@ const AddressSettings = () => {
                       <Input
                         className="bg-[#F8F8F8] border-none h-11 mt-2 !text-sm text-headingColor"
                         type="number"
-                        {...register('phone', { required: true })}
+                        {...register("phone", { required: true })}
                         placeholder="Your phone here"
                       />
                       {errors.phone && (
@@ -324,8 +345,8 @@ const AddressSettings = () => {
                   <div className="flex justify-between px-6 my-6">
                     <Button
                       type="submit"
-                      text={'Save Changes'}
-                      color={'bg-buttonColor'}
+                      text={"Save Changes"}
+                      color={"bg-buttonColor"}
                     />
                     <button
                       onClick={() => setAddNewAddress(false)}
