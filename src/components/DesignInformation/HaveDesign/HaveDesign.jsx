@@ -21,12 +21,12 @@ const HaveDesign = ({ register, control }) => {
         {/* This is the text area */}
         <div className="mt-[19px]">
           <div className="flex flex-col gap-y-[10.5px]">
-            <label className="text-lg text-headingColor font-medium">
+            <label className="xl:text-lg text-base text-headingColor font-medium">
               Describe Your Design Idea*
             </label>
             <textarea
               {...register("design_details", { required: true })}
-              className="bg-[#D9D9D91A] rounded-[10px] pt-[31.5px] pb-[160.5px] pl-[43px] pr-[65px]"
+              className="bg-[#D9D9D91A] rounded-[10px] lg:pt-[31.5px] pt-5 lg:pb-[160.5px] pb-28 lg:pl-[43px] pl-5 lg:pr-[65px]"
               type="text"
               placeholder="Tell us about your design concept, including colors, size, width, function text, logos, and placement preferences. Please be very specific."
             />
@@ -34,19 +34,19 @@ const HaveDesign = ({ register, control }) => {
         </div>
         {/* Upload Images */}
         <div className="mt-[11px]">
-          <h1 className="text-headingColor text-lg font-medium">
+          <h1 className="text-headingColor xl:text-lg text-base font-medium">
             Upload References (can be a rough sketch)
           </h1>
-          <p className="text-navbarColor font-semibold mt-[7px]">
+          <p className="text-navbarColor font-semibold mt-[7px] lg:text-sm text-xs">
             Upload images, logos, or references to guide the design.
           </p>
-          <p className="text-navbarColor mt-3">
+          <p className="text-navbarColor mt-3 lg:text-sm text-xs">
             *Accept PNG, JPG, PDF, AI, SVG (max size: 5MB).
           </p>
           {/* This is the choose file section */}
-          <div className="bg-[#FFF] shadow-fileUpload py-4 rounded-[10px] mt-4">
+          <div className="bg-[#FFF] shadow-fileShadow lg:py-4 py-2 rounded-[10px] lg:mt-4 mt-5">
             <div className="flex justify-center items-center">
-              <label className="cursor-pointer px-4 py-2 text-headingColor text-base rounded-lg text-center font-semibold">
+              <label className="cursor-pointer px-4 py-2 text-headingColor lg:text-base text-sm rounded-lg text-center font-semibold">
                 Choose File
                 <input
                   type="file"
@@ -77,7 +77,7 @@ const HaveDesign = ({ register, control }) => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="xl:py-[31px] xl:h-[97px] h-[60px]  xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                      <SelectTrigger className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                         <SelectValue placeholder="Preferred Colors" />
                       </SelectTrigger>
                       <SelectContent>
@@ -189,14 +189,14 @@ const HaveDesign = ({ register, control }) => {
               </label>
               <Input
                 {...register("design_placement", { required: true })}
-                className="xl:py-[31px] xl:h-[97px] h-[60px]  xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                 type="number"
                 placeholder="Design Placement"
               />
             </div>
             {/* This is the Product Information */}
             <div className="mt-12">
-              <h1 className="text-center text-buttonColor text-2xl">
+              <h1 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
                 Product Information
               </h1>
               {/* First Input Column */}
@@ -282,7 +282,7 @@ const HaveDesign = ({ register, control }) => {
             {/* This is the contact information */}
             <div className="">
               {/* First Input Column */}
-              <div className="flex flex-col md:flex-row  gap-10 mt-7">
+              <div className="flex flex-col md:flex-row lg:gap-10 gap-0 items-center md:gap-3 mt-7">
                 {/* Size* */}
                 <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
                   <label className="xl:text-lg text-base text-headingColor font-medium">
@@ -358,7 +358,7 @@ const HaveDesign = ({ register, control }) => {
 
             {/* This is the Order Quantity  */}
             <div className="mt-12">
-              <h1 className="text-center text-buttonColor text-2xl">
+              <h1 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
                 Order Quantity
               </h1>
               {/* First Input Column */}
@@ -366,7 +366,7 @@ const HaveDesign = ({ register, control }) => {
                 <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
                   <label className="xl:text-lg text-base text-headingColor font-medium">
                     Desired Quantity (required)*
-                    <span className="text-buttonColor text-lg font-semibold underline">
+                    <span className="text-buttonColor xl:text-lg text-base font-semibold underline">
                       MOQ guide
                     </span>
                   </label>

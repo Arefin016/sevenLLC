@@ -38,7 +38,6 @@ export default {
         navbarColor: "#616161",
         buttonColor: "#07A0EC",
 
-        
         headingColor: "#000B1C",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -83,6 +82,9 @@ export default {
       },
       boxShadow: {
         dashboardShadow: "0px 4px 20px 0px rgba(238, 238, 238, 0.50)",
+      },
+      boxShadow: {
+        fileShadow: "0px 4px 13px 0px rgba(0, 0, 0, 0.25)",
       },
       borderRadius: {
         lg: "var(--radius)",

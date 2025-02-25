@@ -39,12 +39,11 @@ const OrderForms = () => {
             quotation process. Thank you for your understanding!&quot;
           </p>
         </div>
-
         {/* form */}
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* This is the contact information */}
           <div className="lg:mt-12 mt-10">
-            <h2 className="text-center text-buttonColor lg:text-2xl text-[22px]">
+            <h2 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
               Contact Information
             </h2>
             {/* First Input Column */}
@@ -122,7 +121,7 @@ const OrderForms = () => {
             </div>
           </div>
           <div className="lg:mt-12 mt-10">
-            <h1 className="text-center text-buttonColor lg:text-2xl text-[22px]">
+            <h1 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
               Design Information
             </h1>
             <button className="bg-buttonColor w-full text-white lg:text-base text-sm font-semibold xl:py-[23px] py-4 lg:py-3 rounded-[10px] mt-7">
