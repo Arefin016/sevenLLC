@@ -77,7 +77,7 @@ const HaveDesign = ({ register, control }) => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                      <SelectTrigger className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                         <SelectValue placeholder="Preferred Colors" />
                       </SelectTrigger>
                       <SelectContent>
@@ -104,7 +104,7 @@ const HaveDesign = ({ register, control }) => {
                   defaultValue=""
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                      <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                         <SelectValue
                           className="!text-navbarColor"
                           placeholder="Preferred Finish"
@@ -129,7 +129,7 @@ const HaveDesign = ({ register, control }) => {
                 <label className="xl:text-lg text-base text-headingColor font-medium">
                   Logo Included?
                 </label>
-                <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px] flex items-center">
+                <div className="bg-[#D9D9D91A] xl:h-[97px] h-[48px] pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px] flex items-center">
                   <Space direction="vertical">
                     {/* Use Controller to Manage Switch Component */}
                     <Controller
@@ -157,7 +157,7 @@ const HaveDesign = ({ register, control }) => {
                 </label>
                 <Input
                   {...register("brand_text", { required: true })}
-                  className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                  className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="text"
                   placeholder="Enter text for your packaging (e.g., brand name, tagline)"
                 />
@@ -189,7 +189,7 @@ const HaveDesign = ({ register, control }) => {
               </label>
               <Input
                 {...register("design_placement", { required: true })}
-                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                 type="number"
                 placeholder="Design Placement"
               />
@@ -214,7 +214,7 @@ const HaveDesign = ({ register, control }) => {
                         onValueChange={field.onChange}
                         value={field.value}
                       >
-                        <SelectTrigger className="py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                        <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                           <SelectValue
                             className="!text-navbarColor"
                             placeholder="Product Category"
@@ -245,7 +245,7 @@ const HaveDesign = ({ register, control }) => {
                   </label>
                   <Input
                     {...register("item_type", { required: true })}
-                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="I.e Perfume Bottle with Spray Top"
                   />
@@ -259,7 +259,7 @@ const HaveDesign = ({ register, control }) => {
                   </label>
                   <Input
                     {...register("material")}
-                    className="py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Material(s)"
                   />
@@ -271,7 +271,7 @@ const HaveDesign = ({ register, control }) => {
                   </label>
                   <Input
                     {...register("accessories")}
-                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Accessories"
                   />
@@ -297,7 +297,7 @@ const HaveDesign = ({ register, control }) => {
                         onValueChange={field.onChange}
                         value={field.value}
                       >
-                        <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[60px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                        <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[48px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                           <SelectValue
                             className="!text-navbarColor"
                             placeholder="Preferred Colors"
@@ -322,7 +322,7 @@ const HaveDesign = ({ register, control }) => {
                   </label>
                   <Input
                     {...register("thickness_in_micron")}
-                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Thickness in microns"
                   />
@@ -333,7 +333,7 @@ const HaveDesign = ({ register, control }) => {
                     Label?
                   </label>
                   {/*  */}
-                  <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] flex items-center pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
+                  <div className="bg-[#D9D9D91A] xl:h-[97px] h-[48px] flex items-center pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
                     <Space direction="vertical">
                       <Controller
                         name="label"
@@ -372,7 +372,7 @@ const HaveDesign = ({ register, control }) => {
                   </label>
                   <Input
                     {...register("quantity", { required: true })}
-                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="number"
                     placeholder="Enter the number of units (e.g., 1,000)"
                   />
@@ -382,7 +382,7 @@ const HaveDesign = ({ register, control }) => {
                   <label className="xl:text-lg text-base text-headingColor font-medium">
                     Reoccurring?
                   </label>
-                  <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] flex items-center pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
+                  <div className="bg-[#D9D9D91A] xl:h-[97px] h-[48px] flex items-center pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
                     <Space direction="vertical">
                       <Controller
                         name="reoccurring"
