@@ -4,6 +4,7 @@ import NeedDesign from "../../components/DesignInformation/NeedDesign/NeedDesign
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import Button from "@/components/Button/Button";
+import { useOrderRequestMutation } from "@/hooks/cms.mutations";
 
 const OrderForms = () => {
   const [selectedOption, setSelectedOption] = useState("I Have a Design");
@@ -12,6 +13,7 @@ const OrderForms = () => {
     setSelectedOption(option === selectedOption ? null : option);
   };
 
+  const { mutateAsync: orderRequestMutation } = useOrderRequestMutation();
   const {
     register,
     handleSubmit,
@@ -21,8 +23,10 @@ const OrderForms = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    await orderRequestMutation(data);
+    reset();
   };
 
   return (

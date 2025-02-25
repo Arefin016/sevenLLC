@@ -1,102 +1,113 @@
-import { axiosPublic } from './useAxiosPublic';
-import { axiosSecure } from './useAxiosSecure';
+import { axiosPublic } from "./useAxiosPublic";
+import { axiosSecure } from "./useAxiosSecure";
 
 // Homepage Data
 export const homepageDataFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/home');
+    const { data } = await axiosPublic("/api/home");
     return data;
   } catch (error) {
-    console.error('Error fetching homepage data:', error);
-    throw new Error('Failed to fetch homepage data');
+    console.error("Error fetching homepage data:", error);
+    throw new Error("Failed to fetch homepage data");
   }
 };
 
 // All Products
 export const allProductsFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/product-list');
+    const { data } = await axiosPublic("/api/product-list");
     return data?.data || [];
   } catch (error) {
-    console.error('Error fetching all products:', error);
-    throw new Error('Failed to fetch products');
+    console.error("Error fetching all products:", error);
+    throw new Error("Failed to fetch products");
   }
 };
 
 // How It Works
 export const howItWorksFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/our-works');
+    const { data } = await axiosPublic("/api/our-works");
     return data?.data || [];
   } catch (error) {
-    console.error('Error fetching how-it-works data:', error);
-    throw new Error('Failed to fetch how-it-works data');
+    console.error("Error fetching how-it-works data:", error);
+    throw new Error("Failed to fetch how-it-works data");
   }
 };
 
 // About Us
 export const aboutUsDataFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/about-us');
+    const { data } = await axiosPublic("/api/about-us");
     return data;
   } catch (error) {
-    console.error('Error fetching about us data:', error);
-    throw new Error('Failed to fetch about us data');
+    console.error("Error fetching about us data:", error);
+    throw new Error("Failed to fetch about us data");
   }
 };
 
 // What We Offer
 export const whatWeOfferFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/what-we-offer');
+    const { data } = await axiosPublic("/api/what-we-offer");
     return data?.data || [];
   } catch (error) {
-    console.error('Error fetching what we offer:', error);
-    throw new Error('Failed to fetch what we offer data');
+    console.error("Error fetching what we offer:", error);
+    throw new Error("Failed to fetch what we offer data");
   }
 };
 
 // Our Process
 export const processDataFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/our-process');
+    const { data } = await axiosPublic("/api/our-process");
     return data?.data || [];
   } catch (error) {
-    console.error('Error fetching process data:', error);
-    throw new Error('Failed to fetch process data');
+    console.error("Error fetching process data:", error);
+    throw new Error("Failed to fetch process data");
   }
 };
 
 // Products & Services
 export const productsAndServicesFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/explore-all');
+    const { data } = await axiosPublic("/api/explore-all");
     return data?.data || [];
   } catch (error) {
-    console.error('Error fetching products and services:', error);
-    throw new Error('Failed to fetch products and services');
+    console.error("Error fetching products and services:", error);
+    throw new Error("Failed to fetch products and services");
   }
 };
 
 // Contact Form Submission
 export const contactFormFunc = async (payload) => {
   try {
-    const { data } = await axiosPublic.post('/api/contact-us', payload);
+    const { data } = await axiosPublic.post("/api/contact-us", payload);
     return data?.data || {};
   } catch (error) {
-    console.error('Error submitting contact form:', error);
-    throw new Error('Failed to submit contact form');
+    console.error("Error submitting contact form:", error);
+    throw new Error("Failed to submit contact form");
+  }
+};
+
+// Order request Submission
+export const orderRequestFormFunc = async (payload) => {
+  try {
+    const { data } = await axiosPublic.post("/api/place-order", payload);
+    return data?.data || {};
+  } catch (error) {
+    console.error("Enter submitting order form: ", error);
+    throw new Error("Failed to submit order form");
   }
 };
 
 // All Blogs
 export const allBlogsFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/blog');
+    const { data } = await axiosPublic("/api/blog");
     return data?.data || [];
   } catch (error) {
-    console.error('Error fetching all blogs:', error);
-    throw new Error('Failed to fetch blogs');
+    console.error("Error fetching all blogs:", error);
+    throw new Error("Failed to fetch blogs");
   }
 };
 
@@ -107,33 +118,33 @@ export const singleBlogFunc = async (slug) => {
     return data?.data || null;
   } catch (error) {
     console.error(`Error fetching blog: ${slug}`, error);
-    throw new Error('Failed to fetch blog');
+    throw new Error("Failed to fetch blog");
   }
 };
 
 // Recent Blogs
 export const recentBlogsFunc = async () => {
   try {
-    const { data } = await axiosPublic('/api/recent-blogs');
+    const { data } = await axiosPublic("/api/recent-blogs");
     return data?.data || [];
   } catch (error) {
-    console.error('Error fetching recent blogs:', error);
-    throw new Error('Failed to fetch recent blogs');
+    console.error("Error fetching recent blogs:", error);
+    throw new Error("Failed to fetch recent blogs");
   }
 };
 
 //user information update:
 export const userInformationUpdateFunc = async (payload) => {
   try {
-    const { data } = await axiosSecure.post('/api/users/data/update', payload, {
+    const { data } = await axiosSecure.post("/api/users/data/update", payload, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
     return data;
   } catch (error) {
-    console.error('Error updating user information:', error);
-    throw new Error('Failed to update user information');
+    console.error("Error updating user information:", error);
+    throw new Error("Failed to update user information");
   }
 };
 
@@ -141,12 +152,12 @@ export const userInformationUpdateFunc = async (payload) => {
 export const passwordChangeFunc = async (payload) => {
   try {
     const { data } = await axiosSecure.post(
-      '/api/users/change-password',
+      "/api/users/change-password",
       payload
     );
     return data;
   } catch (error) {
-    console.error('Error changing password:', error);
-    throw new Error('Failed to change password');
+    console.error("Error changing password:", error);
+    throw new Error("Failed to change password");
   }
 };
