@@ -6,7 +6,7 @@ const TermsConditions = () => {
       <div className="container mx-auto">
         {/* This is the title section */}
         <div className="flex flex-col justify-center items-center px-2">
-          <h1 className="text-headingColor xl:text-5xl text-2xl md:text-4xl font-bold">
+          <h1 className="text-headingColor xl:text-5xl text-3xl md:text-4xl font-bold">
             Terms & Conditions
           </h1>
           <p className="lg:max-w-[697px] text-sm text-center mt-6 text-navbarColor font-semibold italic">
@@ -18,7 +18,7 @@ const TermsConditions = () => {
         </div>
         {/* This is the body section */}
         {/* This is the first section */}
-        <div className="rounded-[20px] border border-[#F0F0F0] lg:py-12 py-5 lg:px-12 px-5 mt-12 mx-3 lg:mx-5 xlg:mx-10">
+        <div className="rounded-[20px] border border-[#F0F0F0] lg:py-12 py-5 lg:px-12 px-5 mt-12 mx-3 lg:mx-5 xlg:mx-10 mb-10 lg:mb-0">
           {/* This the Intellectual Property */}
           <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Intellectual Property
@@ -201,10 +201,10 @@ const TermsConditions = () => {
           </div>
 
           {/* This the Changes to Terms & Conditions */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Changes to Terms & Conditions
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             777Bags reserves the right to modify these Terms & Conditions at any
             time. Updated terms will be posted on this page and take effect
             immediately. Your continued use of the website constitutes
@@ -215,10 +215,10 @@ const TermsConditions = () => {
           </div>
 
           {/* This the How to Contact Us */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             How to Contact Us
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             <h1>
               If you have questions about these Terms & Conditions, please
               contact us at:
