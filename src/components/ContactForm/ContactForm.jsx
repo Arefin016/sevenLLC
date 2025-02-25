@@ -19,6 +19,7 @@ const ContactForm = () => {
     await contactFormMutation(data);
     reset();
   };
+  
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

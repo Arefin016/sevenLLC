@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Dropdown, Space } from 'antd';
-import profileImage from '../../assets/images/profile-image.png';
-import logo from '../../assets/images/logo.png';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react";
+import { Dropdown, Space } from "antd";
+import profileImage from "../../assets/images/profile-image.png";
+import logo from "../../assets/images/logo.png";
+import { Link, NavLink } from "react-router-dom";
 import {
   AllCategoriesSvg,
   MenuDropdownSvg,
@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 
 const items = [
   {
-    key: '1',
+    key: "1",
     label: (
       <a
         target="_blank"
@@ -30,7 +30,7 @@ const items = [
     ),
   },
   {
-    key: '2',
+    key: "2",
     label: (
       <a
         target="_blank"
@@ -42,7 +42,7 @@ const items = [
     ),
   },
   {
-    key: '3',
+    key: "3",
     label: (
       <a
         target="_blank"
@@ -79,15 +79,14 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   //handlers:
   const handleLogout = () => {
-    alert("working");
     setShowMenu(false);
     logOutMutation();
   };
@@ -103,24 +102,24 @@ const Navbar = () => {
     };
 
     if (isSideBarOpen) {
-      document.addEventListener('mousedown', handleOutsideClick);
+      document.addEventListener("mousedown", handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [isSideBarOpen]);
 
   useEffect(() => {
     if (isSideBarOpen) {
-      document.body.style.overflowY = 'hidden';
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflowY = 'auto';
+      document.body.style.overflowY = "auto";
     }
 
     // Cleanup function to reset overflow when the component unmounts
     return () => {
-      document.body.style.overflowY = 'auto';
+      document.body.style.overflowY = "auto";
     };
   }, [isSideBarOpen]);
 
@@ -131,7 +130,7 @@ const Navbar = () => {
         <div className="xlg:flex hidden justify-between px-10 xxl:bg-px-0 items-center pt-4">
           {/* logo */}
           <div className="max-w-[113px] h-[86px]">
-            <Link to={'/'}>
+            <Link to={"/"}>
               <img src={logo} alt="" />
             </Link>
           </div>
@@ -188,7 +187,7 @@ const Navbar = () => {
                 </div>
                 {/* name */}
                 <p className="font-poppins font-semibold text-navbarColor">
-                  {user?.first_name + ' ' + user?.last_name}
+                  {user?.first_name + " " + user?.last_name}
                 </p>
 
                 <MenuDropdownSvg />
@@ -198,8 +197,8 @@ const Navbar = () => {
               <div
                 className={`absolute shadow-lg mt-2 transition-all duration-300 top-full left-0 w-full bg-buttonColor px-6 py-6 rounded-lg ${
                   showMenu
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-2'
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-2"
                 }`}
               >
                 <ul className="space-y-2 font-bold">
@@ -228,7 +227,7 @@ const Navbar = () => {
                 <LoginUserSvg />
                 Log in
               </Link>
-              <Link to={'/signUp'}>
+              <Link to={"/signUp"}>
                 <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                   Sign up
                 </button>
@@ -239,7 +238,7 @@ const Navbar = () => {
         {/* mobile navbar  */}
         <div className="flex xlg:hidden justify-between items-center px-2 lg:px-5 my-4">
           {/* logo */}
-          <Link to={'/'}>
+          <Link to={"/"}>
             <img
               src={logo}
               alt="not found"
@@ -264,7 +263,7 @@ const Navbar = () => {
                 initial={{ x: -280 }}
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
-                transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
+                transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
                 className="absolute w-[280px] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5 h-[100vh]"
               >
                 <div className="flex w-full items-center pt-5 justify-between px-5 xlg:px-10">
@@ -314,16 +313,14 @@ const Navbar = () => {
                     </a>
                   </Dropdown>
                   <div className="flex flex-col gap-y-5 justify-center">
-                    <ul className="flex flex-col    gap-y-5   flex-wrap ">
+                    {/*  */}
+                    <ul className="flex flex-col gap-y-5 flex-wrap">
                       {menuItems.map((item) => (
-                        <li
-                          key={item.name}
-                          className="text-[14px]  text-start "
-                        >
+                        <li key={item.name} className="text-[14px] text-start">
                           {item.name === "Log out" ? (
                             <button
                               onClick={handleLogout}
-                              className="text-navbarColor font-medium  hover:text-buttonColor"
+                              className="text-navbarColor font-medium hover:text-buttonColor"
                             >
                               {item.name}
                             </button>
@@ -334,6 +331,7 @@ const Navbar = () => {
                                 isActive
                                   ? "text-buttonColor font-medium hover:text-buttonColor"
                                   : "text-navbarColor font-medium hover:text-buttonColor"
+                              }
                             >
                               {item.name}
                             </NavLink>
@@ -369,7 +367,6 @@ const Navbar = () => {
                           isActive
                             ? "text-buttonColor font-medium hover:text-buttonColor"
                             : "text-navbarColor font-medium hover:text-buttonColor"
-
                         }
                       >
                         {item.name}
