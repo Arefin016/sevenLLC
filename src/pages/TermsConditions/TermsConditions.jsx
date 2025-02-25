@@ -2,14 +2,14 @@ import { TermsBorderSvg } from "../../components/SvgContainer/SvgConainer";
 
 const TermsConditions = () => {
   return (
-    <section className="pt-24">
+    <section className="xl:pt-24 xlg:pt-14">
       <div className="container mx-auto">
         {/* This is the title section */}
-        <div className="flex flex-col justify-center items-center">
-          <h1 className="text-headingColor text-5xl font-bold">
+        <div className="flex flex-col justify-center items-center px-2">
+          <h1 className="text-headingColor xl:text-5xl text-2xl md:text-4xl font-bold">
             Terms & Conditions
           </h1>
-          <p className="max-w-[697px] text-center mt-6 text-navbarColor font-semibold italic">
+          <p className="lg:max-w-[697px] text-sm text-center mt-6 text-navbarColor font-semibold italic">
             By using the 777Bags website, you agree to the terms and conditions
             outlined below. We reserve the right to update or modify these terms
             at any time without prior notice. Your continued use of the site
@@ -18,39 +18,38 @@ const TermsConditions = () => {
         </div>
         {/* This is the body section */}
         {/* This is the first section */}
-        <div className="rounded-[20px] border border-[#F0F0F0] py-12 px-12 mt-12">
+        <div className="rounded-[20px] border border-[#F0F0F0] lg:py-12 py-5 lg:px-12 px-5 mt-12 mx-3 lg:mx-5 xlg:mx-10">
           {/* This the Intellectual Property */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Intellectual Property
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             All content on this website, including text, images, designs, and
             graphics, is the work of 777Bags or its manufacturers. Copying,
             distributing, or modifying any content without written consent is
             prohibited.
           </p>
           <div className="my-6">
+            {" "}
             <TermsBorderSvg />
           </div>
 
           {/* This the Design Orders */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Design Orders
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             If you request design services, you will be invoiced for the design
             before production begins. The design is yours to keep, even if you
             choose not to proceed with production.
           </p>
-          <div className="my-6">
-            <TermsBorderSvg />
-          </div>
+          <div className="my-6">{/* <TermsBorderSvg /> */}</div>
 
           {/* This the Order Process & MOQs */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Order Process & MOQs
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             <ul>
               <li className="terms-circle ml-5 text-navbarColor">
                 Minimum Order Quantities (MOQs): MOQs vary by product type and
@@ -63,14 +62,14 @@ const TermsConditions = () => {
             </ul>
           </p>
           <div className="my-6">
-            <TermsBorderSvg />
+            <TermsBorderSvg />{" "}
           </div>
 
           {/* This the Returns & Refunds */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Returns & Refunds
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             <ul>
               <li className="terms-circle ml-5 text-navbarColor">
                 Custom products are non-refundable.
@@ -93,14 +92,15 @@ const TermsConditions = () => {
             </ul>
           </p>
           <div className="my-6">
-            <TermsBorderSvg />
+            {" "}
+            <TermsBorderSvg />{" "}
           </div>
 
           {/* This the Proofs and Approvals */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Proofs and Approvals
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             <ul>
               <li className="terms-circle ml-5 text-navbarColor">
                 Digital proofs must be approved by the customer before
@@ -120,10 +120,10 @@ const TermsConditions = () => {
           </div>
 
           {/* This the User Responsibilities */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             User Responsibilities
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             <h1>By using this website, you agree:</h1>
             <div className="ml-2 leading-[170%]">
               <p>
@@ -146,10 +146,10 @@ const TermsConditions = () => {
           </div>
 
           {/* This the Third-Party Disclaimer */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Third-Party Disclaimer
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             <h1>
               We work with third-party manufacturers to produce our products.
               While we strive to ensure quality and ethical practices, customers
@@ -174,10 +174,10 @@ const TermsConditions = () => {
           </div>
 
           {/* This the Indemnification */}
-          <h1 className="text-[28px] text-headingColor font-medium">
+          <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Indemnification
           </h1>
-          <p className="mt-5 text-navbarColor text-lg leading-[170%]">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
             <h1>
               You agree to indemnify and hold 777Bags harmless from any claims,
               damages, or legal actions arising from:

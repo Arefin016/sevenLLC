@@ -164,9 +164,9 @@ const HaveDesign = ({ register, control }) => {
               </div>
             </div>
             {/*  */}
-            <div className="bg-[#FFF] shadow-fileUpload py-4 rounded-[10px] mt-4 max-w-[664px]">
+            <div className="bg-[#FFF] shadow-fileShadow lg:py-4 py-2 rounded-[10px] mt-4 max-w-[664px]">
               <div className="flex justify-center items-center">
-                <label className="cursor-pointer px-4 py-2 text-headingColor text-base rounded-lg text-center font-semibold">
+                <label className="cursor-pointer px-4 py-2 text-headingColor lg:text-base text-sm rounded-lg text-center font-semibold">
                   Choose File
                   <input
                     type="file"

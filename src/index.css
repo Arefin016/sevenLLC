@@ -178,6 +178,27 @@
   list-style-type: disc;
 }
 
+/* Medium screens (Tablets) */
+@media (max-width: 1024px) {
+  .terms-circle {
+    font-size: 16px;
+  }
+}
+
+/* Small screens (Mobile) */
+@media (max-width: 768px) {
+  .terms-circle {
+    font-size: 16px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .terms-circle {
+    font-size: 14px;
+  }
+}
+
 .terms-circle::marker {
   font-size: 20px;
   color: #616161;
