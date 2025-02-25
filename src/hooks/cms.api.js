@@ -88,6 +88,19 @@ export const contactFormFunc = async (payload) => {
     throw new Error("Failed to submit contact form");
   }
 };
+// Billing Address Form Submission
+export const billingAddressFormFunc = async (payload) => {
+  try {
+    const { data } = await axiosSecure.post(
+      "/api/users/billing-address",
+      payload
+    );
+    return data?.data || {};
+  } catch (error) {
+    console.error("Error submitting contact form:", error);
+    throw new Error("Failed to submit contact form");
+  }
+};
 
 // Order request Submission
 export const orderRequestFormFunc = async (payload) => {

@@ -39,7 +39,7 @@ const Footer = () => {
               when you need them.
             </p>
             {/* This is the dynamic page */}
-            <div className="flex flex-col text-[14px] md:flex-row gap-6 xlg:gap-12 mt-[22px]">
+            <div className="flex flex-col text-[14px] md:flex-row gap-2 md:gap-6 xlg:gap-12 mt-[22px]">
               {links.map((link, index) => (
                 <a
                   key={index}

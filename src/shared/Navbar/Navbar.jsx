@@ -87,7 +87,6 @@ const Navbar = () => {
 
   //handlers:
   const handleLogout = () => {
-    alert("working");
     setShowMenu(false);
     logOutMutation();
   };

@@ -7,7 +7,7 @@ const ProductGuidePage = () => {
           <h1 className="text-headingColor xl:text-5xl text-3xl md:text-4xl font-bold">
             Product Guide
           </h1>
-          <p className="lg:max-w-[697px] text-sm text-center mt-6 text-navbarColor font-semibold italic">
+          <p className="lg:max-w-[697px] text-sm text-center mt-6 text-navbarColor font-semibold italic leading-[25.2px]">
             This guide provides an overview of product offerings, minimum order
             quantities (MOQs), materials, and customization options tailored for
             various industries.

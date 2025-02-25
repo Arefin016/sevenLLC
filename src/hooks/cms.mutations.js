@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import {
+  billingAddressFormFunc,
   contactFormFunc,
   orderRequestFormFunc,
   passwordChangeFunc,
@@ -19,6 +20,29 @@ export const useContactMutation = () => {
     onSuccess: () => {
       setLoading(false);
       toast.success("Your message has been sent !", {
+        duration: 1500,
+      });
+    },
+    onError: (error) => {
+      setLoading(false);
+      toast.error(error.response?.data?.message, {
+        duration: 1500,
+      });
+    },
+  });
+};
+// This is billing address
+export const useBillingAddressMutation = () => {
+  const { setLoading } = useAuth();
+  return useMutation({
+    mutationKey: ["billing-address"],
+    mutationFn: (payload) => billingAddressFormFunc(payload),
+    onMutate: () => {
+      setLoading(true);
+    },
+    onSuccess: () => {
+      setLoading(false);
+      toast.success("Billing address has been sent !", {
         duration: 1500,
       });
     },

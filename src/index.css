@@ -274,6 +274,30 @@ input:checked + .slider:before {
   height: 30px !important;
   width: 65px !important;
 }
+
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+  .ant-switch {
+    height: 26px !important;
+    width: 60px !important;
+  }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 768px) {
+  .ant-switch {
+    height: 28px !important;
+    width: 60px !important;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .ant-switch {
+    height: 28px !important;
+    width: 60px !important;
+  }
+}
 .ant-switch.ant-switch-checked .ant-switch-handle {
   inset-inline-start: calc(100% - 25px);
 }

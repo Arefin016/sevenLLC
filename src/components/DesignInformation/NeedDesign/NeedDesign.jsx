@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Controller, useForm } from "react-hook-form";
 
-const HaveDesign = () => {
+const NeedDesign = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isToggled, setIsToggled] = useState(false);
   const [fillData, setFillData] = useState();
@@ -131,11 +131,11 @@ const HaveDesign = () => {
               </label>
               <UploadFileSvg />
             </div>
-            {selectedFile && (
+            {/* {selectedFile && (
               <p className="text-navbarColor text-center">
                 Selected File: {selectedFile.name}
               </p>
-            )}
+            )} */}
           </div>
           {/* This is the preferred color */}
           <div>
@@ -146,22 +146,26 @@ const HaveDesign = () => {
                 <label className="xl:text-lg text-base text-headingColor font-medium">
                   Preferred Colors*
                 </label>
-                <Select>
-                  <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
-                    <SelectValue
-                      className="!text-navbarColor"
-                      placeholder="Preferred Colors"
-                    />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Choose an option</SelectLabel>
-                      <SelectItem value="White">White</SelectItem>
-                      <SelectItem value="Black">Black</SelectItem>
-                      <SelectItem value="Blue">Blue</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+                <Controller
+                  name="color_code"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                        <SelectValue placeholder="Preferred Colors" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Choose an option</SelectLabel>
+                          <SelectItem value="White">White</SelectItem>
+                          <SelectItem value="Black">Black</SelectItem>
+                          <SelectItem value="Blue">Blue</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
               </div>
 
               {/* Preferred Finish (optional) */}
@@ -169,22 +173,29 @@ const HaveDesign = () => {
                 <label className="xl:text-lg text-base text-headingColor font-medium">
                   Preferred Finish (optional)
                 </label>
-                <Select>
-                  <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm  text-headingColor">
-                    <SelectValue
-                      className="!text-navbarColor"
-                      placeholder="Preferred Finish"
-                    />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Choose an option</SelectLabel>
-                      <SelectItem value="Matte">Matte</SelectItem>
-                      <SelectItem value="Glossy">Glossy</SelectItem>
-                      <SelectItem value="Satin">Satin</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+                <Controller
+                  name="preferred_finish"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                        <SelectValue
+                          className="!text-navbarColor"
+                          placeholder="Preferred Finish"
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Choose an option</SelectLabel>
+                          <SelectItem value="Matte">Matte</SelectItem>
+                          <SelectItem value="Glossy">Glossy</SelectItem>
+                          <SelectItem value="Satin">Satin</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
               </div>
             </div>
             {/* Second Input Column  */}
@@ -193,12 +204,23 @@ const HaveDesign = () => {
                 <label className="xl:text-lg text-base text-headingColor font-medium">
                   Logo Included?
                 </label>
-                <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px] flex items-center">
+                <div className="bg-[#D9D9D91A] xl:h-[97px] h-[48px] pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px] flex items-center">
                   <Space direction="vertical">
-                    <Switch
-                      checkedChildren="Yes"
-                      unCheckedChildren="No"
-                      defaultChecked
+                    {/* Use Controller to Manage Switch Component */}
+                    <Controller
+                      name="logo_included"
+                      control={control}
+                      defaultValue={0} // Default unchecked
+                      render={({ field }) => (
+                        <Switch
+                          checked={field.value === 1}
+                          onChange={(checked) =>
+                            field.onChange(checked ? 1 : 0)
+                          }
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                        />
+                      )}
                     />
                   </Space>
                 </div>
@@ -209,7 +231,8 @@ const HaveDesign = () => {
                   Brand Text
                 </label>
                 <Input
-                  className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                  {...register("brand_text", { required: true })}
+                  className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="text"
                   placeholder="Enter text for your packaging (e.g., brand name, tagline)"
                 />
@@ -228,11 +251,11 @@ const HaveDesign = () => {
                 </label>
                 <UploadFileSvg />
               </div>
-              {selectedFile && (
+              {/* {selectedFile && (
                 <p className="text-navbarColor text-center">
                   Selected File: {selectedFile.name}
                 </p>
-              )}
+              )} */}
             </div>
             {/* This is the Design Placement */}
             <div className="flex flex-col gap-y-[10.5px] mt-[15.5px]">
@@ -240,8 +263,9 @@ const HaveDesign = () => {
                 Design Placement:*
               </label>
               <Input
-                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
-                type="number"
+                {...register("design_placement", { required: true })}
+                className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                type="text"
                 placeholder="Design Placement"
               />
             </div>
@@ -256,28 +280,38 @@ const HaveDesign = () => {
                   <label className="xl:text-lg text-base text-headingColor font-medium">
                     Product Category*
                   </label>
-                  <Select>
-                    <SelectTrigger className="py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
-                      <SelectValue
-                        className="!text-navbarColor"
-                        placeholder="Preferred Colors"
-                      />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Product Category</SelectLabel>
-                        <SelectItem value="Cannabis & CBD Packaging">
-                          Cannabis & CBD Packaging
-                        </SelectItem>
-                        <SelectItem value="Retail & Shopping Packaging">
-                          Retail & Shopping Packaging
-                        </SelectItem>
-                        <SelectItem value="Food & Beverage Packaging">
-                          Food & Beverage Packaging
-                        </SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
+                  <Controller
+                    name="category_id"
+                    defaultValue=""
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                          <SelectValue
+                            className="!text-navbarColor"
+                            placeholder="Product Category"
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Product Category</SelectLabel>
+                            <SelectItem value="Cannabis & CBD Packaging">
+                              Cannabis & CBD Packaging
+                            </SelectItem>
+                            <SelectItem value="Retail & Shopping Packaging">
+                              Retail & Shopping Packaging
+                            </SelectItem>
+                            <SelectItem value="Food & Beverage Packaging">
+                              Food & Beverage Packaging
+                            </SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
                 </div>
                 {/*  */}
                 <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
@@ -285,7 +319,8 @@ const HaveDesign = () => {
                     Item Type*
                   </label>
                   <Input
-                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    {...register("item_type", { required: true })}
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="I.e Perfume Bottle with Spray Top"
                   />
@@ -298,7 +333,8 @@ const HaveDesign = () => {
                     Material(s) (optional)
                   </label>
                   <Input
-                    className="py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    {...register("material")}
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Material(s)"
                   />
@@ -309,7 +345,8 @@ const HaveDesign = () => {
                     Accessories (optional)
                   </label>
                   <Input
-                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    {...register("accessories")}
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Accessories"
                   />
@@ -325,22 +362,32 @@ const HaveDesign = () => {
                   <label className="xl:text-lg text-base text-headingColor font-medium">
                     Size*
                   </label>
-                  <Select>
-                    <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[60px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
-                      <SelectValue
-                        className="!text-navbarColor"
-                        placeholder="Preferred Colors"
-                      />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectLabel>Product Category</SelectLabel>
-                        <SelectItem value="Small">Small</SelectItem>
-                        <SelectItem value="Medium">Medium</SelectItem>
-                        <SelectItem value="Large">Large</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
+                  <Controller
+                    name="size"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[48px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                          <SelectValue
+                            className="!text-navbarColor"
+                            placeholder="Preferred Colors"
+                          />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Product Category</SelectLabel>
+                            <SelectItem value="Small">Small</SelectItem>
+                            <SelectItem value="Medium">Medium</SelectItem>
+                            <SelectItem value="Large">Large</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
                 </div>
                 {/* Thickness in microns (optional) */}
                 <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
@@ -348,7 +395,8 @@ const HaveDesign = () => {
                     Thickness in microns (optional)
                   </label>
                   <Input
-                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    {...register("thickness_in_micron")}
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Thickness in microns"
                   />
@@ -361,10 +409,20 @@ const HaveDesign = () => {
                   {/*  */}
                   <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] flex items-center pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
                     <Space direction="vertical">
-                      <Switch
-                        checkedChildren="Yes"
-                        unCheckedChildren="No"
-                        defaultChecked
+                      <Controller
+                        name="label"
+                        control={control}
+                        defaultValue={0} // Default unchecked
+                        render={({ field }) => (
+                          <Switch
+                            checked={field.value === 1}
+                            onChange={(checked) =>
+                              field.onChange(checked ? 1 : 0)
+                            }
+                            checkedChildren="Yes"
+                            unCheckedChildren="No"
+                          />
+                        )}
                       />
                     </Space>
                   </div>
@@ -387,7 +445,8 @@ const HaveDesign = () => {
                     </span>
                   </label>
                   <Input
-                    className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                    {...register("quantity", { required: true })}
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="number"
                     placeholder="Enter the number of units (e.g., 1,000)"
                   />
@@ -399,10 +458,20 @@ const HaveDesign = () => {
                   </label>
                   <div className="bg-[#D9D9D91A] xl:h-[97px] h-[60px] flex items-center pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
                     <Space direction="vertical">
-                      <Switch
-                        checkedChildren="Yes"
-                        unCheckedChildren="No"
-                        defaultChecked
+                      <Controller
+                        name="reoccurring"
+                        control={control}
+                        defaultValue={0} // Default unchecked
+                        render={({ field }) => (
+                          <Switch
+                            checked={field.value === 1}
+                            onChange={(checked) =>
+                              field.onChange(checked ? 1 : 0)
+                            }
+                            checkedChildren="Yes"
+                            unCheckedChildren="No"
+                          />
+                        )}
                       />
                     </Space>
                   </div>
@@ -688,13 +757,13 @@ const HaveDesign = () => {
                   </div>
                 </div>
                 {/* This it the button */}
-                <div className="flex justify-center mt-12">
+                {/* <div className="flex justify-center mt-12">
                   <Button
                     type="submit"
                     text={"Place Order"}
                     color={"bg-buttonColor"}
                   />
-                </div>
+                </div> */}
               </form>
             </div>
           </div>
@@ -703,4 +772,4 @@ const HaveDesign = () => {
     </section>
   );
 };
-export default HaveDesign;
+export default NeedDesign;

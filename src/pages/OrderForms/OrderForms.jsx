@@ -25,7 +25,7 @@ const OrderForms = () => {
   const onSubmit = async (data) => {
     console.log(data);
     await orderRequestMutation(data);
-    reset();
+    // reset();
   };
 
   return (
@@ -133,7 +133,7 @@ const OrderForms = () => {
           </div>
           {/* This is the checkout  */}
           <div className="flex lg:gap-7 md:gap-3 gap-2 px-2 justify-center bg-[#FAFBFC] mt-5 py-7 rounded-[10px]">
-            <div className="flex gap-2 border border-[#7D7F85] lg:py-[10px]  lg:px-[32px] px-3 rounded-lg items-center">
+            <div className="flex flex-col xxs:flex-row gap-2 border border-[#7D7F85] md:py-[10px] py-1 lg:px-[32px] px-3 rounded-lg items-center">
               <input
                 className="lg:h-4 h-3 lg:w-4 w-3"
                 type="checkbox"
@@ -148,7 +148,7 @@ const OrderForms = () => {
               </p>
             </div>
 
-            <div className="flex gap-2 border border-[#7D7F85] lg:py-[10px] py-2 lg:px-[32px] px-3 rounded-lg items-center">
+            <div className="flex flex-col xxs:flex-row gap-2 border border-[#7D7F85] md:py-[10px] py-1 lg:px-[32px] px-3 rounded-lg items-center">
               <input
                 className="lg:h-4 h-3 lg:w-4 w-3"
                 type="checkbox"
