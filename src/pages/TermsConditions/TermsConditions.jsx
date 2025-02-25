@@ -5,11 +5,11 @@ const TermsConditions = () => {
     <section className="xl:pt-24 xlg:pt-14">
       <div className="container mx-auto">
         {/* This is the title section */}
-        <div className="flex flex-col justify-center items-center px-2">
+        <div className="flex flex-col justify-center items-center px-3">
           <h1 className="text-headingColor xl:text-5xl text-3xl md:text-4xl font-bold">
             Terms & Conditions
           </h1>
-          <p className="lg:max-w-[697px] text-sm text-center mt-6 text-navbarColor font-semibold italic">
+          <p className="lg:max-w-[697px] text-sm text-center mt-6 text-navbarColor font-semibold italic leading-[25.2px]">
             By using the 777Bags website, you agree to the terms and conditions
             outlined below. We reserve the right to update or modify these terms
             at any time without prior notice. Your continued use of the site
@@ -18,7 +18,7 @@ const TermsConditions = () => {
         </div>
         {/* This is the body section */}
         {/* This is the first section */}
-        <div className="rounded-[20px] border border-[#F0F0F0] lg:py-12 py-5 lg:px-12 px-5 mt-12 mx-3 lg:mx-5 xlg:mx-10 mb-10 lg:mb-0">
+        <div className="rounded-[20px] border border-[#F0F0F0] lg:py-12 py-5 lg:px-12 px-5 mt-12 mx-3 lg:mx-5 xlg:mx-10 mb-16 lg:mb-0">
           {/* This the Intellectual Property */}
           <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Intellectual Property
@@ -55,7 +55,7 @@ const TermsConditions = () => {
                 Minimum Order Quantities (MOQs): MOQs vary by product type and
                 will be confirmed during the quotation process.
               </li>
-              <li className="terms-circle ml-5 text-navbarColor">
+              <li className="terms-circle ml-5 text-navbarColor mt-3">
                 Quotations: Accurate pricing will be provided based on the
                 requested quantity, design, and specifications.
               </li>
@@ -70,7 +70,7 @@ const TermsConditions = () => {
             Returns & Refunds
           </h1>
           <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
-            <ul>
+            <ul className="space-y-3">
               <li className="terms-circle ml-5 text-navbarColor">
                 Custom products are non-refundable.
               </li>
@@ -101,7 +101,7 @@ const TermsConditions = () => {
             Proofs and Approvals
           </h1>
           <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
-            <ul>
+            <ul className="space-y-3">
               <li className="terms-circle ml-5 text-navbarColor">
                 Digital proofs must be approved by the customer before
                 production begins.
@@ -123,9 +123,9 @@ const TermsConditions = () => {
           <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             User Responsibilities
           </h1>
-          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6 space-y-3">
             <h1>By using this website, you agree:</h1>
-            <div className="ml-2 leading-[170%]">
+            <div className="ml-2 leading-[170%] space-y-3">
               <p>
                 1.To provide accurate and complete information when submitting
                 requests.
@@ -149,7 +149,7 @@ const TermsConditions = () => {
           <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Third-Party Disclaimer
           </h1>
-          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6 space-y-3">
             <h1>
               We work with third-party manufacturers to produce our products.
               While we strive to ensure quality and ethical practices, customers
@@ -177,7 +177,7 @@ const TermsConditions = () => {
           <h1 className="xl:text-[28px] text-2xl text-headingColor font-medium">
             Indemnification
           </h1>
-          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6">
+          <p className="lg:mt-5 mt-2 md:mt-4 text-navbarColor xl:text-lg md:text-base text-sm lg:leading-[170%] leading-6 space-y-3">
             <h1>
               You agree to indemnify and hold 777Bags harmless from any claims,
               damages, or legal actions arising from:
@@ -224,7 +224,7 @@ const TermsConditions = () => {
               contact us at:
             </h1>
             <ul className="ml-2 leading-[170%]">
-              <li className="terms-circle ml-5 text-navbarColor">
+              <li className="terms-circle ml-5 text-navbarColor mt-3">
                 Email: support@777bags.com
               </li>
             </ul>

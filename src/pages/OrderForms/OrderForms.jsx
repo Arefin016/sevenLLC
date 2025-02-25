@@ -19,7 +19,6 @@ const OrderForms = () => {
     handleSubmit,
     reset,
     control,
-    setValue,
     formState: { errors },
   } = useForm();
 

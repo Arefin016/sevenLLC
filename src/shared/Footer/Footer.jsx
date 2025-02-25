@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <section className=" mt-[30px] xlg:mt-[60px]  lg:px-10 xlg:px-0 mb-[10px] xlg:mb-[21px]">
       <div className="container">
-        <div className="flex flex-col md:flex-row xl:gap-[30px] lg:gap-[100px] gap-10 xlg:gap-[320px] xlg:items-center">
+        <div className="flex flex-col md:flex-row xl:gap-[30px] lg:gap-[100px] gap-10 md:gap-5 xlg:gap-[320px] xlg:items-center px-4 lg:px-0 xlg:px-5 xl:px-0">
           {/* This is first div */}
           <div className="w-full lg:w-[60%]">
             <Link to={"/"}>
@@ -58,11 +58,11 @@ const Footer = () => {
               Insights
             </p>
             <div
-              className="flex xl:flex-row flex-col sm:items-center xlg:justify-end mt-[26px] gap-4 
+              className="flex md:flex-row flex-col sm:items-center md:justify-end lg:justify-start xlg:justify-end mt-[26px] gap-4 md:gap-1 lg:gap-4 
           "
             >
               <input
-                className="bg-[#F0F0F0] max-h-[58px] py-[14px] lg:py-4 text-[#616161] text-sm px-4 xlg:px-10 w-full md:w-[150px] xl:w-[230px] rounded-[20px] xlg:rounded-[46px] text-left email-border"
+                className="bg-[#F0F0F0] max-h-[58px] py-[12px] md:py-3 lg:py-[14px] xl:py-4 text-[#616161] text-sm px-4 xlg:px-10 w-full md:w-[135px] lg:w-[150px] xl:w-[230px] rounded-[20px] xlg:rounded-[46px] text-left email-border"
                 type="text"
                 placeholder="Email"
               />

@@ -92,7 +92,7 @@ export const contactFormFunc = async (payload) => {
 // Order request Submission
 export const orderRequestFormFunc = async (payload) => {
   try {
-    const { data } = await axiosPublic.post("/api/place-order", payload);
+    const { data } = await axiosSecure.post("/api/place-order", payload);
     return data?.data || {};
   } catch (error) {
     console.error("Enter submitting order form: ", error);
