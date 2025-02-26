@@ -1,39 +1,38 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
-import dashboardLogo from "../../assets/images/DashboardLogo/dashboardLogo.png";
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import dashboardLogo from '../../assets/images/DashboardLogo/dashboardLogo.png';
 
 import {
   DashboardSvg,
   OrderHistorySvg,
   SettingsSvg,
   SignOutSvg,
-} from "../SvgContainer/SvgConainer";
-import { useState } from "react";
+} from '../SvgContainer/SvgConainer';
+
 const dashboardSidebarNavLinks = [
   {
-    path: "/dashboardLayout/mainDashboard",
+    path: '/dashboardLayout/mainDashboard',
     svg: DashboardSvg,
-    title: "Dashboard",
+    title: 'Dashboard',
   },
   {
-    path: "/dashboardLayout/orderHistory",
+    path: '/dashboardLayout/orderHistory',
     svg: OrderHistorySvg,
-    title: "Order History",
+    title: 'Order History',
   },
   {
-    path: "/dashboardLayout/paymentHistory",
+    path: '/dashboardLayout/paymentHistory',
     svg: DashboardSvg,
-    title: "Payment History",
+    title: 'Payment History',
   },
   {
-    path: "/dashboardLayout/settings",
+    path: '/dashboardLayout/settings',
     svg: SettingsSvg,
-    title: "Settings",
+    title: 'Settings',
   },
 ];
 
 const Sidebar = () => {
   const currentLocation = useLocation()?.pathname;
-
 
   return (
     <>
@@ -51,15 +50,15 @@ const Sidebar = () => {
           </div>
           <div className=" px-6 xl:px-12 space-y-4">
             {/* This is the dashboard */}
-            {dashboardSidebarNavLinks?.map(link => (
+            {dashboardSidebarNavLinks?.map((link) => (
               <NavLink
                 key={link?.path}
                 to={link?.path}
                 className={({ isActive }) =>
                   `flex gap-4 items-center  py-4 px-6 rounded-xl xl:rounded-2xl text-[#FFF] ${
                     isActive
-                      ? "bg-buttonColor text-white text-lg"
-                      : "bg-white text-navbarColor text-lg"
+                      ? 'bg-buttonColor text-white text-lg'
+                      : 'bg-white text-navbarColor text-lg'
                   }`
                 }
               >
@@ -77,8 +76,8 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 `flex gap-4 items-center py-4 px-6 rounded-2xl text-[#FFF] ${
                   isActive
-                    ? "bg-buttonColor text-white text-lg"
-                    : "bg-white text-navbarColor text-lg"
+                    ? 'bg-buttonColor text-white text-lg'
+                    : 'bg-white text-navbarColor text-lg'
                 }`
               }
             >

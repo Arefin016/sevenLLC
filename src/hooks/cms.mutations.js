@@ -1,25 +1,25 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from '@tanstack/react-query';
 import {
   billingAddressFormFunc,
   contactFormFunc,
   orderRequestFormFunc,
   passwordChangeFunc,
   userInformationUpdateFunc,
-} from "./cms.api";
-import useAuth from "./useAuth";
-import toast from "react-hot-toast";
+} from './cms.api';
+import useAuth from './useAuth';
+import toast from 'react-hot-toast';
 
 export const useContactMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
-    mutationKey: ["contact-us"],
+    mutationKey: ['contact-us'],
     mutationFn: (payload) => contactFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
     onSuccess: () => {
       setLoading(false);
-      toast.success("Your message has been sent !", {
+      toast.success('Your message has been sent !', {
         duration: 1500,
       });
     },
@@ -35,14 +35,14 @@ export const useContactMutation = () => {
 export const useBillingAddressMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
-    mutationKey: ["billing-address"],
+    mutationKey: ['billing-address'],
     mutationFn: (payload) => billingAddressFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
     onSuccess: () => {
       setLoading(false);
-      toast.success("Billing address has been sent !", {
+      toast.success('Billing address has been sent !', {
         duration: 1500,
       });
     },
@@ -59,14 +59,14 @@ export const useBillingAddressMutation = () => {
 export const useOrderRequestMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
-    mutationKey: ["order-request"],
+    mutationKey: ['order-request'],
     mutationFn: (payload) => orderRequestFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
     onSuccess: () => {
       setLoading(false);
-      toast.success("Order Request has been sent !", {
+      toast.success('Order Request has been sent !', {
         duration: 1500,
       });
     },
@@ -81,23 +81,29 @@ export const useOrderRequestMutation = () => {
 
 //user information update mutation:
 export const useUserInfoUpdateMutation = () => {
-  const { setLoading } = useAuth();
+  const { setLoading, setUserInfo } = useAuth();
   return useMutation({
-    mutationKey: ["user-information-update"],
+    mutationKey: ['user-information-update'],
     mutationFn: (payload) => userInformationUpdateFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log(data);
+      const userData = {
+        name: data?.data?.first_name + ' ' + data?.data?.last_name,
+        image: data?.data?.avatar,
+      };
+      setUserInfo(userData);
       // queryClient.invalidateQueries(['user-info']);
-      toast.success("User information has been updated successfully!", {
+      toast.success('User information has been updated successfully!', {
         duration: 1500,
       });
       setLoading(false);
     },
     onError: () => {
       setLoading(false);
-      toast.error("Error in user information update", {
+      toast.error('Error in user information update', {
         duration: 1500,
       });
     },
@@ -108,20 +114,20 @@ export const useUserInfoUpdateMutation = () => {
 export const usePasswordChangeMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
-    mutationKey: ["password-change"],
+    mutationKey: ['password-change'],
     mutationFn: (payload) => passwordChangeFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
     onSuccess: () => {
-      toast.success("Password has been changed successfully!", {
+      toast.success('Password has been changed successfully!', {
         duration: 1500,
       });
       setLoading(false);
     },
     onError: () => {
       setLoading(false);
-      toast.error("Error in password change", {
+      toast.error('Error in password change', {
         duration: 1500,
       });
     },

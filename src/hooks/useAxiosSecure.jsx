@@ -9,16 +9,24 @@ export const axiosSecure = axios.create({
 
 axiosSecure.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    let token = localStorage.getItem("token");
+
     if (token) {
+      try {
+        token = JSON.parse(token); // ✅ Parse the token correctly
+      } catch (error) {
+        console.error("Error parsing token:", error);
+      }
       config.headers["Authorization"] = `Bearer ${token}`;
     }
+
     return config;
   },
   (error) => {
     return Promise.reject(error);
   }
 );
+
 const useAxiosSecure = () => {
   return axiosSecure;
 };
