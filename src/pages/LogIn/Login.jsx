@@ -1,17 +1,17 @@
-import { useForm } from "react-hook-form";
-import signUpPic from "../../assets/images/signUpImage/signUpImage.jpg";
-import logo from "../../assets/images/signUpImage/signUpLogo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useForm } from 'react-hook-form';
+import signUpPic from '../../assets/images/signUpImage/signUpImage.jpg';
+import logo from '../../assets/images/signUpImage/signUpLogo.png';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   BackToHomeArrowSvg,
   SignUpSvg,
-} from "../../components/SvgContainer/SvgConainer";
+} from '../../components/SvgContainer/SvgConainer';
 
-import { useLogin } from "@/hooks/auth.mutations";
-import useAuth from "@/hooks/useAuth";
-import { ImSpinner9 } from "react-icons/im";
-import { useEffect, useState } from "react";
-import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { useLogin } from '@/hooks/auth.mutations';
+import useAuth from '@/hooks/useAuth';
+import { ImSpinner9 } from 'react-icons/im';
+import { useEffect, useState } from 'react';
+import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -31,14 +31,14 @@ const Login = () => {
       await loginMutation(data);
       reset();
     } catch (error) {
-      console.error("Login failed", error);
+      console.error('Login failed', error);
     }
   };
 
   //return if the user is signed in
   useEffect(() => {
     if (token) {
-      navigate("/");
+      navigate('/');
     }
   }, [navigate, token]);
   if (token) return;
@@ -74,7 +74,7 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
-                  {...register("email", { required: true })}
+                  {...register('email', { required: true })}
                   className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5"
                   placeholder="Enter Email Address"
                 />
@@ -91,10 +91,10 @@ const Login = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
-                    {...register("password", {
-                      required: "Password is required",
+                    {...register('password', {
+                      required: 'Password is required',
                     })}
                     className="border text-sm lg:text-base border-[#D0D3D6] rounded-xl py-4 lg:py-[25px] px-5 w-full"
                     placeholder="Enter Password"
@@ -119,11 +119,11 @@ const Login = () => {
               {/* forget password text */}
               <div className="flex justify-center mt-[23px]">
                 <p className="text-navbarColor text-base lg:text-lg">
-                  Forgot your Password?{" "}
-                  <Link to={"/forgetPassword"}>
+                  Forgot your Password?{' '}
+                  <Link to={'/forgetPassword'}>
                     <span className="text-buttonColor text-base lg:text-lg font-bold underline">
                       Click Here
-                    </span>{" "}
+                    </span>{' '}
                   </Link>
                 </p>
               </div>
@@ -146,10 +146,10 @@ const Login = () => {
               {/*  */}
               <p className="text-center lg:mt-[113px] lg:mb-[47px] mt-5 mb-11 text-navbarColor text-base sm:text-lg">
                 New User?
-                <Link to={"/signUp"}>
+                <Link to={'/signUp'}>
                   <span className="text-buttonColor text-base lg:text-lg font-bold ml-2">
                     Create Account
-                  </span>{" "}
+                  </span>{' '}
                 </Link>
               </p>
             </form>
@@ -158,7 +158,7 @@ const Login = () => {
         {/* This is the right div */}
         <div className="w-full sm:w-[50%] relative overflow-auto">
           <div className="flex items-center gap-2 absolute lg:right-[200px] right-[90px] lg:top-4">
-            <Link to={"/"}>
+            <Link to={'/'}>
               <button
                 className="bg-transparent rounded-[60px] lg:text-base text-sm font-semibold mt-9 text-[#FFF] w-[208px] lg:h-[58px] h-12 flex items-center justify-center cursor-pointer border border-[#FFF] "
                 type="submit"
