@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   billingAddressFormFunc,
   contactFormFunc,
@@ -82,6 +82,7 @@ export const useOrderRequestMutation = () => {
 //user information update mutation:
 export const useUserInfoUpdateMutation = () => {
   const { setLoading, setUserInfo } = useAuth();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ['user-information-update'],
     mutationFn: (payload) => userInformationUpdateFunc(payload),
@@ -95,7 +96,7 @@ export const useUserInfoUpdateMutation = () => {
         image: data?.data?.avatar,
       };
       setUserInfo(userData);
-      // queryClient.invalidateQueries(['user-info']);
+      queryClient.invalidateQueries(['user-info']);
       toast.success('User information has been updated successfully!', {
         duration: 1500,
       });

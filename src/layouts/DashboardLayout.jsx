@@ -1,13 +1,23 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Navbar from "../pages/Dashboard/Navbar/Navbar";
+import { Outlet } from 'react-router-dom';
+import Sidebar from '../components/Sidebar/Sidebar';
+import Navbar from '../pages/Dashboard/Navbar/Navbar';
+import { useLogout } from '@/hooks/auth.mutations';
+import Loader from '@/components/Loader/Loader';
+import useAuth from '@/hooks/useAuth';
 
 const DashboardLayout = () => {
+  const { mutate: logOutMutation } = useLogout();
+  const { customLoading } = useAuth();
+
+  // handler:
+  const handleLogout = () => {
+    logOutMutation();
+  };
   return (
     <div className="flex w-full relative max-h-screen overflow-hidden">
       {/* Sidebar - Ensure it is fixed and doesn't affect layout */}
       <div className="hidden xlg:block xlg:w-[345px] fixed h-full">
-        <Sidebar />
+        <Sidebar onLogout={handleLogout} />
       </div>
 
       {/* Main content wrapper */}
@@ -18,9 +28,13 @@ const DashboardLayout = () => {
         </div>
 
         {/* Content below navbar */}
-        <div className="flex-1 z-0 bg-[#FAFBFC] overflow-y-auto mt-[60px] xlg:mt-[120px]">
-          <Outlet />
-        </div>
+        {customLoading ? (
+          <Loader />
+        ) : (
+          <div className="flex-1 z-0 bg-[#FAFBFC] overflow-y-auto mt-[60px] xlg:mt-[120px]">
+            <Outlet />
+          </div>
+        )}
       </div>
     </div>
   );

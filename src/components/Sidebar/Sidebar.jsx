@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import dashboardLogo from '../../assets/images/DashboardLogo/dashboardLogo.png';
 
@@ -31,7 +32,7 @@ const dashboardSidebarNavLinks = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ onLogout }) => {
   const currentLocation = useLocation()?.pathname;
 
   return (
@@ -71,19 +72,10 @@ const Sidebar = () => {
             ))}
 
             {/* This is the Sign Out */}
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `flex gap-4 items-center py-4 px-6 rounded-2xl text-[#FFF] ${
-                  isActive
-                    ? 'bg-buttonColor text-white text-lg'
-                    : 'bg-white text-navbarColor text-lg'
-                }`
-              }
-            >
+            <div onClick={onLogout} className="flex gap-4 py-4 px-6 cursor-pointer text-navbarColor text-lg">
               <SignOutSvg />
               <span>Sign Out</span>
-            </NavLink>
+            </div>
           </div>
         </div>
         {/* </div> */}

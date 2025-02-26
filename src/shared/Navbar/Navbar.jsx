@@ -66,7 +66,7 @@ const menuItems = [
 
 const Navbar = () => {
   const { token, userInfo } = useAuth();
-  console.log(userInfo);
+
   const [showMenu, setShowMenu] = useState(false);
   const { mutate: logOutMutation } = useLogout();
   const menuRef = useRef(null);
