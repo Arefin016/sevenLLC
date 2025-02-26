@@ -4,9 +4,14 @@ import NeedDesign from "../../components/DesignInformation/NeedDesign/NeedDesign
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import Button from "@/components/Button/Button";
+import { useOrderRequestMutation } from "@/hooks/cms.mutations";
 
 const OrderForms = () => {
-  const [selectedOption, setSelectedOption] = useState("I Have a Design");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [firstSelectedFile, setFirstSelectedFile] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("Have a Design");
+
+  const { mutateAsync: orderRequestMutation } = useOrderRequestMutation();
 
   const handleCheckboxChange = (option) => {
     setSelectedOption(option === selectedOption ? null : option);
@@ -16,11 +21,67 @@ const OrderForms = () => {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  // handlers:
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
+        return;
+      }
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File must be less than 2MB.");
+        return;
+      }
+      setSelectedFile(file);
+      console.log("Selected File:", file);
+    }
+  };
+
+  // second handlers
+  const secondHandleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
+        return;
+      }
+      if (file.size > 2 * 1024 * 1024) {
+        alert("File must be less than 2MB.");
+        return;
+      }
+      setFirstSelectedFile(file);
+      console.log("Selected File:", file);
+    }
+  };
+
+  const onSubmit = async (data) => {
     console.log(data);
+    try {
+      if (selectedFile && firstSelectedFile) {
+        const updatedData = {
+          ...data,
+          category_id: Number(data?.category_id),
+          image: selectedFile,
+          logo: firstSelectedFile,
+          design_options: selectedOption,
+        };
+        await orderRequestMutation(updatedData);
+        setSelectedFile(null);
+        reset();
+        setFirstSelectedFile(null);
+      } else {
+        toast.error("You must upload a image before proceed", {
+          duration: 1500,
+        });
+      }
+    } catch (error) {
+      console.error("Order Request Error: ", error);
+    }
   };
 
   return (
@@ -134,8 +195,8 @@ const OrderForms = () => {
                 name="example"
                 value="Arefin"
                 id="checkboxArefin1"
-                checked={selectedOption === "I Have a Design"}
-                onChange={() => handleCheckboxChange("I Have a Design")}
+                checked={selectedOption === "Have a Design"}
+                onChange={() => handleCheckboxChange("Have a Design")}
               />
               <p>I Have a Design</p>
             </div>
@@ -147,19 +208,37 @@ const OrderForms = () => {
                 name="example"
                 value="Arefin"
                 id="checkboxArefin2"
-                checked={selectedOption === "I Need a Design"}
-                onChange={() => handleCheckboxChange("I Need a Design")}
+                checked={selectedOption === "Need a Design"}
+                onChange={() => handleCheckboxChange("Need a Design")}
               />
               <p>I Need a Design</p>
             </div>
           </div>
           <div>
             {/* Content based on selected checkbox */}
-            {selectedOption === "I Have a Design" && (
-              <HaveDesign register={register} control={control} />
+            {selectedOption === "Have a Design" && (
+              <HaveDesign
+                errors={errors}
+                register={register}
+                selectedFile={selectedFile}
+                handleFileChange={handleFileChange}
+                control={control}
+                secondHandleFileChange={secondHandleFileChange}
+                firstSelectedFile={firstSelectedFile}
+              />
             )}
 
-            {/* {selectedOption === "I Need a Design" && <NeedDesign />} */}
+            {selectedOption === "Need a Design" && (
+              <NeedDesign
+                errors={errors}
+                register={register}
+                selectedFile={selectedFile}
+                handleFileChange={handleFileChange}
+                control={control}
+                secondHandleFileChange={secondHandleFileChange}
+                firstSelectedFile={firstSelectedFile}
+              />
+            )}
             <div className="flex justify-center mt-12">
               <Button
                 type="submit"

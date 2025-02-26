@@ -105,7 +105,11 @@ export const billingAddressFormFunc = async (payload) => {
 // Order request Submission
 export const orderRequestFormFunc = async (payload) => {
   try {
-    const { data } = await axiosSecure.post("/api/place-order", payload);
+    const { data } = await axiosSecure.post("/api/place-order", payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return data?.data || {};
   } catch (error) {
     console.error("Enter submitting order form: ", error);
@@ -172,5 +176,16 @@ export const passwordChangeFunc = async (payload) => {
   } catch (error) {
     console.error("Error changing password:", error);
     throw new Error("Failed to change password");
+  }
+};
+
+// get all categories
+export const getCategoriesFunc = async () => {
+  try {
+    const { data } = await axiosPublic("/api/categories");
+    return data?.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw new Error("Error getting the categories");
   }
 };

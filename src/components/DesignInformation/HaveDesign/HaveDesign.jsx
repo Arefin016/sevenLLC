@@ -12,29 +12,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Controller } from "react-hook-form";
-import { useState } from "react";
+import { useGetAllCategories } from "@/hooks/cms.queries";
 
-const HaveDesign = ({ register, control }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
+const HaveDesign = ({
+  register,
+  errors,
+  control,
+  handleFileChange,
+  selectedFile,
+  firstSelectedFile,
+  secondHandleFileChange,
+}) => {
+  const { data: allCategoriesList } = useGetAllCategories();
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
-        return;
-      }
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File must be less than 2MB.");
-        return;
-      }
-      setSelectedFile(file);
-      console.log("Selected File:", file);
-    }
-  };
   return (
     <section>
-      {/*  */}
       <div className="mt-12">
         {/* This is the text area */}
         <div className="mt-[19px]">
@@ -53,16 +45,14 @@ const HaveDesign = ({ register, control }) => {
         {/* Upload Images */}
         <div className="mt-[11px]">
           <h1 className="text-headingColor text-lg font-medium">
-            Upload References (can be a rough sketch)
+            Upload Your Design
           </h1>
           <p className="text-navbarColor font-semibold mt-[7px]">
-            Upload images, logos, or references to guide the design.
+            Design must be presented in AI format on dyelines for us to accept.
           </p>
-          <p className="text-navbarColor mt-3">
-            *Accept PNG, JPG, PDF, AI, SVG (max size: 5MB).
-          </p>
+          <p className="text-navbarColor mt-3">*Accept AI (max size: 5MB).</p>
           {/* This is the choose file section */}
-          <div className="bg-[#FFF] shadow-fileUpload py-4 rounded-[10px] mt-4">
+          <div className="bg-[#FFF] shadow-fileShadow py-4 rounded-[10px] mt-4">
             <div className="flex justify-center items-center">
               <label className="cursor-pointer px-4 py-2 text-headingColor text-base rounded-lg text-center font-semibold">
                 Choose File
@@ -182,21 +172,21 @@ const HaveDesign = ({ register, control }) => {
               </div>
             </div>
             {/*  */}
-            <div className="bg-[#FFF] shadow-fileUpload py-4 rounded-[10px] mt-4 max-w-[664px]">
+            <div className="bg-[#FFF] shadow-fileShadow py-4 rounded-[10px] mt-4 max-w-[664px]">
               <div className="flex justify-center items-center">
                 <label className="cursor-pointer px-4 py-2 text-headingColor text-base rounded-lg text-center font-semibold">
                   Choose File
                   <input
                     type="file"
                     className="hidden"
-                    onChange={handleFileChange}
+                    onChange={secondHandleFileChange}
                   />
                 </label>
                 <UploadFileSvg />
               </div>
-              {selectedFile && (
+              {firstSelectedFile && (
                 <p className="text-navbarColor text-center">
-                  Selected File: {selectedFile.name}
+                  Selected File: {firstSelectedFile.name}
                 </p>
               )}
             </div>
@@ -208,7 +198,7 @@ const HaveDesign = ({ register, control }) => {
               <Input
                 {...register("design_placement", { required: true })}
                 className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
-                type="number"
+                type="text"
                 placeholder="Design Placement"
               />
             </div>
@@ -230,26 +220,23 @@ const HaveDesign = ({ register, control }) => {
                     render={({ field }) => (
                       <Select
                         onValueChange={field.onChange}
-                        value={field.value}
+                        value={String(field.value)}
+                        defaultValue={field.value}
                       >
                         <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
-                          <SelectValue
-                            className="!text-navbarColor"
-                            placeholder="Product Category"
-                          />
+                          <SelectValue placeholder="Product Category" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
                             <SelectLabel>Product Category</SelectLabel>
-                            <SelectItem value="Cannabis & CBD Packaging">
-                              Cannabis & CBD Packaging
-                            </SelectItem>
-                            <SelectItem value="Retail & Shopping Packaging">
-                              Retail & Shopping Packaging
-                            </SelectItem>
-                            <SelectItem value="Food & Beverage Packaging">
-                              Food & Beverage Packaging
-                            </SelectItem>
+                            {allCategoriesList?.map((item) => (
+                              <SelectItem
+                                key={item?.id}
+                                value={String(item?.id)}
+                              >
+                                {item?.name}
+                              </SelectItem>
+                            ))}
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -404,7 +391,7 @@ const HaveDesign = ({ register, control }) => {
                       <Controller
                         name="reoccurring"
                         control={control}
-                        defaultValue={0} // Default unchecked
+                        defaultValue={0}
                         render={({ field }) => (
                           <Switch
                             checked={field.value === 1}
@@ -423,6 +410,264 @@ const HaveDesign = ({ register, control }) => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* shipping address form */}
+      <div className="mt-12">
+        <h1 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
+          Shipping & Delivery
+        </h1>
+        {/* First Input Column */}
+        <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
+          <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+            <label className="xl:text-lg text-base text-headingColor font-medium">
+              Shipping Address (required)*
+            </label>
+            <Select>
+              <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[60px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-buttonColor">
+                <SelectValue
+                  className="!text-navbarColor"
+                  placeholder="Choose An Address"
+                />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value={`Address`} item>
+                  Billing Address
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+        <form>
+          {/* This is the First and Last field */}
+          <div className="flex flex-col md:flex-row lg:gap-10 gap-0 items-center md:gap-3 mt-7">
+            {/* This is the First Name input */}
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                First Name*
+              </label>
+              <Input
+                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                type="text"
+                name="shipping_user_f_name"
+                placeholder="First Name"
+                {...register("shipping_user_f_name", { required: true })}
+              />
+              {errors.firstName && (
+                <span className="text-red-500 text-sm">
+                  First Name is required
+                </span>
+              )}
+            </div>
+            {/* This is the Last Name input */}
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                Last Name*
+              </label>
+              <Input
+                className="xl:py-[28px] xl:h-[97px] h-[60px] pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
+                type="text"
+                name="shipping_user_l_name"
+                placeholder="Last Name"
+                {...register("shipping_user_l_name", { required: true })}
+              />
+              {errors.lastName && (
+                <span className="text-red-500 text-sm">
+                  Last Name is required
+                </span>
+              )}
+            </div>
+          </div>
+          {/* This is the Phone and Email field */}
+          <div className="flex flex-col md:flex-row lg:gap-10 gap-0 items-center md:gap-3 mt-7">
+            {/* This is the Phone input */}
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                Phone*
+              </label>
+              <Input
+                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
+                type="number"
+                name="shipping_phone"
+                {...register("shipping_phone", { required: true })}
+                placeholder="Phone"
+              />
+              {errors.phone && (
+                <span className="text-red-500 text-sm">Phone is required</span>
+              )}
+            </div>
+            {/* This is the Email input */}
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                Email*
+              </label>
+              <Input
+                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
+                type="email"
+                name="shipping_email"
+                placeholder="Email"
+                {...register("shipping_email", { required: true })}
+              />
+              {errors.email && (
+                <span className="text-red-500 text-sm">Email is required</span>
+              )}
+            </div>
+          </div>
+          {/* This is the Company Name field */}
+          <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-7">
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                Company Name
+              </label>
+              <Input
+                className="py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                type="text"
+                name="shipping_company_name"
+                placeholder="Company Name"
+                {...register("shipping_company_name", { required: true })}
+              />
+              {errors.companyName && (
+                <span className="text-red-500 text-sm">
+                  Company Name is required
+                </span>
+              )}
+            </div>
+          </div>
+          {/* This is the Country and Region field */}
+          <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-7">
+            {/* This is the Country* input */}
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                Country*
+              </label>
+              <Controller
+                name="country"
+                control={control}
+                rules={{ required: "Country is required" }}
+                defaultValue=""
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    onValueChange={(value) => field.onChange(value)}
+                  >
+                    <SelectTrigger className="py-[30px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                      <SelectValue
+                        className="!text-navbarColor"
+                        placeholder="Select"
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Country</SelectLabel>
+                        <SelectItem value="America">America</SelectItem>
+                        <SelectItem value="Uk">UK</SelectItem>
+                        <SelectItem value="Canada">Canada</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.country && (
+                <p className="text-red-500 text-sm">
+                  {errors.country.message}{" "}
+                </p>
+              )}
+            </div>
+            {/* This is the Region/State* input */}
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                Region/State*
+              </label>
+              <Controller
+                name="state"
+                control={control}
+                rules={{ required: "Region is required" }}
+                defaultValue=""
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    onValueChange={(value) => field.onChange(value)}
+                  >
+                    <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                      <SelectValue
+                        className="!text-navbarColor"
+                        placeholder="Select"
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Region</SelectLabel>
+                        <SelectItem value="California">California</SelectItem>
+                        <SelectItem value="Texas">Texas</SelectItem>
+                        <SelectItem value="Florida">Florida</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.region && (
+                <p className="text-red-500 text-sm">{errors.region.message}</p>
+              )}
+            </div>
+          </div>
+          {/* This is the City and Postal Code field */}
+          <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-7">
+            {/* This is the City input */}
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                City*
+              </label>
+              <Controller
+                name="city"
+                control={control}
+                rules={{ required: "City is required" }}
+                defaultValue=""
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    onValueChange={(value) => field.onChange(value)}
+                  >
+                    <SelectTrigger className="py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                      <SelectValue
+                        className="!text-navbarColor"
+                        placeholder="Select"
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>City</SelectLabel>
+                        <SelectItem value="New York">New York</SelectItem>
+                        <SelectItem value="Los Angeles">Los Angeles</SelectItem>
+                        <SelectItem value="Chicago">Chicago</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.City && (
+                <p className="text-red-500 text-sm">{errors.City.message}</p>
+              )}
+            </div>
+            {/* This is the Postal Code input */}
+            <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
+                Postal Code
+              </label>
+              <Input
+                className="py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                type="number"
+                placeholder="Postal Code"
+                name="zip"
+                {...register("zip", { required: true })}
+              />
+              {errors.postalCode && (
+                <span className="text-red-500 text-sm">
+                  Postal Code is required
+                </span>
+              )}
+            </div>
+          </div>
+        </form>
       </div>
     </section>
   );
