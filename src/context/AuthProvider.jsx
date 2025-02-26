@@ -1,27 +1,25 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from 'react';
-import { useGetUserInfoQuery } from '@/hooks/cms.queries';
+import { axiosSecure } from '@/hooks/useAxiosSecure';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
-  const {
-    data: currentUserData,
-    isLoading: isLoadingUserData,
-    isFetching: isFetchingUserData,
-  } = useGetUserInfoQuery();
+  const [token, setToken, clearToken] = useLocalStorage('token', null);
+  const [userInfo, setUserInfo, clearUserInfo] = useLocalStorage('user', null);
   const [loading, setLoading] = useState(false);
   const [customLoading, setCustomLoading] = useState(false);
 
   //get user info::
-  const token = localStorage.getItem('token');
   useEffect(() => {
     if (token) {
       const userData = async () => {
         try {
-          setUser(currentUserData?.data);
+          const { data } = await axiosSecure('/api/users/data');
+          setUser(data?.data);
         } catch (error) {
           console.error('Error fetching user data:', error);
         } finally {
@@ -32,18 +30,21 @@ const AuthProvider = ({ children }) => {
     } else {
       setLoading(false);
     }
-  }, [currentUserData, token]);
+  }, [token]);
 
   const stateValue = {
     user,
     setUser,
     token,
+    setToken,
+    clearToken,
     loading,
     setLoading,
     customLoading,
     setCustomLoading,
-    isLoadingUserData,
-    isFetchingUserData,
+    userInfo,
+    setUserInfo,
+    clearUserInfo,
   };
 
   return (
