@@ -193,7 +193,7 @@ export const getCategoriesFunc = async () => {
 //get all order request
 export const getOrderRequestFunc = async () => {
   try {
-    const { data } = await axiosSecure("/api/place-order");
+    const { data } = await axiosSecure("/api/user-order");
     return data?.data;
   } catch (error) {
     console.error("Error fetching order request data:", error);

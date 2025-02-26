@@ -5,7 +5,6 @@ import {
   allProductsFunc,
   getCategoriesFunc,
   getOrderRequestFunc,
-  ggetOrderRequestFunc,
   homepageDataFunc,
   howItWorksFunc,
   processDataFunc,
