@@ -79,7 +79,6 @@ export const useLogout = () => {
       clearToken();
       clearUserInfo();
       setCustomLoading(false);
-      localStorage.removeItem('userData');
       toast.success('User logged out successfully', {
         duration: 1500,
       });
