@@ -16,7 +16,7 @@ import { useUserInfoUpdateMutation } from '@/hooks/cms.mutations';
 import { ImSpinner9 } from 'react-icons/im';
 
 const AccountSettings = () => {
-  const { user, loading } = useAuth();
+  const { user, loading,userInfo } = useAuth();
   const { mutateAsync: userUpdateMutation } = useUserInfoUpdateMutation();
   const baseUrl = import.meta.env.VITE_SITE_URL;
   const [image, setImage] = useState(
@@ -107,11 +107,11 @@ const AccountSettings = () => {
               />
               <div className=" items-center gap-3">
                 <p className="text-base xxs:text-2xl text-headingColor font-bold">
-                  Michael Watson
+                  {userInfo?.name}
                 </p>
-                <p className="text-xs xxs:text-lg text-navbarColor">
+                {/* <p className="text-xs xxs:text-lg text-navbarColor">
                   President of Sales
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

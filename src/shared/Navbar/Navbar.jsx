@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Dropdown, Space } from "antd";
-import profileImage from "../../assets/images/profile-image.png";
-import logo from "../../assets/images/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react';
+import { Dropdown, Space } from 'antd';
+import profileImage from '../../assets/images/profile-image.png';
+import logo from '../../assets/images/logo.png';
+import { Link, NavLink } from 'react-router-dom';
 import {
   AllCategoriesSvg,
   MenuDropdownSvg,
@@ -10,15 +10,14 @@ import {
   SearchBarSvgTwo,
   Line,
   LoginUserSvg,
-} from "../../components/SvgContainer/SvgConainer";
-import useAuth from "@/hooks/useAuth";
-import { useLogout } from "@/hooks/auth.mutations";
-import { AnimatePresence, motion } from "framer-motion";
-import toast from "react-hot-toast";
+} from '../../components/SvgContainer/SvgConainer';
+import useAuth from '@/hooks/useAuth';
+import { useLogout } from '@/hooks/auth.mutations';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const items = [
   {
-    key: "1",
+    key: '1',
     label: (
       <a
         target="_blank"
@@ -30,7 +29,7 @@ const items = [
     ),
   },
   {
-    key: "2",
+    key: '2',
     label: (
       <a
         target="_blank"
@@ -42,7 +41,7 @@ const items = [
     ),
   },
   {
-    key: "3",
+    key: '3',
     label: (
       <a
         target="_blank"
@@ -56,17 +55,17 @@ const items = [
 ];
 
 const menuItems = [
-  { name: "About Us", link: "/aboutUs" },
-  { name: "Products & Services", link: "/productServices" },
-  { name: "Dashboard", link: "/dashboardLayout/mainDashboard" },
-  { name: "Order Requests", link: "/orderForms" },
-  { name: "Blog", link: "/blogArticles" },
-  { name: "Contact Us", link: "/contactUs" },
-  { name: "Log out", link: "/" },
+  { name: 'About Us', link: '/aboutUs' },
+  { name: 'Products & Services', link: '/productServices' },
+  { name: 'Dashboard', link: '/dashboardLayout/mainDashboard' },
+  { name: 'Order Requests', link: '/orderForms' },
+  { name: 'Blog', link: '/blogArticles' },
+  { name: 'Contact Us', link: '/contactUs' },
+  { name: 'Log out', link: '/' },
 ];
 
 const Navbar = () => {
-  const { token, user } = useAuth();
+  const { token, userInfo } = useAuth();
 
   const [showMenu, setShowMenu] = useState(false);
   const { mutate: logOutMutation } = useLogout();
@@ -79,9 +78,9 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -102,24 +101,24 @@ const Navbar = () => {
     };
 
     if (isSideBarOpen) {
-      document.addEventListener("mousedown", handleOutsideClick);
+      document.addEventListener('mousedown', handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isSideBarOpen]);
 
   useEffect(() => {
     if (isSideBarOpen) {
-      document.body.style.overflowY = "hidden";
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflowY = "auto";
+      document.body.style.overflowY = 'auto';
     }
 
     // Cleanup function to reset overflow when the component unmounts
     return () => {
-      document.body.style.overflowY = "auto";
+      document.body.style.overflowY = 'auto';
     };
   }, [isSideBarOpen]);
 
@@ -130,7 +129,7 @@ const Navbar = () => {
         <div className="xlg:flex hidden justify-between px-10 xxl:bg-px-0 items-center pt-4">
           {/* logo */}
           <div className="max-w-[113px] h-[86px]">
-            <Link to={"/"}>
+            <Link to={'/'}>
               <img src={logo} alt="" />
             </Link>
           </div>
@@ -187,7 +186,7 @@ const Navbar = () => {
                 </div>
                 {/* name */}
                 <p className="font-poppins font-semibold text-navbarColor">
-                  {user?.first_name + " " + user?.last_name}
+                  {userInfo?.name}
                 </p>
 
                 <MenuDropdownSvg />
@@ -197,8 +196,8 @@ const Navbar = () => {
               <div
                 className={`absolute shadow-lg mt-2 transition-all duration-300 top-full left-0 w-full bg-buttonColor px-6 py-6 rounded-lg ${
                   showMenu
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-2"
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
                 }`}
               >
                 <ul className="space-y-2 font-bold">
@@ -227,7 +226,7 @@ const Navbar = () => {
                 <LoginUserSvg />
                 Log in
               </Link>
-              <Link to={"/signUp"}>
+              <Link to={'/signUp'}>
                 <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[26px]  hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                   Sign up
                 </button>
@@ -238,7 +237,7 @@ const Navbar = () => {
         {/* mobile navbar  */}
         <div className="flex xlg:hidden justify-between items-center px-2 lg:px-5 my-4">
           {/* logo */}
-          <Link to={"/"}>
+          <Link to={'/'}>
             <img
               src={logo}
               alt="not found"
@@ -263,7 +262,7 @@ const Navbar = () => {
                 initial={{ x: -280 }}
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
-                transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
+                transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
                 className="absolute w-[280px] bg-white z-[999] border-r-[1px] border-solid top-0 left-0 flex flex-col gap-y-5 h-[100vh]"
               >
                 <div className="flex w-full items-center pt-5 justify-between px-5 xlg:px-10">
@@ -317,7 +316,7 @@ const Navbar = () => {
                     <ul className="flex flex-col gap-y-5 flex-wrap">
                       {menuItems.map((item) => (
                         <li key={item.name} className="text-[14px] text-start">
-                          {item.name === "Log out" ? (
+                          {item.name === 'Log out' ? (
                             <button
                               onClick={handleLogout}
                               className="text-navbarColor font-medium hover:text-buttonColor"
@@ -329,8 +328,8 @@ const Navbar = () => {
                               to={item.link}
                               className={({ isActive }) =>
                                 isActive
-                                  ? "text-buttonColor font-medium hover:text-buttonColor"
-                                  : "text-navbarColor font-medium hover:text-buttonColor"
+                                  ? 'text-buttonColor font-medium hover:text-buttonColor'
+                                  : 'text-navbarColor font-medium hover:text-buttonColor'
                               }
                             >
                               {item.name}
@@ -340,7 +339,7 @@ const Navbar = () => {
                       ))}
                     </ul>
                     <div>
-                      <Link to={"/signUp"}>
+                      <Link to={'/signUp'}>
                         <button className="text-sm font-semibold border-[2px] border-solid border-buttonColor text-buttonColor px-6 py-2 rounded-[15px] hover:border-buttonColor hover:text-[#FFF] hover:bg-buttonColor ease-in-out duration-150">
                           Sign up
                         </button>
@@ -357,7 +356,7 @@ const Navbar = () => {
           <div className="bg-white hidden xlg:block py-4">
             <ul className="flex  gap-y-2 lg:gap-y-0 lg:gap-2  flex-wrap items-center md:justify-center">
               {menuItems.map((item, index) => {
-                if (item.name === "Log out") return;
+                if (item.name === 'Log out') return;
                 return (
                   <React.Fragment key={index}>
                     <li className=" text-[14px] xlg:text-lg  px-2 lg:px-3">
@@ -365,8 +364,8 @@ const Navbar = () => {
                         to={item.link}
                         className={({ isActive }) =>
                           isActive
-                            ? "text-buttonColor font-medium hover:text-buttonColor"
-                            : "text-navbarColor font-medium hover:text-buttonColor"
+                            ? 'text-buttonColor font-medium hover:text-buttonColor'
+                            : 'text-navbarColor font-medium hover:text-buttonColor'
                         }
                       >
                         {item.name}

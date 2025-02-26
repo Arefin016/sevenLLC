@@ -95,9 +95,10 @@ export const useRecentBlogsQuery = () => {
 };
 
 //get user info:
-export const useGetUserInfoQuery = () => {
+export const useGetUserInfoQuery = (token) => {
   return useQuery({
-    queryKey: ['user-info'],
-    queryFn: GetUserDataFunc,
+    queryKey: ['user-info', token], // Include token in query key
+    queryFn: GetUserDataFunc, // Fetch function
+    enabled: !!token, // Only run query if token exists
   });
 };

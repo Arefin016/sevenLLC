@@ -1,18 +1,17 @@
-import { Dropdown, Space } from "antd";
 import {
   DashboardSvg,
   OrderHistorySvg,
   SettingsSvg,
   SignOutSvg,
-} from "../../../components/SvgContainer/SvgConainer";
-import dashboardHumanPic from "../../../assets/images/DashboardLogo/dashboardHumanPic.png";
-import Logo from "../../../assets/images/logo.png";
-import { useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import { SidebarOpen } from "lucide-react";
+} from '../../../components/SvgContainer/SvgConainer';
+import Logo from '../../../assets/images/logo.png';
+import { useEffect, useRef, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import useAuth from '@/hooks/useAuth';
 
 const Navbar = () => {
+  const { userInfo } = useAuth();
   const [isSideBarOpen, setisSideBarOpen] = useState(false);
   const currentLocation = useLocation()?.pathname;
 
@@ -20,40 +19,40 @@ const Navbar = () => {
 
   const dashboardSidebarNavLinks = [
     {
-      path: "/dashboardLayout/mainDashboard",
+      path: '/dashboardLayout/mainDashboard',
       svg: DashboardSvg,
-      title: "Dashboard",
+      title: 'Dashboard',
     },
     {
-      path: "/dashboardLayout/orderHistory",
+      path: '/dashboardLayout/orderHistory',
       svg: OrderHistorySvg,
-      title: "Order History",
+      title: 'Order History',
     },
     {
-      path: "/dashboardLayout/paymentHistory",
+      path: '/dashboardLayout/paymentHistory',
       svg: DashboardSvg,
-      title: "Payment History",
+      title: 'Payment History',
     },
     {
-      path: "/dashboardLayout/settings",
+      path: '/dashboardLayout/settings',
       svg: SettingsSvg,
-      title: "Settings",
+      title: 'Settings',
     },
   ];
 
   useEffect(() => {
-    const handleOutsideClick = event => {
+    const handleOutsideClick = (event) => {
       if (sideBarRef.current && !sideBarRef.current.contains(event.target)) {
         setisSideBarOpen(false);
       }
     };
 
     if (isSideBarOpen) {
-      document.addEventListener("mousedown", handleOutsideClick);
+      document.addEventListener('mousedown', handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isSideBarOpen]);
 
@@ -68,7 +67,7 @@ const Navbar = () => {
               initial={{ x: -280 }}
               animate={{ x: 0 }}
               exit={{ x: -280 }}
-              transition={{ type: "tween", ease: "easeInOut", duration: 0.5 }}
+              transition={{ type: 'tween', ease: 'easeInOut', duration: 0.5 }}
             >
               <div
                 ref={sideBarRef}
@@ -76,7 +75,7 @@ const Navbar = () => {
               >
                 <div className="px-5 w-full pt-20 space-y-4">
                   {/* Sidebar Links */}
-                  {dashboardSidebarNavLinks.map(link => (
+                  {dashboardSidebarNavLinks.map((link) => (
                     <NavLink
                       onClick={() => setisSideBarOpen(false)}
                       key={link.path}
@@ -84,8 +83,8 @@ const Navbar = () => {
                       className={({ isActive }) =>
                         `flex gap-4 items-center max-w-[250px] py-3 px-3 rounded-2xl text-[#FFF] ${
                           isActive
-                            ? "bg-buttonColor text-white text-sm"
-                            : "bg-white text-navbarColor text-sm"
+                            ? 'bg-buttonColor text-white text-sm'
+                            : 'bg-white text-navbarColor text-sm'
                         }`
                       }
                     >
@@ -100,8 +99,8 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `flex gap-4 items-center py-3 px-3 rounded-2xl text-[#FFF] ${
                         isActive
-                          ? "bg-buttonColor text-white text-sm"
-                          : "bg-white text-navbarColor text-sm"
+                          ? 'bg-buttonColor text-white text-sm'
+                          : 'bg-white text-navbarColor text-sm'
                       }`
                     }
                   >
@@ -125,15 +124,16 @@ const Navbar = () => {
             <div className="flex">
               <div className="flex gap-3 items-center">
                 <img
-                  className="h-[60px] w-[60px] object-cover"
-                  src={dashboardHumanPic}
+                  className="h-[60px] w-[60px] object-cover rounded-2xl"
+                  // src={dashboardHumanPic}
+                  src={`${import.meta.env.VITE_SITE_URL}/${userInfo?.image}`}
                   alt=""
                 />
                 <div>
                   <p className="text-base text-headingColor font-semibold">
-                    Michael
+                    {userInfo?.name}
                   </p>
-                  <p className="text-navbarColor">Customer</p>
+                  {/* <p className="text-navbarColor">Customer</p> */}
                 </div>
               </div>
             </div>
