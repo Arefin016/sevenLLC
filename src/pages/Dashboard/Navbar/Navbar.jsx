@@ -124,7 +124,7 @@ const Navbar = () => {
             <div className="flex">
               <div className="flex gap-3 items-center">
                 <img
-                  className="h-[60px] w-[60px] object-cover"
+                  className="h-[60px] w-[60px] object-cover rounded-2xl"
                   // src={dashboardHumanPic}
                   src={`${import.meta.env.VITE_SITE_URL}/${userInfo?.image}`}
                   alt=""
