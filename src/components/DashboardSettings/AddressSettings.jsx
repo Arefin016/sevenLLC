@@ -12,12 +12,10 @@ import {
   SelectValue,
 } from "../ui/select";
 import Button from "../Button/Button";
-import { useBillingAddressMutation } from "@/hooks/cms.mutations";
 
 const AddressSettings = () => {
   const [addNewAddress, setAddNewAddress] = useState(false);
   const [savedAddresses, setSavedAddresses] = useState([]);
-  const { mutateAsync: billingFormMutation } = useBillingAddressMutation();
   const {
     register,
     handleSubmit,
@@ -27,24 +25,13 @@ const AddressSettings = () => {
   } = useForm();
 
   //handlers:
-  const onSubmit = async (data) => {
-    try {
-      console.log(data);
-
-      await billingFormMutation(data);
-
-      const updatedAddresses = [...(savedAddresses || []), data];
-
-      localStorage.setItem("savedAddresses", JSON.stringify(updatedAddresses));
-      setSavedAddresses(updatedAddresses);
-
-      setAddNewAddress(false);
-      reset();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
+  const onSubmit = (data) => {
+    const updatedAddresses = [...savedAddresses, data];
+    localStorage.setItem("savedAddresses", JSON.stringify(updatedAddresses));
+    setSavedAddresses(updatedAddresses);
+    setAddNewAddress(false);
+    reset();
   };
-
   return (
     <div className="container mx-auto pb-10">
       <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-5 px-5 xxs:px-4 sm:px-4 xl:px-0">
