@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { UploadFileSvg } from "../../SvgContainer/SvgConainer";
-import { Empty, Space, Switch } from "antd";
+import { Space, Switch } from "antd";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -16,7 +16,6 @@ import { useState } from "react";
 
 const HaveDesign = ({ register, control }) => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -30,11 +29,7 @@ const HaveDesign = ({ register, control }) => {
         return;
       }
       setSelectedFile(file);
-
-      // Generate a URL for the selected file
-      const url = URL.createObjectURL(file);
-      setImageURL(url);
-      console.log("Selected File URL:", url);
+      console.log("Selected File:", file);
     }
   };
   return (
@@ -73,8 +68,6 @@ const HaveDesign = ({ register, control }) => {
                 Choose File
                 <input
                   type="file"
-                  id="photo-upload"
-                  accept="image/*"
                   className="hidden"
                   onChange={handleFileChange}
                 />
@@ -82,16 +75,9 @@ const HaveDesign = ({ register, control }) => {
               <UploadFileSvg />
             </div>
             {selectedFile && (
-              <div className="text-navbarColor text-center">
-                <p>Selected File: {selectedFile.name}</p>
-                {imageURL && (
-                  <img
-                    src={imageURL}
-                    alt="Preview"
-                    className="mt-4 max-w-full h-auto rounded-lg"
-                  />
-                )}
-              </div>
+              <p className="text-navbarColor text-center">
+                Selected File: {selectedFile.name}
+              </p>
             )}
           </div>
           {/* This is the preferred color */}
