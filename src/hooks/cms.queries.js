@@ -4,6 +4,8 @@ import {
   allBlogsFunc,
   allProductsFunc,
   getCategoriesFunc,
+  getOrderRequestFunc,
+  ggetOrderRequestFunc,
   homepageDataFunc,
   howItWorksFunc,
   processDataFunc,
@@ -109,5 +111,13 @@ export const useGetAllCategories = () => {
   return useQuery({
     queryKey: ["all-categories-list"],
     queryFn: getCategoriesFunc,
+  });
+};
+
+// get all order request
+export const useGetAllOrderRequest = () => {
+  return useQuery({
+    queryKey: ["order-request"],
+    queryFn: getOrderRequestFunc,
   });
 };

@@ -189,3 +189,14 @@ export const getCategoriesFunc = async () => {
     throw new Error("Error getting the categories");
   }
 };
+
+//get all order request
+export const getOrderRequestFunc = async () => {
+  try {
+    const { data } = await axiosSecure("/api/place-order");
+    return data?.data;
+  } catch (error) {
+    console.error("Error fetching order request data:", error);
+    throw new Error("Error getting the order request");
+  }
+};
