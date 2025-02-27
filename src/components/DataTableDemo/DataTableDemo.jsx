@@ -26,14 +26,17 @@ import {
 } from "@tanstack/react-table";
 import { DeleteSvg, DownloadSvg, PrintSvg } from "../SvgContainer/SvgConainer";
 import { useGetAllOrderRequest } from "@/hooks/cms.queries";
+import { useDeleteOrderRequest } from "@/hooks/cms.mutations";
 
 export function DataTableDemo({ setCheckedData }) {
   const { data: orderRequest } = useGetAllOrderRequest();
   console.log(orderRequest);
   const [data, setData] = useState([]);
+  const { mutate: deleteOrderRequest } = useDeleteOrderRequest(setData);
 
   const handleDelete = (id) => {
     console.log(id);
+    deleteOrderRequest(id);
   };
 
   useEffect(() => {
@@ -202,8 +205,8 @@ export function DataTableDemo({ setCheckedData }) {
                 Print
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => handleDelete(id)}
-                className="text-[#E84646]"
+                onClick={() => handleDelete(invoice.id)}
+                className="text-[#E84646] cursor-pointer"
               >
                 <DeleteSvg className="mr-2" />
                 Delete

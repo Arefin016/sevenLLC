@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   billingAddressFormFunc,
   contactFormFunc,
+  deleteOrderFunc,
   orderRequestFormFunc,
   passwordChangeFunc,
   userInformationUpdateFunc,
@@ -132,6 +133,31 @@ export const usePasswordChangeMutation = () => {
     onError: () => {
       setLoading(false);
       toast.error("Error in password change", {
+        duration: 1500,
+      });
+    },
+  });
+};
+
+// Delete order request
+export const useDeleteOrderRequest = () => {
+  const { setLoading } = useAuth();
+
+  return useMutation({
+    mutationKey: ["delete-order-request"],
+    mutationFn: (payload) => deleteOrderFunc(payload),
+    onMutate: () => {
+      setLoading(true);
+    },
+    onSuccess: () => {
+      setLoading(false);
+      toast.success("Order Request has been deleted successfully!", {
+        duration: 1500,
+      });
+    },
+    onError: (error) => {
+      setLoading(false);
+      toast.error(error.message || "Failed to delete order request", {
         duration: 1500,
       });
     },
