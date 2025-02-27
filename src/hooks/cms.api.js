@@ -225,6 +225,7 @@ export const deletePaymentFunc = async (id) => {
 };
 
 // Get Order summery
+// Get the order
 export const orderSummeryFunc = async () => {
   const { data } = await axiosSecure("api/user-order/summary");
   return data?.data;
