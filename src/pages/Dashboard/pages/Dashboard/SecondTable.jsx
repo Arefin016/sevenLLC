@@ -23,10 +23,10 @@ const SecondTable = () => {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then(res => {
+      .then((res) => {
         setPayMentHistory(res.data.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -39,7 +39,7 @@ const SecondTable = () => {
     getPaymentData(); // Refetch data after delete
   };
 
-  const formattedPayments = payMentHistory.map(payment => ({
+  const formattedPayments = payMentHistory.map((payment) => ({
     invoiceId: `inv${payment.invoice_number}`,
     invoiceDate: payment.created_at.split("T")[0],
     product: payment.order?.item_type || "Unknown Product",
@@ -61,7 +61,7 @@ const SecondTable = () => {
         <div className="flex flex-col md:flex-row gap-11 items-center">
           {/* Tabs Header */}
           <div className="flex border-b gap-10 md:gap-5 xl:gap-[167px] md:w-[80%]">
-            {tabs.map(tab => (
+            {tabs.map((tab) => (
               <button
                 key={tab?.dataTitle}
                 className={`xmd:px-4 pt-6 pb-2 xmd:py-[21px] text-xs xxs:text-lg xmd:text-xl font-semibold ${
