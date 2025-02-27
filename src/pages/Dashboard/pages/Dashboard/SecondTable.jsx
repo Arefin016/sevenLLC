@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthProvider";
 import { useGetAllPayments } from "@/hooks/cms.queries";
 
+
 const baseUrl = import.meta.env.VITE_SITE_URL;
 
 const SecondTable = () => {
@@ -15,13 +16,12 @@ const SecondTable = () => {
   ];
 
   const { data: allPayments } = useGetAllPayments();
-  console.log(allPayments);
+  // console.log(allPayments);
 
   const { refetch } = useContext(AuthContext);
 
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [payMentHistory, setPayMentHistory] = useState([]);
- 
 
   // Formatting the payment history data
   const formattedPayments = allPayments?.map(payment => ({
@@ -37,8 +37,6 @@ const SecondTable = () => {
   }));
 
   console.log(formattedPayments);
-
-  
 
   return (
     <section className="border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow md:pl-[30px] md:pr-[30px] px-4 md:pt-6 md:pb-[62px]">
@@ -67,7 +65,7 @@ const SecondTable = () => {
         </div>
 
         {/* Tabs Content */}
-        <PaymentHistoryTable data={formattedPayments} />
+        {allPayments && <PaymentHistoryTable data={formattedPayments} />}
         {/*  */}
       </div>
     </section>

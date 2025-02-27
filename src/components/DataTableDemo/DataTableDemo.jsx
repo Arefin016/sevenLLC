@@ -29,7 +29,7 @@ import { useGetAllOrderRequest } from "@/hooks/cms.queries";
 
 export function DataTableDemo({ setCheckedData }) {
   const { data: orderRequest } = useGetAllOrderRequest();
-  console.log(orderRequest);
+  // console.log(orderRequest);
   const [data, setData] = useState([]);
 
   useEffect(() => {
