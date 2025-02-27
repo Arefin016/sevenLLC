@@ -9,35 +9,39 @@ import productSummeryPic2 from "../../../../assets/images/productSummery/product
 import productSummeryPic3 from "../../../../assets/images/productSummery/productSummeryPic3.png";
 import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
 import SecondTable from "./SecondTable";
+import { useOrderSummery } from "@/hooks/cms.queries";
 
 const Dashboard = () => {
-  const productSummaries = [
-    {
-      img: productSummeryPic1,
-      category: "Paper Packaging",
-      name: "Bakery Boxes",
-    },
-    {
-      img: productSummeryPic2,
-      category: "Glass Packaging",
-      name: "Flower Jars",
-    },
-    {
-      img: productSummeryPic3,
-      category: "Eco-Friendly Packaging",
-      name: "Bamboo-Topped Jars",
-    },
-    {
-      img: productSummeryPic1,
-      category: "Eco-Friendly Packaging",
-      name: "Bamboo-Topped Jars",
-    },
-    {
-      img: productSummeryPic1,
-      category: "Eco-Friendly Packaging",
-      name: "Bamboo-Topped Jars",
-    },
-  ];
+  const { data: orderSummery } = useOrderSummery();
+  console.log(orderSummery);
+
+  // const productSummaries = [
+  //   {
+  //     img: productSummeryPic1,
+  //     category: "Paper Packaging",
+  //     name: "Bakery Boxes",
+  //   },
+  //   {
+  //     img: productSummeryPic2,
+  //     category: "Glass Packaging",
+  //     name: "Flower Jars",
+  //   },
+  //   {
+  //     img: productSummeryPic3,
+  //     category: "Eco-Friendly Packaging",
+  //     name: "Bamboo-Topped Jars",
+  //   },
+  //   {
+  //     img: productSummeryPic1,
+  //     category: "Eco-Friendly Packaging",
+  //     name: "Bamboo-Topped Jars",
+  //   },
+  //   {
+  //     img: productSummeryPic1,
+  //     category: "Eco-Friendly Packaging",
+  //     name: "Bamboo-Topped Jars",
+  //   },
+  // ];
 
   return (
     <div className="md:px-10 px-3 mt-12 lg:mt-[55px]">
@@ -67,21 +71,23 @@ const Dashboard = () => {
           </h1>
           {/* This is the Product Summary */}
           <div className="grid xxs:grid-cols-2 xmd:grid-cols-3 xlg:grid-cols-5 md:flex-row justify-between items-center mt-5 pb-12 xlg:ml-[38px] gap-5 px-5 xxl:px-0">
-            {productSummaries?.map((product, index) => (
+            {orderSummery?.map((product, index) => (
               <div
                 key={index}
                 className="flex items-center justify-left gap-2 md:gap-3 w-full"
               >
-                <img src={product.img} alt={product.category} />
+                <img
+                  src={`${import.meta.env.VITE_SITE_URL}/${product.image}`}
+                />
                 <div className="xxl:pr-[70px]">
                   <p className="text-headingColor font-bold text-xs xxs:text-sm">
-                    {product.category}
+                    {product.category.name}
                   </p>
                   <p className="text-headingColor text-xs xxs:text-sm">
-                    {product.name}
+                    {product.item_type}
                   </p>
                 </div>
-                {index < productSummaries.length - 1 && (
+                {index < orderSummery?.length - 1 && (
                   <div className="hidden xlg:block">
                     <ProductLineBorder />
                   </div>

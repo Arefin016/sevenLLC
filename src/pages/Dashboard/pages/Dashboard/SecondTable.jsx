@@ -14,7 +14,7 @@ const SecondTable = () => {
     { label: "Year to date", dataTitle: "yearToDateData" },
   ];
 
-  const { data: allPayments } = useGetAllPayments();
+  const { data: allPayments, isLoading } = useGetAllPayments();
   console.log(allPayments);
   const getPaymentData = () => {
     let token = localStorage.getItem("token");
@@ -38,10 +38,9 @@ const SecondTable = () => {
 
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [payMentHistory, setPayMentHistory] = useState([]);
- 
 
   // Formatting the payment history data
-  const formattedPayments = allPayments?.map(payment => ({
+  const formattedPayments = allPayments?.map((payment) => ({
     invoiceId: `inv${payment.invoice_number}`,
     invoiceDate: payment.created_at.split("T")[0],
     product: payment.order?.item_type || "Unknown Product",
@@ -54,8 +53,6 @@ const SecondTable = () => {
   }));
 
   console.log(formattedPayments);
-
-  
 
   return (
     <section className="border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow md:pl-[30px] md:pr-[30px] px-4 md:pt-6 md:pb-[62px]">

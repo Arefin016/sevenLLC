@@ -8,6 +8,7 @@ import {
   getPaymentFunc,
   homepageDataFunc,
   howItWorksFunc,
+  orderSummeryFunc,
   processDataFunc,
   productsAndServicesFunc,
   recentBlogsFunc,
@@ -81,7 +82,7 @@ export const useAllBlogsQuery = () => {
 };
 
 // single blog query:
-export const useSingleBlogQuery = slug => {
+export const useSingleBlogQuery = (slug) => {
   return useQuery({
     queryKey: ["single-blog", slug], // Make sure slug is part of the key
     queryFn: () => singleBlogFunc(slug), // Fetch new data when slug changes
@@ -98,7 +99,7 @@ export const useRecentBlogsQuery = () => {
 };
 
 //get user info:
-export const useGetUserInfoQuery = token => {
+export const useGetUserInfoQuery = (token) => {
   return useQuery({
     queryKey: ["user-info", token], // Include token in query key
     queryFn: GetUserDataFunc, // Fetch function
@@ -127,5 +128,13 @@ export const useGetAllPayments = () => {
   return useQuery({
     queryKey: ["all-payments"],
     queryFn: getPaymentFunc,
+  });
+};
+
+// get the order summery
+export const useOrderSummery = () => {
+  return useQuery({
+    queryKey: ["order-summery"],
+    queryFn: orderSummeryFunc,
   });
 };

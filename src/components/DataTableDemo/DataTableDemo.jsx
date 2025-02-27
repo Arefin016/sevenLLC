@@ -35,7 +35,7 @@ export function DataTableDemo({ setCheckedData }) {
   const { mutate: deleteOrderRequest } = useDeleteOrderRequest(setData);
 
   const handleDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     deleteOrderRequest(id);
   };
 
