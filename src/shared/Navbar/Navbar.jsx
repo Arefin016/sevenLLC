@@ -19,11 +19,7 @@ const items = [
   {
     key: "1",
     label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
+      <a target="_blank" rel="noopener noreferrer" href="#">
         Industry
       </a>
     ),
@@ -31,11 +27,7 @@ const items = [
   {
     key: "2",
     label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
+      <a target="_blank" rel="noopener noreferrer" href="#">
         Material
       </a>
     ),
@@ -43,11 +35,7 @@ const items = [
   {
     key: "3",
     label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
+      <a target="_blank" rel="noopener noreferrer" href="#">
         Function
       </a>
     ),
@@ -178,7 +166,6 @@ const Navbar = () => {
                 <div className="size-12 ">
                   <img
                     className="h-full w-full object-cover rounded-full"
-                    // src={`${import.meta.env.VITE_SITE_URL}/${user?.image}`}
                     src={profileImage}
                     alt=""
                   />

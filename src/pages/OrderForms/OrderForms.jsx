@@ -6,8 +6,11 @@ import { useForm } from "react-hook-form";
 import Button from "@/components/Button/Button";
 import { useOrderRequestMutation } from "@/hooks/cms.mutations";
 import toast from "react-hot-toast";
+import useAuth from "@/hooks/useAuth";
+import { PiSpinnerBold } from "react-icons/pi";
 
 const OrderForms = () => {
+  const { loading } = useAuth();
   const [selectedFile, setSelectedFile] = useState(null);
   const [firstSelectedFile, setFirstSelectedFile] = useState(null);
   const [selectedOption, setSelectedOption] = useState("Have a Design");
@@ -251,7 +254,9 @@ const OrderForms = () => {
                 type="submit"
                 text={"Place Order"}
                 color={"bg-buttonColor"}
-              />
+                disabled={loading}
+                
+              ></Button>
             </div>
           </div>
         </form>
