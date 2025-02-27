@@ -1,6 +1,9 @@
 import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
 import PaymentHistoryTable from "@/components/PaymentHistoryTable/PaymentHistoryTable";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+const baseUrl = import.meta.env.VITE_SITE_URL;
+
 
 const SecondTable = () => {
   const tabs = [
@@ -9,7 +12,46 @@ const SecondTable = () => {
     { label: "Year to date", dataTitle: "yearToDateData" },
   ];
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [payMentHistory, setPayMentHistory] = useState([])
 
+  useEffect(() => {
+    let token = localStorage.getItem("token")
+    token = JSON.parse(token);
+    axios({
+      method: "get",
+      url: `${baseUrl}/api/user-order/payment`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      setPayMentHistory(res.data.data);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }, [])
+  
+
+ 
+
+const formattedPayments = payMentHistory.map(payment => ({
+  invoiceId: `inv${payment.invoice_number}`,
+  invoiceDate: payment.created_at.split("T")[0],
+  product: payment.order?.item_type || "Unknown Product",
+  quantity: payment.quantity || "N/A",
+  amount: payment.amount.toFixed(2),
+  paymentMethod: payment.payment_method || "N/A",
+  datePaid: payment.payment_date ? payment.payment_date.split("T")[0] : "N/A",
+  status: payment.status, // Fixed this line
+}));
+
+
+  
+
+ console.log(payMentHistory, 'this is the payment history');
+ 
+ console.log( 'this is the formated payment', formattedPayments);
+ 
+  
   const tableData = {
     paymentHistoryData: [
       {
@@ -225,7 +267,7 @@ const SecondTable = () => {
           </div>
         </div>
         {/* Tabs Content */}
-        <PaymentHistoryTable data={tableData[activeTab?.dataTitle]} />
+        <PaymentHistoryTable data={formattedPayments} />
       </div>
     </section>
   );
