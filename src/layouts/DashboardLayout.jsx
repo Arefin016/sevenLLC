@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/Sidebar/Sidebar';
-import Navbar from '../pages/Dashboard/Navbar/Navbar';
-import { useLogout } from '@/hooks/auth.mutations';
-import Loader from '@/components/Loader/Loader';
-import useAuth from '@/hooks/useAuth';
+import { Outlet } from "react-router-dom";
+import Sidebar from "../components/Sidebar/Sidebar";
+import Navbar from "../pages/Dashboard/Navbar/Navbar";
+import { useLogout } from "@/hooks/auth.mutations";
+import Loader from "@/components/Loader/Loader";
+import useAuth from "@/hooks/useAuth";
 
 const DashboardLayout = () => {
   const { mutate: logOutMutation } = useLogout();
