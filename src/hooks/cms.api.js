@@ -79,7 +79,7 @@ export const productsAndServicesFunc = async () => {
 };
 
 // Contact Form Submission
-export const contactFormFunc = async (payload) => {
+export const contactFormFunc = async payload => {
   try {
     const { data } = await axiosPublic.post("/api/contact-us", payload);
     return data?.data || {};
@@ -89,7 +89,7 @@ export const contactFormFunc = async (payload) => {
   }
 };
 // Billing Address Form Submission
-export const billingAddressFormFunc = async (payload) => {
+export const billingAddressFormFunc = async payload => {
   try {
     const { data } = await axiosSecure.post(
       "/api/users/billing-address",
@@ -103,7 +103,7 @@ export const billingAddressFormFunc = async (payload) => {
 };
 
 // Order request Submission
-export const orderRequestFormFunc = async (payload) => {
+export const orderRequestFormFunc = async payload => {
   try {
     const { data } = await axiosSecure.post("/api/place-order", payload, {
       headers: {
@@ -129,7 +129,7 @@ export const allBlogsFunc = async () => {
 };
 
 // Single Blog
-export const singleBlogFunc = async (slug) => {
+export const singleBlogFunc = async slug => {
   try {
     const { data } = await axiosPublic(`/api/blog/${slug}`);
     return data?.data || null;
@@ -151,7 +151,7 @@ export const recentBlogsFunc = async () => {
 };
 
 //user information update:
-export const userInformationUpdateFunc = async (payload) => {
+export const userInformationUpdateFunc = async payload => {
   try {
     const { data } = await axiosSecure.post("/api/users/data/update", payload, {
       headers: {
@@ -166,7 +166,7 @@ export const userInformationUpdateFunc = async (payload) => {
 };
 
 // Password Change:
-export const passwordChangeFunc = async (payload) => {
+export const passwordChangeFunc = async payload => {
   try {
     const { data } = await axiosSecure.post(
       "/api/users/change-password",
@@ -199,4 +199,16 @@ export const getOrderRequestFunc = async () => {
     console.error("Error fetching order request data:", error);
     throw new Error("Error getting the order request");
   }
+};
+
+// get all payments:
+export const getPaymentFunc = async () => {
+  const { data } = await axiosSecure("/api/user-order/payment");
+  return data?.data;
+};
+
+// delete one payment:
+export const deletePaymentFunc = async id => {
+  const { data } = await axiosSecure(`/api/payment-history/delete/${id}`);
+  return data?.data;
 };

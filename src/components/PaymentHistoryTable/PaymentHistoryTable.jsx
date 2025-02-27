@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -31,13 +31,14 @@ import {
 } from "../SvgContainer/SvgConainer";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { AuthContext } from "@/context/AuthProvider";
 
 const baseUrl = import.meta.env.VITE_SITE_URL;
-let isFetching = false;
 
 const handleDeleteInvoiceId = id => {
   let token = localStorage.getItem("token");
   token = JSON.parse(token);
+  const { triggerRefetch } = useContext(AuthContext);
   axios({
     method: "get",
     url: `${baseUrl}/api/payment-history/delete/${id}`,
@@ -48,7 +49,7 @@ const handleDeleteInvoiceId = id => {
     .then(res => {
       console.log(res.data);
       toast.success(res.data.message);
-      isFetching = true;
+      triggerRefetch();
     })
     .catch(err => {
       console.log(err);
@@ -233,18 +234,11 @@ export const columns = [
   },
 ];
 
-const PaymentHistoryTable = ({ data, onDelete }) => {
+const PaymentHistoryTable = ({ data }) => {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
-
-  if (isFetching) {
-    onDelete();
-    setTimeout(() => {
-      isFetching = false;
-    }, 10000);
-  }
 
   const table = useReactTable({
     data,

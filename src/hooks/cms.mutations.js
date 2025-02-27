@@ -1,29 +1,29 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   billingAddressFormFunc,
   contactFormFunc,
   orderRequestFormFunc,
   passwordChangeFunc,
   userInformationUpdateFunc,
-} from './cms.api';
-import useAuth from './useAuth';
-import toast from 'react-hot-toast';
+} from "./cms.api";
+import useAuth from "./useAuth";
+import toast from "react-hot-toast";
 
 export const useContactMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
-    mutationKey: ['contact-us'],
-    mutationFn: (payload) => contactFormFunc(payload),
+    mutationKey: ["contact-us"],
+    mutationFn: payload => contactFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
     onSuccess: () => {
       setLoading(false);
-      toast.success('Your message has been sent !', {
+      toast.success("Your message has been sent !", {
         duration: 1500,
       });
     },
-    onError: (error) => {
+    onError: error => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -35,18 +35,18 @@ export const useContactMutation = () => {
 export const useBillingAddressMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
-    mutationKey: ['billing-address'],
-    mutationFn: (payload) => billingAddressFormFunc(payload),
+    mutationKey: ["billing-address"],
+    mutationFn: payload => billingAddressFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
     onSuccess: () => {
       setLoading(false);
-      toast.success('Billing address has been sent !', {
+      toast.success("Billing address has been sent !", {
         duration: 1500,
       });
     },
-    onError: (error) => {
+    onError: error => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -59,18 +59,18 @@ export const useBillingAddressMutation = () => {
 export const useOrderRequestMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
-    mutationKey: ['order-request'],
-    mutationFn: (payload) => orderRequestFormFunc(payload),
+    mutationKey: ["order-request"],
+    mutationFn: payload => orderRequestFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
     onSuccess: () => {
       setLoading(false);
-      toast.success('Order Request has been sent !', {
+      toast.success("Order Request has been sent !", {
         duration: 1500,
       });
     },
-    onError: (error) => {
+    onError: error => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -84,27 +84,27 @@ export const useUserInfoUpdateMutation = () => {
   const { setLoading, setUserInfo } = useAuth();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ['user-information-update'],
-    mutationFn: (payload) => userInformationUpdateFunc(payload),
+    mutationKey: ["user-information-update"],
+    mutationFn: payload => userInformationUpdateFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
-    onSuccess: (data) => {
+    onSuccess: data => {
       console.log(data);
       const userData = {
-        name: data?.data?.first_name + ' ' + data?.data?.last_name,
+        name: data?.data?.first_name + " " + data?.data?.last_name,
         image: data?.data?.avatar,
       };
       setUserInfo(userData);
-      queryClient.invalidateQueries(['user-info']);
-      toast.success('User information has been updated successfully!', {
+      queryClient.invalidateQueries(["user-info"]);
+      toast.success("User information has been updated successfully!", {
         duration: 1500,
       });
       setLoading(false);
     },
     onError: () => {
       setLoading(false);
-      toast.error('Error in user information update', {
+      toast.error("Error in user information update", {
         duration: 1500,
       });
     },
@@ -115,22 +115,38 @@ export const useUserInfoUpdateMutation = () => {
 export const usePasswordChangeMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
-    mutationKey: ['password-change'],
-    mutationFn: (payload) => passwordChangeFunc(payload),
+    mutationKey: ["password-change"],
+    mutationFn: payload => passwordChangeFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
     onSuccess: () => {
-      toast.success('Password has been changed successfully!', {
+      toast.success("Password has been changed successfully!", {
         duration: 1500,
       });
       setLoading(false);
     },
     onError: () => {
       setLoading(false);
-      toast.error('Error in password change', {
+      toast.error("Error in password change", {
         duration: 1500,
       });
+    },
+  });
+};
+
+// delete one payment:
+export const useDeletePayment = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["delete-payment"],
+    mutationFn: id => deletePaymentFunc(id),
+    onMutate: () => {},
+    onSuccess: () => {
+      toast.success("Payment deleted successfully!", {
+        duration: 1500,
+      });
+      queryClient.invalidateQueries["all-payments"];
     },
   });
 };
