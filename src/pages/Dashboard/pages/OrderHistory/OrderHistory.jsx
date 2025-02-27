@@ -22,7 +22,7 @@ const OrderHistory = () => {
           </p>
           <OrderSummerySvg />
         </div>
-        <DataTableDemo setCheckedData={setCheckedData} />
+        <DataTableDemo  setCheckedData={setCheckedData} />
       </div>
     </section>
   );
