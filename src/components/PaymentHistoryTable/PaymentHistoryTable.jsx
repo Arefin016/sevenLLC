@@ -39,9 +39,25 @@ export const PaymentHistoryTable = ({ data }) => {
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
 
+
+
+export const columns = [
+  {
+    id: "select",
+    cell: ({ row, table }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => {
+          table.getRowModel().rows.forEach((r) => {
+            if (r.id !== row.id) {
+              r.toggleSelected(false);
+            }
+          });
+
   const { mutateAsync: deletePaymentMutation } = useDeletePayment();
 
   const baseUrl = import.meta.env.VITE_SITE_URL;
+
 
   const handleDeleteInvoiceId = async id => {
     await deletePaymentMutation(id);
@@ -264,9 +280,9 @@ export const PaymentHistoryTable = ({ data }) => {
       <div className="rounded-md">
         <Table className="min-w-full w-full table-auto">
           <TableHeader>
-            {table.getHeaderGroups().map(headerGroup => (
+            {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map(header => (
+                {headerGroup.headers.map((header) => (
                   <TableHead key={header.id} className="text-left px-4 py-2">
                     {header.isPlaceholder
                       ? null
@@ -282,12 +298,12 @@ export const PaymentHistoryTable = ({ data }) => {
 
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map(row => (
+              table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
-                  {row.getVisibleCells().map(cell => (
+                  {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="text-left">
                       {flexRender(
                         cell.column.columnDef.cell,
