@@ -299,3 +299,4 @@ export const PaymentHistoryTable = ({ data }) => {
 };
 
 export default PaymentHistoryTable;
+
