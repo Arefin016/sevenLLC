@@ -2,7 +2,7 @@ import { NoResultSvg, OrderSummerySvg } from "../SvgContainer/SvgConainer";
 
 const EmptyOrderDetails = () => {
   return (
-    <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow xlg:mt-5 mt-10 px-7 xxs:px-4 sm:px-4 md:px-0">
+    <div className="bg-[#FFF]  rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow xlg:mt-5 mt-10 px-7 xxs:px-4 sm:px-4 md:px-0">
       <div className="flex md:mx-8 gap-2 md:gap-[22px] items-center mt-7 mb-[21px]">
         <h1 className="text-headingColor text-base xxs:text-lg md:text-xl font-semibold">
           Order Details
