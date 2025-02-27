@@ -39,10 +39,10 @@ export function DataTableDemo({ setCheckedData }) {
         id: item?.id,
         image: item?.image,
         item_type: item?.item_type,
-        orderInvoice: item?.order_invoice?.invoice_number,
+        orderInvoice: item?.order_invoice?.invoice_number || "None",
         quantity: item?.quantity,
-        amount: item?.order_invoice?.amount,
-        totalAmount: item?.order_invoice?.total_amount,
+        amount: item?.order_invoice?.amount || "None",
+        totalAmount: item?.order_invoice?.total_amount || "None",
       }));
       setData(formattedData);
     }
@@ -92,14 +92,12 @@ export function DataTableDemo({ setCheckedData }) {
       ),
       cell: ({ row }) => {
         const imageUrl = row.original.image; // Use row.original for better reliability
-        // console.log("Image URL:", imageUrl);
-
         return (
           <div className="text-headingColor text-xs xxs:text-base">
             {imageUrl ? (
               <img
                 src={`${import.meta.env.VITE_SITE_URL}/${imageUrl}`}
-                alt="Product"
+                alt="Not Found"
                 className="w-11 h-11 rounded object-cover"
               />
             ) : (
