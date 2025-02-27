@@ -54,7 +54,7 @@ const HaveDesign = ({
             *Accept AI (max size: 5MB).
           </p>
           {/* This is the choose file section */}
-          <div className="bg-[#FFF] shadow-fileShadow lg:py-4 py-2 rounded-[10px] lg:mt-4 mt-5">
+          <div className="bg-[#FFF] shadow-fileShadow xl:py-4 py-2 rounded-[10px] lg:mt-4 mt-5">
             <div className="flex justify-center items-center">
               <label className="cursor-pointer px-4 py-2 text-headingColor lg:text-base text-sm rounded-lg text-center font-semibold">
                 Choose File
@@ -87,7 +87,7 @@ const HaveDesign = ({
                   defaultValue=""
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                      <SelectTrigger className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                         <SelectValue placeholder="Preferred Colors" />
                       </SelectTrigger>
                       <SelectContent>
@@ -104,8 +104,8 @@ const HaveDesign = ({
               </div>
 
               {/* Preferred Finish (optional) */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Preferred Finish (optional)
                 </label>
                 <Controller
@@ -114,7 +114,7 @@ const HaveDesign = ({
                   defaultValue=""
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                      <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                         <SelectValue
                           className="!text-navbarColor"
                           placeholder="Preferred Finish"
@@ -134,12 +134,12 @@ const HaveDesign = ({
               </div>
             </div>
             {/* Second Input Column  */}
-            <div className="flex gap-10 mt-[19px]">
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+            <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Logo Included?
                 </label>
-                <div className="bg-[#D9D9D91A] h-[97px] pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px] flex items-center">
+                <div className="bg-[#D9D9D91A] xl:h-[97px] h-[40px] pt-[27.5px] pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px] flex items-center">
                   <Space direction="vertical">
                     {/* Use Controller to Manage Switch Component */}
                     <Controller
@@ -161,22 +161,22 @@ const HaveDesign = ({
                 </div>
               </div>
               {/* Brand Text  */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Brand Text
                 </label>
                 <Input
                   {...register("brand_text", { required: true })}
-                  className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                  className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="text"
                   placeholder="Enter text for your packaging (e.g., brand name, tagline)"
                 />
               </div>
             </div>
             {/*  */}
-            <div className="bg-[#FFF] shadow-fileShadow py-4 rounded-[10px] mt-4 max-w-[664px]">
+            <div className="bg-[#FFF] shadow-fileShadow lg:py-4 py-2 rounded-[10px] mt-4 max-w-[664px]">
               <div className="flex justify-center items-center">
-                <label className="cursor-pointer px-4 py-2 text-headingColor text-base rounded-lg text-center font-semibold">
+                <label className="cursor-pointer px-4 py-2 text-headingColor lg:text-base text-sm rounded-lg text-center font-semibold">
                   Choose File
                   <input
                     type="file"
@@ -194,25 +194,25 @@ const HaveDesign = ({
             </div>
             {/* This is the Design Placement */}
             <div className="flex flex-col gap-y-[10.5px] mt-[15.5px]">
-              <label className="text-lg text-headingColor font-medium">
+              <label className="xl:text-lg text-base text-headingColor font-medium">
                 Design Placement:*
               </label>
               <Input
                 {...register("design_placement", { required: true })}
-                className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                 type="text"
                 placeholder="Design Placement"
               />
             </div>
             {/* This is the Product Information */}
             <div className="mt-12">
-              <h1 className="text-center text-buttonColor text-2xl">
+              <h1 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
                 Product Information
               </h1>
               {/* First Input Column */}
-              <div className="flex gap-10 mt-[19px]">
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Product Category*
                   </label>
                   <Controller
@@ -225,7 +225,7 @@ const HaveDesign = ({
                         value={String(field.value)}
                         defaultValue={field.value}
                       >
-                        <SelectTrigger className="py-[30px] h-[97px] pl-[49px] bg-[#D9D9D91A] !text-xl text-headingColor">
+                        <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                           <SelectValue placeholder="Product Category" />
                         </SelectTrigger>
                         <SelectContent>
@@ -245,40 +245,40 @@ const HaveDesign = ({
                     )}
                   />
                 </div>
-                {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                {/* Item Type* */}
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Item Type*
                   </label>
                   <Input
                     {...register("item_type", { required: true })}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="I.e Perfume Bottle with Spray Top"
                   />
                 </div>
               </div>
               {/* Second Input Column  */}
-              <div className="flex gap-10 mt-7">
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-7">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Material(s) (optional)
                   </label>
                   <Input
                     {...register("material")}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Material(s)"
                   />
                 </div>
                 {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Accessories (optional)
                   </label>
                   <Input
                     {...register("accessories")}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Accessories"
                   />
@@ -289,9 +289,9 @@ const HaveDesign = ({
             {/* This is the contact information */}
             <div className="">
               {/* First Input Column */}
-              <div className="flex gap-10 mt-7">
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col md:flex-row lg:gap-10 gap-5 justify-center items-center md:gap-3 mt-7">
+                <div className="flex flex-col md:gap-y-[34px] lg:gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Size*
                   </label>
                   <Controller
@@ -303,7 +303,7 @@ const HaveDesign = ({
                         onValueChange={field.onChange}
                         value={field.value}
                       >
-                        <SelectTrigger className="py-[28px] h-[97px] pl-5 bg-[#D9D9D91A] !text-xl text-headingColor">
+                        <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[48px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                           <SelectValue
                             className="!text-navbarColor"
                             placeholder="Preferred Colors"
@@ -322,24 +322,24 @@ const HaveDesign = ({
                   />
                 </div>
                 {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Thickness in microns (optional)
                   </label>
                   <Input
                     {...register("thickness_in_micron")}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Thickness in microns"
                   />
                 </div>
                 {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
+                <div className="flex flex-col md:gap-y-[34px] lg:gap-y-[10.5px] lg:w-[50%] w-full">
                   <label className="text-lg text-headingColor font-medium">
                     Label?
                   </label>
                   {/*  */}
-                  <div className="bg-[#D9D9D91A] h-[97px] flex items-center pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                  <div className="bg-[#D9D9D91A] xl:h-[97px] h-[48px] flex items-center xl:pt-[27.5px] py-5 xl:pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
                     <Space direction="vertical">
                       <Controller
                         name="label"
@@ -364,31 +364,31 @@ const HaveDesign = ({
 
             {/* This is the Order Quantity  */}
             <div className="mt-12">
-              <h1 className="text-center text-buttonColor text-2xl">
+              <h1 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
                 Order Quantity
               </h1>
               {/* First Input Column */}
-              <div className="flex gap-10 mt-[19px]">
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col items-center md:flex-row lg:gap-10 gap-5 mt-[19px]">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full my-2">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Desired Quantity (required)*
-                    <span className="text-buttonColor text-lg font-semibold underline">
+                    <span className="text-buttonColor xl:text-lg text-base font-semibold underline">
                       MOQ guide
                     </span>
                   </label>
                   <Input
                     {...register("quantity", { required: true })}
-                    className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                    className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="number"
                     placeholder="Enter the number of units (e.g., 1,000)"
                   />
                 </div>
                 {/*  */}
-                <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                  <label className="text-lg text-headingColor font-medium">
+                <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                  <label className="xl:text-lg text-base text-headingColor font-medium">
                     Reoccurring?
                   </label>
-                  <div className="bg-[#D9D9D91A] h-[97px] flex items-center pt-[27.5px] pb-[33.5px] pl-[40.5px] rounded-[10px]">
+                  <div className="bg-[#D9D9D91A] xl:h-[97px] h-[48px] flex items-center xl:pt-[27.5px] py-5 xl:pb-[33.5px] xl:pl-[40.5px] pl-5 rounded-[10px]">
                     <Space direction="vertical">
                       <Controller
                         name="reoccurring"
@@ -426,7 +426,7 @@ const HaveDesign = ({
               Shipping Address (required)*
             </label>
             <Select>
-              <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[60px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-buttonColor">
+              <SelectTrigger className="xl:py-[28px] xl:h-[97px] h-[48px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-buttonColor">
                 <SelectValue
                   className="!text-navbarColor"
                   placeholder="Choose An Address"
@@ -449,7 +449,7 @@ const HaveDesign = ({
                 First Name*
               </label>
               <Input
-                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                 type="text"
                 name="shipping_user_f_name"
                 placeholder="First Name"
@@ -467,7 +467,7 @@ const HaveDesign = ({
                 Last Name*
               </label>
               <Input
-                className="xl:py-[28px] xl:h-[97px] h-[60px] pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
+                className="xl:py-[28px] xl:h-[97px] h-[48px] pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
                 type="text"
                 name="shipping_user_l_name"
                 placeholder="Last Name"
@@ -488,7 +488,7 @@ const HaveDesign = ({
                 Phone*
               </label>
               <Input
-                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
+                className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
                 type="number"
                 name="shipping_phone"
                 {...register("shipping_phone", { required: true })}
@@ -504,7 +504,7 @@ const HaveDesign = ({
                 Email*
               </label>
               <Input
-                className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
+                className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
                 type="email"
                 name="shipping_email"
                 placeholder="Email"
@@ -522,7 +522,7 @@ const HaveDesign = ({
                 Company Name
               </label>
               <Input
-                className="py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                 type="text"
                 name="shipping_company_name"
                 placeholder="Company Name"
@@ -552,7 +552,7 @@ const HaveDesign = ({
                     {...field}
                     onValueChange={(value) => field.onChange(value)}
                   >
-                    <SelectTrigger className="py-[30px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                    <SelectTrigger className="py-[30px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                       <SelectValue
                         className="!text-navbarColor"
                         placeholder="Select"
@@ -590,7 +590,7 @@ const HaveDesign = ({
                     {...field}
                     onValueChange={(value) => field.onChange(value)}
                   >
-                    <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                    <SelectTrigger className="xl:py-[30px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                       <SelectValue
                         className="!text-navbarColor"
                         placeholder="Select"
@@ -629,7 +629,7 @@ const HaveDesign = ({
                     {...field}
                     onValueChange={(value) => field.onChange(value)}
                   >
-                    <SelectTrigger className="py-[30px] xl:h-[97px] h-[60px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
+                    <SelectTrigger className="py-[30px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
                       <SelectValue
                         className="!text-navbarColor"
                         placeholder="Select"
@@ -656,7 +656,7 @@ const HaveDesign = ({
                 Postal Code
               </label>
               <Input
-                className="py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                className="py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                 type="number"
                 placeholder="Postal Code"
                 name="zip"
