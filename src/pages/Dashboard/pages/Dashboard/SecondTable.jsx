@@ -18,6 +18,7 @@ const SecondTable = () => {
   const { data: allPayments } = useGetAllPayments();
   // console.log(allPayments);
 
+
   const { refetch } = useContext(AuthContext);
 
   const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -44,7 +45,7 @@ const SecondTable = () => {
         <div className="flex flex-col md:flex-row gap-11 items-center">
           {/* Tabs Header */}
           <div className="flex border-b gap-10 md:gap-5 xl:gap-[167px] md:w-[80%]">
-            {tabs.map(tab => (
+            {tabs.map((tab) => (
               <button
                 key={tab?.dataTitle}
                 className={`xmd:px-4 pt-6 pb-2 xmd:py-[21px] text-xs xxs:text-lg xmd:text-xl font-semibold ${

@@ -6,9 +6,11 @@ import { useForm } from "react-hook-form";
 import Button from "@/components/Button/Button";
 import { useOrderRequestMutation } from "@/hooks/cms.mutations";
 import toast from "react-hot-toast";
-
+import useAuth from "@/hooks/useAuth";
+import { PiSpinnerBold } from "react-icons/pi";
 
 const OrderForms = () => {
+  const { loading } = useAuth();
   const [selectedFile, setSelectedFile] = useState(null);
   const [firstSelectedFile, setFirstSelectedFile] = useState(null);
   const [selectedOption, setSelectedOption] = useState("Have a Design");
@@ -87,12 +89,14 @@ const OrderForms = () => {
   };
 
   return (
-    <section className="pt-[115px]">
-      <div className="container mx-auto border border-[#000F2D33] rounded-[30px] py-[120px] px-[80px]">
+    <section className="lg:pt-0 xlg:pt-[100px] xl:pt-[115px] mx-6 lg:mx-10 xl:mx-0 mt-10">
+      <div className="container mx-auto border border-[#000F2D33] lg:rounded-[30px] rounded-xl xl:py-[120px] py-7 xl:px-[80px]">
         {/* This is the title section */}
         <div className="flex flex-col justify-center items-center">
-          <h1 className="text-headingColor text-5xl font-bold">Order Forms</h1>
-          <p className="max-w-[697px] text-center mt-6 text-navbarColor font-semibold italic">
+          <h1 className="text-headingColor xl:text-5xl lg:text-4xl text-3xl font-bold">
+            Order Forms
+          </h1>
+          <p className="xl:max-w-[697px] text-sm text-center mt-6 text-navbarColor font-semibold italic leading-6 lg:leading-[25.2px]">
             &quot;MOQs vary depending on product specifications and design
             requirements. Accurate MOQs and pricing will be confirmed during the
             quotation process. Thank you for your understanding!&quot;
@@ -102,20 +106,20 @@ const OrderForms = () => {
         {/* form */}
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* This is the contact information */}
-          <div className="mt-12">
-            <h2 className="text-center text-buttonColor text-2xl">
+          <div className="lg:mt-12 mt-10">
+            <h2 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
               Contact Information
             </h2>
             {/* First Input Column */}
-            <div className="flex gap-10 mt-[19px]">
+            <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
               {/* Full Name */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Full Name*
                 </label>
                 <Input
                   {...register("full_name", { required: true })}
-                  className="py-[31px] h-[97px] pl-10 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                  className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="text"
                   placeholder="Full Name"
                 />
@@ -126,13 +130,13 @@ const OrderForms = () => {
                 )}
               </div>
               {/* Email */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Email*
                 </label>
                 <Input
                   {...register("email", { required: true })}
-                  className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                  className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="email"
                   placeholder="Email"
                 />
@@ -144,14 +148,14 @@ const OrderForms = () => {
               </div>
             </div>
             {/* Second Input Column  */}
-            <div className="flex gap-10 mt-[19px]">
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+            <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Phone*
                 </label>
                 <Input
                   {...register("phone", { required: true })}
-                  className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                  className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="number"
                   placeholder="Phone"
                 />
@@ -162,13 +166,13 @@ const OrderForms = () => {
                 )}
               </div>
               {/*  */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Company Name
                 </label>
                 <Input
                   {...register("company_name", { required: true })}
-                  className="py-[31px] h-[97px] pl-12 bg-[#D9D9D91A] rounded-[10px] !text-xl text-headingColor"
+                  className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="text"
                   placeholder="Company Name"
                 />
@@ -180,17 +184,17 @@ const OrderForms = () => {
               </div>
             </div>
           </div>
-          <div className="mt-12">
-            <h1 className="text-center text-buttonColor text-2xl">
+          <div className="lg:mt-12 mt-10">
+            <h1 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">
               Design Information
             </h1>
-            <button className="bg-buttonColor w-full text-white text-base font-semibold py-[23px] rounded-[10px] mt-7">
+            <button className="bg-buttonColor w-full text-white lg:text-base text-xs md:text-sm font-semibold xl:py-[23px] py-4 lg:py-3 rounded-[10px] mt-7">
               Do You Have a Completed Design?
             </button>
           </div>
           {/* This is the checkout  */}
-          <div className="flex gap-7 justify-center bg-[#FAFBFC] mt-5 py-7 rounded-[10px]">
-            <div className="flex gap-2 border border-[#7D7F85] py-[10px] px-[32px] rounded-lg items-center">
+          <div className="flex lg:gap-7 md:gap-3 gap-2 px-2 justify-center bg-[#FAFBFC] mt-5 py-7 rounded-[10px]">
+            <div className="flex flex-col xxs:flex-row gap-2 border border-[#7D7F85] md:py-[10px] py-1 lg:px-[32px] px-3 rounded-lg items-center">
               <input
                 className="h-4 w-4"
                 type="checkbox"
@@ -200,10 +204,12 @@ const OrderForms = () => {
                 checked={selectedOption === "Have a Design"}
                 onChange={() => handleCheckboxChange("Have a Design")}
               />
-              <p>I Have a Design</p>
+              <p className="lg:text-base text-xs md:text-sm text-headingColor">
+                I Have a Design
+              </p>
             </div>
 
-            <div className="flex gap-2 border border-[#7D7F85] py-[10px] px-[32px] rounded-lg items-center">
+            <div className="flex flex-col xxs:flex-row gap-2 border border-[#7D7F85] md:py-[10px] py-1 lg:px-[32px] px-3 rounded-lg items-center">
               <input
                 className="h-4 w-4"
                 type="checkbox"
@@ -213,7 +219,9 @@ const OrderForms = () => {
                 checked={selectedOption === "Need a Design"}
                 onChange={() => handleCheckboxChange("Need a Design")}
               />
-              <p>I Need a Design</p>
+              <p className="lg:text-base text-xs md:text-sm text-headingColor">
+                I Need a Design
+              </p>
             </div>
           </div>
           <div>
@@ -246,7 +254,9 @@ const OrderForms = () => {
                 type="submit"
                 text={"Place Order"}
                 color={"bg-buttonColor"}
-              />
+                disabled={loading}
+                
+              ></Button>
             </div>
           </div>
         </form>

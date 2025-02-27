@@ -3,6 +3,8 @@ import {
   billingAddressFormFunc,
   contactFormFunc,
   deletePaymentFunc,
+  deleteOrderFunc,
+
   orderRequestFormFunc,
   passwordChangeFunc,
   userInformationUpdateFunc,
@@ -10,12 +12,14 @@ import {
 import useAuth from "./useAuth";
 import toast from "react-hot-toast";
 import { useGetAllPayments } from '@/hooks/cms.queries';
+import { useNavigate } from "react-router-dom";
+
 
 export const useContactMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
     mutationKey: ["contact-us"],
-    mutationFn: payload => contactFormFunc(payload),
+    mutationFn: (payload) => contactFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
@@ -60,6 +64,7 @@ export const useBillingAddressMutation = () => {
 // Order request submission form
 export const useOrderRequestMutation = () => {
   const { setLoading } = useAuth();
+  const navigate = useNavigate();
   return useMutation({
     mutationKey: ["order-request"],
     mutationFn: payload => orderRequestFormFunc(payload),
@@ -71,6 +76,7 @@ export const useOrderRequestMutation = () => {
       toast.success("Order Request has been sent !", {
         duration: 1500,
       });
+      navigate("/dashboardLayout/mainDashboard");
     },
     onError: error => {
       setLoading(false);
@@ -131,6 +137,31 @@ export const usePasswordChangeMutation = () => {
     onError: () => {
       setLoading(false);
       toast.error("Error in password change", {
+        duration: 1500,
+      });
+    },
+  });
+};
+
+// Delete order request
+export const useDeleteOrderRequest = () => {
+  const { setLoading } = useAuth();
+
+  return useMutation({
+    mutationKey: ["delete-order-request"],
+    mutationFn: (payload) => deleteOrderFunc(payload),
+    onMutate: () => {
+      setLoading(true);
+    },
+    onSuccess: () => {
+      setLoading(false);
+      toast.success("Order Request has been deleted successfully!", {
+        duration: 1500,
+      });
+    },
+    onError: (error) => {
+      setLoading(false);
+      toast.error(error.message || "Failed to delete order request", {
         duration: 1500,
       });
     },
