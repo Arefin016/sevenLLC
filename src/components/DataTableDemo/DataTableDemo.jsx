@@ -30,7 +30,7 @@ import { useDeleteOrderRequest } from "@/hooks/cms.mutations";
 
 export function DataTableDemo({ setCheckedData }) {
   const { data: orderRequest } = useGetAllOrderRequest();
-  console.log(orderRequest);
+  // console.log(orderRequest);
   const [data, setData] = useState([]);
   const { mutate: deleteOrderRequest } = useDeleteOrderRequest(setData);
 

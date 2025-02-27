@@ -2,14 +2,18 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   billingAddressFormFunc,
   contactFormFunc,
+  deletePaymentFunc,
   deleteOrderFunc,
+
   orderRequestFormFunc,
   passwordChangeFunc,
   userInformationUpdateFunc,
 } from "./cms.api";
 import useAuth from "./useAuth";
 import toast from "react-hot-toast";
+import { useGetAllPayments } from '@/hooks/cms.queries';
 import { useNavigate } from "react-router-dom";
+
 
 export const useContactMutation = () => {
   const { setLoading } = useAuth();
@@ -167,6 +171,10 @@ export const useDeleteOrderRequest = () => {
 // delete one payment:
 export const useDeletePayment = () => {
   const queryClient = useQueryClient();
+
+  // Use the hook to get the current payment data
+  const { refetch } = useGetAllPayments();
+
   return useMutation({
     mutationKey: ["delete-payment"],
     mutationFn: id => deletePaymentFunc(id),
@@ -175,7 +183,19 @@ export const useDeletePayment = () => {
       toast.success("Payment deleted successfully!", {
         duration: 1500,
       });
-      queryClient.invalidateQueries["all-payments"];
+
+      // Invalidate the queries to refetch
+      queryClient.invalidateQueries("all-payments");
+
+      // Explicitly trigger a refetch after the payment is deleted
+      refetch();
+    },
+    onError: () => {
+      toast.error("Error deleting payment", {
+        duration: 1500,
+      });
     },
   });
 };
+
+//  ok 
