@@ -66,7 +66,9 @@ const Footer = () => {
                 type="text"
                 placeholder="Email"
               />
-              <Button text={"Sign Up"} color={"bg-buttonColor"} />
+              <Link to={"/signUp"}>
+                <Button text={"Sign Up"} color={"bg-buttonColor"} />
+              </Link>
             </div>
           </div>
         </div>

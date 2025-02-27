@@ -12,8 +12,10 @@ const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo, clearUserInfo] = useLocalStorage("user", null);
   const [loading, setLoading] = useState(false);
   const [customLoading, setCustomLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data: userAllData } = useGetUserInfoQuery(token);
   const [refetch, setRefetch] = useState(false); // Add refetch state
+
 
   //get user info::
   useEffect(() => {
@@ -64,6 +66,8 @@ const AuthProvider = ({ children }) => {
     clearUserInfo,
     refetch, 
     triggerRefetch, 
+    isLoggedIn,
+    setIsLoggedIn,
   };
 
   return (

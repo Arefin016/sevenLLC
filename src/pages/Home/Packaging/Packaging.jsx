@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import Button from '@/components/Button/Button';
-import Card from '@/components/Card/Card';
+import Button from "@/components/Button/Button";
+import Card from "@/components/Card/Card";
+import { Link } from "react-router-dom";
 
 const Packaging = ({ data }) => {
   return (
@@ -28,9 +29,9 @@ const Packaging = ({ data }) => {
             Don’t see what you need? Fill out our form to the best of your
             ability and we’ll get you a quote!
           </div>
-          <div className="xl:mt-12 mt-9">
-            <Button text={'Explore All Products'} color={'bg-buttonColor'} />
-          </div>
+          <Link to={"/productServices"} className="xl:mt-12 mt-9">
+            <Button text={"Explore All Products"} color={"bg-buttonColor"} />
+          </Link>
         </div>
       </div>
     </section>

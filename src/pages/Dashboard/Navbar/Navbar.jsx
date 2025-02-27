@@ -3,12 +3,12 @@ import {
   OrderHistorySvg,
   SettingsSvg,
   SignOutSvg,
-} from '../../../components/SvgContainer/SvgConainer';
-import Logo from '../../../assets/images/logo.png';
-import { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import useAuth from '@/hooks/useAuth';
+} from "../../../components/SvgContainer/SvgConainer";
+import Logo from "../../../assets/images/logo.png";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import useAuth from "@/hooks/useAuth";
 
 const Navbar = () => {
   const { userInfo } = useAuth();
@@ -19,24 +19,24 @@ const Navbar = () => {
 
   const dashboardSidebarNavLinks = [
     {
-      path: '/dashboardLayout/mainDashboard',
+      path: "/dashboardLayout/mainDashboard",
       svg: DashboardSvg,
-      title: 'Dashboard',
+      title: "Dashboard",
     },
     {
-      path: '/dashboardLayout/orderHistory',
+      path: "/dashboardLayout/orderHistory",
       svg: OrderHistorySvg,
-      title: 'Order History',
+      title: "Order History",
     },
     {
-      path: '/dashboardLayout/paymentHistory',
+      path: "/dashboardLayout/paymentHistory",
       svg: DashboardSvg,
-      title: 'Payment History',
+      title: "Payment History",
     },
     {
-      path: '/dashboardLayout/settings',
+      path: "/dashboardLayout/settings",
       svg: SettingsSvg,
-      title: 'Settings',
+      title: "Settings",
     },
   ];
 
@@ -48,11 +48,11 @@ const Navbar = () => {
     };
 
     if (isSideBarOpen) {
-      document.addEventListener('mousedown', handleOutsideClick);
+      document.addEventListener("mousedown", handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [isSideBarOpen]);
 
@@ -67,7 +67,7 @@ const Navbar = () => {
               initial={{ x: -280 }}
               animate={{ x: 0 }}
               exit={{ x: -280 }}
-              transition={{ type: 'tween', ease: 'easeInOut', duration: 0.5 }}
+              transition={{ type: "tween", ease: "easeInOut", duration: 0.5 }}
             >
               <div
                 ref={sideBarRef}
@@ -83,8 +83,8 @@ const Navbar = () => {
                       className={({ isActive }) =>
                         `flex gap-4 items-center max-w-[250px] py-3 px-3 rounded-2xl text-[#FFF] ${
                           isActive
-                            ? 'bg-buttonColor text-white text-sm'
-                            : 'bg-white text-navbarColor text-sm'
+                            ? "bg-buttonColor text-white text-sm"
+                            : "bg-white text-navbarColor text-sm"
                         }`
                       }
                     >
@@ -99,8 +99,8 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `flex gap-4 items-center py-3 px-3 rounded-2xl text-[#FFF] ${
                         isActive
-                          ? 'bg-buttonColor text-white text-sm'
-                          : 'bg-white text-navbarColor text-sm'
+                          ? "bg-buttonColor text-white text-sm"
+                          : "bg-white text-navbarColor text-sm"
                       }`
                     }
                   >
@@ -144,11 +144,13 @@ const Navbar = () => {
       {/* Mobile Navbar */}
       <div className="w-full xlg:hidden bg-[#fff] py-5 fixed top-0 left-0 z-[1001]">
         <div className="flex w-full items-center justify-between px-5 xlg:px-10">
-          <img
-            src={Logo}
-            alt="not found"
-            className="h-[50px] w-[60px] object-cover"
-          />
+          <Link to={"/"}>
+            <img
+              src={Logo}
+              alt="not found"
+              className="h-[50px] w-[60px] object-cover"
+            />
+          </Link>
           {isSideBarOpen ? (
             <div
               onClick={() => setisSideBarOpen(false)}

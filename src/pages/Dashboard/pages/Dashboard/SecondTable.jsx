@@ -16,6 +16,23 @@ const SecondTable = () => {
 
   const { data: allPayments } = useGetAllPayments();
   console.log(allPayments);
+  const getPaymentData = () => {
+    let token = localStorage.getItem("token");
+    token = JSON.parse(token);
+    axios({
+      method: "get",
+      url: `${baseUrl}/api/user-order/payment`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        setPayMentHistory(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const { refetch } = useContext(AuthContext);
 
@@ -46,7 +63,7 @@ const SecondTable = () => {
         <div className="flex flex-col md:flex-row gap-11 items-center">
           {/* Tabs Header */}
           <div className="flex border-b gap-10 md:gap-5 xl:gap-[167px] md:w-[80%]">
-            {tabs.map(tab => (
+            {tabs.map((tab) => (
               <button
                 key={tab?.dataTitle}
                 className={`xmd:px-4 pt-6 pb-2 xmd:py-[21px] text-xs xxs:text-lg xmd:text-xl font-semibold ${

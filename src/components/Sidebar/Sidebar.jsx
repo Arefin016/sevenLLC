@@ -1,34 +1,34 @@
 /* eslint-disable react/prop-types */
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import dashboardLogo from '../../assets/images/DashboardLogo/dashboardLogo.png';
+import { Link, NavLink, useLocation } from "react-router-dom";
+import dashboardLogo from "../../assets/images/DashboardLogo/dashboardLogo.png";
 
 import {
   DashboardSvg,
   OrderHistorySvg,
   SettingsSvg,
   SignOutSvg,
-} from '../SvgContainer/SvgConainer';
+} from "../SvgContainer/SvgConainer";
 
 const dashboardSidebarNavLinks = [
   {
-    path: '/dashboardLayout/mainDashboard',
+    path: "/dashboardLayout/mainDashboard",
     svg: DashboardSvg,
-    title: 'Dashboard',
+    title: "Dashboard",
   },
   {
-    path: '/dashboardLayout/orderHistory',
+    path: "/dashboardLayout/orderHistory",
     svg: OrderHistorySvg,
-    title: 'Order History',
+    title: "Order History",
   },
   {
-    path: '/dashboardLayout/paymentHistory',
+    path: "/dashboardLayout/paymentHistory",
     svg: DashboardSvg,
-    title: 'Payment History',
+    title: "Payment History",
   },
   {
-    path: '/dashboardLayout/settings',
+    path: "/dashboardLayout/settings",
     svg: SettingsSvg,
-    title: 'Settings',
+    title: "Settings",
   },
 ];
 
@@ -38,18 +38,18 @@ const Sidebar = ({ onLogout }) => {
   return (
     <>
       <section>
-        <div className="  hidden xlg:block bg-[#FFF] shadow-sm h-[100vh]">
+        <div className="hidden xlg:block bg-[#FFF] shadow-sm h-[100vh]">
           {/* This is the dashboard logo */}
           <div className="flex justify-center mt-[47.8px] mb-[37.36px]">
             <Link to="/">
               <img
-                className=" w-[100px] xl:w-[118px] h-[75px] xl:h-[89px] object-cover "
+                className="w-[100px] xl:w-[118px] h-[75px] xl:h-[89px] object-cover "
                 src={dashboardLogo}
                 alt=""
               />
             </Link>
           </div>
-          <div className=" px-6 xl:px-12 space-y-4">
+          <div className="px-6 xl:px-12 space-y-4">
             {/* This is the dashboard */}
             {dashboardSidebarNavLinks?.map((link) => (
               <NavLink
@@ -58,8 +58,8 @@ const Sidebar = ({ onLogout }) => {
                 className={({ isActive }) =>
                   `flex gap-4 items-center  py-4 px-6 rounded-xl xl:rounded-2xl text-[#FFF] ${
                     isActive
-                      ? 'bg-buttonColor text-white text-lg'
-                      : 'bg-white text-navbarColor text-lg'
+                      ? "bg-buttonColor text-white text-lg"
+                      : "bg-white text-navbarColor text-lg"
                   }`
                 }
               >
@@ -72,7 +72,10 @@ const Sidebar = ({ onLogout }) => {
             ))}
 
             {/* This is the Sign Out */}
-            <div onClick={onLogout} className="flex gap-4 py-4 px-6 cursor-pointer text-navbarColor text-lg">
+            <div
+              onClick={onLogout}
+              className="flex gap-4 py-4 px-6 cursor-pointer text-navbarColor text-lg"
+            >
               <SignOutSvg />
               <span>Sign Out</span>
             </div>
