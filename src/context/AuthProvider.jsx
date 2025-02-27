@@ -14,6 +14,8 @@ const AuthProvider = ({ children }) => {
   const [customLoading, setCustomLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data: userAllData } = useGetUserInfoQuery(token);
+  const [refetch, setRefetch] = useState(false); // Add refetch state
+
 
   //get user info::
   useEffect(() => {
@@ -35,6 +37,20 @@ const AuthProvider = ({ children }) => {
     userData();
   }, [token, userAllData?.data]);
 
+  // Effect to listen for refetch trigger
+  useEffect(() => {
+    if (refetch) {
+      console.log("Refetch triggered!");
+
+      setRefetch(false);
+    }
+  }, [refetch]); // Runs whenever `refetch` state changes
+
+  // Function to trigger refetch
+  const triggerRefetch = () => {
+    setRefetch(true); // Set refetch to true to trigger the useEffect above
+  };
+
   const stateValue = {
     user,
     setUser,
@@ -48,6 +64,8 @@ const AuthProvider = ({ children }) => {
     userInfo,
     setUserInfo,
     clearUserInfo,
+    refetch, 
+    triggerRefetch, 
     isLoggedIn,
     setIsLoggedIn,
   };

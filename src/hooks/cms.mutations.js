@@ -25,7 +25,7 @@ export const useContactMutation = () => {
         duration: 1500,
       });
     },
-    onError: (error) => {
+    onError: error => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -38,7 +38,7 @@ export const useBillingAddressMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
     mutationKey: ["billing-address"],
-    mutationFn: (payload) => billingAddressFormFunc(payload),
+    mutationFn: payload => billingAddressFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
@@ -48,7 +48,7 @@ export const useBillingAddressMutation = () => {
         duration: 1500,
       });
     },
-    onError: (error) => {
+    onError: error => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -63,7 +63,7 @@ export const useOrderRequestMutation = () => {
   const navigate = useNavigate();
   return useMutation({
     mutationKey: ["order-request"],
-    mutationFn: (payload) => orderRequestFormFunc(payload),
+    mutationFn: payload => orderRequestFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
@@ -74,7 +74,7 @@ export const useOrderRequestMutation = () => {
       });
       navigate("/dashboardLayout/mainDashboard");
     },
-    onError: (error) => {
+    onError: error => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -89,11 +89,11 @@ export const useUserInfoUpdateMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["user-information-update"],
-    mutationFn: (payload) => userInformationUpdateFunc(payload),
+    mutationFn: payload => userInformationUpdateFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
-    onSuccess: (data) => {
+    onSuccess: data => {
       console.log(data);
       const userData = {
         name: data?.data?.first_name + " " + data?.data?.last_name,
@@ -120,7 +120,7 @@ export const usePasswordChangeMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
     mutationKey: ["password-change"],
-    mutationFn: (payload) => passwordChangeFunc(payload),
+    mutationFn: payload => passwordChangeFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
@@ -160,6 +160,22 @@ export const useDeleteOrderRequest = () => {
       toast.error(error.message || "Failed to delete order request", {
         duration: 1500,
       });
+    },
+  });
+};
+
+// delete one payment:
+export const useDeletePayment = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["delete-payment"],
+    mutationFn: id => deletePaymentFunc(id),
+    onMutate: () => {},
+    onSuccess: () => {
+      toast.success("Payment deleted successfully!", {
+        duration: 1500,
+      });
+      queryClient.invalidateQueries["all-payments"];
     },
   });
 };
