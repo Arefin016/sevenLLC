@@ -45,24 +45,8 @@ export const PaymentHistoryTable = ({ data }) => {
 
   const handleDeleteInvoiceId = async id => {
     await deletePaymentMutation(id);
-    // let token = localStorage.getItem("token");
-    // token = JSON.parse(token);
-    // axios({
-    //   method: "get",
-    //   url: `${baseUrl}/api/payment-history/delete/${id}`,
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // })
-    //   .then(res => {
-    //     console.log(res.data);
-    //     toast.success(res.data.message);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     toast.error(err.message);
-    //   });
   };
+  
   const columns = [
     {
       id: "select",
