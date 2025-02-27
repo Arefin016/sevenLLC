@@ -102,7 +102,7 @@ const Dashboard = () => {
         <DataTableDemo />
       </div>
       {/* This is thr third div */}
-      <div className="my-8">
+      <div className="my-8 ">
         <SecondTable />
       </div>
     </div>
