@@ -38,9 +38,11 @@ export function DataTableDemo({ setCheckedData }) {
       const formattedData = orderRequest.map((item) => ({
         id: item?.id,
         image: item?.image,
-        item_type: item?.itemType,
-        orderInvoice: item?.orderInvoice,
+        item_type: item?.item_type,
+        orderInvoice: item?.order_invoice?.invoice_number,
         quantity: item?.quantity,
+        amount: item?.order_invoice?.amount,
+        totalAmount: item?.order_invoice?.total_amount,
       }));
       setData(formattedData);
     }
@@ -72,7 +74,7 @@ export function DataTableDemo({ setCheckedData }) {
       accessorKey: "id",
       header: () => (
         <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
-          ID
+          Id
         </span>
       ),
       cell: ({ row }) => (
@@ -89,11 +91,17 @@ export function DataTableDemo({ setCheckedData }) {
         </span>
       ),
       cell: ({ row }) => {
-        const imageUrl = row.getValue("image");
+        const imageUrl = row.original.image; // Use row.original for better reliability
+        // console.log("Image URL:", imageUrl);
+
         return (
           <div className="text-headingColor text-xs xxs:text-base">
             {imageUrl ? (
-              <img src={imageUrl} alt="Product" className="w-11 h-11 rounded" />
+              <img
+                src={`${import.meta.env.VITE_SITE_URL}/${imageUrl}`}
+                alt="Product"
+                className="w-11 h-11 rounded object-cover"
+              />
             ) : (
               <div className="w-8 h-8 rounded bg-gray-300" />
             )}
@@ -118,7 +126,7 @@ export function DataTableDemo({ setCheckedData }) {
       accessorKey: "orderInvoice",
       header: () => (
         <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
-          Order-Invoice
+          Order Invoice
         </span>
       ),
       cell: ({ row }) => (
@@ -137,6 +145,32 @@ export function DataTableDemo({ setCheckedData }) {
       cell: ({ row }) => (
         <div className="text-headingColor text-xs xxs:text-base">
           {row.getValue("quantity")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "amount",
+      header: () => (
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
+          Amount
+        </span>
+      ),
+      cell: ({ row }) => (
+        <div className="text-headingColor text-xs xxs:text-base">
+          {row.getValue("amount")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "totalAmount",
+      header: () => (
+        <span className="font-lato text-headingColor font-semibold text-xs xxs:text-base">
+          Total Amount
+        </span>
+      ),
+      cell: ({ row }) => (
+        <div className="text-headingColor text-xs xxs:text-base">
+          {row.getValue("totalAmount")}
         </div>
       ),
     },
