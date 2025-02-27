@@ -13,8 +13,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [customLoading, setCustomLoading] = useState(false);
   const { data: userAllData } = useGetUserInfoQuery(token);
-
-  console.log(userAllData);
+ 
   //get user info::
   useEffect(() => {
     if (!token) {

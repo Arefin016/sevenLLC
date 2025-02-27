@@ -30,7 +30,7 @@ const Banner = ({ data }) => {
             <img
               className="xl:max-w-[569px] xl:h-[597px] md:h-full object-contain"
               src={`${import.meta.env.VITE_SITE_URL}/${data?.image_url}`}
-              alt=""
+              alt="not found"
             />
           </div>
         </div>

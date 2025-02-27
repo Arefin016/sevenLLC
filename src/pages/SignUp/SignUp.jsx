@@ -35,8 +35,8 @@ const SignUp = () => {
     try {
       if (image) {
         const userData = { ...data, avatar: image };
-        await signUpMutation(userData); // Wait for mutation to complete
-        reset(); // Reset the form after successful mutation
+        await signUpMutation(userData);
+        reset();
         setImage(null);
       } else {
         toast.error("You must upload a image before proceed", {
