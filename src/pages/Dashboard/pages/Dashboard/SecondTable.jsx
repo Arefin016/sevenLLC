@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthProvider";
 import { useGetAllPayments } from "@/hooks/cms.queries";
 
+
 const baseUrl = import.meta.env.VITE_SITE_URL;
 
 const SecondTable = () => {
@@ -14,25 +15,9 @@ const SecondTable = () => {
     { label: "Year to date", dataTitle: "yearToDateData" },
   ];
 
-  const { data: allPayments, isLoading } = useGetAllPayments();
-  console.log(allPayments);
-  const getPaymentData = () => {
-    let token = localStorage.getItem("token");
-    token = JSON.parse(token);
-    axios({
-      method: "get",
-      url: `${baseUrl}/api/user-order/payment`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        setPayMentHistory(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
+  const { data: allPayments } = useGetAllPayments();
+  // console.log(allPayments);
 
   const { refetch } = useContext(AuthContext);
 
@@ -81,7 +66,8 @@ const SecondTable = () => {
         </div>
 
         {/* Tabs Content */}
-        {/* <PaymentHistoryTable data={formattedPayments} /> */}
+        {allPayments && <PaymentHistoryTable data={formattedPayments} />}
+        {/*  */}
       </div>
     </section>
   );

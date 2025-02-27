@@ -28,21 +28,26 @@ import { DeleteSvg, DownloadSvg, PrintSvg } from "../SvgContainer/SvgConainer";
 import { useGetAllOrderRequest } from "@/hooks/cms.queries";
 import { useDeleteOrderRequest } from "@/hooks/cms.mutations";
 
-export function DataTableDemo({ setCheckedData }) {
+export function DataTableDemo({ setCheckedData ,  }) {
   const { data: orderRequest } = useGetAllOrderRequest();
-  console.log(orderRequest);
+  // console.log(orderRequest);
   const [data, setData] = useState([]);
   const { mutate: deleteOrderRequest } = useDeleteOrderRequest(setData);
 
-  const handleDelete = (id) => {
-    // console.log(id);
+
+  const handleDelete = id => {
+    console.log(id);
     deleteOrderRequest(id);
+  };
+
+  const handleShowDetials = id => {
+    console.log(id);
   };
 
   useEffect(() => {
     if (orderRequest) {
       // Assuming orderRequest is an array of objects with the necessary fields
-      const formattedData = orderRequest.map((item) => ({
+      const formattedData = orderRequest.map(item => ({
         id: item?.id,
         image: item?.image,
         item_type: item?.item_type,
@@ -61,10 +66,11 @@ export function DataTableDemo({ setCheckedData }) {
       cell: ({ row, table }) => (
         <Checkbox
           checked={row.getIsSelected()}
-          onCheckedChange={(value) => {
-            table.getRowModel().rows.forEach((r) => {
+          onCheckedChange={value => {
+            table.getRowModel().rows.forEach(r => {
               if (r.id !== row.id) {
                 r.toggleSelected(false);
+                handleShowDetials(row.original.id);
               }
             });
 
@@ -247,9 +253,9 @@ export function DataTableDemo({ setCheckedData }) {
       <div className="rounded-md">
         <Table className="min-w-full w-full table-auto">
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
+            {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
+                {headerGroup.headers.map(header => (
                   <TableHead key={header.id} className="text-left px-4 py-2">
                     {header.isPlaceholder
                       ? null
@@ -264,13 +270,13 @@ export function DataTableDemo({ setCheckedData }) {
           </TableHeader>
           <TableBody className="bg-[#FFF]">
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map(row => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   className=""
                 >
-                  {row.getVisibleCells().map((cell) => (
+                  {row.getVisibleCells().map(cell => (
                     <TableCell key={cell.id} className="p-2 md:p-4 text-left">
                       {flexRender(
                         cell.column.columnDef.cell,
