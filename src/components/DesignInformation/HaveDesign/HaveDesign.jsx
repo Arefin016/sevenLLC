@@ -31,12 +31,12 @@ const HaveDesign = ({
         {/* This is the text area */}
         <div className="mt-[19px]">
           <div className="flex flex-col gap-y-[10.5px]">
-            <label className="text-lg text-headingColor font-medium">
+            <label className="xl:text-lg text-base text-headingColor font-medium">
               Describe Your Design Idea*
             </label>
             <textarea
               {...register("design_details", { required: true })}
-              className="bg-[#D9D9D91A] rounded-[10px] pt-[31.5px] pb-[160.5px] pl-[43px] pr-[65px]"
+              className="bg-[#D9D9D91A] rounded-[10px] lg:pt-[31.5px] pt-5 lg:pb-[160.5px] pb-28 lg:pl-[43px] pl-5 lg:pr-[65px]"
               type="text"
               placeholder="Tell us about your design concept, including colors, size, width, function text, logos, and placement preferences. Please be very specific."
             />
@@ -44,17 +44,19 @@ const HaveDesign = ({
         </div>
         {/* Upload Images */}
         <div className="mt-[11px]">
-          <h1 className="text-headingColor text-lg font-medium">
+          <h1 className="text-headingColor xl:text-lg text-base font-medium">
             Upload Your Design
           </h1>
-          <p className="text-navbarColor font-semibold mt-[7px]">
+          <p className="text-navbarColor font-semibold mt-[7px] lg:text-sm text-xs">
             Design must be presented in AI format on dyelines for us to accept.
           </p>
-          <p className="text-navbarColor mt-3">*Accept AI (max size: 5MB).</p>
+          <p className="text-navbarColor mt-3 lg:text-sm text-xs">
+            *Accept AI (max size: 5MB).
+          </p>
           {/* This is the choose file section */}
-          <div className="bg-[#FFF] shadow-fileShadow py-4 rounded-[10px] mt-4">
+          <div className="bg-[#FFF] shadow-fileShadow lg:py-4 py-2 rounded-[10px] lg:mt-4 mt-5">
             <div className="flex justify-center items-center">
-              <label className="cursor-pointer px-4 py-2 text-headingColor text-base rounded-lg text-center font-semibold">
+              <label className="cursor-pointer px-4 py-2 text-headingColor lg:text-base text-sm rounded-lg text-center font-semibold">
                 Choose File
                 <input
                   type="file"
@@ -73,10 +75,10 @@ const HaveDesign = ({
           {/* This is the preferred color */}
           <div>
             {/* First Input Column */}
-            <div className="flex gap-10 mt-[19px]">
+            <div className="flex flex-col md:flex-row lg:gap-10 gap-5 mt-[19px]">
               {/* Preferred color */}
-              <div className="flex flex-col gap-y-[10.5px] w-[50%]">
-                <label className="text-lg text-headingColor font-medium">
+              <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
+                <label className="xl:text-lg text-base text-headingColor font-medium">
                   Preferred Colors*
                 </label>
                 <Controller

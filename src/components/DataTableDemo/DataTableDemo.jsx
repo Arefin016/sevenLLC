@@ -33,9 +33,6 @@ export function DataTableDemo({ setCheckedData }) {
   const [data, setData] = useState([]);
 
   const handleDelete = (id) => {
-    // If using local state:
-    // const updatedData = data.filter((item) => item.id !== id);
-    // setData(updatedData); // Assuming `setData` is your state updater function
     console.log(id);
   };
 
@@ -196,10 +193,7 @@ export function DataTableDemo({ setCheckedData }) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                className="text-navbarColor"
-                onClick={() => navigator.clipboard.writeText(invoice.invoiceId)}
-              >
+              <DropdownMenuItem className="text-navbarColor">
                 <DownloadSvg className="mr-2" />
                 Download
               </DropdownMenuItem>
