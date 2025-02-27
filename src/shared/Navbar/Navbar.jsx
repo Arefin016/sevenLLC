@@ -369,7 +369,7 @@ const Navbar = () => {
                 if (item.name === "Log out") return;
                 return (
                   <React.Fragment key={index}>
-                    <li className=" text-[14px] xlg:text-lg  px-2 lg:px-3">
+                    <li className="text-[14px] xlg:text-lg px-2 lg:px-3">
                       <NavLink
                         to={item.link}
                         className={({ isActive }) =>
@@ -381,8 +381,9 @@ const Navbar = () => {
                         {item.name}
                       </NavLink>
                     </li>
-                    {index < menuItems.length - 2 && (
-                      <span className=" h-[15px] xlg:h-[29px] w-[1px] bg-[#616161] "></span>
+                    {/* Render the <span> after every item except the last one */}
+                    {index < menuItems.length - 1 && (
+                      <span className="h-[15px] xlg:h-[29px] w-[1px] bg-[#616161]"></span>
                     )}
                   </React.Fragment>
                 );

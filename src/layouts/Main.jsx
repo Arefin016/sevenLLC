@@ -25,7 +25,9 @@ const Main = () => {
         <Loader />
       ) : (
         <div
-          className={`${!isSignUpPage ? "lg:mt-[145px] mt-32 xl:mt-44" : ""} `}
+          className={`${
+            !isSignUpPage ? "lg:mt-[145px] mt-32 xl:mt-[164px]" : ""
+          } `}
         >
           <Outlet />
         </div>
