@@ -67,7 +67,8 @@ const SecondTable = () => {
         </div>
 
         {/* Tabs Content */}
-        {/* <PaymentHistoryTable data={formattedPayments} /> */}
+        <PaymentHistoryTable data={formattedPayments} />
+        {/*  */}
       </div>
     </section>
   );
