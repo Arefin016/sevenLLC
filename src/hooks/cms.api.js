@@ -117,6 +117,17 @@ export const orderRequestFormFunc = async (payload) => {
   }
 };
 
+// Delete functionality
+export const deleteOrderFunc = async (payload) => {
+  try {
+    const { data } = await axiosSecure.delete("/api/place-order", payload);
+    return data?.data || {};
+  } catch (error) {
+    console.log("Error: ", error);
+    throw new Error("Failed to delete order request");
+  }
+};
+
 // All Blogs
 export const allBlogsFunc = async () => {
   try {

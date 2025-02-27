@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { OrderSummerySvg, SettingUploadSvg } from '../SvgContainer/SvgConainer';
-import { Input } from '../ui/input';
+import { useEffect, useState } from "react";
+import { OrderSummerySvg, SettingUploadSvg } from "../SvgContainer/SvgConainer";
+import { Input } from "../ui/input";
 import {
   Select,
   SelectContent,
@@ -9,29 +9,29 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '../ui/select';
-import useAuth from '@/hooks/useAuth';
-import { Controller, useForm } from 'react-hook-form';
-import { useUserInfoUpdateMutation } from '@/hooks/cms.mutations';
-import { ImSpinner9 } from 'react-icons/im';
+} from "../ui/select";
+import useAuth from "@/hooks/useAuth";
+import { Controller, useForm } from "react-hook-form";
+import { useUserInfoUpdateMutation } from "@/hooks/cms.mutations";
+import { ImSpinner9 } from "react-icons/im";
 
 const AccountSettings = () => {
-  const { user, loading,userInfo } = useAuth();
+  const { user, loading, userInfo } = useAuth();
   const { mutateAsync: userUpdateMutation } = useUserInfoUpdateMutation();
   const baseUrl = import.meta.env.VITE_SITE_URL;
   const [image, setImage] = useState(
-    user?.avatar ? `${baseUrl}/${user.avatar}` : ''
+    user?.avatar ? `${baseUrl}/${user.avatar}` : ""
   );
   const { register, handleSubmit, control, reset, setValue } = useForm({
     defaultValues: {
-      first_name: '',
-      last_name: '',
-      phone: '',
-      email: '',
-      country: '',
-      state: '',
-      zipcode: '',
-      avatar: user?.avatar ? `${baseUrl}/${user.avatar}` : '',
+      first_name: "",
+      last_name: "",
+      phone: "",
+      email: "",
+      country: "",
+      state: "",
+      zipcode: "",
+      avatar: user?.avatar ? `${baseUrl}/${user.avatar}` : "",
     },
   });
 
@@ -40,7 +40,7 @@ const AccountSettings = () => {
     const file = event.target.files[0];
     if (file && file.size <= 2 * 1024 * 1024) {
       setImage(URL.createObjectURL(file));
-      setValue('avatar', file); // Store file in form
+      setValue("avatar", file); // Store file in form
     }
   };
 
@@ -48,22 +48,22 @@ const AccountSettings = () => {
     try {
       await userUpdateMutation(data);
     } catch (error) {
-      console.error('Login failed', error);
+      console.error("Login failed", error);
     }
   };
 
   // useEffect:
   useEffect(() => {
     if (user) {
-      const avatarUrl = user?.avatar ? `${baseUrl}/${user.avatar}` : '';
+      const avatarUrl = user?.avatar ? `${baseUrl}/${user.avatar}` : "";
       reset({
-        first_name: user?.first_name || '',
-        last_name: user?.last_name || '',
-        phone: user?.phone || '',
-        email: user?.email || '',
-        country: user?.country || '',
-        state: user?.state || '',
-        zipcode: user?.zipcode || '',
+        first_name: user?.first_name || "",
+        last_name: user?.last_name || "",
+        phone: user?.phone || "",
+        email: user?.email || "",
+        country: user?.country || "",
+        state: user?.state || "",
+        zipcode: user?.zipcode || "",
         avatar: avatarUrl,
       });
       setImage(avatarUrl); // Ensure displayed image updates
@@ -89,8 +89,8 @@ const AccountSettings = () => {
                 className="w-24 xxs:w-[130px] xxs:h-[130px] h-24 border-gray-300 flex justify-center items-center rounded-full cursor-pointer hover:border-blue-500 transition bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
               >
                 <div className="flex flex-col items-center text-navbarColor rounded-xl">
@@ -102,7 +102,7 @@ const AccountSettings = () => {
                 id="photo-upload"
                 accept="image/*"
                 className="hidden"
-                {...register('avatar')}
+                {...register("avatar")}
                 onChange={handleImageChange}
               />
               <div className=" items-center gap-3">
@@ -125,7 +125,7 @@ const AccountSettings = () => {
                   First Name
                 </label>
                 <Input
-                  {...register('first_name', { required: true })}
+                  {...register("first_name", { required: true })}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="text"
                   placeholder="Michael"
@@ -137,7 +137,7 @@ const AccountSettings = () => {
                   Your Last Name
                 </label>
                 <Input
-                  {...register('last_name', { required: true })}
+                  {...register("last_name", { required: true })}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="text"
                   placeholder="Watson"
@@ -152,7 +152,7 @@ const AccountSettings = () => {
                   Phone
                 </label>
                 <Input
-                  {...register('phone', { required: true })}
+                  {...register("phone", { required: true })}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="number"
                   placeholder="+1-202-555-0118"
@@ -164,7 +164,7 @@ const AccountSettings = () => {
                   Email
                 </label>
                 <Input
-                  {...register('email', { required: true })}
+                  {...register("email", { required: true })}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"
                   type="email"
                   placeholder="michaelwatson@gmail.com"
@@ -235,7 +235,7 @@ const AccountSettings = () => {
                   Postal Code
                 </label>
                 <Input
-                  {...register('zipcode', { required: true })}
+                  {...register("zipcode", { required: true })}
                   // value={formData.zipcode}
                   // onChange={handleChange}
                   className="py-4 h-14 px-5 bg-[#F8F8F8] text-sm text-headingColor"

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,6 +29,32 @@ import {
   MoreHorizontalSvg,
   PrintSvg,
 } from "../SvgContainer/SvgConainer";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+const baseUrl = import.meta.env.VITE_SITE_URL;
+let isFetching = false;
+
+const handleDeleteInvoiceId = id => {
+  let token = localStorage.getItem("token");
+  token = JSON.parse(token);
+  axios({
+    method: "get",
+    url: `${baseUrl}/api/payment-history/delete/${id}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(res => {
+      console.log(res.data);
+      toast.success(res.data.message);
+      isFetching = true;
+    })
+    .catch(err => {
+      console.log(err);
+      toast.error(err.message);
+    });
+};
 
 export const columns = [
   {
@@ -37,8 +62,8 @@ export const columns = [
     cell: ({ row, table }) => (
       <Checkbox
         checked={row.getIsSelected()}
-        onCheckedChange={(value) => {
-          table.getRowModel().rows.forEach((r) => {
+        onCheckedChange={value => {
+          table.getRowModel().rows.forEach(r => {
             if (r.id !== row.id) {
               r.toggleSelected(false);
             }
@@ -192,7 +217,12 @@ export const columns = [
               <PrintSvg className="mr-2" />
               Print
             </DropdownMenuItem>
-            <DropdownMenuItem className="text-[#E84646]">
+            <DropdownMenuItem
+              onClick={() => {
+                handleDeleteInvoiceId(invoice.id);
+              }}
+              className="text-[#E84646]"
+            >
               <DeleteSvg className="mr-2" />
               Delete
             </DropdownMenuItem>
@@ -203,11 +233,18 @@ export const columns = [
   },
 ];
 
-const PaymentHistoryTable = ({ data }) => {
+const PaymentHistoryTable = ({ data, onDelete }) => {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
+
+  if (isFetching) {
+    onDelete();
+    setTimeout(() => {
+      isFetching = false;
+    }, 10000);
+  }
 
   const table = useReactTable({
     data,
@@ -227,14 +264,15 @@ const PaymentHistoryTable = ({ data }) => {
       rowSelection,
     },
   });
+
   return (
     <div className="">
       <div className="rounded-md">
         <Table className="min-w-full w-full table-auto">
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
+            {table.getHeaderGroups().map(headerGroup => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
+                {headerGroup.headers.map(header => (
                   <TableHead key={header.id} className="text-left px-4 py-2">
                     {header.isPlaceholder
                       ? null
@@ -248,16 +286,15 @@ const PaymentHistoryTable = ({ data }) => {
             ))}
           </TableHeader>
 
-          <TableBody className="">
+          <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map(row => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className=""
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="text-left ">
+                  {row.getVisibleCells().map(cell => (
+                    <TableCell key={cell.id} className="text-left">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
