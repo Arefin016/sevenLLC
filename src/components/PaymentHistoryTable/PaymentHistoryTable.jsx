@@ -62,7 +62,7 @@ export const columns = [
   const handleDeleteInvoiceId = async id => {
     await deletePaymentMutation(id);
   };
-  
+
   const columns = [
     {
       id: "select",
@@ -316,4 +316,3 @@ export const columns = [
 
 export default PaymentHistoryTable;
 
-// ok
