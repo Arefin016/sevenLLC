@@ -1,46 +1,14 @@
 import {
   OrderSummerySvg,
   ProductLineBorder,
-} from '../../../../components/SvgContainer/SvgConainer';
-
-import productSummeryPic1 from "../../../../assets/images/productSummery/productSummeryPic.png";
-import productSummeryPic2 from "../../../../assets/images/productSummery/productSummeryPic2.png";
-import productSummeryPic3 from "../../../../assets/images/productSummery/productSummeryPic3.png";
-import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
-import SecondTable from "./SecondTable";
-import { useOrderSummery } from "@/hooks/cms.queries";
+} from '@/components/SvgContainer/SvgConainer';
+import { DataTableDemo } from '@/components/DataTableDemo/DataTableDemo';
+import SecondTable from './SecondTable';
+import { useOrderSummery } from '@/hooks/cms.queries';
 
 const Dashboard = () => {
   const { data: orderSummery } = useOrderSummery();
   console.log(orderSummery);
-
-  // const productSummaries = [
-  //   {
-  //     img: productSummeryPic1,
-  //     category: "Paper Packaging",
-  //     name: "Bakery Boxes",
-  //   },
-  //   {
-  //     img: productSummeryPic2,
-  //     category: "Glass Packaging",
-  //     name: "Flower Jars",
-  //   },
-  //   {
-  //     img: productSummeryPic3,
-  //     category: "Eco-Friendly Packaging",
-  //     name: "Bamboo-Topped Jars",
-  //   },
-  //   {
-  //     img: productSummeryPic1,
-  //     category: "Eco-Friendly Packaging",
-  //     name: "Bamboo-Topped Jars",
-  //   },
-  //   {
-  //     img: productSummeryPic1,
-  //     category: "Eco-Friendly Packaging",
-  //     name: "Bamboo-Topped Jars",
-  //   },
-  // ];
 
   return (
     <div className="md:px-10 px-3 mt-12 lg:mt-[55px]">
