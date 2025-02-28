@@ -41,7 +41,6 @@ export const useLogin = () => {
     onSuccess: async (data) => {
       setUser(data?.data);
       setToken(data?.data?.token);
-      // localStorage.setItem('token', data?.data?.token);
       const userData = {
         name: data?.data?.first_name + ' ' + data?.data?.last_name,
         image: data?.data?.avatar,

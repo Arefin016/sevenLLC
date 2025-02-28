@@ -1,7 +1,4 @@
-/* eslint-disable react/prop-types */
-import { UploadFileSvg } from "../../SvgContainer/SvgConainer";
-import { Empty, Space, Switch } from "antd";
-import { Input } from "@/components/ui/input";
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -10,9 +7,11 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Controller, useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+} from '@/components/ui/select';
+import { Empty, Space, Switch } from 'antd';
+import { useEffect, useState } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import { UploadFileSvg } from '../../SvgContainer/SvgConainer';
 
 const HaveDesign = ({}) => {
   const [fillData, setFillData] = useState();
@@ -20,7 +19,7 @@ const HaveDesign = ({}) => {
   const [addresses, setAddresses] = useState([]);
   const handleSelectChange = (value) => {
     console.log(value);
-    const index = parseInt(value.split("_")[1]);
+    const index = parseInt(value.split('_')[1]);
     setFillData(savedAddresses[index]);
   };
 
@@ -31,12 +30,12 @@ const HaveDesign = ({}) => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useFormContext();
 
   const onSubmit = (data) => {
     const updatedAddresses = [...addresses, data];
     console.log(updatedAddresses);
-    localStorage.setItem("savedAddresses", JSON.stringify(updatedAddresses));
+    localStorage.setItem('savedAddresses', JSON.stringify(updatedAddresses));
     setAddresses(updatedAddresses);
     setAddNewAddress(false);
     reset();
@@ -44,33 +43,33 @@ const HaveDesign = ({}) => {
 
   // This is the local storage data
   const savedAddresses =
-    JSON.parse(localStorage.getItem("savedAddresses")) || [];
+    JSON.parse(localStorage.getItem('savedAddresses')) || [];
 
   useEffect(() => {
     if (fillData) {
       reset({
-        firstName: fillData.firstName || "",
-        lastName: fillData.lastName || "",
-        email: fillData.email || "",
-        phone: fillData.phone || "",
-        address: fillData.address || "",
-        city: fillData.City || "",
-        region: fillData.region || "",
-        postalCode: fillData.postalCode || "",
-        country: fillData.country || "",
-        companyName: fillData.companyName || "",
+        firstName: fillData.firstName || '',
+        lastName: fillData.lastName || '',
+        email: fillData.email || '',
+        phone: fillData.phone || '',
+        address: fillData.address || '',
+        city: fillData.City || '',
+        region: fillData.region || '',
+        postalCode: fillData.postalCode || '',
+        country: fillData.country || '',
+        companyName: fillData.companyName || '',
       });
       if (fillData.country) {
-        setValue("Country", fillData.country);
+        setValue('Country', fillData.country);
       }
       if (fillData?.region) {
-        setValue("Region", fillData?.region);
+        setValue('Region', fillData?.region);
       }
       if (fillData.City) {
-        setValue("City", fillData.City);
+        setValue('City', fillData.City);
       }
     }
-  }, [fillData]);
+  }, [fillData, reset, setValue]);
 
   return (
     <section>
@@ -83,7 +82,7 @@ const HaveDesign = ({}) => {
               Describe Your Design Idea*
             </label>
             <textarea
-              {...register("design_details", { required: true })}
+              {...register('design_details', { required: true })}
               className="bg-[#D9D9D91A] rounded-[10px] lg:pt-[31.5px] pt-5 lg:pb-[160.5px] pb-28 lg:pl-[43px] pl-5 lg:pr-[65px]"
               type="text"
               placeholder="Tell us about your design concept, including colors, size, width, function text, logos, and placement preferences. Please be very specific."
@@ -214,7 +213,7 @@ const HaveDesign = ({}) => {
                   Brand Text
                 </label>
                 <Input
-                  {...register("brand_text", { required: true })}
+                  {...register('brand_text', { required: true })}
                   className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                   type="text"
                   placeholder="Enter text for your packaging (e.g., brand name, tagline)"
@@ -246,7 +245,7 @@ const HaveDesign = ({}) => {
                 Design Placement:*
               </label>
               <Input
-                {...register("design_placement", { required: true })}
+                {...register('design_placement', { required: true })}
                 className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                 type="text"
                 placeholder="Design Placement"
@@ -302,7 +301,7 @@ const HaveDesign = ({}) => {
                     Item Type*
                   </label>
                   <Input
-                    {...register("item_type", { required: true })}
+                    {...register('item_type', { required: true })}
                     className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="I.e Perfume Bottle with Spray Top"
@@ -316,7 +315,7 @@ const HaveDesign = ({}) => {
                     Material(s) (optional)
                   </label>
                   <Input
-                    {...register("material")}
+                    {...register('material')}
                     className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Material(s)"
@@ -328,7 +327,7 @@ const HaveDesign = ({}) => {
                     Accessories (optional)
                   </label>
                   <Input
-                    {...register("accessories")}
+                    {...register('accessories')}
                     className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Accessories"
@@ -379,7 +378,7 @@ const HaveDesign = ({}) => {
                     Thickness in microns (optional)
                   </label>
                   <Input
-                    {...register("thickness_in_micron")}
+                    {...register('thickness_in_micron')}
                     className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="text"
                     placeholder="Thickness in microns"
@@ -429,7 +428,7 @@ const HaveDesign = ({}) => {
                     </span>
                   </label>
                   <Input
-                    {...register("quantity", { required: true })}
+                    {...register('quantity', { required: true })}
                     className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-10 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
                     type="number"
                     placeholder="Enter the number of units (e.g., 1,000)"
@@ -511,7 +510,7 @@ const HaveDesign = ({}) => {
                       type="text"
                       name="firstName"
                       placeholder="First Name"
-                      {...register("firstName", { required: true })}
+                      {...register('firstName', { required: true })}
                     />
                     {errors.firstName && (
                       <span className="text-red-500 text-sm">
@@ -529,7 +528,7 @@ const HaveDesign = ({}) => {
                       type="text"
                       name="lastName"
                       placeholder="Last Name"
-                      {...register("lastName", { required: true })}
+                      {...register('lastName', { required: true })}
                     />
                     {errors.lastName && (
                       <span className="text-red-500 text-sm">
@@ -549,7 +548,7 @@ const HaveDesign = ({}) => {
                       className="xl:py-[31px] xl:h-[97px] h-[60px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm  text-headingColor"
                       type="number"
                       name="phone"
-                      {...register("phone", { required: true })}
+                      {...register('phone', { required: true })}
                       placeholder="Phone"
                     />
                     {errors.phone && (
@@ -568,7 +567,7 @@ const HaveDesign = ({}) => {
                       type="email"
                       name="email"
                       placeholder="Email"
-                      {...register("email", { required: true })}
+                      {...register('email', { required: true })}
                     />
                     {errors.email && (
                       <span className="text-red-500 text-sm">
@@ -588,7 +587,7 @@ const HaveDesign = ({}) => {
                       type="text"
                       name="companyName"
                       placeholder="Company Name"
-                      {...register("companyName", { required: true })}
+                      {...register('companyName', { required: true })}
                     />
                     {errors.companyName && (
                       <span className="text-red-500 text-sm">
@@ -607,7 +606,7 @@ const HaveDesign = ({}) => {
                     <Controller
                       name="country"
                       control={control}
-                      rules={{ required: "Country is required" }}
+                      rules={{ required: 'Country is required' }}
                       defaultValue=""
                       render={({ field }) => (
                         <Select
@@ -633,7 +632,7 @@ const HaveDesign = ({}) => {
                     />
                     {errors.country && (
                       <p className="text-red-500 text-sm">
-                        {errors.country.message}{" "}
+                        {errors.country.message}{' '}
                       </p>
                     )}
                   </div>
@@ -645,7 +644,7 @@ const HaveDesign = ({}) => {
                     <Controller
                       name="region"
                       control={control}
-                      rules={{ required: "Region is required" }}
+                      rules={{ required: 'Region is required' }}
                       defaultValue=""
                       render={({ field }) => (
                         <Select
@@ -688,7 +687,7 @@ const HaveDesign = ({}) => {
                     <Controller
                       name="City"
                       control={control}
-                      rules={{ required: "City is required" }}
+                      rules={{ required: 'City is required' }}
                       defaultValue=""
                       render={({ field }) => (
                         <Select
@@ -730,7 +729,7 @@ const HaveDesign = ({}) => {
                       type="number"
                       placeholder="Postal Code"
                       name="postalCode"
-                      {...register("postalCode", { required: true })}
+                      {...register('postalCode', { required: true })}
                     />
                     {errors.postalCode && (
                       <span className="text-red-500 text-sm">
