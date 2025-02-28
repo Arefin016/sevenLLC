@@ -15,9 +15,9 @@ const SecondTable = () => {
     { label: "Year to date", dataTitle: "yearToDateData" },
   ];
 
+
   const { data: allPayments } = useGetAllPayments();
   // console.log(allPayments);
-
 
   const { refetch } = useContext(AuthContext);
 
@@ -25,7 +25,7 @@ const SecondTable = () => {
   const [payMentHistory, setPayMentHistory] = useState([]);
 
   // Formatting the payment history data
-  const formattedPayments = allPayments?.map(payment => ({
+  const formattedPayments = allPayments?.map((payment) => ({
     invoiceId: `inv${payment.invoice_number}`,
     invoiceDate: payment.created_at.split("T")[0],
     product: payment.order?.item_type || "Unknown Product",
