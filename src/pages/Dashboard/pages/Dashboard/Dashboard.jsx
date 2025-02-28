@@ -1,48 +1,51 @@
-import React from "react";
 import {
   OrderSummerySvg,
   ProductLineBorder,
-} from "../../../../components/SvgContainer/SvgConainer";
+} from '../../../../components/SvgContainer/SvgConainer';
 
-import productSummeryPic1 from "../../../../assets/images/productSummery/productSummeryPic.png";
-import productSummeryPic2 from "../../../../assets/images/productSummery/productSummeryPic2.png";
-import productSummeryPic3 from "../../../../assets/images/productSummery/productSummeryPic3.png";
-import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
-import SecondTable from "./SecondTable";
+import productSummeryPic1 from '../../../../assets/images/productSummery/productSummeryPic.png';
+import productSummeryPic2 from '../../../../assets/images/productSummery/productSummeryPic2.png';
+import productSummeryPic3 from '../../../../assets/images/productSummery/productSummeryPic3.png';
+import { DataTableDemo } from '@/components/DataTableDemo/DataTableDemo';
+import SecondTable from './SecondTable';
+import { useGetOrderSummary } from '@/hooks/cms.queries';
 
 const Dashboard = () => {
   const productSummaries = [
     {
       img: productSummeryPic1,
-      category: "Paper Packaging",
-      name: "Bakery Boxes",
+      category: 'Paper Packaging',
+      name: 'Bakery Boxes',
     },
     {
       img: productSummeryPic2,
-      category: "Glass Packaging",
-      name: "Flower Jars",
+      category: 'Glass Packaging',
+      name: 'Flower Jars',
     },
     {
       img: productSummeryPic3,
-      category: "Eco-Friendly Packaging",
-      name: "Bamboo-Topped Jars",
+      category: 'Eco-Friendly Packaging',
+      name: 'Bamboo-Topped Jars',
     },
     {
       img: productSummeryPic1,
-      category: "Eco-Friendly Packaging",
-      name: "Bamboo-Topped Jars",
+      category: 'Eco-Friendly Packaging',
+      name: 'Bamboo-Topped Jars',
     },
     {
       img: productSummeryPic1,
-      category: "Eco-Friendly Packaging",
-      name: "Bamboo-Topped Jars",
+      category: 'Eco-Friendly Packaging',
+      name: 'Bamboo-Topped Jars',
     },
   ];
+
+  const { data: orderSummary } = useGetOrderSummary();
+  console.log(orderSummary);
 
   return (
     <div className="md:px-10 px-3 mt-12 lg:mt-[55px]">
       <h1 className="text-lg sm:text-xl lg:text-4xl">
-        Welcome{" "}
+        Welcome{' '}
         <span className="text-headingColor font-semibold text-lg sm:text-xl lg:text-4xl">
           Michael!
         </span>
@@ -58,7 +61,7 @@ const Dashboard = () => {
         {/*  */}
         <div
           style={{
-            background: "linear-gradient(107deg, #F8FEFF 0%, #FFF9F8 100%)",
+            background: 'linear-gradient(107deg, #F8FEFF 0%, #FFF9F8 100%)',
           }}
           className="mx-2 md:mx-6 rounded-xl mb-[57px]"
         >
@@ -67,18 +70,23 @@ const Dashboard = () => {
           </h1>
           {/* This is the Product Summary */}
           <div className="grid xxs:grid-cols-2 xmd:grid-cols-3 xlg:grid-cols-5 md:flex-row justify-between items-center mt-5 pb-12 xlg:ml-[38px] gap-5 px-5 xxl:px-0">
-            {productSummaries?.map((product, index) => (
+            {orderSummary?.map((product, index) => (
               <div
-                key={index}
+                key={product?.id}
                 className="flex items-center justify-left gap-2 md:gap-3 w-full"
               >
-                <img src={product.img} alt={product.category} />
-                <div className="xxl:pr-[70px]">
-                  <p className="text-headingColor font-bold text-xs xxs:text-sm">
-                    {product.category}
+                <div className='size-12'>
+                  <img className='h-full w-full object-cover'
+                    src={`${import.meta.env.VITE_SITE_URL}/${product?.image}`}
+                    alt={product?.category?.name}
+                  />
+                </div>
+                <div className="xxl:pr-[70px] space-y-3">
+                  <p className="text-headingColor font-bold text-xs xxs:text-sm text-nowrap">
+                    {product?.item_type}
                   </p>
                   <p className="text-headingColor text-xs xxs:text-sm">
-                    {product.name}
+                    {product?.category?.name}
                   </p>
                 </div>
                 {index < productSummaries.length - 1 && (
