@@ -224,9 +224,14 @@ export const deletePaymentFunc = async (id) => {
   return data?.data;
 };
 
-// Get Order summery
 // Get the order
 export const orderSummeryFunc = async () => {
-  const { data } = await axiosSecure("api/user-order/summary");
+  const { data } = await axiosSecure('api/user-order/summary');
+  return data?.data;
+};
+
+// get order details:
+export const getOrderDetailsFunc = async (id) => {
+  const { data } = await axiosSecure(`/api/user-order/details/${id}`);
   return data?.data;
 };

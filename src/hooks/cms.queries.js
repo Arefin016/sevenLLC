@@ -4,6 +4,7 @@ import {
   allBlogsFunc,
   allProductsFunc,
   getCategoriesFunc,
+  getOrderDetailsFunc,
   getOrderRequestFunc,
   getPaymentFunc,
   homepageDataFunc,
@@ -134,7 +135,16 @@ export const useGetAllPayments = () => {
 // get the order summary
 export const useOrderSummery = () => {
   return useQuery({
-    queryKey: ["order-summery"],
+    queryKey: ['order-summery'],
     queryFn: orderSummeryFunc,
+  });
+};
+
+//get oder details:
+export const useGetOrderDetails = (id) => {
+  return useQuery({
+    queryKey: ['order-details', id],
+    queryFn: () => getOrderDetailsFunc(id),
+    enabled: !!id,
   });
 };

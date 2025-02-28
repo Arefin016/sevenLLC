@@ -7,11 +7,8 @@ import {
   OrderSummerySvg,
   PackagingSvg,
 } from '../SvgContainer/SvgConainer';
-import { useGetOrderDetails } from '@/hooks/cms.queries';
 
-const OrderDetails = ({ checkedData }) => {
-  const { data: orderDetails } = useGetOrderDetails(checkedData?.id);
-
+const OrderDetails = ({ orderDetails }) => {
   return (
     <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-10 xmd:mt-5">
       <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
