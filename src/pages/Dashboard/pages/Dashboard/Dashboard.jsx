@@ -3,44 +3,44 @@ import {
   ProductLineBorder,
 } from '../../../../components/SvgContainer/SvgConainer';
 
-import productSummeryPic1 from '../../../../assets/images/productSummery/productSummeryPic.png';
-import productSummeryPic2 from '../../../../assets/images/productSummery/productSummeryPic2.png';
-import productSummeryPic3 from '../../../../assets/images/productSummery/productSummeryPic3.png';
-import { DataTableDemo } from '@/components/DataTableDemo/DataTableDemo';
-import SecondTable from './SecondTable';
-import { useGetOrderSummary } from '@/hooks/cms.queries';
+import productSummeryPic1 from "../../../../assets/images/productSummery/productSummeryPic.png";
+import productSummeryPic2 from "../../../../assets/images/productSummery/productSummeryPic2.png";
+import productSummeryPic3 from "../../../../assets/images/productSummery/productSummeryPic3.png";
+import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
+import SecondTable from "./SecondTable";
+import { useOrderSummery } from "@/hooks/cms.queries";
 
 const Dashboard = () => {
-  const productSummaries = [
-    {
-      img: productSummeryPic1,
-      category: 'Paper Packaging',
-      name: 'Bakery Boxes',
-    },
-    {
-      img: productSummeryPic2,
-      category: 'Glass Packaging',
-      name: 'Flower Jars',
-    },
-    {
-      img: productSummeryPic3,
-      category: 'Eco-Friendly Packaging',
-      name: 'Bamboo-Topped Jars',
-    },
-    {
-      img: productSummeryPic1,
-      category: 'Eco-Friendly Packaging',
-      name: 'Bamboo-Topped Jars',
-    },
-    {
-      img: productSummeryPic1,
-      category: 'Eco-Friendly Packaging',
-      name: 'Bamboo-Topped Jars',
-    },
-  ];
+  const { data: orderSummery } = useOrderSummery();
+  console.log(orderSummery);
 
-  const { data: orderSummary } = useGetOrderSummary();
-  console.log(orderSummary);
+  // const productSummaries = [
+  //   {
+  //     img: productSummeryPic1,
+  //     category: "Paper Packaging",
+  //     name: "Bakery Boxes",
+  //   },
+  //   {
+  //     img: productSummeryPic2,
+  //     category: "Glass Packaging",
+  //     name: "Flower Jars",
+  //   },
+  //   {
+  //     img: productSummeryPic3,
+  //     category: "Eco-Friendly Packaging",
+  //     name: "Bamboo-Topped Jars",
+  //   },
+  //   {
+  //     img: productSummeryPic1,
+  //     category: "Eco-Friendly Packaging",
+  //     name: "Bamboo-Topped Jars",
+  //   },
+  //   {
+  //     img: productSummeryPic1,
+  //     category: "Eco-Friendly Packaging",
+  //     name: "Bamboo-Topped Jars",
+  //   },
+  // ];
 
   return (
     <div className="md:px-10 px-3 mt-12 lg:mt-[55px]">
@@ -70,26 +70,23 @@ const Dashboard = () => {
           </h1>
           {/* This is the Product Summary */}
           <div className="grid xxs:grid-cols-2 xmd:grid-cols-3 xlg:grid-cols-5 md:flex-row justify-between items-center mt-5 pb-12 xlg:ml-[38px] gap-5 px-5 xxl:px-0">
-            {orderSummary?.map((product, index) => (
+            {orderSummery?.map((product, index) => (
               <div
                 key={product?.id}
                 className="flex items-center justify-left gap-2 md:gap-3 w-full"
               >
-                <div className='size-12'>
-                  <img className='h-full w-full object-cover'
-                    src={`${import.meta.env.VITE_SITE_URL}/${product?.image}`}
-                    alt={product?.category?.name}
-                  />
-                </div>
-                <div className="xxl:pr-[70px] space-y-3">
-                  <p className="text-headingColor font-bold text-xs xxs:text-sm text-nowrap">
-                    {product?.item_type}
+                <img
+                  src={`${import.meta.env.VITE_SITE_URL}/${product.image}`}
+                />
+                <div className="xxl:pr-[70px]">
+                  <p className="text-headingColor font-bold text-xs xxs:text-sm">
+                    {product.category.name}
                   </p>
                   <p className="text-headingColor text-xs xxs:text-sm">
-                    {product?.category?.name}
+                    {product.item_type}
                   </p>
                 </div>
-                {index < productSummaries.length - 1 && (
+                {index < orderSummery?.length - 1 && (
                   <div className="hidden xlg:block">
                     <ProductLineBorder />
                   </div>

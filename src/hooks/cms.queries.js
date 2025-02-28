@@ -10,6 +10,7 @@ import {
   getPaymentFunc,
   homepageDataFunc,
   howItWorksFunc,
+  orderSummeryFunc,
   processDataFunc,
   productsAndServicesFunc,
   recentBlogsFunc,
@@ -132,18 +133,10 @@ export const useGetAllPayments = () => {
   });
 };
 
-// get order details:
-export const useGetOrderDetails = (id) => {
+// get the order summery
+export const useOrderSummery = () => {
   return useQuery({
-    queryKey: ['delete-single-payment'],
-    queryFn: () => getOrderDetailsFunc(id),
-  });
-};
-
-// get order summary:
-export const useGetOrderSummary = () => {
-  return useQuery({
-    queryKey: ['order-summary'],
-    queryFn: getOrderSummaryFunc,
+    queryKey: ["order-summery"],
+    queryFn: orderSummeryFunc,
   });
 };
