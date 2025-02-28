@@ -211,7 +211,7 @@ export function DataTableDemo({ setCheckedData ,  }) {
                 Print
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => handleDelete(invoice.id)}
+                // onClick={() => handleDelete(invoice.id)}
                 className="text-[#E84646] cursor-pointer"
               >
                 <DeleteSvg className="mr-2" />

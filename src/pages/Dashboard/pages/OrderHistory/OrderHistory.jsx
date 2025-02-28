@@ -1,16 +1,27 @@
-import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
-import EmptyOrderDetails from "@/components/EmptyOrderDetails/EmptyOrderDetails";
-import OrderDetails from "@/components/OrderDetails/OrderDetails";
-import { OrderSummerySvg } from "@/components/SvgContainer/SvgConainer";
-import { useState } from "react";
+import { DataTableDemo } from '@/components/DataTableDemo/DataTableDemo';
+import EmptyOrderDetails from '@/components/EmptyOrderDetails/EmptyOrderDetails';
+import Lottie from 'lottie-react';
+import OrderDetails from '@/components/OrderDetails/OrderDetails';
+import { OrderSummerySvg } from '@/components/SvgContainer/SvgConainer';
+import { useGetOrderDetails } from '@/hooks/cms.queries';
+import { useState } from 'react';
+import loader from '@/components/Loader/loading-lottie.json';
 
 const OrderHistory = () => {
   const [checkedData, setCheckedData] = useState(null);
 
+  const { data: orderDetails, isLoading } = useGetOrderDetails(checkedData?.id);
+
   return (
     <section className="px-4 md:px-8">
       {checkedData ? (
-        <OrderDetails checkedData={checkedData} />
+        isLoading ? (
+          <div className="min-h-[40vh] w-full flex items-center justify-center">
+            <Lottie className="size-72" animationData={loader}></Lottie>
+          </div>
+        ) : (
+          <OrderDetails orderDetails={orderDetails} />
+        )
       ) : (
         <EmptyOrderDetails />
       )}
@@ -22,7 +33,7 @@ const OrderHistory = () => {
           </p>
           <OrderSummerySvg />
         </div>
-        <DataTableDemo  setCheckedData={setCheckedData} />
+        <DataTableDemo setCheckedData={setCheckedData} />
       </div>
     </section>
   );

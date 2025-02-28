@@ -43,10 +43,13 @@ const Dashboard = () => {
                 key={product?.id}
                 className="flex items-center justify-left gap-2 md:gap-3 w-full"
               >
-                <img
-                  src={`${import.meta.env.VITE_SITE_URL}/${product.image}`}
-                />
-                <div className="xxl:pr-[70px]">
+                <div className="size-12">
+                  <img
+                    className="h-full w-full object-cover"
+                    src={`${import.meta.env.VITE_SITE_URL}/${product.image}`}
+                  />
+                </div>
+                <div className="xxl:pr-[70px] space-y-3">
                   <p className="text-headingColor font-bold text-xs xxs:text-sm">
                     {product.category.name}
                   </p>
