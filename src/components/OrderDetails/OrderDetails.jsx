@@ -1,48 +1,14 @@
-import { MdCheck } from "react-icons/md";
+/* eslint-disable react/prop-types */
+import { MdCheck } from 'react-icons/md';
 import {
   DeliveredSvg,
   OnTheRoadSvg,
   OrderPlacedSvg,
   OrderSummerySvg,
   PackagingSvg,
-} from "../SvgContainer/SvgConainer";
-import { useEffect, useState } from "react";
-import axios from "axios";
+} from '../SvgContainer/SvgConainer';
 
-const baseUrl = import.meta.env.VITE_SITE_URL;
-
-const OrderDetails = ({ checkedData }) => {
-  let token = localStorage.getItem("token");
-  token = JSON.parse(token);
-  const [orderData, setorderData] = useState();
-
-  useEffect(() => {
-    if (checkedData?.id) {
-      if (token) {
-        axios({
-          method: "get",
-          url: `${baseUrl}/api/user-order/details/${checkedData.id}`,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-          .then(res => {
-            console.log(res.data.data, "this is the response");
-            setorderData(res.data.data);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      } else {
-        console.log("No token found");
-      }
-    } else {
-      console.log("CheckedData or CheckedData.id is not available");
-    }
-  }, [checkedData.id]);
-
-  console.log(orderData?.status);
-
+const OrderDetails = ({ orderDetails }) => {
   return (
     <div className="bg-[#FFF] rounded-[20px] border border-[#F8F9FA] shadow-dashboardShadow mt-10 xmd:mt-5">
       <div className="flex ml-8 gap-[22px] items-center mt-7 mb-[21px]">
@@ -59,14 +25,14 @@ const OrderDetails = ({ checkedData }) => {
           <div className="flex flex-col md:flex-row gap-5 xmd:gap-0 text-center md:text-left justify-between items-center">
             <div>
               <h1 className="text-base md:text-xl text-headingColor">
-                #{orderData?.order_number}
+                #{orderDetails?.order_number}
               </h1>
               <div className="flex flex-col justify-center md:flex-row items-center gap-1 md:gap-6 mt-2">
                 <p className="text-navbarColor">
-                  {orderData?.quantity} Products
+                  {orderDetails?.quantity} Products
                 </p>
                 <li className="text-navbarColor text-sm md:text-base">
-                  {orderData?.created_at}
+                  {orderDetails?.created_at}
                 </li>
               </div>
             </div>
@@ -79,22 +45,22 @@ const OrderDetails = ({ checkedData }) => {
         {/*  */}
         <div className="mt-7">
           <h1 className="font-medium text-navbarColor">
-            Order expected arrival{" "}
+            Order expected arrival{' '}
             <span className="text-headingColor font-medium">12 Jan, 2025</span>
           </h1>
         </div>
         {/* This is the progress style */}
         <div className="grid grid-cols-4 max-w-[893px] mt-10 ml-8 md:ml-[107px]">
-          {["confirmed", "processing", "shipped", "delivered"].map(
+          {['confirmed', 'processing', 'shipped', 'delivered'].map(
             (status, index, arr) => {
-              const isActive = orderData?.status === status;
+              const isActive = orderDetails?.status === status;
               const isCompleted =
-                ["processing", "shipped", "delivered"].includes(
-                  orderData?.status
+                ['processing', 'shipped', 'delivered'].includes(
+                  orderDetails?.status
                 ) &&
                 index <
-                  ["confirmed", "processing", "shipped", "delivered"].indexOf(
-                    orderData?.status
+                  ['confirmed', 'processing', 'shipped', 'delivered'].indexOf(
+                    orderDetails?.status
                   );
 
               return (
@@ -102,17 +68,17 @@ const OrderDetails = ({ checkedData }) => {
                   key={status}
                   className={`relative h-2 ${
                     isActive || isCompleted
-                      ? "bg-buttonColor"
-                      : "bg-[rgba(0,_15,_45,_0.20)]"
-                  } ${index === arr.length - 1 ? "w-0" : "w-full"}`} // Removes extra width from the last step
+                      ? 'bg-buttonColor'
+                      : 'bg-[rgba(0,_15,_45,_0.20)]'
+                  } ${index === arr.length - 1 ? 'w-0' : 'w-full'}`} // Removes extra width from the last step
                 >
                   {/* Step Circle */}
                   <span
-                    className={`w-6 h-6 rounded-full absolute -left-3 -top-2 grid place-items-center 
+                    className={`w-6 h-6 rounded-full absolute -left-3 -top-2 grid place-items-center
             ${
               isActive || isCompleted
-                ? "bg-buttonColor text-white"
-                : "bg-gray-300 border border-buttonColor"
+                ? 'bg-buttonColor text-white'
+                : 'bg-gray-300 border border-buttonColor'
             }`}
                   >
                     {(isActive || isCompleted) && (

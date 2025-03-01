@@ -1,52 +1,19 @@
-import React from "react";
 import {
   OrderSummerySvg,
   ProductLineBorder,
-} from "../../../../components/SvgContainer/SvgConainer";
-
-import productSummeryPic1 from "../../../../assets/images/productSummery/productSummeryPic.png";
-import productSummeryPic2 from "../../../../assets/images/productSummery/productSummeryPic2.png";
-import productSummeryPic3 from "../../../../assets/images/productSummery/productSummeryPic3.png";
-import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
-import SecondTable from "./SecondTable";
-import { useOrderSummery } from "@/hooks/cms.queries";
+} from '@/components/SvgContainer/SvgConainer';
+import { DataTableDemo } from '@/components/DataTableDemo/DataTableDemo';
+import SecondTable from './SecondTable';
+import { useOrderSummery } from '@/hooks/cms.queries';
 
 const Dashboard = () => {
   const { data: orderSummery } = useOrderSummery();
   console.log(orderSummery);
 
-  // const productSummaries = [
-  //   {
-  //     img: productSummeryPic1,
-  //     category: "Paper Packaging",
-  //     name: "Bakery Boxes",
-  //   },
-  //   {
-  //     img: productSummeryPic2,
-  //     category: "Glass Packaging",
-  //     name: "Flower Jars",
-  //   },
-  //   {
-  //     img: productSummeryPic3,
-  //     category: "Eco-Friendly Packaging",
-  //     name: "Bamboo-Topped Jars",
-  //   },
-  //   {
-  //     img: productSummeryPic1,
-  //     category: "Eco-Friendly Packaging",
-  //     name: "Bamboo-Topped Jars",
-  //   },
-  //   {
-  //     img: productSummeryPic1,
-  //     category: "Eco-Friendly Packaging",
-  //     name: "Bamboo-Topped Jars",
-  //   },
-  // ];
-
   return (
     <div className="md:px-10 px-3 mt-12 lg:mt-[55px]">
       <h1 className="text-lg sm:text-xl lg:text-4xl">
-        Welcome{" "}
+        Welcome{' '}
         <span className="text-headingColor font-semibold text-lg sm:text-xl lg:text-4xl">
           Michael!
         </span>
@@ -62,7 +29,7 @@ const Dashboard = () => {
         {/*  */}
         <div
           style={{
-            background: "linear-gradient(107deg, #F8FEFF 0%, #FFF9F8 100%)",
+            background: 'linear-gradient(107deg, #F8FEFF 0%, #FFF9F8 100%)',
           }}
           className="mx-2 md:mx-6 rounded-xl mb-[57px]"
         >
@@ -73,13 +40,16 @@ const Dashboard = () => {
           <div className="grid xxs:grid-cols-2 xmd:grid-cols-3 xlg:grid-cols-5 md:flex-row justify-between items-center mt-5 pb-12 xlg:ml-[38px] gap-5 px-5 xxl:px-0">
             {orderSummery?.map((product, index) => (
               <div
-                key={index}
+                key={product?.id}
                 className="flex items-center justify-left gap-2 md:gap-3 w-full"
               >
-                <img
-                  src={`${import.meta.env.VITE_SITE_URL}/${product.image}`}
-                />
-                <div className="xxl:pr-[70px]">
+                <div className="size-12">
+                  <img
+                    className="h-full w-full object-cover"
+                    src={`${import.meta.env.VITE_SITE_URL}/${product.image}`}
+                  />
+                </div>
+                <div className="xxl:pr-[70px] space-y-3">
                   <p className="text-headingColor font-bold text-xs xxs:text-sm">
                     {product.category.name}
                   </p>

@@ -1,30 +1,27 @@
-import DateRangePicker from "@/components/DateRangePicker/DateRangePicker";
-import PaymentHistoryTable from "@/components/PaymentHistoryTable/PaymentHistoryTable";
-import { useGetAllPayments } from "@/hooks/cms.queries";
-import axios from "axios";
-import { useEffect, useState } from "react";
-const baseUrl = import.meta.env.VITE_SITE_URL;
+import DateRangePicker from '@/components/DateRangePicker/DateRangePicker';
+import PaymentHistoryTable from '@/components/PaymentHistoryTable/PaymentHistoryTable';
+import { useGetAllPayments } from '@/hooks/cms.queries';
+import { useState } from 'react';
 
 const PaymentHistory = () => {
   const tabs = [
-    { label: "Payment History", dataTitle: "paymentHistoryData" },
-    { label: "Last month", dataTitle: "lastMonthData" },
-    { label: "Year to date", dataTitle: "yearToDateData" },
+    { label: 'Payment History', dataTitle: 'paymentHistoryData' },
+    { label: 'Last month', dataTitle: 'lastMonthData' },
+    { label: 'Year to date', dataTitle: 'yearToDateData' },
   ];
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const { data: allPayments } = useGetAllPayments();
-  console.log(allPayments);
 
   // Formatting the payment history data
   const formattedPayments = allPayments?.map((payment) => ({
     invoiceId: `inv${payment.invoice_number}`,
-    invoiceDate: payment.created_at.split("T")[0],
-    product: payment.order?.item_type || "Unknown Product",
-    quantity: payment.quantity || "N/A",
+    invoiceDate: payment.created_at.split('T')[0],
+    product: payment.order?.item_type || 'Unknown Product',
+    quantity: payment.quantity || 'N/A',
     amount: payment.amount.toFixed(2),
-    paymentMethod: payment.payment_method || "N/A",
-    datePaid: payment.payment_date ? payment.payment_date.split("T")[0] : "N/A",
+    paymentMethod: payment.payment_method || 'N/A',
+    datePaid: payment.payment_date ? payment.payment_date.split('T')[0] : 'N/A',
     status: payment.status,
     id: payment.id,
   }));
@@ -40,8 +37,8 @@ const PaymentHistory = () => {
                 key={tab?.dataTitle}
                 className={`xmd:px-4 pt-6 pb-2 xmd:py-[21px] text-xs xxs:text-lg xmd:text-xl font-semibold ${
                   activeTab?.dataTitle === tab?.dataTitle
-                    ? "border-b-2 border-headingColor text-headingColor text-xl font-semibold"
-                    : "text-navbarColor text-xl font-semibold"
+                    ? 'border-b-2 border-headingColor text-headingColor text-xl font-semibold'
+                    : 'text-navbarColor text-xl font-semibold'
                 }`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -55,7 +52,7 @@ const PaymentHistory = () => {
           </div>
         </div>
         {/* Tabs Content */}
-        <PaymentHistoryTable data={formattedPayments} />
+        {allPayments && <PaymentHistoryTable data={formattedPayments} />}
       </div>
     </section>
   );
