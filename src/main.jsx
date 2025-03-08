@@ -15,8 +15,8 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
+        <RouterProvider router={router} />
         <Toaster />
       </AuthProvider>
     </QueryClientProvider>
