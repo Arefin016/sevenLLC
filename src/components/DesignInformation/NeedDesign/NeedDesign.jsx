@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Controller } from "react-hook-form";
 import { useGetAllCategories } from "@/hooks/cms.queries";
+import { Link } from "react-router-dom";
 
 const NeedDesign = ({
   register,
@@ -79,28 +80,13 @@ const NeedDesign = ({
                 <label className="xl:text-lg text-base text-headingColor font-medium">
                   Preferred Colors*
                 </label>
-                <Controller
-                  name="color_code"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-[49px] pl-5 bg-[#D9D9D91A] xl:!text-xl text-sm text-headingColor">
-                        <SelectValue placeholder="Preferred Colors" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Choose an option</SelectLabel>
-                          <SelectItem value="White">White</SelectItem>
-                          <SelectItem value="Black">Black</SelectItem>
-                          <SelectItem value="Blue">Blue</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  )}
+                <Input
+                  {...register("color_code", { required: true })}
+                  className="xl:py-[31px] xl:h-[97px] h-[48px] xl:pl-12 pl-5 bg-[#D9D9D91A] rounded-[10px] xl:!text-xl text-sm text-headingColor"
+                  type="text"
+                  placeholder="Preferred Colors*"
                 />
               </div>
-
               {/* Preferred Finish (optional) */}
               <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full">
                 <label className="xl:text-lg text-base text-headingColor font-medium">
@@ -370,9 +356,12 @@ const NeedDesign = ({
                 <div className="flex flex-col gap-y-[10.5px] lg:w-[50%] w-full my-2">
                   <label className="xl:text-lg text-base text-headingColor font-medium">
                     Desired Quantity (required)*
-                    <span className="text-buttonColor xl:text-lg text-base font-semibold underline">
+                    <Link
+                      to={"/productGuidePage"}
+                      className="text-buttonColor xl:text-lg text-base font-semibold underline"
+                    >
                       MOQ guide
-                    </span>
+                    </Link>
                   </label>
                   <Input
                     {...register("quantity", { required: true })}
@@ -411,7 +400,6 @@ const NeedDesign = ({
           </div>
         </div>
       </div>
-
       {/* shipping address form */}
       <div className="mt-12">
         <h1 className="text-center text-buttonColor lg:text-2xl text-xl md:text-[22px]">

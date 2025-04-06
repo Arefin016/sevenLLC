@@ -4,16 +4,14 @@ import {
   contactFormFunc,
   deletePaymentFunc,
   deleteOrderFunc,
-
   orderRequestFormFunc,
   passwordChangeFunc,
   userInformationUpdateFunc,
 } from "./cms.api";
 import useAuth from "./useAuth";
 import toast from "react-hot-toast";
-import { useGetAllPayments } from '@/hooks/cms.queries';
+import { useGetAllPayments } from "@/hooks/cms.queries";
 import { useNavigate } from "react-router-dom";
-
 
 export const useContactMutation = () => {
   const { setLoading } = useAuth();
@@ -29,7 +27,7 @@ export const useContactMutation = () => {
         duration: 1500,
       });
     },
-    onError: error => {
+    onError: (error) => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -42,7 +40,7 @@ export const useBillingAddressMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
     mutationKey: ["billing-address"],
-    mutationFn: payload => billingAddressFormFunc(payload),
+    mutationFn: (payload) => billingAddressFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
@@ -52,7 +50,7 @@ export const useBillingAddressMutation = () => {
         duration: 1500,
       });
     },
-    onError: error => {
+    onError: (error) => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -67,7 +65,7 @@ export const useOrderRequestMutation = () => {
   const navigate = useNavigate();
   return useMutation({
     mutationKey: ["order-request"],
-    mutationFn: payload => orderRequestFormFunc(payload),
+    mutationFn: (payload) => orderRequestFormFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
@@ -76,9 +74,9 @@ export const useOrderRequestMutation = () => {
       toast.success("Order Request has been sent !", {
         duration: 1500,
       });
-      navigate("/dashboardLayout/mainDashboard");
+      navigate("/dashboardLayout/orderHistory");
     },
-    onError: error => {
+    onError: (error) => {
       setLoading(false);
       toast.error(error.response?.data?.message, {
         duration: 1500,
@@ -93,11 +91,11 @@ export const useUserInfoUpdateMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["user-information-update"],
-    mutationFn: payload => userInformationUpdateFunc(payload),
+    mutationFn: (payload) => userInformationUpdateFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
-    onSuccess: data => {
+    onSuccess: (data) => {
       console.log(data);
       const userData = {
         name: data?.data?.first_name + " " + data?.data?.last_name,
@@ -124,7 +122,7 @@ export const usePasswordChangeMutation = () => {
   const { setLoading } = useAuth();
   return useMutation({
     mutationKey: ["password-change"],
-    mutationFn: payload => passwordChangeFunc(payload),
+    mutationFn: (payload) => passwordChangeFunc(payload),
     onMutate: () => {
       setLoading(true);
     },
@@ -177,7 +175,7 @@ export const useDeletePayment = () => {
 
   return useMutation({
     mutationKey: ["delete-payment"],
-    mutationFn: id => deletePaymentFunc(id),
+    mutationFn: (id) => deletePaymentFunc(id),
     onMutate: () => {},
     onSuccess: () => {
       toast.success("Payment deleted successfully!", {
@@ -198,4 +196,4 @@ export const useDeletePayment = () => {
   });
 };
 
-//  ok 
+//  ok
