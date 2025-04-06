@@ -4,7 +4,7 @@ const Button = ({ text, color, loading, disabled, onClick }) => {
   return (
     <button
       className={`${color} rounded-[60px] px-5 sm:px-6 md:px-7 lg:px-8 flex xl:gap-2 justify-center items-center xl:py-[14px] py-[10px] md:py-[10px] lg:py-3 text-[#FFF] font-semibold hover:bg-transparent border border-buttonColor hover:border-buttonColor hover:text-buttonColor ease-in-out duration-150 group text-sm xl:text-base ${
-        loading || disabled ? "opacity-50 cursor-not-allowed" : ""
+        loading || disabled ? 'opacity-50 cursor-not-allowed' : ''
       }`}
       disabled={loading || disabled}
       onClick={onClick}
