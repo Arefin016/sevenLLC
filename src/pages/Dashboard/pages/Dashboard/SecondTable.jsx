@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthProvider";
 import { useGetAllPayments } from "@/hooks/cms.queries";
 
-
 const baseUrl = import.meta.env.VITE_SITE_URL;
 
 const SecondTable = () => {
@@ -14,7 +13,6 @@ const SecondTable = () => {
     { label: "Last month", dataTitle: "lastMonthData" },
     { label: "Year to date", dataTitle: "yearToDateData" },
   ];
-
 
   const { data: allPayments } = useGetAllPayments();
   // console.log(allPayments);
@@ -36,8 +34,6 @@ const SecondTable = () => {
     status: payment.status,
     id: payment.id,
   }));
-
-  console.log(formattedPayments);
 
   return (
     <section className="border border-[#F8F9FA] rounded-[20px] bg-[#FFF] shadow-dashboardShadow md:pl-[30px] md:pr-[30px] px-4 md:pt-6 md:pb-[62px]">
