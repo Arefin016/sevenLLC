@@ -17,7 +17,7 @@ const OrderForms = () => {
 
   const { mutateAsync: orderRequestMutation } = useOrderRequestMutation();
 
-  const handleCheckboxChange = (option) => {
+  const handleCheckboxChange = option => {
     setSelectedOption(option === selectedOption ? null : option);
   };
 
@@ -30,24 +30,43 @@ const OrderForms = () => {
   } = useForm();
 
   // handlers:
-  const handleFileChange = (e) => {
+  const handleFileChange = e => {
     const file = e.target.files[0];
     if (file) {
-      if (!file.type.startsWith("image/")) {
-        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
+      const allowedExtensions = [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".svg",
+        ".psd",
+        ".ai",
+        ".pdf",
+      ];
+      const fileName = file.name.toLowerCase();
+      const isValidExtension = allowedExtensions.some(ext =>
+        fileName.endsWith(ext)
+      );
+
+      if (!isValidExtension) {
+        toast.error(
+          "Only image, SVG, PSD, AI, and design-related files are allowed."
+        );
         return;
       }
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File must be less than 2MB.");
+
+      if (file.size > 20 * 1024 * 1024) {
+        toast.error("File must be less than 20MB.");
         return;
       }
+
       setSelectedFile(file);
       console.log("Selected File:", file);
     }
   };
 
   // second handlers
-  const secondHandleFileChange = (e) => {
+  const secondHandleFileChange = e => {
     const file = e.target.files[0];
     if (file) {
       if (!file.type.startsWith("image/")) {
@@ -63,7 +82,7 @@ const OrderForms = () => {
     }
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     console.log(data);
     try {
       if (selectedFile && firstSelectedFile) {
@@ -255,7 +274,6 @@ const OrderForms = () => {
                 text={"Place Order"}
                 color={"bg-buttonColor"}
                 disabled={loading}
-                
               ></Button>
             </div>
           </div>
