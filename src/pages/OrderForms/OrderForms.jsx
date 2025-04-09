@@ -7,7 +7,6 @@ import Button from "@/components/Button/Button";
 import { useOrderRequestMutation } from "@/hooks/cms.mutations";
 import toast from "react-hot-toast";
 import useAuth from "@/hooks/useAuth";
-import { PiSpinnerBold } from "react-icons/pi";
 
 const OrderForms = () => {
   const { loading } = useAuth();
@@ -83,7 +82,6 @@ const OrderForms = () => {
   };
 
   const onSubmit = async data => {
-    console.log(data);
     try {
       if (selectedFile && firstSelectedFile) {
         const updatedData = {
@@ -93,7 +91,9 @@ const OrderForms = () => {
           logo: firstSelectedFile,
           design_options: selectedOption,
         };
+        console.log(updatedData);
         await orderRequestMutation(updatedData);
+
         setSelectedFile(null);
         reset();
         setFirstSelectedFile(null);

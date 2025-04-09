@@ -1,19 +1,18 @@
 import {
   OrderSummerySvg,
   ProductLineBorder,
-} from '@/components/SvgContainer/SvgConainer';
-import { DataTableDemo } from '@/components/DataTableDemo/DataTableDemo';
-import SecondTable from './SecondTable';
-import { useOrderSummery } from '@/hooks/cms.queries';
+} from "@/components/SvgContainer/SvgConainer";
+import { DataTableDemo } from "@/components/DataTableDemo/DataTableDemo";
+import SecondTable from "./SecondTable";
+import { useOrderSummery } from "@/hooks/cms.queries";
 
 const Dashboard = () => {
   const { data: orderSummery } = useOrderSummery();
-  console.log(orderSummery);
 
   return (
     <div className="md:px-10 px-3 mt-12 lg:mt-[55px]">
       <h1 className="text-lg sm:text-xl lg:text-4xl">
-        Welcome{' '}
+        Welcome{" "}
         <span className="text-headingColor font-semibold text-lg sm:text-xl lg:text-4xl">
           Michael!
         </span>
@@ -29,7 +28,7 @@ const Dashboard = () => {
         {/*  */}
         <div
           style={{
-            background: 'linear-gradient(107deg, #F8FEFF 0%, #FFF9F8 100%)',
+            background: "linear-gradient(107deg, #F8FEFF 0%, #FFF9F8 100%)",
           }}
           className="mx-2 md:mx-6 rounded-xl mb-[57px]"
         >
