@@ -69,18 +69,38 @@ const OrderForms = () => {
   const secondHandleFileChange = e => {
     const file = e.target.files[0];
     if (file) {
-      if (!file.type.startsWith("image/")) {
-        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
+      const allowedExtensions = [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".svg",
+        ".psd",
+        ".ai",
+        ".pdf",
+      ];
+      const fileName = file.name.toLowerCase();
+      const isValidExtension = allowedExtensions.some(ext =>
+        fileName.endsWith(ext)
+      );
+
+      if (!isValidExtension) {
+        alert(
+          "Only image, SVG, PSD, AI, and design-related files are allowed."
+        );
         return;
       }
+
       if (file.size > 2 * 1024 * 1024) {
         alert("File must be less than 2MB.");
         return;
       }
+
       setFirstSelectedFile(file);
       console.log("Selected File:", file);
     }
   };
+
 
   const onSubmit = async data => {
     console.log(data);
