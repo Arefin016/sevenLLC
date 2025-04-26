@@ -7,7 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 const ChooseUs = ({ data, showBreadcrumb }) => {
   const location = useLocation();
   const parsedData =
-    typeof description === "string"
+    typeof data?.description === "string"
       ? data?.description
       : String(data?.description);
 
@@ -24,7 +24,7 @@ const ChooseUs = ({ data, showBreadcrumb }) => {
           </h1>
 
           <div className="user-descreption-wrapper mt-4">
-            {parse(data?.description)}
+            {parse(parsedData)}
           </div>
           {/* Button Section */}
           <Link to="/aboutUs" className="lg:mt-12 mt-7 inline-block">

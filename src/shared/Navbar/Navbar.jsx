@@ -52,7 +52,7 @@ const menuItems = [
 ];
 
 const Navbar = () => {
-  const { token, userInfo } = useAuth();
+  const { user, userInfo } = useAuth();
 
   const [showMenu, setShowMenu] = useState(false);
   const { mutate: logOutMutation } = useLogout();
@@ -156,7 +156,7 @@ const Navbar = () => {
           </div>
           {/* This is the third row */}
 
-          {token ? (
+          {user ? (
             // user info
             <div ref={menuRef} className="relative font-poppins">
               <div
@@ -325,7 +325,7 @@ const Navbar = () => {
                       ))}
                     </ul>
                     <div>
-                      {token ? (
+                      {user ? (
                         // If the user is logged in, show the "Logout" text
                         <button
                           onClick={handleLogout}

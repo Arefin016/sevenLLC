@@ -25,6 +25,7 @@ const HaveDesign = ({
   secondHandleFileChange,
 }) => {
   const { data: allCategoriesList } = useGetAllCategories();
+  console.log(allCategoriesList);
 
   return (
     <section>
@@ -62,6 +63,7 @@ const HaveDesign = ({
                 <input
                   type="file"
                   className="hidden"
+                  multiple
                   onChange={handleFileChange}
                 />
               </label>
@@ -69,7 +71,7 @@ const HaveDesign = ({
             </div>
             {selectedFile && (
               <p className="text-navbarColor text-center">
-                Selected File: {selectedFile.name}
+                Selected File: {selectedFile?.map((file) => file.name)}
               </p>
             )}
           </div>
