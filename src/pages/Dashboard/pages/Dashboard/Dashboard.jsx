@@ -8,6 +8,7 @@ import { useOrderSummery } from "@/hooks/cms.queries";
 
 const Dashboard = () => {
   const { data: orderSummery } = useOrderSummery();
+  console.log(orderSummery);
 
   return (
     <div className="md:px-10 px-3 mt-12 lg:mt-[55px]">
@@ -43,11 +44,51 @@ const Dashboard = () => {
                 className="flex items-center justify-left gap-2 md:gap-3 w-full"
               >
                 <div className="size-12">
-                  <img
-                    className="h-full w-full object-cover"
-                    src={`${import.meta.env.VITE_SITE_URL}/${product.image}`}
-                  />
+                  {product?.images[0]?.images ? (
+                    (() => {
+                      const file = product.images[0].images;
+                      const extension = file.split(".").pop().toLowerCase();
+                      const imageExtensions = [
+                        "jpg",
+                        "jpeg",
+                        "png",
+                        "gif",
+                        "webp",
+                        "bmp",
+                        "svg",
+                      ];
+                      const fileUrl = `${
+                        import.meta.env.VITE_SITE_URL
+                      }/${file}`;
+
+                      if (imageExtensions.includes(extension)) {
+                        return (
+                          <img
+                            className="h-full w-full object-cover rounded-md"
+                            src={fileUrl}
+                            alt="Product Image"
+                          />
+                        );
+                      } else {
+                        return (
+                          <a
+                            href={fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center h-full w-full bg-gray-200 text-xs text-gray-600 font-semibold rounded-md"
+                          >
+                            {extension.toUpperCase()}
+                          </a>
+                        );
+                      }
+                    })()
+                  ) : (
+                    <div className="h-full w-full bg-gray-100 flex items-center justify-center rounded-md text-gray-400">
+                      No Image
+                    </div>
+                  )}
                 </div>
+
                 <div className="xxl:pr-[70px] space-y-3">
                   <p className="text-headingColor font-bold text-xs xxs:text-sm">
                     {product.category.name}
@@ -56,6 +97,7 @@ const Dashboard = () => {
                     {product.item_type}
                   </p>
                 </div>
+
                 {index < orderSummery?.length - 1 && (
                   <div className="hidden xlg:block">
                     <ProductLineBorder />
