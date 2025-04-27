@@ -30,18 +30,45 @@ const OrderForms = () => {
 
   // handlers:
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
-        return;
+    const files = Array.from(e.target.files);
+
+    const allowedExtensions = [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".svg",
+      ".psd",
+      ".ai",
+      ".pdf",
+    ];
+
+    const validFiles = [];
+
+    for (const file of files) {
+      const fileName = file.name.toLowerCase();
+      const isValidExtension = allowedExtensions.some((ext) =>
+        fileName.endsWith(ext)
+      );
+
+      if (!isValidExtension) {
+        toast.error(
+          `"${file.name}" is not a valid file type. Only image, SVG, PSD, AI, and design-related files are allowed.`
+        );
+        continue;
       }
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File must be less than 2MB.");
-        return;
+
+      if (file.size > 20 * 1024 * 1024) {
+        toast.error(`"${file.name}" must be less than 20MB.`);
+        continue;
       }
-      setSelectedFile(file);
-      console.log("Selected File:", file);
+
+      validFiles.push(file);
+    }
+
+    if (validFiles.length > 0) {
+      setSelectedFile(validFiles);
+      console.log("Selected Files:", validFiles);
     }
   };
 
@@ -49,37 +76,129 @@ const OrderForms = () => {
   const secondHandleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (!file.type.startsWith("image/")) {
-        alert("Only image files (JPEG, PNG, JPG, GIF) are allowed.");
+      const allowedExtensions = [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".svg",
+        ".psd",
+        ".ai",
+        ".pdf",
+      ];
+      const fileName = file.name.toLowerCase();
+      const isValidExtension = allowedExtensions.some((ext) =>
+        fileName.endsWith(ext)
+      );
+
+      if (!isValidExtension) {
+        alert(
+          "Only image, SVG, PSD, AI, and design-related files are allowed."
+        );
         return;
       }
+
       if (file.size > 2 * 1024 * 1024) {
         alert("File must be less than 2MB.");
         return;
       }
+
       setFirstSelectedFile(file);
       console.log("Selected File:", file);
     }
   };
 
+  // const onSubmit = async (data) => {
+  //   try {
+  //     if (selectedFile && firstSelectedFile) {
+  //       const updatedData = {
+  //         ...data,
+  //         category_id: Number(data?.category_id),
+  //         image: selectedFile,
+  //         logo: firstSelectedFile,
+  //         design_options: selectedOption,
+  //       };
+  //       console.log(updatedData);
+  //       await orderRequestMutation(updatedData);
+
+  //       setSelectedFile(null);
+  //       reset();
+  //       setFirstSelectedFile(null);
+  //     } else {
+  //       toast.error("You must upload a image before proceed", {
+  //         duration: 1500,
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error("Order Request Error: ", error);
+  //   }
+  // };
+
   const onSubmit = async (data) => {
     try {
-      if (selectedFile && firstSelectedFile) {
-        const updatedData = {
-          ...data,
-          category_id: Number(data?.category_id),
-          image: selectedFile,
-          logo: firstSelectedFile,
-          design_options: selectedOption,
-        };
-        console.log(updatedData);
-        await orderRequestMutation(updatedData);
+      if (selectedFile && selectedFile.length > 0 && firstSelectedFile) {
+        const formData = new FormData();
+
+        // formData.append("category_id", Number(data?.category_id));
+        // formData.append("logo", firstSelectedFile); // Assuming logo is still a single file
+        // formData.append("design_options", selectedOption); // Adjust based on what selectedOption is
+
+        // // Append all selected images
+        // selectedFile.forEach((file, index) => {
+        //   formData.append(`images[${index}]`, file); // Or just "images" if backend expects array
+        // });
+
+        // formData.append("full_name", data.full_name || "");
+        // formData.append("email", data.email || "");
+        // formData.append("phone", data.phone || "");
+        // formData.append("company_name", data.company_name || "");
+        // formData.append("design_details", data.design_details || "");
+        // formData.append("color_code", data.color_code || "");
+        // formData.append("preferred_finish", data.preferred_finish || "");
+        // formData.append("logo_included", data.logo_included ? "1" : "0");
+        // formData.append("brand_text", data.brand_text || "");
+        // formData.append("design_placement", data.design_placement || "");
+        // formData.append("item_type", data.item_type || "");
+        // formData.append("material", data.material || "");
+        // formData.append("accessories", data.accessories || "");
+        // formData.append("size", data.size || "");
+        // formData.append("thickness_in_micron", data.thickness_in_micron || "");
+        // formData.append("label", data.label ? "1" : "0");
+        // formData.append("quantity", data.quantity || "");
+        // formData.append("reoccurring", data.reoccurring ? "1" : "0");
+        // formData.append(
+        //   "shipping_user_f_name",
+        //   data.shipping_user_f_name || ""
+        // );
+        // formData.append("shipping_phone", data.shipping_phone || "");
+        // formData.append("shipping_email", data.shipping_email || "");
+        // formData.append(
+        //   "shipping_company_name",
+        //   data.shipping_company_name || ""
+        // );
+        // formData.append("country", data.country || "");
+        // formData.append("state", data.state || "");
+        // formData.append("city", data.city || "");
+        Object.keys(data).forEach((key) => {
+          formData.append(key, data[key]);
+        });
+        formData.append("category_id", Number(data?.category_id));
+        formData.append("logo", firstSelectedFile);
+        formData.append("design_options", selectedOption);
+
+        // Append all selected images
+        selectedFile.forEach((file, index) => {
+          formData.append(`images[${index}]`, file); // Or just "images" if backend expects array
+        });
+        // console.log([...formData.entries()]); // Debugging: to see what's inside
+
+        await orderRequestMutation(formData); // Make sure this function can handle FormData!
 
         setSelectedFile(null);
         reset();
         setFirstSelectedFile(null);
       } else {
-        toast.error("You must upload a image before proceed", {
+        toast.error("You must upload an image before proceeding", {
           duration: 1500,
         });
       }

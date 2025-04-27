@@ -60,6 +60,7 @@ const NeedDesign = ({
                 <input
                   type="file"
                   className="hidden"
+                  multiple
                   onChange={handleFileChange}
                 />
               </label>
@@ -67,7 +68,7 @@ const NeedDesign = ({
             </div>
             {selectedFile && (
               <p className="text-navbarColor text-center">
-                Selected File: {selectedFile.name}
+                Selected File: {selectedFile?.map((file) => file.name)}
               </p>
             )}
           </div>
